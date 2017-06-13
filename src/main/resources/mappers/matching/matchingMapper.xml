@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+	matching page mapper
+	작성자 : 황영롱 
+ -->
+<mapper namespace="matchingMapper">
+
+	<sql id="boardCol">
+        bno AS bNo,
+        userId,
+        cateId,
+        btitle AS bTitle,
+        bcontent AS bContent,
+   		value,
+   		isSwap,
+        viewcnt AS viewCnt,
+        bregdate AS bRegDate,
+        bmodifydate AS bModifyDate,
+        lat,
+        lon
+    </sql>
+    
+	<!-- 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 -->
+	<select id="keywordList" resultType="BoardDTO">
+		SELECT 
+			<include refid="boardCol" />
+		FROM
+			board
+		WHERE
+			
+	</select>
+</mapper>
+
+
+
+
+
+

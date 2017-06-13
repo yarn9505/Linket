@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- 데코레이터가 위치할 기본 폴더 위치 -->
+<decorators defaultdir="/WEB-INF/views/layout">
+
+
+ <!-- 예외 URL 패턴 -->
+ <excludes>
+     <pattern>*login*</pattern>
+     <pattern>*timeline*</pattern>
+     <pattern>*handlebarsTest*</pattern>
+     <pattern>/resources/daumEditor/editor_template*</pattern>
+	 <pattern>/resources/daumEditor/**</pattern>
+<!--  	 <pattern>*matching*</pattern>  -->
+ </excludes>
+
+ 
+<!-- 공통용 헤더와 푸터설정 파일 
+	/WEB-INF/views/layout/header-footer-layout.jsp
+-->
+ <decorator name="header-footer-layout" page="header-footer-layout.jsp">
+  <pattern>*</pattern>
+ </decorator>
+
+
+
+</decorators> 
+
+
+

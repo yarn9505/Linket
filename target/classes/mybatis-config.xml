@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<!-- mapper.xml 안에서 사용할 패키지를 지정한다. 해당 typealias로 지정하면, class명을 넣을 때 패키지명을 포함한 풀 클래스 명을 입력하지 않고
+		클래스명으로만 입력이 가능하다.
+	 -->
+  <typeAliases>
+    <package name="com.java.kosta.dto.user"/>
+    <package name="com.java.kosta.dto.board"/>
+    <package name="com.java.kosta.dto.note"/>
+ 	<package name="com.java.kosta.dto.timeline"/>
+  </typeAliases>
+</configuration>
+

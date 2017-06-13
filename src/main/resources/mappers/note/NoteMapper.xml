@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 
+	[	쪽지 대한 DB처리를 담당하는 Mapper	]
+[6]쪽지
+CREATE TABLE `message` (
+  `userId` char(50) NOT NULL,
+  `mno` bigint(11) NOT NULL AUTO_INCREMENT,
+  `recvId` varchar(50) NOT NULL,
+  `mtitle` varchar(100) NOT NULL,
+  `mcontent` text,
+  `date_sender` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_receiver` timestamp,
+  `recv_read` enum('Y','N') NOT NULL DEFAULT 'N',
+  `recv_del` enum('Y','N') NOT NULL DEFAULT 'N',
+  `sender_del` enum('Y','N') NOT NULL DEFAULT 'N',
+  PRIMARY KEY (`mno`),
+  KEY `userId` (`userId`),
+  CONSTRAINT `message_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `usertable` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ -->
+<mapper namespace="NoteMapper">
+	<!-- 쪽지 삽입(="쪽지 보내기") -->
+	<insert id="sendInsert">
+		insert into message(userId,recvId,mtitle,mcontent,date_sender)
+		values(#{userId},#{recvId},#{mtitle},#{mcontent},now())
+	</insert>
+	
+	<!-- 받은 쪽지함의 쪽지 갯수 -->
+	<select id = "totalCntReceive" resultType="int">
+		select count(*) from message
+		where recvId=#{recvId} and recv_del="N"
+	</select> 
+	
+	<!-- 받은 쪽지함 목록 쿼리 -->
+	<select id="listForReceive" resultType="NoteVO">
+		select userId,mno,recvId,mtitle,mcontent,date_sender,recv_read,recv_del,sender_del from message
+		where recvId=#{vo.recvId} and recv_del="N"
+		order by mno desc
+		limit #{page.pageStart},#{page.perPageNum}
+
+	</select>
+	
+	<!-- 보낸 쪽지함 갯수 -->
+	<select id = "totalCntSend" resultType="int" >
+		select count(*) from message
+		where userId=#{userId} and sender_del="N"
+	</select> 
+	
+	
+	<!-- 보낸 쪽지함 목록 쿼리 -->
+	<select id="listForSend" resultType="NoteVO">
+		select userId,mno,recvId,mtitle,mcontent,date_sender,recv_read,recv_del,sender_del,date_receiver from message 
+		where userId=#{vo.userId} and sender_del="N"
+		order by mno desc
+		limit #{page.pageStart},#{page.perPageNum}
+	</select>
+	
+	<!-- 쪽지 하나 상세 읽기 -->
+	<select id="readDetail" resultType="NoteVO">
+		select * from message where mno=#{mno}
+	</select>
+	
+	<!-- 상세 읽기시 읽은시간,읽은지유무 갱신 -->
+	<update id="readUpdate">
+		update message set date_receiver=now(), recv_read="Y"
+		where mno=#{mno}
+	</update>
+	
+	<!-- 읽지 않은  쪽지 갯수 -->
+	<select id = "totalCntNotOpen" resultType="int" >
+		select count(*) from message
+		where recvId=#{recvId} and recv_read="N"
+		
+	</select> 
+	
+	
+	<!-- 읽지 않은 쪽지 조회 -->
+	<select id = "listNotOpen" parameterType="NoteVO" resultType="NoteVO" >
+		select userId,mno,recvId,mtitle,mcontent,date_sender,recv_read,recv_del,sender_del from message 
+		where recvId=#{vo.recvId} and recv_read="N"
+		order by mno desc
+		limit #{page.pageStart},#{page.perPageNum} 
+		
+	</select>
+	
+	<!-- 받은 쪽지 보관함에서 삭제하기시 정보 업데이트 -->
+	<update id="delUpdateFromRecv">
+		update message set recv_del="Y"
+		where mno=#{mno}
+	</update>
+	
+	<!-- 보낸 쪽지 보관함에서 삭제하기시 정보 업데이트 -->
+	<update id="delUpdateFromSender">
+		update message set sender_del="Y"
+		where mno=#{mno}
+	</update>
+	
+	<!-- 받은쪽지보관함, 보낸쪽지 보관함 모두에서 삭제시 최종 삭제하는 메서드 -->
+	<delete id="delBoth">
+		delete from message
+		where mno=#{mno} and sender_del="Y" and recv_del="Y"
+	</delete>
+</mapper>
+

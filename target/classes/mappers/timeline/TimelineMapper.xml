@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="timelineMapper">
+
+   <select id="listAll" resultType="int">
+      SELECT count(*)
+      FROM board
+   </select>
+
+   <sql id="search">
+         or (board.userId LIKE CONCAT('%',#{keywords},'%')
+         OR
+         board.bcontent LIKE CONCAT('%',#{keywords},'%')
+         OR board.btitle LIKE CONCAT('%',#{keywords},'%'))
+   </sql>
+
+   <sql id="conditional">
+      WHERE
+      1=0
+      <if test="keywords == 'undefined'">
+         <if test='UserVO.cateId1 == "Y"'>
+            or board.cateId = 1
+         </if>
+         <if test='UserVO.cateId2 == "Y"'>
+            or board.cateId = 2
+         </if>
+         <if test='UserVO.cateId3 == "Y"'>
+            or board.cateId = 3
+         </if>
+         <if test='UserVO.cateId4 == "Y"'>
+            or board.cateId = 4
+         </if>
+         <if test='UserVO.cateId5 == "Y"'>
+            or board.cateId = 5
+         </if>
+         <if test='UserVO.cateId6 == "Y"'>
+            or board.cateId = 6
+         </if>
+      </if>
+       <if test="keywords != 'undefined'">
+         <include refid="search"></include>
+      </if>
+   </sql>
+   
+   <!-- 필터링 조건 sql문 (혜연추가) -->
+   <sql id="FilterConditional">
+      
+   </sql>
+   
+
+   <!-- 거리, 관심사에 따른 타임라인에 쓸 게시글 목록 출력 -->
+   <select id="listMatch" resultType="TimelineDTO">
+      SELECT *,
+      (6371*acos(cos(radians(#{UserVO.lat}))*cos(radians(lat))*cos(radians(lon)
+      -radians(#{UserVO.lon}))+sin(radians(#{UserVO.lat}))*sin(radians(lat))))
+      AS distance
+      FROM board LEFT OUTER JOIN category
+      ON board.cateId =
+      category.cateId
+      <include refid="conditional"></include>
+      ORDER BY distance asc, bno desc
+      limit #{pageMaker.pageStart},
+      #{pageMaker.perPageNum}
+   </select>
+
+   <!-- 페이징 적용을 위한 관심사에 따른 게시글 수 반환 -->
+   <select id="countTimeline" resultType="int">
+      SELECT count(*)
+      From board left outer join category
+      on board.cateId = category.cateId
+      <include refid="conditional"></include>
+
+   </select>
+   
+   <!-- 필터 적용에 따라서 게시글 반환(혜연추가) -->
+   <select id="listFilter" resultType="TimelineDTO">
+      SELECT *,
+      (6371*acos(cos(radians(#{UserVO.lat}))*cos(radians(lat))*cos(radians(lon)
+      -radians(#{UserVO.lon}))+sin(radians(#{UserVO.lat}))*sin(radians(lat))))
+      AS distance
+      FROM board LEFT OUTER JOIN category
+      ON board.cateId = category.cateId
+      WHERE  
+      1=0
+      <if test='FilterDTO.fcate1 == "Y"'>
+         or board.cateId = 1 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      <if test='FilterDTO.fcate2 == "Y"'>
+         or board.cateId = 2 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      <if test='FilterDTO.fcate3 == "Y"'>
+         or board.cateId = 3 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      <if test='FilterDTO.fcate4 == "Y"'>
+         or board.cateId = 4 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      <if test='FilterDTO.fcate5 == "Y"'>
+         or board.cateId = 5 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      <if test='FilterDTO.fcate6 == "Y"'>
+         or board.cateId = 6 and board.value BETWEEN #{FilterDTO.fvalue1} and #{FilterDTO.fvalue2}
+      </if>
+      ORDER BY distance asc, bno desc
+      limit #{pageMaker.pageStart},#{pageMaker.perPageNum}
+   </select>
+   
+   <!-- 필터 적용된 게시물을 페이징하기 위한 관심사에 따른 게시글 갯수 반환(혜연추가) -->
+   <select id="countFilterList" resultType="int">
+      SELECT count(*)
+      FROM board
+      WHERE 
+      1=0
+      <if test='fcate1 == "Y"'>
+         or cateId = 1 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+      <if test='fcate2 == "Y"'>
+         or cateId = 2 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+      <if test='fcate3 == "Y"'>
+         or cateId = 3 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+      <if test='fcate4 == "Y"'>
+         or cateId = 4 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+      <if test='fcate5 == "Y"'>
+         or cateId = 5 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+      <if test='fcate6 == "Y"'>
+         or cateId = 6 and value BETWEEN #{fvalue1} and #{fvalue2}
+      </if>
+   </select>
+   
+   <!-- 가치 최대값 구하는 쿼리 -->
+   <select id="maxValue" resultType="int">
+      SELECT MAX(value) FROM board
+   </select>
+   
+	<!-- 로그인한 아이디가 해당 게시글 좋아요 눌렀나 안눌렀나 -->
+	<select id="searchFavorite" resultType="int">
+		SELECT COUNT(*)
+		FROM favorite
+		WHERE bno=#{bno} AND userId=#{userId}
+	
+	</select>
+	
+	
+	<update id="updateFavorite">
+	  INSERT INTO favorite (
+         bno,
+         userId
+      ) VALUES (
+      	 #{bno},
+         #{userId}          
+      )
+	</update>
+	
+	<delete id="deleteFavorite">
+		DELETE 
+		FROM favorite
+		WHERE 
+			bno = #{bno}
+			AND userId=#{userId}
+	
+	</delete>
+    
+   
+
+
+</mapper>

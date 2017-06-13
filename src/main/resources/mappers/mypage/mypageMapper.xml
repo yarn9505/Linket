@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.java.kosta.dao.mypage.MyPageDAO">
+
+	<!-- bno값 가지고 eval 테이블에서 해당 거래자 id 가져오기  -->
+	<select id="getCustomerId" resultType="String">
+		select distinct buyerId from eval where bno = #{bno}
+	</select>
+
+	<!-- 구매결정 모달창에서 존재하는 아이디인지 검색 -->
+	<select id="existIdCheck" resultType="int">
+		select count(*) from usertable where userId=#{buyerId}
+	</select>
+
+	<select id="duplicateId" resultType="int">
+		select count(*) from eval where buyerId=#{buyerId} and bno=#{bno}
+	</select>
+
+	<!-- 거래자 지정시 테이블 insert -->
+	<insert id="insertTransaction">
+		insert into eval(userId,bno,cateId,buyerId,pscore) values(#{userId},#{bno},#{cateId},#{buyerId},1)
+	</insert>
+
+	<!-- 고객이 후기를 쓸 게시글(거래) 수가 몇개인지를 조회 -->
+	<select id="countClient" resultType="int">
+		select count(*) from eval where buyerId=#{buyerId} and pcontent IS NULL
+	</select>
+	
+	<!-- 고객이 후기를 쓸 게시글 목록 조회 -->
+	<select id="clientTransactionList" resultType="BoardDTO">
+		select * from board
+		where bno IN (select bno from eval where buyerId=#{buyerId} and pcontent IS NULL) 
+	</select>
+
+	<!-- 전체 레코드 갯수 조회 -->
+	<select id="selectMyFavoriteListTotalCount" resultType="int">
+		SELECT
+		COUNT(*)
+		FROM
+		favorite
+		WHERE
+		userId = #{userId}
+	</select>
+	
+	
+	<!-- 내가 누른 좋아요 가져오기 -->
+	<select id="selectMyFavoriteList" resultType="BoardDTO">
+
+		SELECT DISTINCT
+		board.bno,board.cateId, board.btitle, board.userId, board.bregdate
+		FROM
+		board,favorite
+		WHERE
+		favorite.userId = #{userId} AND board.bno =#{bNo}
+		<!-- LIMIT #{pagingDTO.startRow},#{pagingDTO.endRow} -->
+		<!-- SELECT board.cateId, board.btitle, board.userId, board.bregdate FROM 
+			board,favorite WHERE favorite.userId = #{userId} ORDER BY bno DESC -->
+	</select>
+	
+
+		<!-- 내가 누른 좋아요 가져오기<용래> -->
+	<select id="selectFavoriteList" resultType="BoardDTO">
+		SELECT b.bno,b.cateId, b.btitle, b.userId, b.bregdate
+		FROM board b LEFT JOIN favorite f ON b.bno = f.bno 
+		WHERE f.userId =#{userId}
+		ORDER BY b.bno DESC
+        limit #{page.pageStart},#{page.perPageNum} 
+	</select>
+	
+	
+	<select id="selectFavoritecount" resultType="int">
+	SELECT COUNT(*)
+	FROM board b LEFT JOIN favorite f ON b.bno = f.bno 
+	WHERE f.userId=#{userId};
+	</select>	
+	
+
+
+	<!-- 좋아요 조회 -->
+	<select id="searchFavorite" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		favorite
+		WHERE
+		bno = #{bNo}
+		AND userId=#{userId}
+	</select>
+	
+	
+	
+	
+	<!-- 내가 누른 좋아요 리스트 -->
+	<select id="searchFavoriteList" resultType="BoardDTO">
+		SELECT
+		favorite.userId, favorite.bno
+		FROM
+		favorite
+		WHERE
+		userId = #{userId}
+	</select>
+
+	<!-- 좋아요 취소 -->
+	<delete id="unfavoriteBoard">
+		DELETE FROM favorite
+		WHERE
+		bno = #{bNo}
+		AND
+		userId=#{userId}
+	</delete>
+
+	<!-- 좋아요 갯수 조회 -->
+	<select id="countMyFavorite" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		favorite
+		WHERE
+		bno = #{bNo}
+	</select>
+	
+	
+	
+	<!-- 내가 올린 글 조회 -->
+	<select id="myBoardList" resultType="BoardDTO">
+	    SELECT 
+	    	* 
+	    FROM 
+	    	board
+	    WHERE
+	    	userId = #{userId}
+	    	
+	</select>
+	
+	
+		<!-- 내가 올린 글 갯수 조회 -->
+	<select id="selectMyBoardListCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		board
+		WHERE
+		userId = #{userId}
+	</select>
+	
+	<!-- 나의 거래중인 게시물 갯수 조회 -->
+	<select id="selectMyExchangeListCount" resultType="int">
+	    SELECT COUNT(*)
+		FROM eval
+		WHERE buyerId = #{buyerId}
+	</select>
+	
+	<!-- 나의 거래중인 게시물 리스트 -->
+	<select id="selectExchangeList" resultType="BoardDTO">
+	    select * 
+	    from board 
+	    where bno in (select bno from eval where eval.buyerId = #{buyerId})
+	    LIMIT #{pagingDTO.startRow}, #{pagingDTO.endRow}
+	</select>
+
+</mapper>
