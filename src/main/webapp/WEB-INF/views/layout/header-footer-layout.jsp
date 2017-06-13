@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 
@@ -10,13 +10,31 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
+<!-- <link rel="stylesheet" href="/resources/css/custom.min.css">
+<link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
+<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
+<script type="text/javascript" src="/resources/js/json2.js"></script>
+<script type="text/javascript" src="/resources/js/sockjs.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
+
 <link rel="stylesheet" href="/resources/css/custom.min.css">
 <link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <script type="text/javascript" src="/resources/js/json2.js"></script>
 <script type="text/javascript" src="/resources/js/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/resources/js/custom.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="/resources/js/login/login.js"></script>
+<script src="/resources/js/join/join.js"></script>
+
 
 <title><decorator:title default="Linket" /></title>
 
@@ -166,24 +184,24 @@
          </div>
          
          <div class="navbar-collapse collapse" id="navbar-main">
-            <ul class="nav navbar-nav">
-               <li><a id="welcome" href="/" >Welcome</a></li>
-               <li><a id="team" href="/timeline">TimeLine</a></li>
-               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
-               <span class="caret"></span></a>
-               <ul class="dropdown-menu" aria-labelledby="themes">
-                  <li><a href="#">도서/음반</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">뷰티/패션/잡화</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">애완동물용품</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">인테리어/생활용품</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">유아/취미/완구</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">지역 할인 쿠폰</a></li>
-               </ul></li>
+			<ul class="nav navbar-nav">
+				<li><a id="welcome" href="/" >Welcome</a></li>
+				<li><a id="team" href="/timeline">TimeLine</a></li>
+				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
+				<span class="caret"></span></a>
+				<ul class="dropdown-menu" aria-labelledby="themes">
+					<li><a href="/board/category/boardList?cateId=1&pageNo=1">도서/음반</a></li>
+					<li class="divider"></li>
+					<li><a href="/board/category/boardList?cateId=2&pageNo=1">뷰티/패션/잡화</a></li>
+					<li class="divider"></li>
+					<li><a href="/board/category/boardList?cateId=3&pageNo=1">애완동물용품</a></li>
+					<li class="divider"></li>
+					<li><a href="/board/category/boardList?cateId=4&pageNo=1">인테리어/생활용품</a></li>
+					<li class="divider"></li>
+					<li><a href="/board/category/boardList?cateId=5&pageNo=1">유아/취미/완구</a></li>
+					<li class="divider"></li>
+					<li><a href="/board/category/boardList?cateId=6&pageNo=1">지역 할인 쿠폰</a></li>
+				</ul></li>
 
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
                <li><a id="about" href="/aboutUsSection">About Us</a></li>
@@ -220,11 +238,6 @@
       </div>
    </div>
 
-   <script src="/resources/js/login/login.js"></script>
-   <script src="/resources/js/join/join.js"></script>
-   <script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-   <script src="/resources/js/custom.js"></script>
-   
    <div style="margin-top: 5%;">
       <decorator:body></decorator:body>
    </div>
