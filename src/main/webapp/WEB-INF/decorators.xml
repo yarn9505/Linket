@@ -6,8 +6,6 @@
 
  <!-- 예외 URL 패턴 -->
  <excludes>
-     <pattern>*login*</pattern>
-     <pattern>*timeline*</pattern>
      <pattern>*handlebarsTest*</pattern>
      <pattern>/resources/daumEditor/editor_template*</pattern>
 	 <pattern>/resources/daumEditor/**</pattern>

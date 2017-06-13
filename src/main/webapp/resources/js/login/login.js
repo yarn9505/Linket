@@ -26,7 +26,7 @@ $(document).ready(function() {
 
       $.ajax({
          type : "post",
-         url : "user/loginProc",
+         url : "/user/loginProc",
          data : {
             userId : $("#userId").val(),
             userPw : $("#userPw").val(),

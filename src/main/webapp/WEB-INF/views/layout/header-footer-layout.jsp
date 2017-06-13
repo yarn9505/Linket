@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
 
@@ -67,7 +67,7 @@
 //          sock.onopen=function(){
 //          }
 //          sock.onmessage=function(evt){
-//         	 	console.log("안들어오나?");
+//                console.log("안들어오나?");
 //                notifyMe(evt.data);
 //             /* if(${loginSession.userId eq sessionScope.NotiRecvId}){
 //             } */
@@ -82,17 +82,17 @@
 //    function notifyMe(data) {
 //       console.log("노티함수 : " + data);
 //       Notification.requestPermission(function (permission) {
-//      	 Notification.requestPermission(function (result) {
+//          Notification.requestPermission(function (result) {
 
-//      	        //요청을 거절하면,
-//      	        if (result === 'denied') {
-//      	            return;
-//      	        }
-//      	        //요청을 허용하면,
-//      	        else {
-//      	            return;
-//      	        }
-//      	    });
+//                 //요청을 거절하면,
+//                 if (result === 'denied') {
+//                     return;
+//                 }
+//                 //요청을 허용하면,
+//                 else {
+//                     return;
+//                 }
+//             });
 //       var parameter_noti = {
 //             icon : "https://image-proxy.namuwikiusercontent.com/r/https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F7%2F7e%2FPatrick_Star.png",
 //             body: data
@@ -104,7 +104,7 @@
 //       }
 //       //사용자가 Notification 사용을 허락했는지 체크
 //       else if (Notification.permission === "granted") {
-//     	  console.log("사용자가 승낙한 경우");
+//          console.log("사용자가 승낙한 경우");
 //          //허락했다면 Notification을 생성
 //          var notification = new Notification(parameter_noti.title,{
 //             icon : parameter_noti.icon,
@@ -114,16 +114,16 @@
 //       //크롬 브라우저는 permission 속성이 구현되어 있지 않기 때문에
 //       //사용자가 의도적으로 'denied' 한 경우만 체크
 //       else if (Notification.permission !== 'denied') {
-//     	  console.log("사용자가 노티 사용 거부한 경우");
+//          console.log("사용자가 노티 사용 거부한 경우");
         
 //             //사용자가 사용 여부를 체크했다면, 크롬 Notification 상태를 갱신
 //             if(!('permission' in Notification)) {
-            	
+               
 //                Notification.permission = permission;
 //             }
 //             //사용자가 승낙했다면, Notifiation을 생성
 //             if (permission === "granted") {
-//             	console.log("사용자가 노티 승낙했을 경우 들어오는 부분");
+//                console.log("사용자가 노티 승낙했을 경우 들어오는 부분");
 //                var notification = new Notification(parameter_noti.title,{
 //                   icon : parameter_noti.icon,
 //                   body : parameter_noti.body
@@ -137,94 +137,96 @@
 <style type="text/css">
 
 .msg_a {
-		position: relative; 
-    	color:white;
-    	text-decoration: none;
-    	top:-10px;
-    	left:-25px;
+      position: relative; 
+       color:white;
+       text-decoration: none;
+       top:-10px;
+       left:-25px;
 }
 .Badge{
-	background-color: #CB1C05;
-	border-radius:10px;
-	font-weight: bold;
-	padding:0 5px 0 5px;
+   background-color: #CB1C05;
+   border-radius:10px;
+   font-weight: bold;
+   padding:0 5px 0 5px;
 }
 
 </style>
 <decorator:head />
 </head>
 <body>
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<div class="navbar-brand">Linket</div>
-				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span> 
-					<span class="icon-bar"></span>
-				</button>
-			</div>
-			
-			<div class="navbar-collapse collapse" id="navbar-main">
-				<ul class="nav navbar-nav">
-					<li><a id="welcome" href="/" >Welcome</a></li>
-					<li><a id="team" href="/timeline">TimeLine</a></li>
-					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
-					<span class="caret"></span></a>
-					<ul class="dropdown-menu" aria-labelledby="themes">
-						<li><a href="#">도서/음반</a></li>
-						<li class="divider"></li>
-						<li><a href="#">뷰티/패션/잡화</a></li>
-						<li class="divider"></li>
-						<li><a href="#">애완동물용품</a></li>
-						<li class="divider"></li>
-						<li><a href="#">인테리어/생활용품</a></li>
-						<li class="divider"></li>
-						<li><a href="#">유아/취미/완구</a></li>
-						<li class="divider"></li>
-						<li><a href="#">지역 할인 쿠폰</a></li>
-					</ul></li>
+   <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+         <div class="navbar-header">
+            <div class="navbar-brand">Linket</div>
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+               <span class="icon-bar"></span> 
+               <span class="icon-bar"></span> 
+               <span class="icon-bar"></span>
+            </button>
+         </div>
+         
+         <div class="navbar-collapse collapse" id="navbar-main">
+            <ul class="nav navbar-nav">
+               <li><a id="welcome" href="/" >Welcome</a></li>
+               <li><a id="team" href="/timeline">TimeLine</a></li>
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
+               <span class="caret"></span></a>
+               <ul class="dropdown-menu" aria-labelledby="themes">
+                  <li><a href="#">도서/음반</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">뷰티/패션/잡화</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">애완동물용품</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">인테리어/생활용품</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">유아/취미/완구</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#">지역 할인 쿠폰</a></li>
+               </ul></li>
 
-					<li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
-					<li><a id="about" href="/aboutUsSection">About Us</a></li>
-					
-					<form class="navbar-form navbar-left" role="search">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
-				</ul>
-				
-				
-				
-				<ul class="nav navbar-nav navbar-right">
-           			<c:if test="${loginSession.userId != null}">
-						<span style="font-weight: bold;">
-							<a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
-						</span>
-						<img class="msg_img" src="/resources/images/message.png" />
-						<li><a class="msg_a" href="/note/listReceive">
-							<!-- 읽지 않은 쪽지 -->
-							<span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}</span>
-						</a></li>┃ &nbsp;
-						<li><a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a></li>
-					</c:if>
-					
-					<c:if test="${loginSession.userId == null}">
-						<li><a data-toggle="modal" data-target="#loginModal">로그인</a>
-						<li><a href="/user/subscribeJoin" >회원가입</a></li>
-					</c:if>
-				</ul>				
-			</div>
-		</div>
-	</div>
+               <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
+               <li><a id="about" href="/aboutUsSection">About Us</a></li>
+               
+               <form class="navbar-form navbar-left" role="search">
+                  <div class="form-group">
+                     <input type="text" class="form-control" placeholder="Search">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+               </form>
+            </ul>
+            
+            
+            
+            <ul class="nav navbar-nav navbar-right">
+                    <c:if test="${loginSession.userId != null}">
+                  <span style="font-weight: bold;">
+                     <a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
+                  </span>
+                  <img class="msg_img" src="/resources/images/message.png" />
+                  <li><a class="msg_a" href="/note/listReceive">
+                     <!-- 읽지 않은 쪽지 -->
+                     <span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}</span>
+                  </a></li>┃ &nbsp;
+                  <li><a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a></li>
+               </c:if>
+               
+               <c:if test="${loginSession.userId == null}">
+                  <li><a href="/user/login">로그인</a>
+                  <li><a href="/user/subscribeJoin" >회원가입</a></li>
+               </c:if>
+            </ul>            
+         </div>
+      </div>
+   </div>
 
-	<script src="/resources/js/login/login.js"></script>
-	<script src="/resources/js/join/join.js"></script>
-	<script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="/resources/js/custom.js"></script>
-	
-	<decorator:body></decorator:body>
+   <script src="/resources/js/login/login.js"></script>
+   <script src="/resources/js/join/join.js"></script>
+   <script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+   <script src="/resources/js/custom.js"></script>
+   
+   <div style="margin-top: 5%;">
+      <decorator:body></decorator:body>
+   </div>
 </body>
 </html>
