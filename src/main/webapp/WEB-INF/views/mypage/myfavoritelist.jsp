@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
 	<style>
 		.star_rating {font-size:0; letter-spacing:-4px;}
 		.star_rating a {
@@ -134,7 +135,7 @@
 										data-dismiss="modal">Close</button>
 								</div>
 							</div>
-						</div>
+						</div>	
 					</div>
 
 					<div id="formWrapper">
@@ -594,6 +595,7 @@
 						$(".star_rating").children("a").removeClass("on"); // 별점 지우기
 						history.back(); // 뒤로가기
 					}); // end of cancelBtn
+					
 				</script>
 			</div>
 		</div>
