@@ -13,8 +13,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-
+			<div class="col-md-8 col-md-offset-2">
 				<section>
 				<div class="content-frame">
 					<div id="form-contact">
@@ -24,8 +23,7 @@
 						<form action="/board/category/boardList">
 							<table align="right">
 								<tr>
-									<td><select name="searchType"
-										class="form-control col-md-3">
+									<td><select name="searchType" class="form-control col-md-3">
 											<option value="titleContent"
 												<c:if test="${pagingDTO.searchType eq 'titleContent'}" > selected="selected" </c:if>>제목+내용</option>
 											<option value="writer"
@@ -36,14 +34,11 @@
 									<td>&nbsp;&nbsp;</td>
 									<td>
 										<div class="input-group">
-											<input style="width: 400px" type="text" name="searchText"
-												class="form-control col-md-3"
-												value="${pagingDTO.searchText }" /> <input type="hidden"
-												name="cateId" value="${cateDTO.cateId }" /> <span
-												class="input-group-btn">
-												<button type="submit" class="btn btn-default">
-													<img src="/resources/images/search.png"
-														style="width: 21px;">
+											<input type="text" name="searchText" class="form-control col-md-3" value="${pagingDTO.searchText }" /> 
+											<input type="hidden" name="cateId" value="${cateDTO.cateId }" /> 
+											<span class="input-group-btn">
+												<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7px;padding-top: 7px;">
+													<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 												</button>
 											</span>
 										</div>

@@ -39,13 +39,9 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-8 col-md-offset-2">
 
-				<section class="site-content full-height">
-				<div class="content-frame">
-					<div id="form-contact">
-
-
+			
 						<script>
 			      var address = null;
 			      function getAddr(){
@@ -694,9 +690,7 @@
 					})
 				</script>
 			</div>
-		</div>
-	</div>
-	</div>
+
 
 </body>
 </html>

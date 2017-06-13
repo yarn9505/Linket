@@ -25,7 +25,9 @@
 <script type="text/javascript" src="/resources/js/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/resources/js/custom.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css"></link>
+<script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -210,7 +212,7 @@
                   <div class="form-group">
                      <input type="text" class="form-control" placeholder="Search">
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <button type="submit" class="btn btn-default">검색</button>
                </form>
             </ul>
             
@@ -237,7 +239,7 @@
          </div>
       </div>
    </div>
-
+   
    <div style="margin-top: 5%;">
       <decorator:body></decorator:body>
    </div>

@@ -7,18 +7,14 @@
 <title>${cateDTO.cateName}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
-<link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css"></link>
-<script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<section class="site-content full-height">
-				<div class="content-frame">
-					<div id="form-contact">
+			<div class="col-md-8 col-md-offset-2">
+				
 						<h1 id="hello">${cateDTO.cateName}</h1>
 						<form name="tx_editor_form" id="tx_editor_form" method="post"
 							enctype="multipart/form-data">
@@ -72,7 +68,6 @@
 						<br /> <br /> <br />
 					</div>
 				</div>
-				</section>
 				<script type="text/javascript">
 				
 					var editorObj;
@@ -401,7 +396,6 @@
 					})
 				</script>
 			</div>
-		</div>
-	</div>
+
 </body>
 </html>
