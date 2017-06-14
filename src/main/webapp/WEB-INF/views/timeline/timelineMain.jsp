@@ -8,13 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link rel="stylesheet" href="/resources/css/bootstrap.offcanvas.css" />
-<link rel="stylesheet" href="/resources/css/exindex.css" />
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
-    
+     <!-- handlebars 추가 -->
+     <script type="text/javascript" src="/resources/js/handlebars-v4.0.10.js"></script>
     <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
     <!-- socket 사용을 위해 추가 -->
 	<script type="text/javascript" src="/resources/sockjs.min.js"/>    
@@ -55,8 +55,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="col-sm-6 col-sm-offset-2">
+			<div class="col-md-10 col-md-offset-1">
+				
 					<fieldset class="scheduler-border">
 						<legend class="scheduler-border">
 							<h4>
@@ -146,7 +146,7 @@
 					<img src='{{imgPath}}'/>
 					<hr/>	
 					<span>
-						<img id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/>
+						<img class="likeImg" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/>
 					</span>
             </script>
 						</ul>
@@ -155,7 +155,7 @@
 				</div>
 
 
-				<div class="col-sm-offset-8 col-sm-4">
+				<div class="col-sm-offset-10 col-sm-4">
 					<div class="app">
 						<aside class="side">
 						<ul class="tabs">
@@ -282,7 +282,7 @@
 					</div>
 
 				</div>
-			</div>
+		
 		</div>
 	</div>
 	

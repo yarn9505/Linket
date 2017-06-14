@@ -16,3 +16,8 @@ a:visited {
 a:hover {
 	color: #1245AB;
 }
+
+.likeImg{
+	width: 30px;
+	height: 30px;
+}

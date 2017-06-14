@@ -33,6 +33,9 @@
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 
+  <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
+    
+  <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 
 <title><decorator:title default="Linket" /></title>
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
@@ -184,7 +187,7 @@
          
          <div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
-				<li><a id="welcome" href="/" >Welcome</a></li>
+				<!-- <li><a id="welcome" href="/" >Welcome</a></li> -->
 				<li><a id="team" href="/timeline">TimeLine</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
 				<span class="caret"></span></a>
@@ -201,7 +204,7 @@
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=6&pageNo=1">지역 할인 쿠폰</a></li>
 				</ul></li>
-
+				<li><a href="#">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
                <li><a id="about" href="/aboutUsSection">About Us</a></li>
                
