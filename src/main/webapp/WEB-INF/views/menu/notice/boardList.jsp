@@ -29,7 +29,7 @@
 					<td>&nbsp;&nbsp;</td>
 					<td>
 						<div class="input-group" >
-							<input style="width:400px" type="text" name="searchText" class="form-control col-md-3" value="${pagingDTO.searchText }"/> 
+							<input type="text" name="searchText" class="form-control col-md-3" value="${pagingDTO.searchText }"/> 
 							<input type="hidden" name="cateId" value="${cateDTO.cateId }"/>
 							 <span class="input-group-btn">
 								<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7.5px;padding-top: 7px;">
@@ -41,11 +41,11 @@
 				</tr>
 			</table>
 			</form>
-				
-				<br><br>
 			
-				<table class="table table-bordered">
-					<tr style="background: #FFA800;">
+				<br><br>
+		
+				<table class="table table-hover">
+					<tr style="background-color: #D1E0EF;">
 						<th style="width:10%; text-align:center;">No</th>
 						<th style="width:45%; text-align:center;">제목</th>
 						<th style="width:15%; text-align:center;">글쓴이</th>
@@ -60,7 +60,7 @@
 					<c:forEach items="${boardList}" var="boardDTO" varStatus="status">
 						<tr style="text-align: center">
 							<td>${status.count }</td>
-							<td><a href="/notice/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }">${boardDTO.bTitle }</a></td>
+							<td><a href="/notice/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }" style="text-decoration: none;">${boardDTO.bTitle }</a></td>
 							<td>${boardDTO.userId }</td>
 							<td>${boardDTO.bRegDate }</td>
 							<td><span class="badge" style="background-color: #BFC2C3;">${boardDTO.viewCnt}</span></td>
@@ -97,16 +97,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- END SECTION -->
-	   <!-- 각 페이지별 메뉴 색깔 제어 -->
-	<script>
-		$(document).ready(function(){
-			$("#talktous").attr("class","active");
-		})
-	</script>
-			</div>
-
-
+	</div>
 
 </body>
 </html>

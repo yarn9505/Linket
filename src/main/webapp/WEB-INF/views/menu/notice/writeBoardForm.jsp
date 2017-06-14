@@ -34,10 +34,6 @@
 							<th style="width: 20%; text-align: center; background-color: #EAEAEA">내용</th>
 							<td><textarea name="bContent" rows="300" class="form-control" required></textarea></td>
 						</tr>
-						<!-- <tr>
-								<th style="width: 20%;text-align: center;background-color: #EAEAEA" >첨부파일</th>
-								<td><input style="width: 100%" type="file"/></td>
-							</tr> -->
 					</table>
 					<div align="right">
 						<button type="button" class="btn btn-default" onclick="javascript:history.back();">취소</button>

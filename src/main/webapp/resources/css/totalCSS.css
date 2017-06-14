@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+/* 전체 공통 스타일  */
+a {
+	text-decoration: none !important;
+}
+
+a:link {
+	color: black;
+}
+
+a:visited {
+	color: #8C8C8C;
+}
+
+a:hover {
+	color: #1245AB;
+}

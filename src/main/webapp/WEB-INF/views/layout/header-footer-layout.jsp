@@ -26,12 +26,12 @@
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="/resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css"></link>
+<link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css">
 <script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+<link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 
