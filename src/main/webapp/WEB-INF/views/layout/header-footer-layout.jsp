@@ -218,19 +218,19 @@
             
             <ul class="nav navbar-nav navbar-right" style="line-height: 50px;">
             	<c:if test="${loginSession.userId != null}">
-                	<li>
+                	<li id="userIcon">
                  		<span style="font-weight: bold;">
                      		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
                   		</span>
                   		<img class="msg_img" src="/resources/images/message.png" />
             		</li> 
-                  	<li>
+                  	<li id="noteIcon">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
                      	<span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}  </span>
                   		</a>
                   	</li>
-                  	<li>
+                  	<li id="sectionBar">
                   		┃ &nbsp;
                   	</li>
                   	<li>
@@ -242,7 +242,7 @@
                   <li><a href="/user/login">로그인</a>
                   <li><a href="/user/subscribeJoin" >회원가입</a></li>
                </c:if>
-            </ul>            
+            </ul>     
          </div>
       </div>
    </div>
