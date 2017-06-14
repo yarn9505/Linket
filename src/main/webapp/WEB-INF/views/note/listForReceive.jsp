@@ -12,18 +12,14 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="content-frame">
-					<div class="col-sm-8 col-sm-offset-2">
-
-						<h4>
+			<div class="col-md-10 col-md-offset-1">
+						<h3>
 							<span class="glyphicon glyphicon-envelope"
-								style="color: #CC723D;">&nbsp;받은 쪽지함</span>
-						</h4>
-						<br>
-						<br>
+								style="color: #0E3E59;">&nbsp;받은 쪽지함</span>
+						</h3>
+						<br><br>
 						<table class="table">
-							<tr style="background-color: #FFA800">
+							<tr style="background-color: #D1E0EF">
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">보낸사람</th>
 								<th style="width: 40%; text-align: center;">제목</th>
@@ -56,11 +52,11 @@
                         -->
 						<!-- [이전] -->
 						<div class="text-center">
-							<ul class="pagination">
+							<ul class="pagination pagination-sm">
 								<li><a href="/note/listReceive${pageMaker.pageQuery(1)}">처음</a>
 								</li>
 								<c:if test="${pageMaker.prev}">
-									<li><a
+									<li><a 
 										href="/note/listReceive${pageMaker.pageQuery(pageMaker.startPage-1)}">◀</a>
 									</li>
 								</c:if>
@@ -88,10 +84,8 @@
 					</div>
 
 				</div>
-				</section>
 				<div class="arrow"></div>
 			</div>
-			<!-- END TEAM SECTION -->
 			<script>
 				$(document).ready(function() {
 					$("#sel td").on("click", "#delBtn", function() {
@@ -102,9 +96,6 @@
 
 				})
 			</script>
-		</div>
-	</div>
-	</div>
 
 </body>
 </html>
