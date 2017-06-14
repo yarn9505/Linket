@@ -37,7 +37,7 @@
 
 
 <title><decorator:title default="Linket" /></title>
-
+<link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 
 <script>
 /* 
        
