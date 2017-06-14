@@ -13,7 +13,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-10 col-md-offset-1">
 				<section>
 				<div class="content-frame">
 					<div id="form-contact">
@@ -37,7 +37,7 @@
 											<input type="text" name="searchText" class="form-control col-md-3" value="${pagingDTO.searchText }" /> 
 											<input type="hidden" name="cateId" value="${cateDTO.cateId }" /> 
 											<span class="input-group-btn">
-												<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7px;padding-top: 7px;">
+												<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7.5px;padding-top: 7px;">
 													<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 												</button>
 											</span>

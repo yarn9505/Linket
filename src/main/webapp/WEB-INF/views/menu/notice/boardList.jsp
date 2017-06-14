@@ -11,10 +11,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="content-frame">
-			<div id="form-contact">
-				<h2><span class="glyphicon glyphicon-volume-up" style="color: #CC723D;">&nbsp;${cateDTO.cateName}</span></h2>
+			<div class="col-md-10 col-md-offset-1">
+				<h3><span class="glyphicon glyphicon-volume-up" style="color: #0E3E59;">&nbsp;${cateDTO.cateName}</span></h3>
 				<form action="/notice/boardList" >
 				<table align="right">
 				<tr>
@@ -34,7 +32,9 @@
 							<input style="width:400px" type="text" name="searchText" class="form-control col-md-3" value="${pagingDTO.searchText }"/> 
 							<input type="hidden" name="cateId" value="${cateDTO.cateId }"/>
 							 <span class="input-group-btn">
-								<button type="submit" class= "btn btn-default"><img src="/resources/images/search.png" style="width: 21px;"></button>
+								<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7.5px;padding-top: 7px;">
+									<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
+								</button>
 							</span>
 						</div>
 					</td>
@@ -105,8 +105,6 @@
 		})
 	</script>
 			</div>
-		</div>
-	</div>
 
 
 

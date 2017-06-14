@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,58 +9,45 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
-				<div class="content-frame">
-					<div id="form-contact">
-						<h3>
-							<span class="glyphicon glyphicon-volume-up"
-								style="color: #CC723D;">&nbsp;공지사항 작성하기</span>
-						</h3>
-						<br>
-						<br>
-						<form id="insertForm" action="/notice/writeBoardProc"
-							method="post">
-							<table class="table table-bordered">
-								<tr>
-									<th
-										style="width: 20%; text-align: center; background-color: #EAEAEA">카테고리</th>
-									<td>${cateDTO.cateName}<input type="hidden" name="cateId"
-										value="${cateDTO.cateId}" /></td>
-								</tr>
-								<tr>
-									<th
-										style="width: 20%; text-align: center; background-color: #EAEAEA">작성자</th>
-									<td>${loginSession.userId }<input
-										style="width: 100%; border: 0;" type="hidden" name="userId"
-										value="${loginSession.userId }" /></td>
-								</tr>
-								<tr>
-									<th
-										style="width: 20%; text-align: center; background-color: #EAEAEA">제목</th>
-									<td><input type="text" class="form-control" name="bTitle"
-										required /></td>
-								</tr>
-								<tr>
-									<th
-										style="width: 20%; text-align: center; background-color: #EAEAEA">내용</th>
-									<td><textarea name="bContent" rows="300"
-											class="form-control" required></textarea></td>
-								</tr>
-								<!-- <tr>
+			<div class="col-md-10 col-md-offset-1">
+				<h3>
+					<span class="glyphicon glyphicon-volume-up" style="color: #CC723D;">&nbsp;공지사항 작성하기</span>
+				</h3>
+				<br> <br>
+				<form id="insertForm" action="/notice/writeBoardProc" method="post">
+					<table class="table table-bordered">
+						<tr>
+							<th style="width: 20%; text-align: center; background-color: #EAEAEA">카테고리</th>
+							<td>${cateDTO.cateName}<input type="hidden" name="cateId" value="${cateDTO.cateId}" /></td>
+						</tr>
+						<tr>
+							<th style="width: 20%; text-align: center; background-color: #EAEAEA">작성자</th>
+							<td>${loginSession.userId }
+								<input style="width: 100%; border: 0;" type="hidden" name="userId" value="${loginSession.userId }" />
+							</td>
+						</tr>
+						<tr>
+							<th style="width: 20%; text-align: center; background-color: #EAEAEA">제목</th>
+							<td><input type="text" class="form-control" name="bTitle" required /></td>
+						</tr>
+						<tr>
+							<th style="width: 20%; text-align: center; background-color: #EAEAEA">내용</th>
+							<td><textarea name="bContent" rows="300" class="form-control" required></textarea></td>
+						</tr>
+						<!-- <tr>
 								<th style="width: 20%;text-align: center;background-color: #EAEAEA" >첨부파일</th>
 								<td><input style="width: 100%" type="file"/></td>
 							</tr> -->
-							</table>
-							<div align="right">
-								<button type="button" class="btn btn-default"
-									onclick="javascript:history.back();">취소</button>
-								<input type="submit" class="btn btn-warning" value="글쓰기" />
-							</div>
-						</form>
+					</table>
+					<div align="right">
+						<button type="button" class="btn btn-default" onclick="javascript:history.back();">취소</button>
+						<input type="submit" class="btn btn-warning" value="글쓰기" />
 					</div>
-				</div>
-				</section>
-				<script type="text/javascript">
+				</form>
+			</div>
+		</div>
+	
+		<script type="text/javascript">
 					$("#insertForm").submit(function(event) {
 						event.preventDefault ? event.preventDefault(): (event.returnValue = false);
 						console.log("insertForm");
@@ -87,14 +74,13 @@
 
 					});
 				</script>
-				<!-- 각 페이지별 메뉴 색깔 제어 -->
-				<script>
-					$(document).ready(function() {
-						$("#talktous").attr("class", "active");
-					})
-				</script>
-			</div>
-		</div>
+		<!-- 각 페이지별 메뉴 색깔 제어 -->
+		<script>
+			$(document).ready(function() {
+				$("#talktous").attr("class", "active");
+			})
+		</script>
 	</div>
+
 </body>
 </html>
