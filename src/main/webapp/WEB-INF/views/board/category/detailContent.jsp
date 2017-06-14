@@ -492,7 +492,7 @@
 					</c:forEach>
 				</div>
 				
-				<textarea style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</textarea>
+				<span style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</span>
 				
 				<br/>
 				<div align="right">
@@ -520,27 +520,28 @@
 				<a href="#x" class="overlay" id="login_form"></a>
 				<div class="popup">
 					<center>
-						<h3 alicn="center">쪽지 쓰기</h3>
+						<h3 alicn="center" class="glyphicon glyphicon-envelope"
+								style="color: #0E3E59;">&nbsp;쪽지 쓰기</h3>
 					</center>
 					<br>
 					<form id="formName" action="/note/insertNote" method="post">
 						<table class="table-bordered">
-							<h5 align="right" style="color: navy;"> [ from: ${loginSession.userId} ]</h5>
+							<h5 align="right" style="color: navy;">from: ${loginSession.userId}</h5>
 							<tr>
-								<th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">받는 사람</th>
+								<th style="text-align: center; width: 15%; height: 34px; ">받는 사람</th>
 								<td>&nbsp;&nbsp;${boardDTO.userId} 
 									<input type="hidden" class="form-control" name="recvId" id="recvId" value="${boardDTO.userId}" />
 								</td>
 							</tr>
 
 							<tr>
-								<th style="text-align: center; background-color: #F6F6F6">제목</th>
+								<th style="text-align: center; ">제목</th>
 								<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
 							</tr>
 
 							<tr>
-								<th style="text-align: center; background-color: #F6F6F6">내용</th>
-								<td><textarea rows="10" cols="80" name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
+							<th style="text-align: center; ">내용</th>
+							<td><textarea style="resize:none; height:150px; vertical-align: middle;"  name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
 							</tr>
 						</table>
 
@@ -582,7 +583,7 @@
 						<th style="width: 10%; text-align: center;"> ${loginSession.userId } 
 						<input style="width: 100%; border: 0;" type="hidden" name="replyId" value="${loginSession.userId }" id="newReplyWriter" />
 						</th>
-						<td><textarea class="form-control" name="rContent" id="newReplyContent" style="resize: none; height: 4%; width: 100%;"></textarea></td>
+						<td><span class="form-control" name="rContent" id="newReplyContent" style="resize: none; height: 4%; width: 100%;"></span></td>
 						<td style="width: 10%" colspan="2">&nbsp;&nbsp;
 							<button style="font-size: 12pt;" class="btn btn-primary btn-lg" id="replyAddBtn">입력</button>
 						</td>

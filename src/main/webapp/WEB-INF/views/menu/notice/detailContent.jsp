@@ -37,7 +37,7 @@
 				</table>
 				
 				<br/><br/>
-				<textarea style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</textarea>
+				<span style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</span>
 				<br/><br/>
 				<div align="right">
 					<button type="button" class="btn btn-default" onclick="deleteContent()">글삭제</button>

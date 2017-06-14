@@ -11,41 +11,42 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="content-frame">
 					<div class="col-md-8 col-md-offset-2">
 						<h4>
 							<span class="glyphicon glyphicon-envelope"
-								style="color: #CC723D;">&nbsp;쪽지 상세보기</span>
+								style="color: #0E3E59;">&nbsp;쪽지 상세보기</span>
 						</h4>
 						<br>
 						<br>
 						<table class="table table-bordered">
 							<tr>
 								<th
-									style="text-align: center; width: 20%; background-color: #EAEAEA">보낸사람</th>
+									style="text-align: center; width: 20%;" >보낸사람</th>
 								<td>${NoteVO.userId}</td>
 							</tr>
 							<tr>
-								<th style="text-align: center; background-color: #EAEAEA">받은시간</th>
+								<th style="text-align: center; ">받은시간</th>
 								<td><fmt:formatDate pattern="yyyy년MM월dd일 (a) hh:mm:ss"
 										value="${NoteVO.date_sender}" /></td>
 							</tr>
 							<tr>
-								<th style="text-align: center; background-color: #EAEAEA">읽은시간</th>
+								<th style="text-align: center; ">읽은시간</th>
 								<td><fmt:formatDate pattern="YYYY년MM월dd일  HH:mm:ss"
 										value="${NoteVO.date_receiver}" /></td>
 							</tr>
 							<tr>
-								<th style="text-align: center; background-color: #EAEAEA">제목</th>
+								<th style="text-align: center; ">제목</th>
 								<td>${NoteVO.mtitle}</td>
 							</tr>
 							<tr>
-								<th
-									style="text-align: center; height: 200px; background-color: #EAEAEA">내용</th>
+								<th style="text-align: center; height: 200px; vertical-align: middle;">내용</th>
 								<td>${NoteVO.mcontent}</td>
 							</tr>
 						</table>
+<%-- 						<span style="height: 300px; border: 1px solid #BDBDBD;" class="form-control">${NoteVO.mcontent}</span> --%>
+<%-- 						<span >${NoteVO.mcontent}</span> --%>
 						<div align="right">
 							<button id="cancelBtn" class="btn btn-default">목록보기</button>
 							<button id="delBtn" class="btn btn-danger">삭제</button>
@@ -79,33 +80,36 @@
 							<button type="button" class="close" data-dismiss="modal">×</button>
 							<!-- header title -->
 							<center>
-								<h3 class="modal-title">답장 보내기</h3>
+								<h3 class="modal-title"><span class="glyphicon glyphicon-envelope"
+									style="color: #0E3E59;">&nbsp;답장 보내기</span></h3>
 							</center>
 						</div>
 						<!-- body -->
 						<div class="modal-body">
 							<form id="form2">
 								<table class="table-bordered" style="width: 100%;">
-									<h5 align="right" style="color: navy;">[ from:
-										${NoteVO.recvId} ]</h5>
+									<h5 align="right" style="color: navy;"> from:
+										${NoteVO.recvId} </h5>
 									<tr>
 										<th
-											style="text-align: center; width: 15%; background-color: #F6F6F6">받는
+											style="text-align: center; width: 15%;">받는
 											사람</th>
 										<td><input type="text" class="form-control" name="recvId"
 											value="${NoteVO.userId}" readonly="readonly" /></td>
 									</tr>
 									<tr>
-										<th style="text-align: center; background-color: #F6F6F6">제목</th>
+										<th style="text-align: center; ">제목</th>
 										<td><input type="text" class="form-control" name="mtitle"
 											autofocus="autofocus" /></td>
 									</tr>
 									<tr>
-										<th style="text-align: center; background-color: #F6F6F6">내용</th>
+										<th style="text-align: center;">내용</th>
 										<td><textarea rows="10" cols="50" name="mcontent"
 												class="form-control"></textarea></td>
 									</tr>
 								</table>
+<!-- 								<span><textarea rows="10" cols="50" name="mcontent" -->
+<!-- 												class="form-control"></textarea></span> -->
 								<br>
 								<div align="right">
 									<button type="button" class="btn btn-default"

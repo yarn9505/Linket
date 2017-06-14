@@ -11,17 +11,16 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-10 col-md-offset-1">
 				<div class="content-frame">
-					<div class="col-sm-8 col-sm-offset-2">
 						<h4>
 							<span class="glyphicon glyphicon-envelope"
-								style="color: #CC723D;">&nbsp;보낸 쪽지함</span>
+								style="color: #0E3E59;">&nbsp;보낸 쪽지함</span>
 						</h4>
 						<br>
 						<br>
 						<table class="table">
-							<tr style="background-color: #FFA800">
+							<tr >
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">받는사람</th>
 								<th style="text-align: center; width: 40%;">제목</th>
@@ -109,8 +108,6 @@
 				})
 			</script>
 		</div>
-	</div>
-	</div>
 
 </body>
 </html>

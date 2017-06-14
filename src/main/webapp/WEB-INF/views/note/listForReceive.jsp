@@ -19,7 +19,7 @@
 						</h3>
 						<br><br>
 						<table class="table">
-							<tr style="background-color: #D1E0EF">
+							<tr >
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">보낸사람</th>
 								<th style="width: 40%; text-align: center;">제목</th>

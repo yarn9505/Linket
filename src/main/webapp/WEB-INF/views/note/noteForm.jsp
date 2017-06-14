@@ -17,10 +17,7 @@
 					<div class="what-row clearfix image-on-left">
 						<div class="what-row clearfix image-on-right">
 							<div>
-								<div>
-									<h4>쪽지 보내기</h4>
-								</div>
-								<table width="800px" border="1" cellspacing="0" cellpadding="0">
+								<table width="800px" border="1" >
 									<form id="formName" action="/note/insertNote" method="post">
 										<!-- 세션에서 id를 넣어 놓음(어차피 로그인한 사용자만 가능해야함): 로그인 기능 구현 전까지 임의로 입력해 놓겠음. -->
 										<input type="hidden" name="userId" value="sooingkr" />
