@@ -31,9 +31,7 @@
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 
@@ -218,18 +216,27 @@
             
             
             
-            <ul class="nav navbar-nav navbar-right">
-                    <c:if test="${loginSession.userId != null}">
-                  <span style="font-weight: bold;">
-                     <a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
-                  </span>
-                  <img class="msg_img" src="/resources/images/message.png" />
-                  <li><a class="msg_a" href="/note/listReceive">
-                     <!-- 읽지 않은 쪽지 -->
-                     <span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}</span>
-                  </a></li>┃ &nbsp;
-                  <li><a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a></li>
-               </c:if>
+            <ul class="nav navbar-nav navbar-right" style="line-height: 50px;">
+            	<c:if test="${loginSession.userId != null}">
+                	<li>
+                 		<span style="font-weight: bold;">
+                     		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
+                  		</span>
+                  		<img class="msg_img" src="/resources/images/message.png" />
+            		</li> 
+                  	<li>
+                  		<a class="msg_a" href="/note/listReceive">
+                     	<!-- 읽지 않은 쪽지 -->
+                     	<span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}  </span>
+                  		</a>
+                  	</li>
+                  	<li>
+                  		┃ &nbsp;
+                  	</li>
+                  	<li>
+                  		<a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
+                  	</li>
+					</c:if>
                
                <c:if test="${loginSession.userId == null}">
                   <li><a href="/user/login">로그인</a>
