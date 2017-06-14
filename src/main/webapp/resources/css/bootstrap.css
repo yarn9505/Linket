@@ -12,6 +12,10 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+::-webkit-scrollbar {
+display:none;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -4436,6 +4440,24 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-form .form-group:last-child {
     margin-bottom: 0;
   }
+  
+  /*유노 수정*/
+  #sectionBar{
+		display: none;
+	}
+	#userIcon {
+		display: inline;
+		margin-left: 15px;
+	}
+	#noteIcon{
+	display: inline;
+	}
+	#noteIcon a{
+		display: inline;
+	}
+	.app{
+		display: none;
+	}
 }
 @media (min-width: 768px) {
   .navbar-form {

@@ -20,7 +20,6 @@
 
 <link rel="stylesheet" href="/resources/css/custom.min.css">
 <link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
-<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <script type="text/javascript" src="/resources/js/json2.js"></script>
 <script type="text/javascript" src="/resources/js/sockjs.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
@@ -29,7 +28,6 @@
 <link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css">
 <script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/login/login.js"></script>
@@ -37,6 +35,7 @@
 
 
 <title><decorator:title default="Linket" /></title>
+<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 
 <script>
 /* 
