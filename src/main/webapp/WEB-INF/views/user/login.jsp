@@ -24,9 +24,9 @@
                   <input type="password" class="form-control input-lg" placeholder="Password" id="userPw" name="userPw">
                </div> <br/>
                <div align="center">
-               		<button type="button" class="btn btn-primary" id="login" style="width: 100% !important;"> 로그인 </button><br/>
+               		<button type="button" class="btn btn-primary" id="login" style="width: 100% !important;"> 로그인 </button><br/><br/>
                		<button type="button" class="btn btn-danger" onclick="javascript:location.href='/api/google'" style="width: 100% !important;">구글 로그인</button>
-            		<br/><br/>
+            		<br/><br/><br/>
 					<a href="/user/Idselect">아이디찾기</a>&nbsp;/&nbsp; 
 					<a href="/user/Pwselect">비밀번호찾기</a>
             	</div>

@@ -16,37 +16,33 @@
 					<span class="glyphicon glyphicon-volume-up" style="color: #0E3E59;">&nbsp;공지사항 상세보기</span>
 				</h3>
 				<br> <br>
-				<table class="table table-bordered">
+				<table class="table table-bordered" style="border-radius: 25px;">
 					<tr>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">카테고리</th>
-						<td>${cateDTO.cateName}<input type="hidden" name="bCategory" value="${boardDTO.cateId}" /></td>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">조회수</th>
+						<th style="width: 15%; text-align: center; background-color: #E9EFF5">작성자</th>
+						<td>${boardDTO.userId}<input type="hidden" name="bCategory" value="${boardDTO.cateId}" /></td>
+						<th style="text-align: center; background-color: #E9EFF5">조회수</th>
 						<td>${boardDTO.viewCnt }</td>
 					</tr>
 					<tr>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">작성일</th>
+						<th style="width: 15%; text-align: center; background-color: #E9EFF5">작성일</th>
 						<td>${boardDTO.bRegDate }</td>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">수정일</th>
+						<th style="text-align: center; background-color: #E9EFF5">수정일</th>
 						<td>${boardDTO.bModifyDate }</td>
 					</tr>
+
 					<tr>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">작성자</th>
-						<td colspan="3">${boardDTO.userId}</td>
-					</tr>
-					<tr>
-						<th style="width: 20%; text-align: center; background-color: #EAEAEA">제목</th>
-						<td colspan="3">${boardDTO.bTitle}</td>
-					</tr>
-					<tr>
-						<th style="width: 20%; height: 200px; text-align: center; background-color: #EAEAEA">내용</th>
-						<td colspan="3"><pre style="height: 500px; border: 0px">${boardDTO.bContent}</pre></td>
+						<th style="width: 15%; text-align: center; background-color: #E9EFF5">제목</th>
+						<td colspan="4">${boardDTO.bTitle}</td>
 					</tr>
 				</table>
-
+				
+				<br/><br/>
+				<textarea style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</textarea>
+				<br/><br/>
 				<div align="right">
-					<button type="button" class="btn btn-danger btn-sm" onclick="deleteContent()">글삭제</button>
-					<button type="button" class="btn btn-warning btn-sm" onclick="location.href='/notice/updateContentForm?bNo=${boardDTO.bNo}&pageNo=${param.pageNo }'">글수정</button>
-					<button type="button" class="btn btn-default btn-sm" onclick="location.href='/notice/boardList?cateId=${cateDTO.cateId}&pageNo=${param.pageNo }'">목록</button>
+					<button type="button" class="btn btn-default" onclick="deleteContent()">글삭제</button>
+					<button type="button" class="btn btn-default" onclick="location.href='/notice/updateContentForm?bNo=${boardDTO.bNo}&pageNo=${param.pageNo }'">수정</button>
+					<button type="button" class="btn btn-default" onclick="location.href='/notice/boardList?cateId=${cateDTO.cateId}&pageNo=${param.pageNo }'">목록</button>
 				</div>
 				<br /> <br />
 			</div>

@@ -20,14 +20,14 @@
 </head>
 <body>
    <div class="container">
-         <h3 style="color: #0E3E59;margin: 5% 0 3% 0;" >회원가입</h3>
+         <h3 style="color: #0E3E59;margin-bottom: 3%;" >
+         <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>&nbsp;회원가입</h3>
       <div class="col-md-6 col-md-offset-3">
          <form role="form" id="form1">
             <div class="form-group">
                <label class="control-label">아이디</label>
                <div class="input-group">
-                  <input type="text" class="form-control"id="userId" name="userId"  placeholder="아이디를 입력해주세요"
-                  	value="${UserVO.userId}"/> 
+                  <input type="text" class="form-control"id="userId" name="userId"  placeholder="아이디를 입력해주세요" value="${UserVO.userId}"/> 
                   <span class="input-group-btn">
                      <input type="button" class="btn btn-primary" id="idcheck" value="중복체크" onclick="idCheck();"/>
                   </span>

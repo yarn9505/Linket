@@ -17,33 +17,33 @@
 				</h3>
 				<br><br>
 				<form id="updateForm" action="/notice/updateContentProc" method="post">
-					<table class="table table-bordered">
+					<table class="table">
 						<tr>
-							<th style="width: 20%; text-align: center; background-color: #EAEAEA">카테고리</th>
-							<td>${cateDTO.cateName}<input type="hidden" name="cateId" value="${boardDTO.cateId}" /></td>
+							<th style="width: 10%;">카테고리</th>
+							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
+								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+							</td>
 						</tr>
 						<tr>
-							<th style="width: 20%; text-align: center; background-color: #EAEAEA">작성자</th>
-							<td>관리자<input type="hidden" name="userId" value="${boardDTO.userId}" /></td>
+							<th style="width: 10%;">작성자</th>
+							<td><input type="text" class="form-control" value = "관리자" readonly>
+								<input type="hidden" name="userId" value="${boardDTO.userId}" />
+							</td>
 						</tr>
 						<tr>
-							<th style="width: 20%; text-align: center; background-color: #EAEAEA">제목</th>
+							<th style="width: 10%;">제목</th>
 							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" required="required" /></td>
 						</tr>
 						<tr>
-							<th style="width: 20%; text-align: center; background-color: #EAEAEA;">내용</th>
-							<td><textarea id="bContent" name="bContent" rows="300" class="form-control" required="required">${boardDTO.bContent}</textarea></td>
+							<th style="width: 10%;">내용</th>
+							<td><textarea id="bContent" name="bContent" class="form-control" required="required" style="height: 400px;">${boardDTO.bContent}</textarea></td>
 						</tr>
-						<!-- <tr>
-							<th style="width: 20%;text-align: center;background-color: #EAEAEA" >첨부파일</th>
-							<td><input style="width: 100%" type="file" /></td>
-						</tr> -->
 					</table>
 					<div align="right">
 						<input type="hidden" name="bNo" value="${boardDTO.bNo}" /> 
 						<input type="hidden" name="pageNo" value="${param.pageNo}" />
 						<button type="button" class="btn btn-default" onclick="javascript:history.back();">취소</button>
-						<input type="submit" class="btn btn-warning" value="수정하기" />
+						<input type="submit" class="btn btn-default" value="수정" />
 					</div>
 				</form>
 
@@ -77,13 +77,6 @@
 
 					});
 				</script>
-
-		<!-- 각 페이지별 메뉴 색깔 제어 -->
-		<script>
-			$(document).ready(function() {
-				$("#talktous").attr("class", "active");
-			})
-		</script>
 	</div>
 </body>
 </html>
