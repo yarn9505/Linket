@@ -28,12 +28,11 @@
 <link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css">
 <script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
 <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
@@ -188,7 +187,7 @@
          <div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
 				<li><a id="team" href="/timeline">TimeLine</a></li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
+				<li class="dropdown dropdownCus"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu jungyo_menu" aria-labelledby="themes">
 					<li><a href="/board/category/boardList?cateId=1&pageNo=1">도서/음반</a></li>

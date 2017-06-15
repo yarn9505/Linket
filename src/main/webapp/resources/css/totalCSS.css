@@ -37,6 +37,13 @@ a:hover {
 .dropdownCus ul li a:hover{
 	background: #ffffff !important;
 }
+<<<<<<< HEAD
+=======
+
+.divider {
+	background: #eeeeee !important;
+}
+>>>>>>> branch 'master' of https://github.com/yarn9505/Linket.git
 
 @media ( max-width : 767px) {
 	#sectionBar {
@@ -63,6 +70,7 @@ a:hover {
 th{
 	background-color:#D1E0EF;
 }
+<<<<<<< HEAD
 
 
 .modal {
@@ -83,3 +91,5 @@ th{
   text-align: left;
   vertical-align: middle;
 }
+=======
+>>>>>>> branch 'master' of https://github.com/yarn9505/Linket.git

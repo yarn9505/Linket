@@ -602,11 +602,11 @@
                           },
                           success:function(result){
                         	 if(result.isSwap == 'Y'){
-                        		 str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                        		 str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                         	 }else if ( result.customerId != null ){
-                                str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                                str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</span></td>";
                              }else{
-                                str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                                str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                              }
                              str += "<td style='text-align: center;'><span class='customerId'>"+ ((result.customerId == null) ? " " : result.customerId) +"</span></td>";
                           }
@@ -711,11 +711,11 @@
                             },
                             success:function(result){
                             	 if(result.isSwap == 'Y'){
-                            		 str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                            		 str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                             	 }else if ( result.customerId != null ){
-                                    str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                            		 str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</span></td>";
                                  }else{
-                                    str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                                    str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                                  }
                                  str += "<td style='text-align: center;'><span class='customerId'>"+ ((result.customerId == null) ? " " : result.customerId) +"</span></td>";
                             }
