@@ -191,7 +191,7 @@
 				<li><a id="team" href="/timeline">TimeLine</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
 				<span class="caret"></span></a>
-				<ul class="dropdown-menu" aria-labelledby="themes">
+				<ul class="dropdown-menu jungyo_menu" aria-labelledby="themes">
 					<li><a href="/board/category/boardList?cateId=1&pageNo=1">도서/음반</a></li>
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=2&pageNo=1">뷰티/패션/잡화</a></li>
