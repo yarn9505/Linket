@@ -30,11 +30,7 @@
         height: 350px;
         background-color: grey;
       }
-<<<<<<< HEAD
 
-=======
-      
->>>>>>> branch 'master' of https://github.com/yarn9505/Linket.git
 /*비밀댓글용*/
 input[type=checkbox] {  
     display: none;  

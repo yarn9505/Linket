@@ -162,7 +162,7 @@ input[type=checkbox]:checked + label:before {
 									name="checkbox" id="cateId3"
 									${loginSession.cateId3 eq 'Y' ? 'checked' : '' }
 									value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }"><label for="cateId3">애완동물 용품</label>
-									용품
+									
 								</label> 
 								<br />
 								<br /> 
@@ -179,7 +179,7 @@ input[type=checkbox]:checked + label:before {
 									name="checkbox" id="cateId6"
 									${loginSession.cateId6 eq 'Y' ? 'checked' : '' }
 									value="${loginSession.cateId6 eq 'Y' ? 'Y' :'N' }"><label for="cateId6">지역 할인 쿠폰</label>
-									할인 쿠폰
+									
 								</label> 
 								<input type="hidden" name="uniqId"
 									value="${loginSession.uniqId}" id="uniqId">
