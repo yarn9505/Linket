@@ -30,6 +30,49 @@
         height: 350px;
         background-color: grey;
       }
+
+/*비밀댓글용*/
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 
 </style>
  <script type="text/javascript">
         //게시글 삭제 버튼 클릭시
@@ -427,8 +470,9 @@
                   <td>${boardDTO.userId}
                   <!-- 쪽지쓰기 모달창 띄우기 -->
                      &nbsp;&nbsp;&nbsp; 
-                     <a href="#login_form" id="login_pop" class="btn btn-link"> 
-                     <span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp;쪽지쓰기&nbsp;</span></a>
+                      <button type="button" class="btn btn-link" data-toggle="modal" data-target="#login_form">
+                      	 <span class="glyphicon glyphicon-envelope" aria-hidden="true">&nbsp;쪽지쓰기&nbsp;</span>
+                      </button>
                   </td>
                   <th style="width: 15%; background: #E9EFF5; text-align: center; color: #0E3E59">상품가치</th>
                   <td colspan="3">${boardDTO.value}원</td>
@@ -450,9 +494,10 @@
                </c:forEach>
             </div>
             
+            
             <span style="height: 500px;border: 1px solid #BDBDBD;overflow-x:hidden; overflow-y:scroll;" class="form-control"> 
                ${boardDTO.bContent}
-         </span>
+        	 </span>
          
             <br/>
             <div align="right">
@@ -471,50 +516,56 @@
 
                </c:if>
 
-               <button type="button" class="btn btn-default"
-                  onclick="location.href='/board/category/boardList?cateId=${cateDTO.cateId}&pageNo=${param.pageNo == null ? 1 : param.pageNo}'">목록</button>
+               <button type="button" class="btn btn-default" onclick="location.href='/board/category/boardList?cateId=${cateDTO.cateId}&pageNo=${param.pageNo == null ? 1 : param.pageNo}'">목록</button>
             </div>
             <br /> <br />
 
-            <!-------------------------------- 쪽지 쓰기 popup form #1 ---------------------------------->
-            <a href="#x" class="overlay" id="login_form"></a>
-            <div class="popup">
-               <center>
-                  <h3 alicn="center" class="glyphicon glyphicon-envelope"
-                        style="color: #0E3E59;">&nbsp;쪽지 쓰기</h3>
-               </center>
-               <br>
-               <form id="formName" action="/note/insertNote" method="post">
-                  <table class="table-bordered">
-                     <h5 align="right" style="color: navy;">from: ${loginSession.userId}</h5>
-                     <tr>
-                        <th style="text-align: center; width: 15%; height: 34px; background-color: #D1E0EF ">받는 사람</th>
-                        <td>&nbsp;&nbsp;${boardDTO.userId} 
-                           <input type="hidden" class="form-control" name="recvId" id="recvId" value="${boardDTO.userId}" />
-                        </td>
-                     </tr>
+             <!-- 쪽지 쓰기  Modal -->
+				<div class="modal fade" id="login_form" role="dialog">
+					<div class="modal-dialog">
 
-                     <tr>
-                        <th style="text-align: center; background-color: #D1E0EF ">제목</th>
-                        <td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
-                     </tr>
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"></button>
+								<h3 class="glyphicon glyphicon-envelope" style="color: #0E3E59;" align="center">&nbsp;쪽지 쓰기</h3>
+							</div>
+							<div class="modal-body">
+								<form id="formName" action="/note/insertNote" method="post">
+									<h5 align="right" style="color: navy;">from: ${loginSession.userId}</h5>
+									<table class="table-bordered" style="width: 100%;">
+										<tr>
+											<th style="text-align: center; background-color: #D1E0EF;height: 40px;">받는 사람</th>
+											<td>&nbsp;&nbsp;${boardDTO.userId} 
+											<input type="hidden" class="form-control" name="recvId" id="recvId"
+												value="${boardDTO.userId}" />
+											</td>
+										</tr>
 
-                     <tr>
-                     <th style="text-align: center; background-color: #D1E0EF ">내용</th>
-                     <td><textarea style="resize:none; height:150px; vertical-align: middle;"  name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
-                     </tr>
-                  </table>
+										<tr>
+											<th style="text-align: center; background-color: #D1E0EF">제목</th>
+											<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
+										</tr>
 
-                  <br>
-                  <div align="right">
-                     <button id="cancelBtn" type="button" class="btn btn-default">취소</button>
-                     <button id="sendBtn" type="button" class="btn btn-default">보내기</button>
-                  </div>
-               </form>
-               <a class="close" href="#close"></a>
-            </div>
+										<tr>
+											<th style="text-align: center; background-color: #D1E0EF">내용</th>
+											<td><textarea style="resize: none; height: 150px; vertical-align: middle;"
+													name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
+										</tr>
+									</table>
+									<br/>
+									<div align = "right">
+										<button id="cancelBtn" type="button" class="btn btn-default">취소</button>
+										<button id="sendBtn" type="button" class="btn btn-default">보내기</button>
+									</div>
+									<br/>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 
-            <!-- GoogleMap API 연동(황영롱) -->
+				<!-- GoogleMap API 연동(황영롱) -->
             <h4>
                <span class="glyphicon glyphicon-map-marker" style="color: #0E3E59;">&nbsp;작성자 위치</span>
             </h4>

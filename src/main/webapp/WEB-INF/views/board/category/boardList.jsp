@@ -34,13 +34,12 @@
 										class="form-control col-md-3" value="${pagingDTO.searchText }" />
 									<input type="hidden" name="cateId" value="${cateDTO.cateId }" />
 									<span class="input-group-btn">
-										<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 7.5px;padding-top: 7px;">
+										<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 11px;padding-top: 11px;">
 											<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 										</button>
 									</span>
 								</div>
 							</td>
-						</tr>
 					</table>
 				</form>
 
@@ -55,7 +54,6 @@
 						<th style="width: 10%; text-align: center;">조회수</th>
 					</tr>
 					<c:if test="${empty boardList}">
-					
 						<tr>
 							<td colspan="5" style="text-align: center">등록된 글이 없습니다.</td>
 						</tr>
