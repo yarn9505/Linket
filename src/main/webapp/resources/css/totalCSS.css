@@ -34,6 +34,9 @@ a:hover {
 	position: absolute;
 	height: 300px;
 }
+.dropdownCus ul li a:hover{
+	background: #ffffff !important;
+}
 
 @media ( max-width : 767px) {
 	#sectionBar {
@@ -55,4 +58,28 @@ a:hover {
 	#main_icon {
 		display: none;
 	}
+}
+
+th{
+	background-color:#D1E0EF;
+}
+
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
