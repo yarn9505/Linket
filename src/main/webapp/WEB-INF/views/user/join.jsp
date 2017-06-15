@@ -16,6 +16,49 @@
  	김용래(구글 api->데이터->회원가입)
   	@Desc 회원가입 form
  -->
+ <style>
+input[type=checkbox] {  
+    display: none;  
+}
+ 
+ input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 
+ </style>
  
 </head>
 <body>
@@ -94,25 +137,25 @@
 	         <label class="control-label">관심분야 </label> 
 	         <div class="input-group">
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId1" value="n">유아/취미/완구
+	            <input type="checkbox" name="checkbox" id="cateId1" class="checkbox-style"  /><label for="cateId1">유아/취미/완구</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId2" value="n">뷰티/패션/잡화
+	            <input type="checkbox" name="checkbox" id="cateId2" class="checkbox-style"  /><label for="cateId2">뷰티/패션/잡화</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId3" value="n">애완동물 용품
+	            <input type="checkbox" name="checkbox" id="cateId3" class="checkbox-style"  /><label for="cateId3">애완동물 용품</label>
 	            </label> 
 	            
 	            <br/><br/>
 	            
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId4" value="n">홈인테리어/생활용품   
+	            <input type="checkbox" name="checkbox" id="cateId4" class="checkbox-style"  /><label for="cateId4">홈인테리어/생활용품</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId5" value="n">도서/음반
+	            <input type="checkbox" name="checkbox" id="cateId5" class="checkbox-style"  /><label for="cateId5">도서/음반</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	               <input type="checkbox" name="checkbox" id="cateId6" value="n">지역 할인 쿠폰
+	            <input type="checkbox"   id="cateId6" value="n" class="checkbox-style"  /><label for="cateId6">지역 할인 쿠폰</label>
 	            </label>
 	            
 	             <input type="hidden" name="uniqId" value="${UserVO.uniqId}" id="uniqId">
