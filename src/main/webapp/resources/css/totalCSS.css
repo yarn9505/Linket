@@ -17,10 +17,17 @@ a:hover {
 	color: #1245AB;
 }
 
-.likeImg{
+.likeImg {
 	width: 30px;
 	height: 30px;
 }
-th{
-	background-color : #D1E0EF;
+
+.jungyo_menu a {
+	background: #ffffff;
+}
+
+@media ( max-width : 767px) {
+	#main_icon {
+		display: none;
+	}
 }
