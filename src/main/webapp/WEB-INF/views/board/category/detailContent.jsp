@@ -102,6 +102,11 @@
           google.maps.event.addListener(marker, "click", function() {
               infowindow.open(map,marker);
           });
+          }
+                </script>
+     <script async defer
+             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1I06mbe3rTV903iEx-aOyO4MFTnaDEvw&callback=initMap">
+     </script>
           
         //게시글 삭제 버튼 클릭시
 			function deleteContent() {

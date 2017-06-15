@@ -32,13 +32,13 @@
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
-
-  <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
-    
-  <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
+<script type="text/javascript" src="/resources/js/fileupload.js"></script>
+<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
+<link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
+<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 
 <title><decorator:title default="Linket" /></title>
-<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 
 <script>
 /* 

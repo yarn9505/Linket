@@ -26,12 +26,29 @@ a:hover {
 	background: #ffffff;
 }
 
+.tableCustom th {
+	background: #D1E0EF;
+}
+
 
 @media ( max-width : 767px) {
+	#sectionBar {
+		display: none;
+	}
+	#userIcon {
+		display: inline;
+		margin-left: 15px;
+	}
+	#noteIcon {
+		display: inline;
+	}
+	#noteIcon a {
+		display: inline;
+	}
+	.app {
+		display: none;
+	}
 	#main_icon {
 		display: none;
 	}
-}
-th{
-	background-color : #D1E0EF;
 }

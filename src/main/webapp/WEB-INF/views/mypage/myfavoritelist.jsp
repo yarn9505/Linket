@@ -29,7 +29,7 @@
 
 <!-- 네비게이션 -->
 <nav class="navbar navbar-m2p sidebar" role="navigation">
-    <div class="container-fluid">
+    <div class="container-fluid"">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
@@ -187,7 +187,7 @@
 						</div>	
 					</div>
 
-					<div id="formWrapper">
+					<div id="formWrapper" style="float: left;">
 
 						<div id="form-contact" style="padding-left: 1%">
 							<table class="table table-hover">

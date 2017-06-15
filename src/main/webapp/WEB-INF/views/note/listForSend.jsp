@@ -19,7 +19,9 @@
 						</h4>
 						<br>
 						<br>
-						<table class="table table-hover">
+
+						<table class="table tableCustom">
+
 							<tr >
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">받는사람</th>

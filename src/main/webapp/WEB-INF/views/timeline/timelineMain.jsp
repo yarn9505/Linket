@@ -6,19 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/css/bootstrap.offcanvas.css" />
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
-     <!-- handlebars 추가 -->
-     <script type="text/javascript" src="/resources/js/handlebars-v4.0.10.js"></script>
-    <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
-    <!-- socket 사용을 위해 추가 -->
-	<script type="text/javascript" src="/resources/sockjs.min.js"/>    
-	<script type="text/javascript" src="/resources/js/json2.js"></script>
+
+<!-- handlebars 추가 -->
+<script type="text/javascript" src="/resources/js/handlebars-v4.0.10.js"></script>
+<link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 
 <script>
  
@@ -42,13 +36,12 @@
    
 </script>
 <style>
-	.msg_a {
-		position: relative;
-    	top:-10px;
-    	left:-25px;
-    	text-decoration: none;
-	}
-	
+.msg_a {
+	position: relative;
+	top: -10px;
+	left: -25px;
+	text-decoration: none;
+}
 </style>
 
 </head>
@@ -56,79 +49,77 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-				
-					<fieldset class="scheduler-border">
-						<legend class="scheduler-border">
-							<h4>
-								<span class="glyphicon glyphicon-check">&nbsp;검색조건&nbsp;</span>
-							</h4>
-						</legend>
-						<div class="control-group">
-							<div class="controls bootstrap-timepicker">
-								<div class="form-group" style="margin: 2%;">
-									<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
-										<label class="control-label">관심분야 </label>
-									</span> <br>
-									<br> <span class="input-group"> <label
-										class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId1">도서/음반
-									</label> <label class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId2">뷰티/패션/잡화
-									</label> <label class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId3">애완동물용품
-									</label> <label class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId4">인테리어/생활용품
-									</label> <label class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId5">유아/취미/완구
-									</label> <label class="checkbox-inline"> <input type="checkbox"
-											name="checkbox" id="cateId6">지역할인쿠폰
-									</label>
-									</span>
-								</div>
 
-								<div class="form-group" style="margin: 2%;">
-									<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
-										<label class="control-label">상품가치 </label>
-									</span> <br>
-									<br>
+				<fieldset class="scheduler-border">
+					<legend class="scheduler-border">
+						<h4>
+							<span class="glyphicon glyphicon-check">&nbsp;검색조건&nbsp;</span>
+						</h4>
+					</legend>
+					<div class="control-group">
+						<div class="controls bootstrap-timepicker">
+							<div class="form-group" style="margin: 2%;">
+								<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
+									<label class="control-label">관심분야 </label>
+								</span> <br> <br> <span class="input-group"> <label
+									class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId1">도서/음반
+								</label> <label class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId2">뷰티/패션/잡화
+								</label> <label class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId3">애완동물용품
+								</label> <label class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId4">인테리어/생활용품
+								</label> <label class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId5">유아/취미/완구
+								</label> <label class="checkbox-inline"> <input type="checkbox"
+										name="checkbox" id="cateId6">지역할인쿠폰
+								</label>
+								</span>
+							</div>
 
-									<table>
-										<tr>
-											<td><input type="text" style="width: 80%;" id="fvalue1"
-												class="form-control"></td>
-											<td width="10%;">~</td>
-											<td><input type="text" style="width: 80%;" id="fvalue2"
-												class="form-control"></td>
-											<td width="20%;">
-												<button type="button" id="filterBtn"
-													class="btn btn-sm btn-default">찾기</button>
-											</td>
-										</tr>
-									</table>
+							<div class="form-group" style="margin: 2%;">
+								<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
+									<label class="control-label">상품가치 </label>
+								</span> <br> <br>
 
-								</div>
+								<table>
+									<tr>
+										<td><input type="text" style="width: 80%;" id="fvalue1"
+											class="form-control"></td>
+										<td width="10%;">~</td>
+										<td><input type="text" style="width: 80%;" id="fvalue2"
+											class="form-control"></td>
+										<td width="20%;">
+											<button type="button" id="filterBtn"
+												class="btn btn-sm btn-default">찾기</button>
+										</td>
+									</tr>
+								</table>
+
 							</div>
 						</div>
-
-					</fieldset>
-
-
-					<div
-						style="position: fixed; left: 0px; bottom: 20px; font-size: 20px; margin: 3%;">
-						<a href="#above"><span class="glyphicon glyphicon-chevron-up"
-							aria-hidden="true"></span>&nbsp;top</a>
 					</div>
 
+				</fieldset>
 
-					<!-- 사이드바 추가 -->
 
-					<!--  -->
-					<a name="above"></a>
+				<div
+					style="position: fixed; left: 0px; bottom: 20px; font-size: 20px; margin: 3%;">
+					<a href="#above"><span class="glyphicon glyphicon-chevron-up"
+						aria-hidden="true"></span>&nbsp;top</a>
+				</div>
 
-					<div style="border: solid 1px #DDD !important; margin-top: 3%;">
 
-						<ul id="showTimeline" class="timeline">
-							<script id="entry-template2" type="text/x-handlebars-template"> 
+				<!-- 사이드바 추가 -->
+
+				<!--  -->
+				<a name="above"></a>
+
+				<div style="border: solid 1px #DDD !important; margin-top: 3%;">
+
+					<ul id="showTimeline" class="timeline">
+						<script id="entry-template2" type="text/x-handlebars-template"> 
                   <li class="timeline-event">
                    <label class="timeline-event-icon"></label>
                    <div class="timeline-event-copy">
@@ -149,146 +140,147 @@
 						<img class="likeImg" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/>
 					</span>
             </script>
-						</ul>
-						<!--     <p><ul id="showTimeline"></ul></p>  -->
-					</div>
+					</ul>
+					<!--     <p><ul id="showTimeline"></ul></p>  -->
+				</div>
+			</div>
+
+
+			<div class="col-sm-offset-10 col-sm-4">
+				<div class="app">
+					<aside class="side">
+					<ul class="tabs">
+						<li><a href="index.html"><i class="icon-dribbble icon2"></i>
+								Dribbble</a></li>
+
+
+						<li class="active"><a href="index.html"><i
+								class="icon-twitter icon2"></i> Twitter</a></li>
+
+
+						<li><a href="index.html"><i class="icon-rss icon2"></i>
+								RSS</a></li>
+
+
+						<li><a href="index.html"><i class="icon-facebook icon2"></i>
+								Facebook</a></li>
+					</ul>
+					<a href="index.html" class="add"><i class="icon-plus icon2"></i>
+						Add</a> </aside>
+
+
+					<section class="main"> <article class="item">
+					<p>혜연바보</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic1.png"></a> <a href="index.html">@한혜연</a>
+					<time datetime="2012-04-05T10:30:21+00:00" pubdate>4 minutes
+					ago</time> </footer> </article> <article class="item">
+					<p>주희는 진짜로 천재같다..</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic3.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:26:27+00:00" pubdate>8 minutes
+					ago</time> </footer> </article> <article class="item">
+					<p>Anim pariatur cliche reprehenderit, enim eiusmod high life
+						accusamus terry richardson ad squid.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic2.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:15:45+00:00" pubdate>15
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> <article class="item">
+					<p>Praesent arcu in mauris bibendum id ornare tortor
+						scelerisque.</p>
+					<footer> <a href="index.html" class="avatar"><img
+						src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
+					<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
+					minutes ago</time> </footer> </article> </section>
 				</div>
 
+			</div>
 
-				<div class="col-sm-offset-10 col-sm-4">
-					<div class="app">
-						<aside class="side">
-						<ul class="tabs">
-							<li><a href="index.html"><i class="icon-dribbble icon2"></i>
-									Dribbble</a></li>
-
-
-							<li class="active"><a href="index.html"><i
-									class="icon-twitter icon2"></i> Twitter</a></li>
-
-
-							<li><a href="index.html"><i class="icon-rss icon2"></i>
-									RSS</a></li>
-
-
-							<li><a href="index.html"><i class="icon-facebook icon2"></i>
-									Facebook</a></li>
-						</ul>
-						<a href="index.html" class="add"><i class="icon-plus icon2"></i>
-							Add</a> </aside>
-
-
-						<section class="main"> <article class="item">
-						<p>혜연바보</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic1.png"></a> <a href="index.html">@한혜연</a>
-						<time datetime="2012-04-05T10:30:21+00:00" pubdate>4
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>주희는 진짜로 천재같다..</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic3.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:26:27+00:00" pubdate>8
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Anim pariatur cliche reprehenderit, enim eiusmod high life
-							accusamus terry richardson ad squid.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic2.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:15:45+00:00" pubdate>15
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> <article class="item">
-						<p>Praesent arcu in mauris bibendum id ornare tortor
-							scelerisque.</p>
-						<footer> <a href="index.html" class="avatar"><img
-							src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-						<time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-						minutes ago</time> </footer> </article> </section>
-					</div>
-
-				</div>
-		
 		</div>
 	</div>
-	
-	
+
+
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="/resources/js/bootstrap.offcanvas.js"></script>
+	<script
+		src="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="/resources/js/bootstrap.offcanvas.js"></script>
 </body>
 </html>
