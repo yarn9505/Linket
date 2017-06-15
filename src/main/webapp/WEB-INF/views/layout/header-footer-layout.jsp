@@ -177,7 +177,7 @@
    <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
          <div class="navbar-header">
-            <div class="navbar-brand">Linket</div>
+            <div class="navbar-brand" style="line-height: 50px;"><img src="/resources/images/logo2.png" class="img-responsive"></div>
             <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
                <span class="icon-bar"></span> 
                <span class="icon-bar"></span> 
@@ -187,7 +187,6 @@
          
          <div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
-				<!-- <li><a id="welcome" href="/" >Welcome</a></li> -->
 				<li><a id="team" href="/timeline">TimeLine</a></li>
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
 				<span class="caret"></span></a>

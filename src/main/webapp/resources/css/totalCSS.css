@@ -30,6 +30,10 @@ a:hover {
 	background: #D1E0EF;
 }
 
+.customSideBar{
+	position: absolute;
+	height: 300px;
+}
 
 @media ( max-width : 767px) {
 	#sectionBar {

@@ -28,7 +28,7 @@
 <body>
 
 <!-- 네비게이션 -->
-<nav class="navbar navbar-m2p sidebar" role="navigation">
+<nav class="navbar navbar-m2p sidebar" role="navigation" id="customSideBar">
     <div class="container-fluid"">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -56,8 +56,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                       		  쪽지 보관함 <span class="caret"></span></a>
                     <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="#"><i class="material-icons">받은쪽지함</i> </a></li>
-                        <li><a href="#"><i class="material-icons">보낸쪽지함</i> </a></li>
+                        <li><a href="/note/listReceive"><i class="material-icons">받은쪽지함</i> </a></li>
+                        <li><a href="/note/listSend"><i class="material-icons">보낸쪽지함</i> </a></li>
                     </ul>
                 </li>
                 <li >
@@ -1048,6 +1048,7 @@
 					    if (height2 > height3) {
 					        $('html').height(Math.max(height1, height3, height2) + 10);
 					        $('body').height(Math.max(height1, height3, height2) + 10);
+					       
 					    } else
 					    {
 					        $('html').height(Math.max(height1, height3, height2));
@@ -1060,10 +1061,12 @@
 					    $(window).resize(function () {
 					        htmlbodyHeightUpdate();
 					    });
+					    
 					    $(window).scroll(function () {
 					        height2 = $('.container-main').height();
 					        htmlbodyHeightUpdate();
 					    });
+					    
 					});
 				</script>
 			</div>
