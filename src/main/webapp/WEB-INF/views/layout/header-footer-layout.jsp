@@ -168,13 +168,6 @@
    font-weight: bold;
    padding:0 5px 0 5px;
 }
-.dropdownCus ul li a:hover{
-	background: #ffffff !important;
-}
-
-.divider {
-	background: #eeeeee !important;
-}
 
 </style>
 <decorator:head />

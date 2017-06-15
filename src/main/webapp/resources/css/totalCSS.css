@@ -34,6 +34,13 @@ a:hover {
 	position: absolute;
 	height: 300px;
 }
+.dropdownCus ul li a:hover{
+	background: #ffffff !important;
+}
+
+.divider {
+	background: #eeeeee !important;
+}
 
 @media ( max-width : 767px) {
 	#sectionBar {
