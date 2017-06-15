@@ -26,8 +26,8 @@
 						</tr>
 						<tr>
 							<th style="width: 10%;">작성자</th>
-							<td><input type="text" class="form-control" value = "${boardDTO.userId}" readonly>
-								<input type="hidden" name="userId" value="${boardDTO.userId}" />
+							<td><input type="text" class="form-control" value = "${loginSession.userId}" readonly>
+								<input type="hidden" name="userId" value="${loginSession.userId}" />
 							</td>
 						</tr>
 						<tr>
@@ -37,7 +37,7 @@
 						</tr>
 						<tr>
 							<th style="width: 10%">상품가치</th>
-							<td><input type="text" id="value" name="value" class="form-control" placeholder="숫자로 입력" /> 원</td>
+							<td><input type="text" id="value" name="value" class="form-control" placeholder="숫자로 입력" /></td>
 						</tr>
 						<tr>
 							<th style="width: 10%;">내용</th>

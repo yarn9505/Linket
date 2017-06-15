@@ -85,7 +85,7 @@
 								<c:when test="${pagingDTO.pageNo != i}">
 									<li><a href="/notice/boardList?cateId=${cateDTO.cateId }&pageNo=${i}&searchType=${param.searchType}&searchText=${param.searchText}">${i}</a></li>
 								</c:when>
-								<c:otherwise> <li><a href="#" style="background-color: #085B86; color: white; font-weight: bold;">&nbsp;${i}&nbsp;</a></li> </c:otherwise>
+								<c:otherwise> <li><a href="#" style="background-color: #158cba; color: white;">&nbsp;${i}&nbsp;</a></li> </c:otherwise>
 							</c:choose>
 						</c:forEach> 
 						<c:if test="${pagingDTO.groupNo < pagingDTO.totalGroupCount}">
