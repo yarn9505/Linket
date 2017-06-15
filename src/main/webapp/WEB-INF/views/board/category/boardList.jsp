@@ -8,14 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${cateDTO.cateName}</title>
-<style type="text/css">
-body a {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	width: 200px;
-}
-</style>
 </head>
 <body>
 	<div class="container">
