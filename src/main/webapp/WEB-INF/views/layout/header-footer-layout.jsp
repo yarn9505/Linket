@@ -28,12 +28,11 @@
 <link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css">
 <script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
 <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
