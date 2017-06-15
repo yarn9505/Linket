@@ -120,17 +120,14 @@
 		bno = #{bNo}
 	</select>
 	
-	
-	
+
 	<!-- 내가 올린 글 조회 -->
 	<select id="myBoardList" resultType="BoardDTO">
-	    SELECT 
-	    	* 
-	    FROM 
-	    	board
-	    WHERE
-	    	userId = #{userId}
-	    	
+	    SELECT * 
+	    FROM board b
+	    WHERE userId = #{userId}
+	    ORDER BY b.bno DESC
+        limit #{page.pageStart},#{page.perPageNum} 
 	</select>
 	
 	
@@ -143,19 +140,30 @@
 		userId = #{userId}
 	</select>
 	
+	<!-- by.윤지 -->
 	<!-- 나의 거래중인 게시물 갯수 조회 -->
 	<select id="selectMyExchangeListCount" resultType="int">
 	    SELECT COUNT(*)
 		FROM eval
-		WHERE buyerId = #{buyerId}
+		WHERE buyerId = #{buyerId} AND pcontent IS NULL
 	</select>
 	
 	<!-- 나의 거래중인 게시물 리스트 -->
 	<select id="selectExchangeList" resultType="BoardDTO">
-	    select * 
+	    select *, (select pcontent from eval where eval.bno = board.bno) as pcontent 
 	    from board 
-	    where bno in (select bno from eval where eval.buyerId = #{buyerId})
+	    where bno in (select bno from eval where eval.buyerId = #{buyerId} and pcontent is null)
 	    LIMIT #{pagingDTO.startRow}, #{pagingDTO.endRow}
 	</select>
-
+	
+	<!-- 구매 후기 테이블(eval) 수정하기 -->
+	<update id="updateEval" >
+	    UPDATE eval SET
+			pcontent = #{pcontent},
+			pscore = #{pscore},
+			pRegDate = now()
+		WHERE bno = #{bno}
+	</update>	
+		
+	
 </mapper>

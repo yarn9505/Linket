@@ -18,7 +18,9 @@
 								style="color: #0E3E59;">&nbsp;받은 쪽지함</span>
 						</h3>
 						<br><br>
+
 						<table class="table tableCustom">
+
 							<tr >
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">보낸사람</th>

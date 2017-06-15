@@ -73,4 +73,7 @@ public interface BoardService {
 	
 	/** 다음에디터 이용한 게시글 수정 처리*/
 	public void updateBoardDaumAttach(BoardDTO boardDTO) throws Exception;
+	
+	/** 구매후기 작성 완료시 거래완료 업데이트 */
+	public void updateIsSwap(String bNo);
 }

@@ -1,12 +1,8 @@
 package com.java.kosta.service.user;
 
-import java.sql.Date;
 import java.util.List;
-
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
-
 import com.java.kosta.dao.user.UserDAOImpl;
 import com.java.kosta.dto.user.UserVO;
 
@@ -80,16 +76,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void pwupdate(UserVO vo) {
 		dao.pwupdate(vo);
-	}
-
-	@Override
-	public void keepLogin(String uid, String sessionId, Date next) {
-		dao.keepLogin(uid, sessionId, next);
-	}
-
-	@Override
-	public UserVO checkUserWithSessionKey(String sessionId) {
-		return dao.checkUserWithSessionKey(sessionId);
 	}
 
 	// 안드로이드 토큰값 저장

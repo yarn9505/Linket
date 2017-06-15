@@ -83,8 +83,11 @@ public class MyPageDAOImpl implements MyPageDAO{
 //	}
 	
 	@Override
-	public List<BoardDTO> selectWritedList(String userId) {
-		return sqlSession.selectList(NameSpace + ".myBoardList",userId);
+	public List<BoardDTO> selectWritedList(String userId,Mypagepaging page) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("page", page);
+		map.put("userId", userId);
+		return sqlSession.selectList(NameSpace + ".myBoardList",map);
 	}
 
 	
@@ -157,5 +160,11 @@ public class MyPageDAOImpl implements MyPageDAO{
 		map.put("buyerId", buyerId);
 		return sqlSession.selectList(NameSpace + ".selectExchangeList", map);
 	}
+
+	@Override
+	public void updateEval(EvalDTO evalDTO) {
+		sqlSession.update(NameSpace + ".updateEval", evalDTO);
+	}
+
 
 }

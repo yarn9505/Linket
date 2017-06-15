@@ -37,23 +37,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		if ( session.getAttribute("loginSession") == null ){
 			logger.info("로그인되어 있지 않은 경우");
 			
-			 Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-			 logger.info("로그인 쿠기"+loginCookie);
-	            if ( loginCookie != null ){ // 쿠키가 존재하는 경우(이전에 로그인때 생성된 쿠키가 존재한다는 것)
-	                // loginCookie의 값을 꺼내오고 -> 즉, 저장해논 세션Id를 꺼내오고
-	                String sessionId = loginCookie.getValue();
-	                // 세션Id를 checkUserWithSessionKey에 전달해 이전에 로그인한적이 있는지 체크하는 메서드를 거쳐서
-	                // 유효시간이 > now() 인 즉 아직 유효시간이 지나지 않으면서 해당 sessionId 정보를 가지고 있는 사용자 정보를 반환한다.
-	                UserVO userVO = service.checkUserWithSessionKey(sessionId);
-	                logger.info("userVO:"+userVO.getUserId());
-	                if ( userVO != null ){ // 그런 사용자가 있다면
-	                    // 세션을 생성시켜 준다.
-	                    session.setAttribute("loginSession", userVO);
-	                    
-	                    return true;
-	                }
-	            }
-			
 			// 사용자가 로그인이 안된상태로 요청시 로그인페이지로 가도록 되어 있는데
 			// 로그인이 성공한 뒤에 자동으로 이동할 수 있도록 이동 경로를 미리 세션에 기억시켜놓기 위함
 			// 사용자가 요청한 uri를 가져옴

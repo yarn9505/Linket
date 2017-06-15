@@ -1,5 +1,6 @@
 package com.java.kosta.controller.mypage;
 
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -30,7 +32,8 @@ import com.java.kosta.service.mypage.MyPageServiceImpl;
 @Controller
 @RequestMapping("/mypage/*")
 public class MyPageController {
-	Logger logger = LoggerFactory.getLogger(MyPageController.class);
+Logger logger = LoggerFactory.getLogger(MyPageController.class);
+	
 	@Inject
 	MyPageServiceImpl service;
 
@@ -39,9 +42,23 @@ public class MyPageController {
 
 	// bno값 가지고 eval 테이블에서 해당 거래자 id 가져오기
 	@RequestMapping(value="/getCustomer")
-	public @ResponseBody String getCustomer(String bno){
+	public @ResponseBody Map<String,Object> getCustomer(String bno){
+		Map<String, Object> resMap = new HashMap<String, Object>();
+
+		// 거래인 아이디 지정되어있는지 검사하기 위해 가져옴
 		String customerId = service.getCustomerId(bno);
-		return customerId;
+		
+		try {
+			// isSwap이 'Y'인지 검사
+			BoardDTO bDTO = bservice.selectBoardOne(bno);
+
+			resMap.put("isSwap", bDTO.getIsSwap());
+			resMap.put("customerId", customerId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return resMap;
 	} // end of getCustomer
 	
 	
@@ -70,10 +87,11 @@ public class MyPageController {
 	
 
 	/**
+	 * 	2번 게시물
 	 * 	구매 결정 모달창에서 거래할 사용자 지정시 존재하는 아이디인지 확인
 	 * 	황영롱
 	 */
-	@RequestMapping(value="/existIdCheck")
+	@RequestMapping(value="/existIdCheck" )
 	public @ResponseBody String existIdCheck(@RequestBody TransactionDTO dto){
 		// 1 이면 있는 사용자 0이면 없는 사용자
 		int checkNum = service.existIdCheck(dto);
@@ -94,39 +112,24 @@ public class MyPageController {
 		return result;
 	}
 	
-	
-	  /* @RequestMapping(value="listReceive")
-	   public String listForReceive(NoteVO vo,PagingDTO page,Model model,HttpSession session) throws Exception{
-	      UserVO uvo = (UserVO) session.getAttribute("loginSession");
-	      vo.setRecvId(uvo.getUserId());
-	      page.setTotalCount(service.totalCntRecv(vo));
-	      List<NoteVO> list = service.listForReceiver(vo, page);
-	      model.addAttribute("list", list);
-	      model.addAttribute("pageMaker", page);
-	      logger.info("확인 : " + list);
-	      return "note/listForReceive";
-	   } // end of listForReceive
-*/	
-	
-	/** 마이페이지 좋아요 보기 */
+	/** 마이페이지 좋아요 1번 게시물
+	 *  김용래
+	 * */
 	@RequestMapping(value="/myList")
 	public  String boardList(Mypagepaging pagingDTO, Model model, HttpServletRequest req){
 		try {
 			UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
 			model.addAttribute("loginSession", loginSession);
-
 			String userId = loginSession.getUserId();
-			System.out.println(loginSession.getUserId());
+			logger.info("로그인아이디:"+loginSession.getUserId());
+			
 			// 전체 레코드 갯수 획득
 			int totRecord = service.selectFavoritecount(pagingDTO, userId);
 			// 페이징 계산
 			pagingDTO.setTotalCount(totRecord);
-
-		/*	logger.info(pagingDTO.getTotalCount()+"개수는 ㅁㄴㅇㅁㄴㅇㅁㄴㅇ");*/
-			
 			// 내가 좋아요 누른 게시글 리스트로 가져와서 전달하기
-			List<BoardDTO> list= service.selectFavoriteList(pagingDTO, userId);
 			
+			List<BoardDTO> list= service.selectFavoriteList(pagingDTO,userId);
 			for (BoardDTO boardDTO : list) {
 				CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
 				boardDTO.setCateName(dto.getCateName());
@@ -134,15 +137,13 @@ public class MyPageController {
 			model.addAttribute("MyFavoriteList",list);
 			model.addAttribute("pageMaker", pagingDTO);
 //			model.addAttribute("boardDTO",dto);
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "/mypage/myfavoritelist";
 	}
 
-	//좋아요 했는지 체크
+	//좋아요 했는지 체크 1번 게시물
 	@RequestMapping(value="/checkFavorite")
 	@ResponseBody
 	public String checkFavorite(@RequestParam(value = "bno") String bNo,@RequestParam(value = "userId") String userId,Model model){
@@ -158,12 +159,14 @@ public class MyPageController {
 			model.addAttribute("likeCount",count);
 			// model.addAttribute("favorite", "exist");
 		}
-
 		return result;
-
 	}
+	
+	
 
-	// 좋아요 처리
+	/**
+	 * 좋아요 게시물 처리 1 번
+	 */
 	@RequestMapping(value = "/handlingFavorite")
 	@ResponseBody
 	public String handlingFavorite(@RequestParam(value = "bno") String bNo,
@@ -196,26 +199,28 @@ public class MyPageController {
 		return "안뇽";
 	}
 
-
-	/**좋아요 삭제*/
+	/**좋아요 삭제 게시물 1번*/
 	@RequestMapping(value="/deleteFavorite")
 	@ResponseBody
 	public String deleteFavorite(@RequestParam(value = "bno") String bNo,
 			@RequestParam(value = "userId") String userId){
-
 		try {
 			bservice.unfavoriteBoard(userId, bNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return "삭제";
 	}
 
 
+	/**
+	 * 김용래
+	 * mywrite 내가 쓴글들 보드에서 나오게
+	 * ajax 처리 게시물 2번
+	 */
 	@RequestMapping(value="/myBoardList")
 	@ResponseBody
-	public Map<String,Object> myBoardList(Model model,HttpServletRequest req,Mypagepaging pagingDTO){
+	public Map<String,Object> myBoardList(HttpServletRequest req,Mypagepaging pagingDTO){
 		HashMap<String,Object> res=new HashMap<String, Object>();
 		
 		UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
@@ -226,21 +231,66 @@ public class MyPageController {
 		int totRecord = service.selectMyBoardListCount(pagingDTO, userId);
 		// 페이징 계산
 		pagingDTO.setTotalCount(totRecord);
-
+		logger.info(pagingDTO.getTotalCount()+"페이지 갯수는");
+		
 		try {
-			List<BoardDTO> list = service.selectWritedList(userId);//내가 쓴 글 목록 조회
+			List<BoardDTO> list = service.selectWritedList(userId,pagingDTO);//내가 쓴 글 목록 조회
+			for (BoardDTO boardDTO : list) {
+				CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
+				boardDTO.setCateName(dto.getCateName());
+			}
 			res.put("success","success"); 
 			res.put("MyBoardList",list);
-			res.put("pagingDTO", pagingDTO);
+			res.put("pageMaker", pagingDTO);
 			
-			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
 	}
-
-	/** 나의 거래중인 리스트 가져오는 AJAX */
+	
+	
+	
+	
+	/**
+	 * 김용래
+	 * AJAX를 통한 페이징과 내가 좋아요 눌렀던거 아작스 처리
+	 * 게시물 1번 페이지
+	 * favirtelist()
+	 */
+	@RequestMapping(value="/myfavorite")
+	@ResponseBody
+	public Map<String,Object>favirtelist(Model model,HttpServletRequest req,Mypagepaging pagingDTO){
+		HashMap<String,Object> res=new HashMap<String, Object>();
+		
+		UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
+		//유저 아이디 얻어옴
+		String userId = loginSession.getUserId();
+		// 전체 레코드 갯수 획득
+		int totRecord = service.selectFavoritecount(pagingDTO, userId);
+		// 페이징 계산
+		pagingDTO.setTotalCount(totRecord);
+		
+		try {
+			List<BoardDTO> list= service.selectFavoriteList(pagingDTO,userId);
+//			list.get(0).getCateId()
+			for (BoardDTO boardDTO : list) {
+				CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
+				boardDTO.setCateName(dto.getCateName());
+			}
+			res.put("success","success"); 
+			res.put("MyBoardList",list);
+			res.put("pageMaker", pagingDTO);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	/** 나의 거래중인 리스트 가져오는 AJAX 
+	 * 이윤지
+	 * */
 	@RequestMapping("/myExchangeList")
 	@ResponseBody
 	public Map<String,Object> myExchangeList(Model model, HttpServletRequest req, BoardPagingDTO pagingDTO){
@@ -258,6 +308,12 @@ public class MyPageController {
 
 		try {
 			List<BoardDTO> list = service.selectExchangeList(pagingDTO, loginId);	// eval 테이블에 있는 나의 거래중인(거래자 입장) 게시물 리스트 가져오기
+			
+			for (BoardDTO boardDTO : list) {
+				CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
+				boardDTO.setCateName(dto.getCateName());
+			}
+			
 			res.put(Constants.RESULT, Constants.RESULT_OK); 
 			res.put("MyExchangeList",list);
 			res.put("pagingDTO", pagingDTO);
@@ -268,20 +324,25 @@ public class MyPageController {
 		return res;
 	}
 	
-	/** 구매 후기 작성 처리 */
-	@RequestMapping("/writeReview")
+	/** 구매 후기 작성 처리 
+	 * 이윤지
+	 * */
+	@RequestMapping(value="/writeReview",method=RequestMethod.POST,produces = "application/text; charset=utf8")
 	@ResponseBody
-	public Map<String,Object> writeReview(Model model, HttpServletRequest req, EvalDTO evalDTO){
-		Map<String,Object> res = new HashMap<String, Object>();
-		
+	public String writeReview(@RequestBody EvalDTO evalDTO){
+		logger.info("writeReview() " + evalDTO.getBno()+", "+evalDTO.getPcontent()+", "+evalDTO.getPscore());
 		try {
+			// eval 테이블의 내용과 별점을 update 해줌
+			service.updateEval(evalDTO);
 			
-			res.put(Constants.RESULT, Constants.RESULT_OK);
+			// board 테이블의 해당 게시물을 거래완료로 수정 isSwap = 'Y'
+			bservice.updateIsSwap(evalDTO.getBno());
+			
+			return Constants.RESULT_OK;
 		} catch (Exception e) {
 			e.printStackTrace();
+			return Constants.RESULT_FAIL;
 		}
-		
-		return res;
 	}
 
 

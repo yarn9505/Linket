@@ -250,6 +250,13 @@ $(function(){
 function idCheck(){
 
 	var userId = $('#userId').val();
+	var reg_id = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,20}$/;//영문과 숫자 조합으로 아이디는 6~20 글자 가능 
+	
+	 if(!reg_id.test(userId)){
+		 alert("아이디는 숫자 영문 포함 6~20 글자로 입력해주세요");
+		 $('#userId').focus();
+		 return false;
+	 }
 	
 	if($("#userId").val() == ''){
 		alert('아이디를 입력해주세요.'); 

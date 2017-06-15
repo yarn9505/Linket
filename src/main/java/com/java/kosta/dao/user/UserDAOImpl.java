@@ -83,27 +83,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	// 이전에 로그인한 적이 있는지, 즉 유효시간이 넘지 않은 세션을 가지고 있는지 체크한다.
-	public UserVO checkUserWithSessionKey(String sessionId) {
-		 // 유효시간이 남아있고(>now()) 전달받은 세션 id와 일치하는 사용자 정보를 꺼낸다.
-		return sqlSession.selectOne(NAMESPACE+".checkUserWithSessionKey",sessionId);
-	}
-
-	
-	
-	@Override
-	public void keepLogin(String uid, String sessionId, java.sql.Date next) {
-		Map<String, Object> map = new HashMap<String,Object>();
-        map.put("userId", uid);
-        map.put("sessionId", sessionId);
-        map.put("next", next);
-        // Mapper.xml로 데이터를 전달할 때 한 객체밖에 전달 못함으로 map으로 묶어서 보내줌 단... 주의할 점은
-        // Mapper.xml 안에서 #{} 이 안에 지정한 이름이랑 같아야함.. 자동으로 매핑될 수 있도록
-        // 아래가 수행되면서, 사용자 테이블에 세션id와 유효시간이 저장됨
-        sqlSession.update(NAMESPACE+".keepLogin",map);
-	}
-	
-	@Override
 	public void inputToken(String token,String userId) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("userId", userId);

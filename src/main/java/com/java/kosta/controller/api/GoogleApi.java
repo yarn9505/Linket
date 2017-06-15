@@ -144,8 +144,6 @@ public class GoogleApi {
 		String cateId6=uniqId.getCateId6();
 		String lat=uniqId.getLat();
 		String lon=uniqId.getLon();
-		String sessionkey=uniqId.getSessionKey();
-		Date date=uniqId.getSessionLimit();
 		
 		
 		logger.info(uniqId.toString());
@@ -166,9 +164,6 @@ public class GoogleApi {
 		userVO.setCateId6(cateId6);
 		userVO.setLat(lat);
 		userVO.setLon(lon);
-		userVO.setSessionKey(sessionkey);
-		userVO.setSessionLimit(date);
-		
 		session.setAttribute(Constants.LOGINSESSION,userVO);
 		
 		return "redirect:/";

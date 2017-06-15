@@ -1,15 +1,5 @@
 $(document).ready(function() {
 	
-    $("#useCookie").change(function(){
-        if($("#useCookie").is(":checked")){
-        	 $("#useCookie").val(true);
-        	 alert("자동로그인이 체크되었습니다");
-        }else{
-        	$("#useCookie").val(false);
-        	alert("자동로그인이 해제되었습니다");
-        }
-    });
-	
    $("#login").click(function() {
 	   
 	    var useCookie= $("#useCookie").val();

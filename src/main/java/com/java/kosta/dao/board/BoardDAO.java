@@ -9,6 +9,9 @@ import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.board.BoardPagingDTO;
 import com.java.kosta.dto.board.CategoryDTO;
 
+/** 게시물 관련 DAO 
+ * 이윤지
+ * */
 public interface BoardDAO {
 	
 	/** 주소 얻어오기 */
@@ -65,5 +68,6 @@ public interface BoardDAO {
 	/** 파일 테이블 삭제 */
 	public void deleteAttach(String bNo);
 	
-	
+	/** 구매후기 작성 완료시 거래완료 업데이트 */
+	public void updateIsSwap(String bNo);
 }

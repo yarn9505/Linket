@@ -434,5 +434,10 @@ public class BoardServiceImpl implements BoardService{
 			}
 		}
 	}
+
+	@Override
+	public void updateIsSwap(String bNo) {
+		bDAO.updateIsSwap(bNo);
+	}
 }// end of class
 

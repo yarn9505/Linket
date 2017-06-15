@@ -201,7 +201,13 @@
 	    DELETE FROM boardfile WHERE bNo = #{bNo} 
 	</delete>
 	
-	<!-- 업로드 파일 수정(실제로는 다시 삽입) -->
+	
+	<!-- 거래 완료된 게시물 update -->
+	<update id="updateIsSwap">
+	    update board 
+		SET isSwap = 'Y'
+		WHERE bno = #{bNo}
+	</update>
 	
 	
 </mapper>
