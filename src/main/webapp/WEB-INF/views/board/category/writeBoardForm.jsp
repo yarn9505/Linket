@@ -20,27 +20,26 @@
 				<form name="tx_editor_form" id="tx_editor_form" method="post" enctype="multipart/form-data">
 					<table class="table">
 						<tr>
-							<th style="width: 10%;">카테고리</th>
+							<th style="width: 10%; vertical-align: middle; text-align: center;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
 								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
 						</tr>
 						<tr>
-							<th style="width: 10%;">작성자</th>
+							<th style="width: 10%; vertical-align: middle ; text-align: center;">작성자</th>
 							<td><input type="text" class="form-control" value = "${loginSession.userId}" readonly>
 								<input type="hidden" name="userId" value="${loginSession.userId}" />
 							</td>
 						</tr>
 						<tr>
-						
-							<th style="width: 10%;">제목</th>
+							<th style="width: 10%; vertical-align: middle; text-align: center;">제목</th>
 							<td><input type="text" class="form-control" id="bTitle" name="bTitle" required="required"/></td>
 						</tr>
 						<tr>
-							<th style="width: 10%">상품가치</th>
+							<th style="width: 10% vertical-align: middle; text-align: center;">상품가치</th>
 							<td><input type="text" id="value" name="value" class="form-control" placeholder="숫자로 입력" /></td>
 						</tr>
 						<tr>
-							<th style="width: 10%;">내용</th>
+							<th style="width: 10%; vertical-align: middle; text-align: center;">내용</th>
 							<td id="editor_frame"></td>
 						</tr>
 					</table>
