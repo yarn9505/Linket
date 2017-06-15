@@ -68,13 +68,12 @@
 					</c:forEach>
 				</table>
 			
-				<table align="right">
-					<tr ><td>
-						<!-- <a href="/category/writeForm" >글작성</a> -->
-						<button type="button" class="btn btn-default" onclick="location.href='/notice/writeBoardForm?cateId=${cateDTO.cateId}'">
-						<img src="/resources/images/writeBtn.png" style="width: 60px;"></button>
-					</td></tr>
-				</table><br/><br/>
+				<div align="right">
+					<button type="button" class="btn btn-default" onclick="location.href='/notice/writeBoardForm?cateId=${cateDTO.cateId}'">
+					<img src="/resources/images/writeBtn.png" style="width: 60px;"></button>
+				</div>
+				
+				<br/><br/>
 				
 				<div align = "center">
 					 <ul class="pagination pagination-sm">

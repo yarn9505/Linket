@@ -450,8 +450,10 @@
                </c:forEach>
             </div>
             
-            <span style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</span>
-            
+            <span style="height: 500px;border: 1px solid #BDBDBD;overflow-x:hidden; overflow-y:scroll;" class="form-control"> 
+            	${boardDTO.bContent}
+			</span>
+			
             <br/>
             <div align="right">
 

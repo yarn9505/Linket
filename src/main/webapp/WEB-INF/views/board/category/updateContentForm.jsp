@@ -45,15 +45,12 @@
 						
 					</table>
 					<br/><br/>
-					<table align="right">
-						<tr>
-							<td><input type="hidden" name="bNo" value="${boardDTO.bNo}" />
-								<input type="hidden" name="pageNo" value="${param.pageNo}" /> 
-								<input type="button" class="btn btn-defalut" id="save" value="수정" onclick="updateBoard(); return false;" />
-								<button type="button" class="btn btn-defalut" onclick="javascript:history.back();">취소</button>
-							</td>
-						</tr>
-					</table>
+					<div align="right">
+						<input type="hidden" name="bNo" value="${boardDTO.bNo}" />
+						<input type="hidden" name="pageNo" value="${param.pageNo}" /> 
+						<input type="button" class="btn btn-defalut" id="save" value="수정" onclick="updateBoard(); return false;" />
+						<button type="button" class="btn btn-defalut" onclick="javascript:history.back();">취소</button>
+					</div>
 				</form>
 				<br /> <br /> <br />
 
