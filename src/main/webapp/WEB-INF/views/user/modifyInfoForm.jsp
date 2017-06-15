@@ -11,12 +11,17 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-6 col-md-offset-3">
+			<div class="col-md-6 col-md-offset-2">
 				<article class="container">
 				<div class="page-header">
-					<h1>회원 정보 수정창</h1>
+					<h3><span class="glyphicon glyphicon-user" style="color: #0E3E59;">
+					&nbsp;회원정보수정</span>
+					</h3>
 				</div>
-				<div class="col-md-6 col-md-offset-3" style="position: static;">
+				</div>
+				
+				
+				<div class="col-md-6 col-md-offset-3" style="position:relative;" >
 					<form role="form" id="form1">
 						<div class="form-group">
 							<label class="control-label">아이디</label>
@@ -145,7 +150,6 @@
 				</article>
 			</div>
 		</div>
-	</div>
 	
 	<script type="text/javascript" src="/resources/js/modifyInfoJS.js" />
 </body>
