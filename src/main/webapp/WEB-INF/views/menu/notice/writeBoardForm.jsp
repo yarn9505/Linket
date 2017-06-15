@@ -17,24 +17,24 @@
 				<form id="insertForm" action="/notice/writeBoardProc" method="post">
 					<table class="table">
 						<tr>
-							<th style="width: 10%;">카테고리</th>
+							<th style="width: 10%; vertical-align: middle ; text-align: center;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
 								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
 							</td>
 						</tr>
 						<tr>
-							<th style="width: 10%;">작성자</th>
+							<th style="width: 10%; vertical-align: middle ; text-align: center;">작성자</th>
 							<td>
 								<input type="text" class="form-control" value = "관리리자" readonly>
 								<input type="hidden" name="userId" value="${loginSession.userId }" />
 							</td>
 						</tr>
 						<tr>
-							<th style="width: 10%;">제목</th>
+							<th style="width: 10%; vertical-align: middle ; text-align: center;">제목</th>
 							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" required="required" /></td>
 						</tr>
 						<tr>
-							<th style="width: 10%;">내용</th>
+							<th style="width: 10%; vertical-align: middle ; text-align: center;">내용</th>
 							<td><textarea name="bContent" style="height: 400px;" class="form-control" required ></textarea></td>
 						</tr>
 					</table>
