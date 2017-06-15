@@ -8,6 +8,49 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+<style>
+input[type=checkbox] {  
+    display: none;  
+}
+ 
+ input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 
+</style>
 <body>
 	<div class="container">
 		<div class="row">
@@ -106,34 +149,39 @@
 						<div class="form-group">
 							<label class="control-label">관심분야 </label>
 							<div class="input-group">
-								<label class="checkbox-inline"> <input type="checkbox"
-									name="checkbox" id="cateId1"
-									${loginSession.cateId1 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId1 eq 'Y' ? 'Y' :'N' }">유아/취미/완구
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									name="checkbox" id="cateId2"
+								<label class="checkbox-inline"> 
+								<input type="checkbox"name="checkbox" id="cateId1" ${loginSession.cateId1 eq 'Y' ? 'checked' : '' }
+									value="${loginSession.cateId1 eq 'Y' ? 'Y' :'N' }"><label for="cateId1">유아/취미/완구</label>
+								</label>
+								<label class="checkbox-inline">
+								 <input type="checkbox"name="checkbox" id="cateId2"
 									${loginSession.cateId2 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId2 eq 'Y' ? 'Y' :'N' }">뷰티/패션/잡화
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+									value="${loginSession.cateId2 eq 'Y' ? 'Y' :'N' }"><label for="cateId2">뷰티/패션/잡화</label>
+								</label> 
+								<label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId3"
 									${loginSession.cateId3 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }">애완동물
+									value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }"><label for="cateId3">애완동물 용품</label>
 									용품
-								</label> <br />
-								<br /> <label class="checkbox-inline"> <input
-									type="checkbox" name="checkbox" id="cateId4"
-									${loginSession.cateId4 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId4 eq 'Y' ? 'Y' :'N' }">홈인테리어/주방용품/생활용품
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+								</label> 
+								<br />
+								<br /> 
+								<label class="checkbox-inline"> 
+								<input type="checkbox" name="checkbox" id="cateId4"${loginSession.cateId4 eq 'Y' ? 'checked' : '' }
+									value="${loginSession.cateId4 eq 'Y' ? 'Y' :'N' }"><label for="cateId4">홈인테리어/생활용품</label>
+								</label>
+								 <label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId5"
 									${loginSession.cateId5 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId5 eq 'Y' ? 'Y' :'N' }">도서/음반
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+									value="${loginSession.cateId5 eq 'Y' ? 'Y' :'N' }"><label for="cateId5">도서/음반</label>
+								</label> 
+								<label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId6"
 									${loginSession.cateId6 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId6 eq 'Y' ? 'Y' :'N' }">지역
+									value="${loginSession.cateId6 eq 'Y' ? 'Y' :'N' }"><label for="cateId6">지역 할인 쿠폰</label>
 									할인 쿠폰
-								</label> <input type="hidden" name="uniqId"
+								</label> 
+								<input type="hidden" name="uniqId"
 									value="${loginSession.uniqId}" id="uniqId">
 							</div>
 						</div>

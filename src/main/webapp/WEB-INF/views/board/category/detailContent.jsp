@@ -30,6 +30,49 @@
         height: 350px;
         background-color: grey;
       }
+      
+/*비밀댓글용*/
+input[type=checkbox] {  
+    display: none;  
+}
+
+input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 
 </style>
  <script type="text/javascript">
         //게시글 삭제 버튼 클릭시
@@ -541,17 +584,17 @@
             
             <table width="100%;">
                <tr>
-                  <th style="width: 10%; text-align: center;"> ${loginSession.userId } 
+                  <th style="width: 10%; text-align: center; " rowspan="2"> ${loginSession.userId } 
                   <input style="width: 100%; border: 0;" type="hidden" name="replyId" value="${loginSession.userId }" id="newReplyWriter" />
                   </th>
                   <td><textarea class="form-control" name="rContent" id="newReplyContent" style="resize: none; height: 4%; width: 100%;"></textarea></td>
-                  <td style="width: 10%" colspan="2">&nbsp;&nbsp;
-                     <button style="font-size: 12pt;" class="btn btn-primary btn-lg" id="replyAddBtn">입력</button>
+                  <td style="width: 10%" rowspan="2">&nbsp;&nbsp;
+                     <button style="font-size: 12pt;" class="btn btn-primary btn-lg" id="replyAddBtn" >입력</button>
                   </td>
                </tr>
+               
                <tr>
-                  <td></td>
-                  <td><input type="checkbox" id="secretReply" />비밀댓글</td>
+               <td style="float:right; margin-top:8px;" ><input type="checkbox" id="secretReply" class="checkbox-style"  /><label for="secretReply">비밀댓글</label><td>
                </tr>
             </table>
 
