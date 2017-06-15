@@ -168,6 +168,13 @@
    font-weight: bold;
    padding:0 5px 0 5px;
 }
+.dropdownCus ul li a:hover{
+	background: #ffffff !important;
+}
+
+.divider {
+	background: #eeeeee !important;
+}
 
 </style>
 <decorator:head />
@@ -187,7 +194,7 @@
          <div class="navbar-collapse collapse" id="navbar-main">
 			<ul class="nav navbar-nav">
 				<li><a id="team" href="/timeline">TimeLine</a></li>
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
+				<li class="dropdown dropdownCus"><a class="dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Category 
 				<span class="caret"></span></a>
 				<ul class="dropdown-menu jungyo_menu" aria-labelledby="themes">
 					<li><a href="/board/category/boardList?cateId=1&pageNo=1">도서/음반</a></li>

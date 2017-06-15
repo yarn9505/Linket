@@ -34,7 +34,10 @@ a:hover {
 	position: absolute;
 	height: 300px;
 }
-
+/* .dropdown li>a:hover{
+	background: #ffffff;
+}
+ */
 @media ( max-width : 767px) {
 	#sectionBar {
 		display: none;
