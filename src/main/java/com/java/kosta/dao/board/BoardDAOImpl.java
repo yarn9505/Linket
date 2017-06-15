@@ -131,4 +131,9 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(NameSpace+".getAddr",userId);
 	}
 
+	@Override
+	public void updateIsSwap(String bNo) {
+		sqlSession.update(NameSpace +".updateIsSwap", bNo);
+	}
+
 }

@@ -12,10 +12,7 @@ public class UserVO {
 	private String userEmail;
 	private String addr1;
 	private String addr2;
-	private String sessionKey;
-	private Date sessionLimit; // 쿠키유지
 	private Date userRegdate; // 회원 등록일
-	private boolean useCookie; // 쿠키 사용여부
 	private String lat;
 	private String lon;
 	private String uniqId;//유니크 아이디
@@ -27,8 +24,13 @@ public class UserVO {
 	private String cateId4;
 	private String cateId5;
 	private String cateId6;
+	//
+	
 	//안드로이드 토큰
 	private String token;
+	
+	//사용자 랭크
+	private String rank;
 	
 //	private String idCheckboolean;//아이디가 체크되었는지 확인하는거
 	
@@ -156,36 +158,12 @@ public class UserVO {
 		this.addr2 = addr2;
 	}
 
-	public String getSessionKey() {
-		return sessionKey;
-	}
-
-	public void setSessionKey(String sessionKey) {
-		this.sessionKey = sessionKey;
-	}
-
-	public Date getSessionLimit() {
-		return sessionLimit;
-	}
-
-	public void setSessionLimit(Date date) {
-		this.sessionLimit = date;
-	}
-
 	public Date getUserRegdate() {
 		return userRegdate;
 	}
 
 	public void setUserRegdate(Date userRegdate) {
 		this.userRegdate = userRegdate;
-	}
-
-	public boolean isUseCookie() {
-		return useCookie;
-	}
-
-	public void setUseCookie(boolean useCookie) {
-		this.useCookie = useCookie;
 	}
 
 	public String getUserHp() {
@@ -195,20 +173,27 @@ public class UserVO {
 	public void setUserHp(String userHp) {
 		this.userHp = userHp;
 	}
-	
+
 	public String getToken() {
 		return token;
+	}
+
+	public String getRank() {
+		return rank;
 	}
 
 	public void setToken(String token) {
 		this.token = token;
 	}
 
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", userName=" + userName + ", userPw=" + userPw + ", userHp=" + userHp
-				+ ", userEmail=" + userEmail + ", addr1=" + addr1 + ", addr2=" + addr2 + ", sessionKey=" + sessionKey
-				+ ", sessionLimit=" + sessionLimit + ", userRegdate=" + userRegdate + ", useCookie=" + useCookie
+				+ ", userEmail=" + userEmail + ", addr1=" + addr1 + ", addr2=" + addr2 + ", userRegdate=" + userRegdate 
 				+ ", lat=" + lat + ", lon=" + lon + ", uniqId=" + uniqId + ", cateId1=" + cateId1 + ", cateId2="
 				+ cateId2 + ", cateId3=" + cateId3 + ", cateId4=" + cateId4 + ", cateId5=" + cateId5 + ", cateId6="
 				+ cateId6 + "]";

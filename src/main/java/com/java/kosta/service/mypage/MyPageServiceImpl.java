@@ -11,6 +11,7 @@ import com.java.kosta.dao.mypage.MyPageDAO;
 import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.board.BoardFavoriteDTO;
 import com.java.kosta.dto.board.BoardPagingDTO;
+import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.mypage.Mypagepaging;
 import com.java.kosta.dto.transaction.TransactionDTO;
 
@@ -62,8 +63,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<BoardDTO> selectWritedList(String userId) throws Exception {
-		return mDAO.selectWritedList(userId);
+	public List<BoardDTO> selectWritedList(String userId,Mypagepaging paging) throws Exception {
+		return mDAO.selectWritedList(userId,paging);
 	}
 
 
@@ -119,5 +120,11 @@ public class MyPageServiceImpl implements MyPageService{
 		
 		return mDAO.selectExchangeList(pagingDTO, buyerId);
 	}
+
+	@Override
+	public void updateEval(EvalDTO evalDTO) {
+		mDAO.updateEval(evalDTO);
+	}
+
 
 }

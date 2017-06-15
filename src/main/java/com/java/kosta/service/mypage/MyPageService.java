@@ -2,17 +2,15 @@ package com.java.kosta.service.mypage;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.java.kosta.dto.board.BoardDTO;
-import com.java.kosta.dto.board.BoardFavoriteDTO;
 import com.java.kosta.dto.board.BoardPagingDTO;
+import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.mypage.Mypagepaging;
 import com.java.kosta.dto.transaction.TransactionDTO;
 
 public interface MyPageService {
 	
-	public String getCustomerId(String bno);
+public String getCustomerId(String bno);
 	
 	//-- 고객이 후기를 쓸 게시글(거래) 수가 몇개인지를 조회 
 	public int countClient(TransactionDTO dto);
@@ -46,7 +44,7 @@ public interface MyPageService {
 	public List<BoardDTO> searchFavoriteList(String userId);
 
 	/**내가 쓴 목록  조회*/
-	public List<BoardDTO> selectWritedList(String userId) throws Exception;
+	public List<BoardDTO> selectWritedList(String userId,Mypagepaging paging) throws Exception;
 
 	/**내가 쓴 목록 갯수 조회*/
 	public int selectMyBoardListCount(Mypagepaging pagingDTO, String userId);
@@ -59,4 +57,8 @@ public interface MyPageService {
 	
 	/** 나의 거래중인 게시물 리스트 가져오기 */
 	public List<BoardDTO> selectExchangeList(BoardPagingDTO pagingDTO, String buyerId);
+	
+	/** 평점(구매후기) 테이블 수정 */
+	public void updateEval(EvalDTO evalDTO);
+	
 }

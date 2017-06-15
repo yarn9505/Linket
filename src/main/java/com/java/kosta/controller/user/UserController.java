@@ -1,16 +1,12 @@
 package com.java.kosta.controller.user;
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import javax.inject.Inject;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.http.HttpResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.util.WebUtils;
-
 import com.java.kosta.common.Constants;
 import com.java.kosta.dto.user.UserVO;
 import com.java.kosta.service.user.UserServiceImpl;
@@ -102,7 +96,6 @@ public class UserController {
 	@ResponseBody
 	public Map<String, Object> loginProcAjax(UserVO vo, HttpServletRequest req,HttpServletResponse response) 
 	{
-		logger.info("체크박스로 넘어온 값:"+vo.isUseCookie());
 		
 		if ( req.getSession().getAttribute(Constants.LOGINSESSION)!= null ){
             // 기존에 login이란 세션 값이 존재한다면
@@ -121,30 +114,6 @@ public class UserController {
 				//로그인 성공 - 세션에 저장
 				req.getSession().setAttribute(Constants.LOGINSESSION, uservo);
 				resMap.put(Constants.RESULT, Constants.RESULT_OK);
-				System.out.println( uservo.getUserId() +  "로그인 성공!!!!");
-
-	            /*
-	             *  [   세션 추가되는 부분      ]
-	             */
-	            // 1. 로그인이 성공하면, 그 다음으로 로그인 폼에서 쿠키가 체크된 상태로 로그인 요청이 왔는지를 확인한다.
-	            if ( vo.isUseCookie() ){ // dto 클래스 안에 useCookie 항목에 폼에서 넘어온 쿠키사용 여부(true/false)가 들어있을 것임
-	            	 int amount = 60 * 60 * 24 * 7;
-	            	// 쿠키 사용한다는게 체크되어 있으면...
-	                // 쿠키를 생성하고 현재 로그인되어 있을 때 생성되었던 세션의 id를 쿠키에 저장한다.
-	                Cookie cookie = new Cookie("loginCookie", req.getSession().getId());
-	                // 쿠키를 찾을 경로를 컨텍스트 경로로 변경해 주고...
-	                cookie.setPath("/");
-	                cookie.setMaxAge(amount); // 단위는 (초)임으로 7일정도로 유효시간을 설정해 준다.
-	                // 쿠키를 적용해 준다.
-	                response.addCookie(cookie);
-	                
-	                logger.info("유저쿠키:"+vo.isUseCookie());
-	                
-	             // currentTimeMills()가 1/1000초 단위임으로 1000곱해서 더해야함 
-	                Date sessionLimit = new Date(System.currentTimeMillis() + (1000*amount));
-	                // 현재 세션 id와 유효시간을 사용자 테이블에 저장한다.
-	                service.keepLogin(uservo.getUserId(), req.getSession().getId(), sessionLimit);
-	            }
 
 				return resMap;
 			}
@@ -172,10 +141,8 @@ public class UserController {
 		String token = vo.getToken();
 		System.out.println("토큰 : "+token);
 		
-		
 		//토큰값 디비에 업데이트(토큰값이 바뀔수도있어서 항상 업데이트해주기!)
 		service.inputToken(token, userId);
-		
 		
 		return resMap;
 	}
@@ -252,11 +219,6 @@ public class UserController {
 				e.printStackTrace();
 				res.put(Constants.RESULT, Constants.RESULT_FAIL);
 				res.put(Constants.RESULT_MSG, "일반회원가입 실패");
-				/*	res.put("userId",vo.getUserId());//유저 아이디
-  				res.put("uniqId",vo.getUniqId());//유니크 아이디
-  				res.put("userName",vo.getUserName());
-  				res.put("email",vo.getUserEmail());
-  				redirectattri.addFlashAttribute("UserVO",res);*/
 			}
 			return res;
 
@@ -290,19 +252,6 @@ public class UserController {
             // null이 아닐 경우 제거
             session.removeAttribute(Constants.LOGINSESSION);
             session.invalidate(); // 세션 전체를 날려버림
-            //쿠키를 가져와보고
-            Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
-            if ( loginCookie != null ){
-                // null이 아니면 존재하면!
-                loginCookie.setPath("/");
-                // 쿠키는 없앨 때 유효시간을 0으로 설정하는 것 !!! invalidate같은거 없음.
-                loginCookie.setMaxAge(0);
-                // 쿠키 설정을 적용한다.
-                response.addCookie(loginCookie);
-                // 사용자 테이블에서도 유효기간을 현재시간으로 다시 세팅해줘야함.
-                Date date = new Date(System.currentTimeMillis());
-                service.keepLogin(vo.getUserId(), session.getId(), date);
-            }
         }
 		return "redirect:/";
 	}
@@ -342,7 +291,6 @@ public class UserController {
 
 		HashMap<String,Object> res=new HashMap<String, Object>();
 		try{
-			
 			logger.info("유저이름:"+userVO.getUserName());//이름출력
 			logger.info("유저 번호:"+userVO.getUserHp());//번호 출력
 			UserVO tempvo=new UserVO();
@@ -400,6 +348,7 @@ public class UserController {
 			logger.info("패스워드는:"+uservo);
 			if(uservo!=null){
 				res.put(Constants.RESULT, Constants.RESULT_OK);
+				res.put(Constants.RESULT_MSG,"비밀번호를 수정해주세요.");
 			}else{
 				res.put(Constants.RESULT, Constants.RESULT_FAIL);
 				res.put(Constants.RESULT_MSG,"일치하는 정보가 존재하지 않습니다.");
@@ -462,7 +411,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-		
 		return res;
 	}
 	

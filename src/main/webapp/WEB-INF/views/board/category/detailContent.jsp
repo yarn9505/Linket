@@ -12,7 +12,37 @@
 <%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1I06mbe3rTV903iEx-aOyO4MFTnaDEvw&callback=initMap"> </script>
-
+<style>
+#modDiv {
+	width: 300px;
+	height: 150px;
+	background-color: #A6A6A6;
+	border-radius: 10px;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin-top: -30%;
+	margin-left: -150px;
+	padding: 10px;
+	z-index: 1000;
+}
+/* 구글맵 style 적용 */
+#map {
+        width: 100%;
+        height: 350px;
+        background-color: grey;
+      }
+/** 거래완료 스타일 */      
+.exghanged{
+	font-size:70%;
+	font-style:bold;
+	float:right;
+	border:1px solid;
+	border-radius:10px;
+	border-color:red;
+	padding:10px;
+}
+</style>
 <script>
   var address = null;
   function getAddr(){
@@ -448,6 +478,9 @@
 
 				<h3>
 					<span class="glyphicon glyphicon-list-alt" style="color: #0E3E59;">&nbsp;${cateDTO.cateName}</span>
+					<c:if test="${boardDTO.isSwap == 'Y' }">
+						<span class="exghanged">거래 완료</span>
+					</c:if>
 				</h3>
 				<br> <br>
 				<table class="table table-bordered">

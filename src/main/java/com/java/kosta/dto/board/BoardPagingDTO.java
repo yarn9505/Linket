@@ -3,6 +3,8 @@ package com.java.kosta.dto.board;
 public class BoardPagingDTO {
 	public String bNo;	//댓글리스트를 조회하기 위한 게시글 번호
 	
+	private String userId;	// 유저의 리뷰를 조회하기 위한 유저 아이디
+	
 	/** 한 페이지 당 보여지는 레코드의 갯수 */
 	public static final int COUNT_PER_RECORD = 10;
 	
@@ -185,6 +187,14 @@ public class BoardPagingDTO {
 
 	public void setbNo(String bNo) {
 		this.bNo = bNo;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

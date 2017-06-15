@@ -43,9 +43,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		cateId6,
 		lat,
 		lon,
-		userRegdate,
-		sessionKey,
-		sessionLimit
+		userRegdate
     </sql>
     
     
@@ -67,9 +65,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 <insert id="insertUser">
 insert into usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
-cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,sessionLimit)values
+cateId1,cateId2,cateId3,cateId4,cateId5,cateId6)values
 (#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
-#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6},now())
+#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6})
 </insert>
 	
 	
@@ -78,9 +76,9 @@ cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,sessionLimit)values
 
 <insert id="googleinsertUser">
 insert into usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
-cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,uniqId,sessionLimit)values
+cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,uniqId)values
 (#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
-#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6},#{uniqId},now())
+#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6},#{uniqId})
 </insert>
 	
 
@@ -113,37 +111,6 @@ WHERE  userId=#{userId} and userName=#{userName}
 <update id="pwupdate">
  update usertable set userPw=PASSWORD(#{userPw}) where userId=#{userId}
 </update>
-
-
-  <!-- 
-        로그인된 경우 해당 세션id와 유효시간을 사용자 테이블에 세팅한다.
-     -->
-     
-<update id="keepLogin">
-        update usertable set sessionKey = #{sessionId}, sessionLimit = #{next} where userId=#{userId}
-</update>
-
-
-
-<!-- 
-        유효기간이 남아 있으면서 해당 sessionId를 가지는 사용자 정보를 꺼내오는 부분
-     -->
-<select id="checkUserWithSessionKey" resultType="UserVO">
-        select * from usertable where sessionKey = #{sessionId} and sessionLimit >now()
-</select>
-
-<!-- userId에 안드로이드 토큰값 가져오기 (쪽지 보낼 때 상대방 토큰값 가져오기 위해)  -->
-<select id = "checkToken" resultType="String">
-SELECT token
-FROM usertable
-WHERE userId = #{userId} 
-</select>
-
-<!-- userId의 토큰값 업데이트 -->
-<update id="inputToken">
-	update usertable set token=#{token} where userId=#{userId}
-</update>
-
 
 
 </mapper>

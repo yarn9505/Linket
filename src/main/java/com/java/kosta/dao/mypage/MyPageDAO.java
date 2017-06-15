@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.board.BoardPagingDTO;
+import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.mypage.Mypagepaging;
 import com.java.kosta.dto.transaction.TransactionDTO;
 
 public interface MyPageDAO {
 	
-	public String getCustomerId(String bno);
+public String getCustomerId(String bno);
 	
 	//-- 고객이 후기를 쓸 게시글(거래) 수가 몇개인지를 조회 
 	public int countClient(TransactionDTO dto);
@@ -45,7 +46,7 @@ public interface MyPageDAO {
 	public List<BoardDTO> searchFavoriteList(@Param("userId")String userId);
 
 	/**마이페이지 내가 쓴 목록 가져오기*/
-	public List<BoardDTO> selectWritedList(String userId);
+	public List<BoardDTO> selectWritedList(String userId,Mypagepaging paging);
 	
 	/**마이페이지 내가 쓴 목록 갯수 가져오기*/
 	public int selectMyBoardListCount(Mypagepaging pagingDTO ,@Param("userId")String userId);
@@ -56,9 +57,14 @@ public interface MyPageDAO {
 	/**페이징 처리해서 갯수세기*/
 	public int selectFavoritecount(Mypagepaging pagingDTO, String userId);
 	
+	/** 구매 후기 관련 - 윤지 */
 	/** 나의 거래중인 게시물 갯수 가져오기 */
 	public int selectMyExchangeListCount(@Param("pagingDTO")BoardPagingDTO pagingDTO, @Param("buyerId")String buyerId);
 
 	/** 나의 거래중인 게시물 리스트 */
 	public List<BoardDTO> selectExchangeList(@Param("pagingDTO")BoardPagingDTO pagingDTO, @Param("buyerId")String buyerId);
+	
+	/** 평점(구매후기) 테이블 수정 */
+	public void updateEval(EvalDTO evalDTO);
+	
 }
