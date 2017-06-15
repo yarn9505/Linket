@@ -30,7 +30,11 @@
         height: 350px;
         background-color: grey;
       }
+<<<<<<< HEAD
 
+=======
+      
+>>>>>>> branch 'master' of https://github.com/yarn9505/Linket.git
 /*비밀댓글용*/
 input[type=checkbox] {  
     display: none;  
@@ -592,17 +596,17 @@ input[type=checkbox]:checked + label:before {
             
             <table width="100%;">
                <tr>
-                  <th style="width: 10%; text-align: center;"> ${loginSession.userId } 
+                  <th style="width: 10%; text-align: center; " rowspan="2"> ${loginSession.userId } 
                   <input style="width: 100%; border: 0;" type="hidden" name="replyId" value="${loginSession.userId }" id="newReplyWriter" />
                   </th>
                   <td><textarea class="form-control" name="rContent" id="newReplyContent" style="resize: none; height: 4%; width: 100%;"></textarea></td>
-                  <td style="width: 10%" colspan="2">&nbsp;&nbsp;
-                     <button style="font-size: 12pt;" class="btn btn-primary btn-lg" id="replyAddBtn">입력</button>
+                  <td style="width: 10%" rowspan="2">&nbsp;&nbsp;
+                     <button style="font-size: 12pt;" class="btn btn-primary btn-lg" id="replyAddBtn" >입력</button>
                   </td>
                </tr>
+               
                <tr>
-                  <td></td>
-                  <td><input type="checkbox" id="secretReply" />비밀댓글</td>
+               <td style="float:right; margin-top:8px;" ><input type="checkbox" id="secretReply" class="checkbox-style"  /><label for="secretReply">비밀댓글</label><td>
                </tr>
             </table>
 

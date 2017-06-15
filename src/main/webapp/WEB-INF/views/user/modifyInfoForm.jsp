@@ -7,11 +7,98 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/resources/css/sidebar.css" >
 </head>
+<style>
+input[type=checkbox] {  
+    display: none;  
+}
+ 
+ input[type=checkbox] + label{
+    display: inline-block;  
+    cursor: pointer;  
+    position: relative;  
+    padding-left: 25px;  
+    margin-right: 15px;  
+    font-size: 13px;
+}
+
+input[type=checkbox]+ label:before {     
+
+    content: "";  
+    display: inline-block;  
+  
+    width: 20px;  
+    height: 20px;  
+  
+    margin-right: 10px;  
+    position: absolute;  
+    left: 0;  
+    bottom: 1px;  
+    background-color: #ccc;  
+    border-radius: 2px; 
+    box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);  
+}
+input[type=checkbox]:checked + label:before { 
+
+    content: "\2713";  /* 체크모양 */
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);  
+    font-size: 18px; 
+    font-weight:800; 
+    color: #fff;  
+    background:#2f87c1;
+    text-align: center;  
+    line-height: 18px;  
+
+} 
+</style>
 <body>
-	<div class="container">
+
+<nav class="navbar navbar-m2p sidebar" role="navigation" id="customSideBar" style="z-index=0;">
+    <div class="container-fluid"">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                Mypage <span id="main_icon" class="glyphicon glyphicon-align-justify"></span>
+            </a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <!-- Dashboard -->
+                <li class="">
+                  <a href="javascript:favirtelist();"> 좋아요 목록</a>
+                </li>
+                <li class="">
+                    <a href="javascript:myWriteList();" >내가 올린 글 </a>
+                </li>
+                <li >
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      		  쪽지 보관함 <span class="caret"></span></a>
+                    <ul class="dropdown-menu forAnimate" role="menu">
+                        <li><a href="/note/listReceive"><i class="material-icons">받은쪽지함</i> </a></li>
+                        <li><a href="/note/listSend"><i class="material-icons">보낸쪽지함</i> </a></li>
+                    </ul>
+                </li>
+                <li >
+                    <a data-toggle="modal" data-target="#myModal">회원정보 수정 </a>
+                </li>
+                <li >
+                    <a href="javascript:myExchangeList();" >거래중인 게시물 </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 		<div class="row">
-			<div class="col-md-6 col-md-offset-2">
+			<div class="col-md-6 col-md-offset-1">
 				<article class="container">
 				<div class="page-header">
 					<h3><span class="glyphicon glyphicon-user" style="color: #0E3E59;">
@@ -21,7 +108,7 @@
 				</div>
 				
 				
-				<div class="col-md-6 col-md-offset-3" style="position:relative;" >
+				<div class="col-md-6 col-md-offset-1" style="position:relative;" >
 					<form role="form" id="form1">
 						<div class="form-group">
 							<label class="control-label">아이디</label>
@@ -106,34 +193,39 @@
 						<div class="form-group">
 							<label class="control-label">관심분야 </label>
 							<div class="input-group">
-								<label class="checkbox-inline"> <input type="checkbox"
-									name="checkbox" id="cateId1"
-									${loginSession.cateId1 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId1 eq 'Y' ? 'Y' :'N' }">유아/취미/완구
-								</label> <label class="checkbox-inline"> <input type="checkbox"
-									name="checkbox" id="cateId2"
+								<label class="checkbox-inline"> 
+								<input type="checkbox"name="checkbox" id="cateId1" ${loginSession.cateId1 eq 'Y' ? 'checked' : '' }
+									value="${loginSession.cateId1 eq 'Y' ? 'Y' :'N' }"><label for="cateId1">유아/취미/완구</label>
+								</label>
+								<label class="checkbox-inline">
+								 <input type="checkbox"name="checkbox" id="cateId2"
 									${loginSession.cateId2 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId2 eq 'Y' ? 'Y' :'N' }">뷰티/패션/잡화
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+									value="${loginSession.cateId2 eq 'Y' ? 'Y' :'N' }"><label for="cateId2">뷰티/패션/잡화</label>
+								</label> 
+								<label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId3"
 									${loginSession.cateId3 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }">애완동물
+									value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }"><label for="cateId3">애완동물 용품</label>
 									용품
-								</label> <br />
-								<br /> <label class="checkbox-inline"> <input
-									type="checkbox" name="checkbox" id="cateId4"
-									${loginSession.cateId4 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId4 eq 'Y' ? 'Y' :'N' }">홈인테리어/주방용품/생활용품
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+								</label> 
+								<br />
+								<br /> 
+								<label class="checkbox-inline"> 
+								<input type="checkbox" name="checkbox" id="cateId4"${loginSession.cateId4 eq 'Y' ? 'checked' : '' }
+									value="${loginSession.cateId4 eq 'Y' ? 'Y' :'N' }"><label for="cateId4">홈인테리어/생활용품</label>
+								</label>
+								 <label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId5"
 									${loginSession.cateId5 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId5 eq 'Y' ? 'Y' :'N' }">도서/음반
-								</label> <label class="checkbox-inline"> <input type="checkbox"
+									value="${loginSession.cateId5 eq 'Y' ? 'Y' :'N' }"><label for="cateId5">도서/음반</label>
+								</label> 
+								<label class="checkbox-inline"> <input type="checkbox"
 									name="checkbox" id="cateId6"
 									${loginSession.cateId6 eq 'Y' ? 'checked' : '' }
-									value="${loginSession.cateId6 eq 'Y' ? 'Y' :'N' }">지역
+									value="${loginSession.cateId6 eq 'Y' ? 'Y' :'N' }"><label for="cateId6">지역 할인 쿠폰</label>
 									할인 쿠폰
-								</label> <input type="hidden" name="uniqId"
+								</label> 
+								<input type="hidden" name="uniqId"
 									value="${loginSession.uniqId}" id="uniqId">
 							</div>
 						</div>
@@ -149,8 +241,36 @@
 				</div>
 				</article>
 			</div>
-		</div>
-	
+		
+	<script type="text/javascript">
+	function htmlbodyHeightUpdate() {
+	    var height3 = $(window).height();
+	    var height1 = $('.nav').height() + 50;
+	    height2 = $('.container-main').height();
+	    if (height2 > height3) {
+	        $('html').height(Math.max(height1, height3, height2) + 10);
+	        $('body').height(Math.max(height1, height3, height2) + 10);
+	       
+	    } else
+	    {
+	        $('html').height(Math.max(height1, height3, height2));
+	        $('body').height(Math.max(height1, height3, height2));
+	    }
+
+	}
+	$(document).ready(function () {
+	    htmlbodyHeightUpdate();
+	    $(window).resize(function () {
+	        htmlbodyHeightUpdate();
+	    });
+	    
+	    $(window).scroll(function () {
+	        height2 = $('.container-main').height();
+	        htmlbodyHeightUpdate();
+	    });
+	    
+	});
+	</script>
 	<script type="text/javascript" src="/resources/js/modifyInfoJS.js" />
 </body>
 </html>

@@ -207,7 +207,8 @@ nav:hover .forAnimate {
 
 /**À±¿À ¼öÁ¤*/
 
-.customSideBar{
-	position: absolute;
+#customSideBar{
+	
 	height: 300px;
+	z-index: 0 !important;
 }
