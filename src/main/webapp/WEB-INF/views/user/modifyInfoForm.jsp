@@ -19,6 +19,8 @@
 					</h3>
 				</div>
 				</div>
+				
+				
 				<div class="col-md-6 col-md-offset-3" style="position:relative;" >
 					<form role="form" id="form1">
 						<div class="form-group">

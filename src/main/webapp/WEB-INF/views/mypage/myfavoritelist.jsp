@@ -22,6 +22,7 @@
 		.star_rating a:first-child {margin-left:0;}
 		.star_rating a.on {color:#F78E41;}
 		
+		
 	</style>
 </head>
 <body>

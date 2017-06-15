@@ -525,7 +525,8 @@
 					</c:forEach>
 				</div>
 				
-				<span style="height: 500px; border: 1px solid #BDBDBD; overflow:auto; overflow-x:hidden;" class="form-control">${boardDTO.bContent}</span>
+				<div style="height: 500px; border: 1px solid #BDBDBD;  overflow-x:hidden; overflow-y:auto;" class="form-control">
+				${boardDTO.bContent}</div>
 				
 				<br/>
 				<div align="right">
@@ -626,6 +627,7 @@
 						<td><input type="checkbox" id="secretReply" />비밀댓글</td>
 					</tr>
 				</table>
+
 
 				<br />
 

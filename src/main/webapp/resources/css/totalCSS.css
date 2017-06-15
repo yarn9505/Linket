@@ -26,6 +26,7 @@ a:hover {
 	background: #ffffff;
 }
 
+
 @media ( max-width : 767px) {
 	#main_icon {
 		display: none;
