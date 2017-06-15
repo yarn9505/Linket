@@ -525,7 +525,7 @@
 					</c:forEach>
 				</div>
 				
-				<span style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</span>
+				<span style="height: 500px; border: 1px solid #BDBDBD; overflow:auto; overflow-x:hidden;" class="form-control">${boardDTO.bContent}</span>
 				
 				<br/>
 				<div align="right">
@@ -561,14 +561,14 @@
 						<table class="table-bordered">
 							<h5 align="right" style="color: navy;">from: ${loginSession.userId}</h5>
 							<tr>
-								<th style="text-align: center; width: 15%; height: 34px; ">받는 사람</th>
+								<th style="text-align: center; width: 20%; height: 34px; ">받는 사람</th>
 								<td>&nbsp;&nbsp;${boardDTO.userId} 
 									<input type="hidden" class="form-control" name="recvId" id="recvId" value="${boardDTO.userId}" />
 								</td>
 							</tr>
 
 							<tr>
-								<th style="text-align: center; ">제목</th>
+								<th style="text-align: center; width: 20%; height: 34px; ">제목</th>
 								<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
 							</tr>
 
