@@ -5,8 +5,8 @@
  */
 $(document).ready(function(){
 	// 수정버튼 클릭시 welcome 페이지로 분기
-	$('#cancelBtn').click(function(){
-		location.replace("/");
+	$('#cancelBtnModi').click(function(){
+		location.replace("/mypage/myList");
 		});
 	
     $("#cateId1").change(function(){
