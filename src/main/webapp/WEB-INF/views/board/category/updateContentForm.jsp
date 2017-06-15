@@ -7,81 +7,60 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${cateDTO.cateName}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="/resources/js/fileupload.js"></script>
-
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-
 	<div class="container">
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
-			
-						<h1 id="hello">${cateDTO.cateName}</h1>
-						<form name="tx_editor_form" id="tx_editor_form" method="post"
-							enctype="multipart/form-data">
-							<table class="table table-bordered">
-								<tr>
-									<th style="width: 20%">카테고리</th>
-									<td>${cateDTO.cateName}<input type="hidden" name="cateId"
-										value="${boardDTO.cateId}" /></td>
-								</tr>
-								<tr>
-									<th style="width: 20%">작성자</th>
-									<td>${boardDTO.userId}<input type="hidden" name="userId"
-										value="${boardDTO.userId}" /></td>
-								</tr>
-								<tr>
-									<th style="width: 20%">제목</th>
-									<td><input id="bTitle" style="width: 100%; border: 0;"
-										type="text" name="bTitle" value="${boardDTO.bTitle}"
-										required="required" /></td>
-								</tr>
-								<tr>
-									<th style="width: 20%">내용</th>
-									<!-- <td><textarea style="width:100%; border: 0;" id = "bContent" name="bContent" rows="100" ></textarea></td> -->
-									<td id="editor_frame"></td>
-								</tr>
-								<tr>
-									<th style="width: 20%">상품가치</th>
-									<td><input style="width: 200px; text-align: right;"
-										type="text" id="value" name="value" value="${boardDTO.value}"
-										required placeholder="숫자로 입력" /> 원</td>
-								</tr>
-								<%-- <tr>
-							<th colspan = "2" style="text-align:center">
-								&nbsp;&nbsp;&nbsp; 업로드할 파일을 여기에 끌어다 놓아주세요 (이미지파일 : jpg/png/gif)만 가능
-								<div class="fileDrop">
-									<c:forEach var="fileName" items="${fileList}">
-									<span>
-										<a id="hrefId" href="javascript:hrefFunc('${fileName}')" target="_blank" >
-										<img src="/board/displayFile?fileName=${fileName}"></img></a>
-										<small data-src="${fileName}">X</small>
-									</span>
-									</c:forEach>
-								</div>
-							<th/>
-						</tr> --%>
-							</table>
-							<table align="center">
-								<tr>
-									<td><input type="hidden" name="bNo"
-										value="${boardDTO.bNo}" /> <input type="hidden" name="pageNo"
-										value="${param.pageNo}" /> <!-- <button type="button" onclick="checkUpdate();" >수정하기</button> -->
-										<!-- <input type="submit" value="수정하기"/> --> <input
-										type="button" id="save" value="수정하기"
-										onclick="updateBoard(); return false;" />
-										<button type="button" onclick="javascript:history.back();">취소</button>
-									</td>
-								</tr>
-							</table>
-						</form>
-						<br /> <br /> <br />
+			<div class="col-md-10 col-md-offset-1">
+				<h3>
+					<span class="glyphicon glyphicon-list-alt" style="color: #0E3E59;">&nbsp;${cateDTO.cateName} 게시글 수정</span>
+				</h3>
+				<br/><br/>
+				<form name="tx_editor_form" id="tx_editor_form" method="post" enctype="multipart/form-data">
+					<table class="table">
+						<tr>
+							<th style="width: 10%;">카테고리</th>
+							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
+								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+							</td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">작성자</th>
+							<td><input type="text" class="form-control" value = "${boardDTO.userId}" readonly>
+								<input type="hidden" name="userId" value="${boardDTO.userId}" />
+							</td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">제목</th>
+							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" required="required" /></td>
+						</tr>
+						<tr>
+							<th style="width: 10%">상품가치</th>
+							<td><input type="text" id="value" name="value" class="form-control" value="${boardDTO.value}" required placeholder="숫자로 입력" /></td>
+						</tr>
+						<tr>
+							<th style="width: 10%;">내용</th>
+							<td id="editor_frame"></td>
+						</tr>
+						
+					</table>
+					<br/><br/>
+					<table align="right">
+						<tr>
+							<td><input type="hidden" name="bNo" value="${boardDTO.bNo}" />
+								<input type="hidden" name="pageNo" value="${param.pageNo}" /> 
+								<input type="button" class="btn btn-defalut" id="save" value="수정" onclick="updateBoard(); return false;" />
+								<button type="button" class="btn btn-defalut" onclick="javascript:history.back();">취소</button>
+							</td>
+						</tr>
+					</table>
+				</form>
+				<br /> <br /> <br />
 
-					</div>
-				</div>
+			</div>
+		</div>
 
-				<script type="text/javascript">
+		<script type="text/javascript">
 	var editorObj;
 	
 	$(function() {
@@ -441,13 +420,13 @@
 			location.href="/board/displayFile?fileName=" + getImageLink(fileName);
 		} */
 	</script>
-				<script>
+		<script>
 					$(document).ready(function() {
 						$("#portfolio").attr("class", "active");
 					})
 				</script>
-			</div>
-	
+	</div>
+
 
 </body>
 </html>

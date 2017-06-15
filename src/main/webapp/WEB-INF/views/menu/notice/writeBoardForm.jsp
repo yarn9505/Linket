@@ -25,7 +25,7 @@
 						<tr>
 							<th style="width: 10%;">작성자</th>
 							<td>
-								<input type="text" class="form-control" value = "${loginSession.userId }" readonly>
+								<input type="text" class="form-control" value = "관리리자" readonly>
 								<input type="hidden" name="userId" value="${loginSession.userId }" />
 							</td>
 						</tr>
