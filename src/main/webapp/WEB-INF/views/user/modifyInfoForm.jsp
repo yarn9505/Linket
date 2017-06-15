@@ -53,52 +53,8 @@ input[type=checkbox]:checked + label:before {
 } 
 </style>
 <body>
-
-<nav class="navbar navbar-m2p sidebar" role="navigation" id="customSideBar" style="z-index=0;">
-    <div class="container-fluid"">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                Mypage <span id="main_icon" class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <!-- Dashboard -->
-                <li class="">
-                  <a href="javascript:favirtelist();"> 좋아요 목록</a>
-                </li>
-                <li class="">
-                    <a href="javascript:myWriteList();" >내가 올린 글 </a>
-                </li>
-                <li >
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      		  쪽지 보관함 <span class="caret"></span></a>
-                    <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="/note/listReceive"><i class="material-icons">받은쪽지함</i> </a></li>
-                        <li><a href="/note/listSend"><i class="material-icons">보낸쪽지함</i> </a></li>
-                    </ul>
-                </li>
-                <li >
-                    <a data-toggle="modal" data-target="#myModal">회원정보 수정 </a>
-                </li>
-                <li >
-                    <a href="javascript:myExchangeList();" >거래중인 게시물 </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
 		<div class="row">
-			<div class="col-md-6 col-md-offset-1">
+			<div class="col-md-6 col-md-offset-3">
 				<article class="container">
 				<div class="page-header">
 					<h3><span class="glyphicon glyphicon-user" style="color: #0E3E59;">
@@ -108,7 +64,7 @@ input[type=checkbox]:checked + label:before {
 				</div>
 				
 				
-				<div class="col-md-6 col-md-offset-1" style="position:relative;" >
+				<div class="col-md-6 col-md-offset-3" style="position:relative;" >
 					<form role="form" id="form1">
 						<div class="form-group">
 							<label class="control-label">아이디</label>
@@ -233,7 +189,7 @@ input[type=checkbox]:checked + label:before {
 						<br />
 						<br />
 						<div class="form-group text-center">
-							<button id="cancelBtn" type="button" class="btn btn-default">취소</button>
+							<button id="cancelBtn1" type="button" class="btn btn-default" onclick="location.href='/mypage/myList'">취소</button>
 							&nbsp;&nbsp;
 							<button id="joinbtn" type="button" class="btn btn-success">수정</button>
 						</div>
@@ -241,36 +197,6 @@ input[type=checkbox]:checked + label:before {
 				</div>
 				</article>
 			</div>
-		
-	<script type="text/javascript">
-	function htmlbodyHeightUpdate() {
-	    var height3 = $(window).height();
-	    var height1 = $('.nav').height() + 50;
-	    height2 = $('.container-main').height();
-	    if (height2 > height3) {
-	        $('html').height(Math.max(height1, height3, height2) + 10);
-	        $('body').height(Math.max(height1, height3, height2) + 10);
-	       
-	    } else
-	    {
-	        $('html').height(Math.max(height1, height3, height2));
-	        $('body').height(Math.max(height1, height3, height2));
-	    }
-
-	}
-	$(document).ready(function () {
-	    htmlbodyHeightUpdate();
-	    $(window).resize(function () {
-	        htmlbodyHeightUpdate();
-	    });
-	    
-	    $(window).scroll(function () {
-	        height2 = $('.container-main').height();
-	        htmlbodyHeightUpdate();
-	    });
-	    
-	});
-	</script>
 	<script type="text/javascript" src="/resources/js/modifyInfoJS.js" />
 </body>
 </html>
