@@ -4282,7 +4282,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 10px 15px;/*15px->10px 윤오 수정*/
   font-size: 18px;
   line-height: 20px;
   height: 50px;
@@ -4442,7 +4442,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     margin-bottom: 0;
   }
   
-  /*유노 수정*/
+  /*占쎌�占쎈걗 占쎈땾占쎌젟*/
   #sectionBar{
 		display: none;
 	}
