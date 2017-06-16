@@ -212,6 +212,7 @@ input[type=checkbox]:checked+label:before {
                      if (data.result == "ok") {
                         alert("수정되었습니다.");
                         getAllList(); //전체 목록 뿌리기
+                    	return;
                      }
                   }
                });
@@ -237,8 +238,6 @@ input[type=checkbox]:checked+label:before {
                },
                dataType : "json",
                success : function(data) {
-                  console.log(data);
-                  console.log(data.loginUserId);
                   if (data.result == "ok") {
                      // 댓글 리스트 출력
                      $.each(data.replyList, function(i, rDTO) {
@@ -258,7 +257,7 @@ input[type=checkbox]:checked+label:before {
       
                         str += "</span><br/><br/>"
       
-                        $("#reply").append(str);
+                        $("#replyTable").append(str);
                      });
       
                      //더보기 버튼에 대한 처리
@@ -279,7 +278,6 @@ input[type=checkbox]:checked+label:before {
                   }
                },
                error : function(xhr, status, error) {
-                  console.log(xhr);
                   alert("error\nxhr : " + xhr + ", status : "
                      + status + ", error : " + error);
                }
@@ -503,25 +501,21 @@ input[type=checkbox]:checked+label:before {
 									<table class="table-bordered" style="width: 100%;">
 										<tr>
 											<th
-												style="text-align: center; background-color: #D1E0EF; height: 40px;">받는
-												사람</th>
-											<td>&nbsp;&nbsp;${boardDTO.userId} <input type="hidden"
-												class="form-control" name="recvId" id="recvId"
-												value="${boardDTO.userId}" />
+												style="text-align: center; background-color: #D1E0EF; height: 40px;">받는 사람</th>
+											<td>&nbsp;&nbsp;${boardDTO.userId} 
+												<input type="hidden" class="form-control" name="recvId" id="recvId" value="${boardDTO.userId}" />
 											</td>
 										</tr>
 
 										<tr>
 											<th style="text-align: center; background-color: #D1E0EF">제목</th>
-											<td><input type="text" class="form-control"
-												name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
+											<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
 										</tr>
 
 										<tr>
 											<th style="text-align: center; background-color: #D1E0EF">내용</th>
-											<td><textarea
-													style="resize: none; height: 150px; vertical-align: middle;"
-													name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
+											<td><textarea style="resize: none; height: 150px; vertical-align: middle;"
+												name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
 										</tr>
 									</table>
 									<br />
@@ -538,8 +532,7 @@ input[type=checkbox]:checked+label:before {
 
 				<!-- GoogleMap API 연동(황영롱) -->
 				<h4>
-					<span class="glyphicon glyphicon-map-marker"
-						style="color: #0E3E59;">&nbsp;작성자 위치</span>
+					<span class="glyphicon glyphicon-map-marker" style="color: #0E3E59;">&nbsp;작성자 위치</span>
 				</h4>
 				<div id="map"></div>
 
