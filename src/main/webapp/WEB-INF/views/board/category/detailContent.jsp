@@ -223,7 +223,6 @@ input[type=checkbox]:checked+label:before {
                update();
             });
       
-      
          }); // end of ready
       
          /* 다음 댓글 리스트 표시하는 함수 */
