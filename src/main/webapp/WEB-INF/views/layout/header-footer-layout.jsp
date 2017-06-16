@@ -157,16 +157,16 @@
 
 .msg_a {
       position: relative; 
-       color:white;
-       text-decoration: none;
-       top:-10px;
-       left:-25px;
+      text-decoration: none;
+      top:-10px;
+      left:-25px;
 }
 .Badge{
    background-color: #CB1C05;
    border-radius:10px;
    font-weight: bold;
    padding:0 5px 0 5px;
+   color:white;
 }
 
 </style>
@@ -220,18 +220,18 @@
             	<c:if test="${loginSession.userId != null}">
                 	<li id="userIcon">
                  		<span style="font-weight: bold;">
-                     		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a>
+                     		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a> &nbsp;
                   		</span>
                   		<img class="msg_img" src="/resources/images/message.png" />
             		</li> 
-                  	<li id="noteIcon">
+                  	<li style="width: 10%;">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge" style="margin-right: -25px;">${sessionScope.notOpen}  </span>
+                     	<span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
                   		</a>
                   	</li>
                   	<li id="sectionBar">
-                  		┃ &nbsp;
+                  		┃ 
                   	</li>
                   	<li>
                   		<a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
