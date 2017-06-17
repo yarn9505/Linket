@@ -114,12 +114,12 @@
 			
 		});
 		
+		//div 클릭시  해당 딜러 상세보기
 		$(document).on("click",".divClickClass",function(event){
-			 var divObj = $(this);
+			var divObj = $(this);
 	 		var fontObj = divObj.find(".fontTagId");
 	 		var userId = fontObj.text();
 	 		var avg = divObj.find(".panel-body").find(".avgspan").text();
-	 		alert("userId : " + userId + " avg : " + avg);
 	 		location.href="/bestUser/userReview?userId="+userId+"&avg="+ avg;
 	 	});
 	}); // end of ready
