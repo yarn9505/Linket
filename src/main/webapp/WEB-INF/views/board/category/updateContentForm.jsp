@@ -21,7 +21,7 @@
 						<tr>
 							<th style="width: 10%;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
-								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+								<input type="hidden" name="cateId" value="${cateDTO.cateId}" />
 							</td>
 						</tr>
 						<tr>

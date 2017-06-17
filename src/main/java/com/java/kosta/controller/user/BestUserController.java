@@ -63,7 +63,6 @@ public class BestUserController {
 		
 		// 하위 판매자들의 총 갯수
 		int lowerUserCnt = buService.lowerUserTotCount(pagingDTO);
-		System.out.println("하위 판매자 수"+ lowerUserCnt);
 		pagingDTO.calcPage(lowerUserCnt);
 		
 		// 하위 판매자들의 리스트 가져오기

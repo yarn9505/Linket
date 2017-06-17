@@ -202,11 +202,14 @@
 			<div class="col-md-10 col-md-offset-1">
 				<!-- 파워 딜러 10명의 리스트 뿌리기 (고정) -->
 				<div id="powerDealer" class="col-sm-7">
-					<h2 style="margin-left: 20px;">파워 딜러</h2>
+					<h3>
+							<span class="glyphicon glyphicon-tasks"
+								style="color: #0E3E59;">&nbsp;파워딜러</span>
+						</h3>
 					<br />
 					<c:forEach items="${evalList}" var="evalDTO" varStatus="status">
 						<div id="userBox" class="panel" onClick="location.href='/bestUser/userReview?userId=${evalDTO.userId}&avg=${evalDTO.avg}'">
-							<div class="panel-heading"  style="background-color: #E4F7BA;">
+							<div class="panel-heading"  style="background-color: #D1E0EF;">
 								<font style="color: #dd0000;font-size:20px;">${status.count}. </font>
 								<font style="font-size:20px;">${evalDTO.userId}</font>
 								<c:if test="${status.count == 1}">
@@ -253,7 +256,7 @@
 					<label style="font-style: bold;">판매자ID </label>
 					<div id="search" style="float: right;" class="input-group">
 						<input type="hidden" name="searchType" id="searchType" value="userId" /> 
-							<input type="text" name="searchText" class="form-control" vid="searchText" value="${pagingDTO.searchText }" />
+							<input type="text" name="searchText" class="form-control" id="searchText" value="${pagingDTO.searchText }" />
 						<div class="input-group-btn">
 							<button onclick="paging('1');" class="btn btn-default btn-lg" style="padding-bottom: 11px; padding-top: 11px;">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
