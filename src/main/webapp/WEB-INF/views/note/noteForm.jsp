@@ -12,7 +12,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<div class="content-frame">
 					<div id="content-frame-mask1" style="right: 17px;"></div>
 					<div class="what-row clearfix image-on-left">
 						<div class="what-row clearfix image-on-right">
@@ -79,6 +78,5 @@
 				</script>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

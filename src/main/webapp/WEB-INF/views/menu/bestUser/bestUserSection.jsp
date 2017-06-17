@@ -210,7 +210,7 @@
 								<font style="color: #dd0000;font-size:20px;">${status.count}. </font>
 								<font style="font-size:20px;">${evalDTO.userId}</font>
 								<c:if test="${status.count == 1}">
-									<img src="/resources/images/crown1.png" align="right" />
+									<img src="/resources/images/crown.png" align="right" />
 								</c:if>
 							</div>
 							<div class="panel-body">
