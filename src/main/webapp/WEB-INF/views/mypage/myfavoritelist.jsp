@@ -75,6 +75,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1"style="margin-left:0;margin-right:0;">
+			
 				<div class="modal fade" id="layerpop">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -86,17 +87,25 @@
 								<h4 class="modal-title">구매결정 폼</h4>
 							</div>
 							<!-- body -->
+							
 							<div class="modal-body">
-								<input type="hidden" id="bnoId" /><br /> <input type="hidden"
-									id="userIdVal" /><br /> <input type="hidden" id="cateIdVal" />
-								<label>거래할 사용자 ID</label> <input type="text" class="determine" />
-								<button type='button' class='determineBtn'>결정</button>
+								<label>거래할 사용자 ID</label> 
+								<div class="input-group">
+									<input type="hidden" id="bnoId" /><br /> 
+									<input type="hidden" id="userIdVal" /> 
+									<input type="hidden" id="cateIdVal" />
+									<input type="text" class="determine form-control" />
+									<span class="input-group-btn">
+										<button type='button' class='btn btn-primary' style="margin-top: 20px">결정</button>
+									</span>
+								</div>
 							</div>
+             
 							<!-- Footer -->
-							<div class="modal-footer">
+						<!-- 	<div class="modal-footer">
 								<button id="closeBtn" type="button" class="btn btn-default"
 									data-dismiss="modal">닫기</button>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
