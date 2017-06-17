@@ -216,6 +216,7 @@ input[type=checkbox]:checked+label:before {
                   success : function(data) {
                      if (data.result == "ok") {
                         alert("수정되었습니다.");
+                        $("#modDiv").hide();
                         getAllList(); //전체 목록 뿌리기
                     	return;
                      }
@@ -259,7 +260,7 @@ input[type=checkbox]:checked+label:before {
                            str += "</span>";
                         }
       
-                        str += "</span><br/><br/>"
+                        str += "</span><hr/><br/>"
       
                         $("#replyTable").append(str);
                      });
@@ -320,7 +321,7 @@ input[type=checkbox]:checked+label:before {
                            str += "</span>";
                         }
       
-                        str += "</span><br/><br/>"
+                        str += "</span><hr/><br/>"
       
       
                         $("#replyTable").append(str);
@@ -586,7 +587,7 @@ input[type=checkbox]:checked+label:before {
 								<br/>
 								<div align="center">
 									<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>&nbsp;
-									<button type="button" id="replyModBtn" class="btn btn-primary">수정</button>
+									<button type="button" id="replyModBtn" class="btn btn-primary" data-toggle='modal'>수정</button>
 								</div>
 							</div>
 						</div>
