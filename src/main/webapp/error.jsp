@@ -17,7 +17,7 @@
 		</div>
 	
 		<img src="/resources/images/404.png" class="img-responsive"><br/>
-		<button class="btn btn-lg" onClick = "location.href='/'">
+		<button class="btn btn-lg" onClick = "location.href='/timeline'">
 			메인으로
 		</button>
 	</div>
