@@ -87,7 +87,7 @@ public class MyPageDAOImpl implements MyPageDAO{
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("page", page);
 		map.put("userId", userId);
-		return sqlSession.selectList(NameSpace + ".myBoardList",map);
+		return sqlSession.selectList(NameSpace + ".selectWritedList",map);
 	}
 
 	

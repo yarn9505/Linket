@@ -1,8 +1,12 @@
 $(document).ready(function() {
 	
+    $("body").keydown(function (event) {
+        if (event.which === 13) {    //enter
+           $("#login").click();
+        }
+    });
+	
    $("#login").click(function() {
-	   
-	    var useCookie= $("#useCookie").val();
 	   
       if ($('#userId').val() == "") {
          alert("아이디를 입력하세요.");
@@ -20,7 +24,6 @@ $(document).ready(function() {
          data : {
             userId : $("#userId").val(),
             userPw : $("#userPw").val(),
-            useCookie:useCookie
          },
          dataType : "json",
          success : function(data) {

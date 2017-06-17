@@ -656,12 +656,105 @@
            );
         } // end of myWriteList()
         
-        /*   
-		* 내가 쓴글 AJAX 페이징 처리하는 함수 2번째 꺼
-		*/
-		function myWritepaging(page,perPageNum){
-       	 /* alert("page="+page+"perPageNum="+perPageNum); */
-       	 $.ajax({
+        /** 내가 쓴 글  업데이트  2번째 꺼*/
+        function myWriteList() {
+           $.ajax({
+              type : 'get',
+              headers : {
+                 "Content-Type" : "application/json",
+                 "X-HTTP-Method-Override" : "GET"
+              },
+              url : '/mypage/myBoardList',
+              dataType : 'json',
+              success : function(result) {
+                 if (result.success == "success") {
+                    var str = "";
+                    $("#form-contact").remove();
+                    str += "<div id='form-contact' style='padding-left: 1%'>";
+                    str += "<table class='table table-bordered'>";
+                    str += "<tr style='background-color: #FFA800;'>";
+                    str += "<th style='width: 5%; text-align: center;'>No</th>";
+                    str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
+                    str += "<th style='width: 35%; text-align: center;'>제목</th>";
+                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
+                    str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
+                    str += "<th style='text-align:center;'>구매결정</th>";
+                    str += "<th>거래인</th>";
+                    str += "</tr>";
+                    
+                    if(result.pageMaker.totalCount == 0){
+                        str +="<tr><td colspan='7' style='text-align:center;'> 내가 올린글이 없습니다. </td></tr> ";   
+                        $("#formWrapper").append(str);
+                        return;
+                     }
+                    
+                    /* alert(result.pageMaker.totalCount+"");//갯수 */
+                    
+                    $.each(result.MyBoardList, function(i, board) {
+                       str += "<tr>";
+                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
+                       str += "<td>" + board.cateName + "</td>";
+                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
+                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
+                        if(board.isSwap == 'Y'){
+                               str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                            }else if ( board.buyerId != null ){
+                                str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                             }else{
+                                str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                             }
+                             str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
+                       str += "</tr>";
+                    });
+                    str += "</div>";
+                    str += "</table>";
+                    
+               var pageMaker=result.pageMaker;//페이징 객체
+                    // 페이징 처리
+                    str += "<div class='text-center' >" +
+                                "<ul class='pagination'>";
+                    if(pageMaker.entireEndPage>1){               
+                    str +="<li><a href='javascript:myWritepaging("+1+','+pageMaker.perPageNum+")'>처음</a></li>" ;
+                    }
+                    if(pageMaker.prev){
+                       str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.startPage)-1)+','+pageMaker.perPageNum+")'>◀</a></li>" ;
+                    }       
+                    
+                     for(i=pageMaker.startPage; i<=pageMaker.endPage; i++){
+                        if(pageMaker.page==i){
+                            str += "<li class='active'><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
+                            }else{
+                            str += "<li><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
+                            }
+                         }
+                      if(pageMaker.next){
+                         str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.endPage)+1)+','+pageMaker.perPageNum+")'>▶</a></li>" ;
+                        }
+                        if(pageMaker.entireEndPage>1){   
+                        str +="<li><a href='javascript:myWritepaging("+pageMaker.entireEndPage+','+pageMaker.perPageNum+")'>마지막</a></li>";
+                        }
+                      str +="</ul>"
+                      +"</div>";
+                     }
+                  
+                 $("#formWrapper").append(str);
+                 
+                 }
+                 
+ 
+              
+              }
+           
+           );
+        } // end of myWriteList()
+        
+      /*   
+      * 내가 쓴글 AJAX 페이징 처리하는 함수 2번째 꺼
+      */
+      function myWritepaging(page,perPageNum){
+           /* alert("page="+page+"perPageNum="+perPageNum); */
+           $.ajax({
                 type : 'get',
                 headers : {
                    "Content-Type" : "application/json",
@@ -674,13 +767,13 @@
                       var str = "";
                       $("#form-contact").remove();
                       str += "<div id='form-contact' style='padding-left: 1%'>";
-                      str += "<table class='table table-hover'>";
-                      str += "<tr style='background-color:#D1E0EF;'>";
-                      str += "<th style='width: 10%; text-align: center;'>글번호</th>";
-                      str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
-                      str += "<th style='width: 30%; text-align: center;'>제목</th>";
+                      str += "<table class='table table-bordered'>";
+                      str += "<tr style='background-color: #FFA800;'>";
+                      str += "<th style='width: 5%; text-align: center;'>No</th>";
+                      str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
+                      str += "<th style='width: 35%; text-align: center;'>제목</th>";
                       str += "<th style='width: 10%; text-align: center;'>작성자</th>";
-                      str += "<th style='width: 15%; text-align: center;''>작성날짜</th>";
+                      str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
                       str += "<th style='text-align:center;'>구매결정</th>";
                       str += "<th>거래인</th>";
                       str += "</tr>";
@@ -694,73 +787,61 @@
                       /* alert(result.pageMaker.totalCount+"");//갯수 */
                       
                       $.each(result.MyBoardList, function(i, board) {
-                         str += "<tr>";
-                         str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-                         str += "<td>" + board.cateName + "</td>";
-                         str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
-                         str += "<td style='text-align: center;'>" + board.userId + "</td>";
-                         str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-                         
-                         // bno값가지고 eval 테이블에서 해당 거래자 id가져오기
-                         $.ajax({
-                            type:'GET',
-                            async:false,
-                            url:'/mypage/getCustomer?bno='+board.bNo,
-                            headers:{
-                               "Content-Type":"application/json"
-                            },
-                            success:function(result){
-                            	 if(result.isSwap == 'Y'){
-                            		 str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
-                            	 }else if ( result.customerId != null ){
-                            		 str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</span></td>";
-                                 }else{
-                                    str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
-                                 }
-                                 str += "<td style='text-align: center;'><span class='customerId'>"+ ((result.customerId == null) ? " " : result.customerId) +"</span></td>";
+                          str += "<tr>";
+                          str += "<td style='text-align: center;'>" + board.bNo + "</td>";
+                          str += "<td>" + board.cateName + "</td>";
+                          str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                          str += "<td style='text-align: center;'>" + board.userId + "</td>";
+                          str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
+                           if(board.isSwap == 'Y'){
+                                  str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                               }else if ( board.buyerId != null ){
+                                   str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                                }else{
+                                   str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                                }
+                                str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
+                          str += "</tr>";
+                       });
+                       str += "</div>";
+                       str += "</table>";
+                       
+                  var pageMaker=result.pageMaker;//페이징 객체
+                       // 페이징 처리
+                       str += "<div class='text-center' >" +
+                                   "<ul class='pagination'>";
+                       if(pageMaker.entireEndPage>1){               
+                       str +="<li><a href='javascript:myWritepaging("+1+','+pageMaker.perPageNum+")'>처음</a></li>" ;
+                       }
+                       if(pageMaker.prev){
+                          str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.startPage)-1)+','+pageMaker.perPageNum+")'>◀</a></li>" ;
+                       }       
+                       
+                        for(i=pageMaker.startPage; i<=pageMaker.endPage; i++){
+                           if(pageMaker.page==i){
+                               str += "<li class='active'><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
+                               }else{
+                               str += "<li><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
+                               }
                             }
-                         }); // end of ajax
-                         str += "</tr>";
-                      });
-                      str += "</div>";
-                      str += "</table>";
-                      
-                 	var pageMaker=result.pageMaker;//페이징 객체
-                      // 페이징 처리
-                      str += "<div class='text-center'>" +
-                            		"<ul class='pagination'>";
-                     if(pageMaker.entireEndPage>1){	      		
-                      str +="<li><a href='javascript:myWritepaging("+1+','+pageMaker.perPageNum+")'>처음</a></li>";
-                     }
-                      if(pageMaker.prev){
-                     	 str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.startPage)-1)+','+pageMaker.perPageNum+")'>◀</a></li>" ;
-                      } 		
-                      
-                    	for(i=pageMaker.startPage; i<=pageMaker.endPage; i++){
-                    		if(pageMaker.page==i){
-                          		str += "<li class='active'><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                          		}else{
-                          		str += "<li><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                          		}
-                          	}
-                    	}
-                    	if(pageMaker.next){
-                    	 str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.endPage)+1)+','+pageMaker.perPageNum+")'>▶</a></li>" ;
-                    	}
-                    if(pageMaker.entireEndPage>1){	 	
-                     str +="<li><a href='javascript:myWritepaging("+pageMaker.entireEndPage+','+pageMaker.perPageNum+")'>마지막</a></li>" ;
-                    }
-                     str +="</ul>"
-                     +"</div>";
+                         if(pageMaker.next){
+                            str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.endPage)+1)+','+pageMaker.perPageNum+")'>▶</a></li>" ;
+                           }
+                           if(pageMaker.entireEndPage>1){   
+                           str +="<li><a href='javascript:myWritepaging("+pageMaker.entireEndPage+','+pageMaker.perPageNum+")'>마지막</a></li>";
+                           }
+                         str +="</ul>"
+                         +"</div>";
+                        }
                      
-                      $("#formWrapper").append(str);
+                    $("#formWrapper").append(str);
                       
                    }
                
                 }
              );
         }// end of myWritePaging()
-
+        
         $(document).on("click",".testBtn",function(event){
             var bno = $(this).parent().prev().prev().prev().prev().prev().text();
             var userId = $(this).parent().prev().prev().text();

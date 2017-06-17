@@ -18,7 +18,12 @@
 	background-color: grey;
 }
 
-f /*비밀댓글용*/  
+p >span{
+	/* word-wrap: break-word; */
+	
+	white-space:normal;
+}
+ /*비밀댓글용*/  
 
 input[type=checkbox] {
 	display: none;

@@ -43,6 +43,128 @@
 	left: -25px;
 	text-decoration: none;
 }
+
+#timeline	{
+    width:810px;
+    margin: 0 auto; 
+}
+#timeline .item {
+    width: 380px;
+    margin: 10px;
+    float: left;
+    margin-top:10px;
+    background-color:#ffffff;
+    border:solid 1px #B4BBCD;
+    min-height:50px;
+    text-align:justify;
+    word-wrap:break-word; 
+}
+#timeline .item  .cont_pic{
+    margin:10px;
+    padding: 20px;
+    position: relative;
+}
+#timeline .item  .cont_pic .like_pic {
+    position: absolute;
+    right: 0;
+    margin: 0 20px;
+    border: 1px solid #000;
+    background: #1c1c1c;
+    border-radius: 5px;
+    cursor:pointer;
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    color: #FFF;
+    font-size: 23px;
+    font-weight: 100;
+    line-height: 36px;
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+#timeline .item  .cont_pic .like_pic:hover {
+    opacity: 0.8;
+}
+#timeline .item .info{
+    color: #111;
+    z-index: 10;
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+}
+#timeline .item .info .up_cont{
+    border-bottom: 1px dotted #ccc;
+}
+#timeline .item .info .up_cont h3{
+    
+    font-size: 24px;
+}
+#timeline .item .info .down_cont .left_icons .view{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+
+#timeline .item .info .down_cont .left_icons .like{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+#timeline .item .info .down_cont .left_icons .comment{
+    display: inline-block;
+    float: left;
+    padding-left: 24px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+#timeline .item .info .down_cont .timeago{
+    float: right;
+    margin-top: 6px;
+}
+
+.rightCorner { 
+    background-image: url("http://ciftslash.com/upload/MQ/timeline_sol.png");
+    display: block;
+    height: 15px;
+    margin-left: 380px;
+    margin-top: 8px;
+    padding: 0;
+    vertical-align: top;
+    width: 13px;
+    z-index:2;
+    position: absolute;
+}
+.leftCorner{
+    background-image: url("http://ciftslash.com/upload/MQ/timeline_sag.png");
+    display: block;
+    height: 15px;
+    width: 13px;
+    margin-left: -13px;
+    margin-top: 8px;
+    position: absolute;
+    z-index:2;
+}
+.timeline_container{
+    width: 16px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+}
+.timeline{
+    margin: 0 auto;
+    background-color:#000;
+    display: block;
+    float: left;
+    height: 100%;
+    left: 400px;
+    margin-top: 0;
+    position: absolute;
+    width: 4px;
+}
 </style>
 
 </head>
@@ -121,26 +243,36 @@
 
 					<ul id="showTimeline" class="timeline">
 						<script id="entry-template2" type="text/x-handlebars-template"> 
-                  <li class="timeline-event">
-                   <label class="timeline-event-icon"></label>
-                   <div class="timeline-event-copy">
-                     <p class="timeline-event-thumbnail">{{dateVal bregdate}}</p>
-                        <br/>
-                     <div class='label label-danger'>카테고리</div>
-                     <span><b>{{cateName}}</b></span><br/>
-                     <div class='label label-warning'>거리</div>
-                     <span><b>{{distanceVal distance}}</b></span><br/>
-                     <div class='label label-warning'>금액</div>
-                     <span><b>{{value}} 원</b></span>
-                     <h2><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1">{{btitle}}</a></strong></h2>
-                     <i class='glyphicon glyphicon-time'></i> 등록일 : {{bregdate}}<br/><br/>
-                     <span><b>{{userId}}</b></span><br/>
-					<img src='{{imgPath}}'/>
-					<hr/>	
-					<span>
-						<img class="likeImg" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/>
-					</span>
-            </script>
+							<div id="timeline">    
+    							<div class="timeline_container">
+        							<div class="timeline">
+            							<div class="plus"></div>
+        							</div>
+   							 	</div>
+   							 <!-- item -->
+    							<div class="item "> 
+        							<div class="cont_pic" style="background-image: url('{{imgPath}}');height:150px">
+            							<div class="like_pic" ><i class="fa fa-heart-o"></i></div>
+        							</div> <!-- #cont_pic -->
+        							<div class="info">
+           								 <div class="up_cont">
+                							<h3><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1">{{btitle}}</a></strong></h3>
+                							 <p class="timeline-event-thumbnail">{{dateVal bregdate}}</p>
+                       						 <br/>
+											 <p>{{cateName}}</p>
+                       						 <br/>
+											 <p>{{distanceVal distance}}</p>
+                       						 <br/>
+											 <p>{{value}} 원</p>
+            							</div> <!-- #up_cont -->
+            							<div class="down_cont">
+                							<time class="timeago">{{dateVal bregdate}}</time>
+            							</div> <!-- #down_cont -->
+        							</div> <!-- #info -->
+    							</div>
+							</div>
+
+           				 </script>
 					</ul>
 					<!--     <p><ul id="showTimeline"></ul></p>  -->
 				</div>

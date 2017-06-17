@@ -214,41 +214,42 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
 
 	/**
-	 * 김용래
-	 * mywrite 내가 쓴글들 보드에서 나오게
-	 * ajax 처리 게시물 2번
-	 */
-	@RequestMapping(value="/myBoardList")
-	@ResponseBody
-	public Map<String,Object> myBoardList(HttpServletRequest req,Mypagepaging pagingDTO){
-		HashMap<String,Object> res=new HashMap<String, Object>();
-		
-		UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
-		
-		res.put("loginSession", loginSession);
-		String userId = loginSession.getUserId();
-		
-		int totRecord = service.selectMyBoardListCount(pagingDTO, userId);
-		// 페이징 계산
-		pagingDTO.setTotalCount(totRecord);
-		logger.info(pagingDTO.getTotalCount()+"페이지 갯수는");
-		
-		try {
-			List<BoardDTO> list = service.selectWritedList(userId,pagingDTO);//내가 쓴 글 목록 조회
-			for (BoardDTO boardDTO : list) {
-				CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
-				boardDTO.setCateName(dto.getCateName());
-			}
-			res.put("success","success"); 
-			res.put("MyBoardList",list);
-			res.put("pageMaker", pagingDTO);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return res;
-	}
-	
+	    * 김용래
+	    * mywrite 내가 쓴글들 보드에서 나오게
+	    * ajax 처리 게시물 2번
+	    */
+	   @RequestMapping(value="/myBoardList")
+	   @ResponseBody
+	   public Map<String,Object> myBoardList(HttpServletRequest req,Mypagepaging pagingDTO){
+	      HashMap<String,Object> res=new HashMap<String, Object>();
+	      
+	      UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
+	      
+	      res.put("loginSession", loginSession);
+	      String userId = loginSession.getUserId();
+	      
+	      int totRecord = service.selectMyBoardListCount(pagingDTO, userId);
+	      // 페이징 계산
+	      pagingDTO.setTotalCount(totRecord);
+	      logger.info(pagingDTO.getTotalCount()+"페이지 갯수는");
+	      
+	      try {
+	         List<BoardDTO> list = service.selectWritedList(userId,pagingDTO);//내가 쓴 글 목록 조회
+	         for (BoardDTO boardDTO : list) {
+	            CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
+	            boardDTO.setCateName(dto.getCateName());
+	            logger.info("거래인:"+boardDTO.getBuyerId());
+	            
+	         }
+	         res.put("success","success"); 
+	         res.put("MyBoardList",list);
+	         res.put("pageMaker", pagingDTO);
+	         
+	      } catch (Exception e) {
+	         e.printStackTrace();
+	      }
+	      return res;
+	   }
 	
 	
 	

@@ -29,6 +29,8 @@ public class BoardDTO {
 	private String fileOriginName[];
 	private String fileSize[];
 	
+	private String buyerId;
+	
 //	private String[] files;	// 파일 업로드 배열
 	
 	
@@ -156,6 +158,13 @@ public class BoardDTO {
 		this.bModifyDate = newString;
 	}
 	
+	
+	public String getBuyerId() {
+		return buyerId;
+	}
+	public void setBuyerId(String buyerId) {
+		this.buyerId = buyerId;
+	}
 	// 데이트 형식 바꾸는 메서드
 	public String dateFormatting(String oldString){
 		String newString ="";

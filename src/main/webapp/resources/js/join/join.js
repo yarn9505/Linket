@@ -73,6 +73,8 @@ $(function(){
 	var reg_pw = /^.*(?=.{6,15})(?=.*[0-9])(?=.*[a-zA-Z]).*$/; //비밀번호 정규표현식(영숫자 조합 6~15)
 	var reg_email = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
 	var reg_hp = /^((010\d{4})|(01[1|6|7|8|9]\d{3,4}))(\d{4})$/; //휴대폰번호 정규표현식(010일때4자리 나머지3,4자리)
+	var reg_id = /^(?=.*[a-zA-Z])(?=.*[0-9]).{6,20}$/;//영문과 숫자 조합으로 아이디는 6~20 글자 가능 
+	
 	
 	$('#pw').keyup(function(){
 		if(reg_pw.test($("#pw").val())){
@@ -137,6 +139,11 @@ $(function(){
 		 var addr1=$('#addr1').val();
 		 var addr2=$('#addr2').val();
 		 
+		 if(!reg_id.test(userId)){
+			 alert("아이디는 숫자 영문 포함 6~20 글자로 입력해주세요");
+			 return false;
+		 }
+		 
 		 
 		if(pw == "") {
 			alert("비밀번호를 입력해주세요.");
@@ -146,43 +153,43 @@ $(function(){
 
 		if(pw2 == "") {
 			alert("비밀번호 확인을 입력해주세요.");
-			pw2.focus();
+			$("#pw2").focus();
 			return false;
 		}
 		
 		if(pw != pw2) {
 			alert("패스워드가 일치하지 않습니다.");
-			pw.focus();
+			$("#pw").focus();
 			return false;
 		}
 
 		if(userName== "") {
 			alert("이름을 입력해주세요.");
-			userName.focus();
+			$('#userName').focus();
 			return false;
 		}
 
 		if(userHp == "") {
 			alert("핸드폰번호를 입력해주세요.");
-			userHp.focus();
+			$('#userHp').focus();
 			return false;
 		}
 
 		if(userEmail == "") {
 			alert("이메일 주소를 입력해주세요.");
-			userEmail.focus();
+			$('#userEmail').focus();
 			return false;
 		}
 
 		if(addr1 == "") {
 			alert("상세주소를 확인해주세요");
-			addr1.focus();
+			$('#addr1').focus();
 			return false;
 		}
 
 		if(addr2 == "") {
 			alert("상세주소를 확인해주세요");
-			addr2.focus();
+			$('#addr2').focus();
 			return false;
 		}
 		

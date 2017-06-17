@@ -58,6 +58,14 @@
 		<script type="text/javascript">
 		
 			var editorObj;
+			
+			// 제목 100자 이하로 제한
+			$('#bTitle').on('keyup', function() {
+		        if($(this).val().length > 100) {
+		        	alert("100자를 넘을 수 없습니다.");
+		             $(this).val($(this).val().substring(0,100));
+		       }
+		    });
 		
 			$(function() {
 		
@@ -184,15 +192,15 @@
 			* @returns {Boolean} 정상적인 경우에 true
 			*/
 			function setForm(editor) {
-				var i,
-					input;
+				var i,input;
 				var form = editor.getForm();
 				var content = editor.getContent();
 		
 				// 본문 내용을 필드를 생성하여 값을 할당하는 부분
 				var textarea = document.createElement('textarea');
 				textarea.name = 'bContent';
-				textarea.style = '"display: none;"';
+				textarea.id = 'contentArea';
+		        textarea.style="display:none;";
 				textarea.value = content;
 				form.createField(textarea);
 		
@@ -263,6 +271,7 @@
 						data : param,
 						success : function(data) {
 							if (data.result == "ok") {
+								$(".contentArea").attr("style","display:none");
 								alert("작성이 완료되었습니다.");
 							} else {
 								alert("글저장 실패");

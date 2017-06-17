@@ -11,6 +11,7 @@
     <package name="com.java.kosta.dto.board"/>
     <package name="com.java.kosta.dto.note"/>
  	<package name="com.java.kosta.dto.timeline"/>
+ 	<package name="com.java.kosta.dto.mypage"/>
   </typeAliases>
 </configuration>
 

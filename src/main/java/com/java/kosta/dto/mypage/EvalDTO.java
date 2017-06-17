@@ -17,9 +17,15 @@ public class EvalDTO {
 	private String pRegDate;
 	
 	private String cateName;
+	private int totReviewCnt;	// 리뷰 총 갯수
 	
 	
-	
+	public int getTotReviewCnt() {
+		return totReviewCnt;
+	}
+	public void setTotReviewCnt(int totReviewCnt) {
+		this.totReviewCnt = totReviewCnt;
+	}
 	public String getpRegDate() {
 		return pRegDate;
 	}

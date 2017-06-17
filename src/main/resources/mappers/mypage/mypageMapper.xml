@@ -119,7 +119,6 @@
 		WHERE
 		bno = #{bNo}
 	</select>
-	
 
 	<!-- 내가 올린 글 조회 -->
 	<select id="myBoardList" resultType="BoardDTO">
@@ -129,6 +128,15 @@
 	    ORDER BY b.bno DESC
         limit #{page.pageStart},#{page.perPageNum} 
 	</select>
+	
+	<!-- 내가 올린 글 조회 용래 swap과  구매자를 얻어옴-->
+   <select id="selectWritedList" resultType="BoardDTO">
+      SELECT b.bno,b.cateId, b.btitle, b.userId, b.bregdate,e.buyerId,b.isSwap
+      FROM board b  LEFT JOIN eval e ON b.bno = e.bno
+      where b.userId=#{userId}
+      ORDER BY b.bno DESC
+      limit #{page.pageStart},#{page.perPageNum} 
+   </select>
 	
 	
 		<!-- 내가 올린 글 갯수 조회 -->
