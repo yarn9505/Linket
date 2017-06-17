@@ -2,39 +2,125 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!--
-	matching page mapper
-	작성자 : 황영롱 
+   matching page mapper
+   작성자 : 황영롱 
  -->
 <mapper namespace="matchingMapper">
 
-	<sql id="boardCol">
-        bno AS bNo,
+   <sql id="boardCol">
+        bno,
         userId,
-        cateId,
-        btitle AS bTitle,
-        bcontent AS bContent,
-   		value,
-   		isSwap,
-        viewcnt AS viewCnt,
-        bregdate AS bRegDate,
-        bmodifydate AS bModifyDate,
-        lat,
-        lon
+        btitle,
+        bcontent,
+         value,
+        viewcnt,
+        bregdate,
+        isSwap
     </sql>
     
-	<!-- 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 -->
-	<select id="keywordList" resultType="BoardDTO">
-		SELECT 
-			<include refid="boardCol" />
-		FROM
-			board
-		WHERE
-			
-	</select>
+   <!-- 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 -->
+   <select id="keywordListSel" resultType="matchingDTO">
+      SELECT <include refid="boardCol"></include>,
+         (6371*acos(cos(radians(#{UserVO.lat}))*cos(radians(lat))*cos(radians(lon)
+            -radians(#{UserVO.lon}))+sin(radians(#{UserVO.lat}))*sin(radians(lat))))
+            AS distance,category.cateName
+      FROM
+         board LEFT OUTER JOIN category ON board.cateId = category.cateId 
+      WHERE
+         (isSwap = 'N' and allowVal = 'N' and bcontent LIKE CONCAT('%',#{productKeywords},'%'))
+         or
+         (isSwap = 'N' and allowVal = 'N' and btitle LIKE CONCAT('%',#{productKeywords},'%'))
+      ORDER BY
+         bno desc, value asc, distance asc
+   </select>
+   
+   <select id="countSel" resultType="int">
+      select count(*)
+      FROM board
+         WHERE
+         ( isSwap = 'N' and allowVal = 'N' and bcontent LIKE CONCAT('%','test','%') )
+         or
+         ( isSwap = 'N' and allowVal = 'N' and btitle LIKE CONCAT('%','test','%') )
+      
+   </select>
+   
+   <!-- MatchingT 에 값을 요청메시지와 함께 값을 넣어줌 -->
+   <insert id="insertMatchingT">
+      insert into matchingT(requester, receiver, bno, requestMsg,lat,lon,addr1,wantedValue)
+      values(#{vo.userId},#{dto.userId},#{dto.bno},#{dto.requestMsg},#{dto.lat},#{dto.lon},#{dto.addr1},#{dto.wantedValue})
+   </insert>
+   
+   <!-- 현재 로그인된 사용자 위도,경도,주소 가져오기 -->
+   <select id="getAddr" resultType="UserVO">
+      select lat,lon,addr1
+      from usertable
+      where userId = #{userId}
+   </select>
+   
+   <!-- allowVal을 게시글 작성자가 누른 경우 mno조건으로 allowVal 상태가 변경됨 -->
+   <update id="updateAllowVal">
+      update board set allowVal = 'Y' where bno=(select bno from matchingT where mno = #{mno}) 
+   </update>
+   
+   <!-- 내가 요청을 받은 게시글 리스트 확인 -->
+   <select id="listMyMatch" resultType="matchingCntDTO">
+      select matchingT.bno, board.btitle, board.value, count(matchingT.bno) AS bnoNum, ROUND(AVG(matchingT.wantedValue)) AS avgValue
+      from matchingT left outer join board on matchingT.bno = board.bno
+      group by matchingT.bno
+      having matchingT.bno
+      IN(
+         select matchingT.bno
+         from matchingT LEFT OUTER JOIN board ON matchingT.bno = board.bno
+         where board.allowVal = 'N' and receiver=#{userId}
+         
+         )
+      order by bnoNum desc, matchingT.bno desc
+   </select>
+   
+   <!-- 게시글의 요청내용을 확인하는 mapper -->
+   <select id="listMatchContent" resultType="matchingDTO">
+      select mno,requester, requestMsg, addr1, wantedValue,
+         (6371*acos(cos(radians(#{vo.lat}))*cos(radians(lat))*cos(radians(lon)
+            -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(lat))))
+            AS distance
+      from matchingT
+      where receiver = #{vo.userId} and bno=#{bno}
+      <if test='condi == "price"'>
+      order by wantedValue desc, distance asc 
+      </if>
+      <if test='condi == "distance"'>
+      order by distance asc, wantedValue desc
+      </if>
+      
+   </select>
+   
+   <!-- 요청비용의 평균 요청가격을 구함 -->
+   <select id="avgWantedValue" resultType="int">
+      select AVG(wantedValue)
+      from matchingT
+      where receiver = #{vo.userId} and bno=#{bno}
+   </select>
+   
+   
+  <!-- 적정가격은 희망가격>가치 인 경우, 가치>희망가격인 경우를 컨트롤러에서 판별해서 들어오면 계산한 거리와 가치를 반환해줌 -->
+   <!-- 가격 : 거리 = 6:4 -->
+   <select id="calcCompare" resultType="matchingDTO">
+      select matchingT.*,board.bno,
+         (6371*acos(cos(radians(#{vo.lat}))*cos(radians(matchingT.lat))*cos(radians(matchingT.lon)
+            -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(matchingT.lat))))
+            AS distance,
+         (board.value-matchingT.wantedValue) AS relValue,matchingT.requester as userId,
+            ROUND(ABS(board.value-matchingT.wantedValue) * 0.6 - (6371*acos(cos(radians(#{vo.lat}))*cos(radians(matchingT.lat))*cos(radians(matchingT.lon)
+            -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(matchingT.lat)))) * 0.4) AS weightValue
+         from matchingT left outer join board on matchingT.bno = board.bno
+         where receiver = #{vo.userId} and board.bno = (select bno from matchingT where mno = #{mno}) and mno=#{mno}
+   </select>
+   
+   <select id="showMyBoard" resultType="TimelineDTO">
+         select board.btitle as btitle,board.bcontent as bcontent,board.value as value,board.bregdate as bregdate, usertable.addr1 AS addr1
+         from board left outer join usertable on usertable.userId = board.userId
+         where usertable.userId = #{vo.userId} and board.bno = (select bno from matchingT where mno = #{mno})
+   </select>
+   
 </mapper>
-
-
-
-
-
 
