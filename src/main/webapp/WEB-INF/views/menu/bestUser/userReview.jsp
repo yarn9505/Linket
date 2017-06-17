@@ -7,72 +7,89 @@
 <head>
 <!-------------------------------------------- category section 게시글 상세보기 ---------------------------------------------->
 
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Best User</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Best User</title>
 <style>
 body {
-  padding-top: 70px;
-}
-.btn-grey{
-    background-color:#D8D8D8;
-	color:#FFF;
-}
-.rating-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px 15px 20px 15px;
-	border-radius:3px;
-	height:100%;
-}
-.bold{
-	font-weight:700;
-}
-.padding-bottom-7{
-	padding-bottom:7px;
+	padding-top: 70px;
 }
 
-.review-block{
-	background-color:#FAFAFA;
-	border:1px solid #EFEFEF;
-	padding:15px;
-	border-radius:3px;
-	margin-bottom:15px;
+.btn-grey {
+	background-color: #D8D8D8;
+	color: #FFF;
 }
-.review-block-name{
-	font-size:12px;
-	margin:10px 0;
+
+.rating-block {
+	background-color: #FAFAFA;
+	border: 1px solid #EFEFEF;
+	padding: 15px 15px 20px 15px;
+	border-radius: 3px;
+	height: 100%;
 }
-.review-block-date{
-	font-size:12px;
+
+.bold {
+	font-weight: 700;
 }
-.review-block-rate{
-	font-size:13px;
-	margin-bottom:15px;
+
+.padding-bottom-7 {
+	padding-bottom: 7px;
 }
-.review-block-title{
-	font-size:15px;
-	font-weight:700;
-	margin-bottom:10px;
+
+.review-block {
+	background-color: #FAFAFA;
+	border: 1px solid #EFEFEF;
+	padding: 15px;
+	border-radius: 3px;
+	margin-bottom: 15px;
 }
-.review-block-description{
-	font-size:13px;
+
+.review-block-name {
+	font-size: 12px;
+	margin: 10px 0;
 }
+
+.review-block-date {
+	font-size: 12px;
+}
+
+.review-block-rate {
+	font-size: 13px;
+	margin-bottom: 15px;
+}
+
+.review-block-title {
+	font-size: 15px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.review-block-description {
+	font-size: 13px;
+}
+
 .star_rating {
-	font-size:0; 
-	letter-spacing:-4px;
+	font-size: 0;
+	letter-spacing: -4px;
 }
+
 .star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
-} 
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#F78E41;}
+	font-size: 22px;
+	letter-spacing: 0;
+	display: inline-block;
+	margin-left: 5px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+.star_rating a:first-child {
+	margin-left: 0;
+}
+
+.star_rating a.on {
+	color: #F78E41;
+}
 </style>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(function(){
 			var avgVal = ${avgVal};
 			avgVal = Math.floor(avgVal);
@@ -88,118 +105,139 @@ body {
 	</script>
 </head>
 <body>
-	<section class="site-content full-height">
-		<div class="content-frame">
-			<div id="form-contact">
-			<div class="container">
-    			
+	<div class="container">
 		<div class="row">
-			<h2 style="margin-left:20px;">파워딜러 후기</h2><br/>
-			<div class="col-sm-3">
-				<div class="rating-block">
-					<h4 class="bold">${userId}</h4>
-					<h2 class="bold padding-bottom-7"><span style="color:#330099;">${avgVal}</span> <small>/ 5</small></h2>
-					<div class="star_rating">
-   						<a href="#" id="star1">★</a>
-   						<a href="#" id="star2">★</a>
-   						<a href="#" id="star3">★</a>
-   						<a href="#" id="star4">★</a>
-   						<a href="#" id="star5">★</a>
-	   				</div>
-				</div>
-			</div>
-			<div class="col-sm-3">
-				<h4> 별점 </h4>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">5 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
+			<div class="col-md-6 col-md-offset-3">
+				<section class="site-content full-height">
+				<div class="content-frame">
+					<div id="form-contact">
+						<div class="container">
+
+							<div class="row">
+								<h3 style="margin-left: 20px;">파워딜러 후기</h3>
+								<br />
+								<div class="col-sm-3">
+									<div class="rating-block">
+										<h4 class="bold">${userId}</h4>
+										<h2 class="bold padding-bottom-7">
+											<span style="color: #330099;">${avgVal}</span> <small>/
+												5</small>
+										</h2>
+										<div class="star_rating">
+											<a href="#" id="star1">★</a> <a href="#" id="star2">★</a> <a
+												href="#" id="star3">★</a> <a href="#" id="star4">★</a> <a
+												href="#" id="star5">★</a>
+										</div>
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<h4>별점</h4>
+									<div class="pull-left">
+										<div class="pull-left" style="width: 35px; line-height: 1;">
+											<div style="height: 9px; margin: 5px 0;"> 5 <span class="glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+										<div class="pull-left" style="width: 180px;">
+											<div class="progress" style="height: 9px; margin: 8px 0;">
+												<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+													<span class="sr-only">80% Complete (danger)</span>
+												</div>
+											</div>
+										</div>
+										<div class="pull-right" style="margin-left: 10px;">${scoreList["0"].count }</div>
+									</div>
+									<div class="pull-left">
+										<div class="pull-left" style="width: 35px; line-height: 1;">
+											<div style="height: 9px; margin: 5px 0;"> 4 <span class="glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+										<div class="pull-left" style="width: 180px;">
+											<div class="progress" style="height: 9px; margin: 8px 0;">
+												<div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+													<span class="sr-only">80% Complete (danger)</span>
+												</div>
+											</div>
+										</div>
+										<div class="pull-right" style="margin-left: 10px;">${scoreList["1"].count }</div>
+									</div>
+									<div class="pull-left">
+										<div class="pull-left" style="width: 35px; line-height: 1;">
+											<div style="height: 9px; margin: 5px 0;">
+												3 <span class="glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+										<div class="pull-left" style="width: 180px;">
+											<div class="progress" style="height: 9px; margin: 8px 0;">
+												<div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+													<span class="sr-only">80% Complete (danger)</span>
+												</div>
+											</div>
+										</div>
+										<div class="pull-right" style="margin-left: 10px;">${scoreList["2"].count }</div>
+									</div>
+									<div class="pull-left">
+										<div class="pull-left" style="width: 35px; line-height: 1;">
+											<div style="height: 9px; margin: 5px 0;">
+												2 <span class="glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+										<div class="pull-left" style="width: 180px;">
+											<div class="progress" style="height: 9px; margin: 8px 0;">
+												<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+													<span class="sr-only">80% Complete (danger)</span>
+												</div>
+											</div>
+										</div>
+										<div class="pull-right" style="margin-left: 10px;">${scoreList["3"].count }</div>
+									</div>
+									<div class="pull-left">
+										<div class="pull-left" style="width: 35px; line-height: 1;">
+											<div style="height: 9px; margin: 5px 0;"> 1 <span class="glyphicon glyphicon-star"></span>
+											</div>
+										</div>
+										<div class="pull-left" style="width: 180px;">
+											<div class="progress" style="height: 9px; margin: 8px 0;">
+												<div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+													<span class="sr-only">80% Complete (danger)</span>
+												</div>
+											</div>
+										</div>
+										<div class="pull-right" style="margin-left: 10px;">${scoreList["4"].count }</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-7">
+									<hr />
+
+									<!-- 리뷰 리스트에 대한 AJAX 처리할 부분 -->
+									<div class="review-block"></div>
+									<div class="reviewBtn">
+										<a href="javascript:showNextReview()" style="float: center; text-decoration: none; border: 1px solid; border-radius: 10px; padding: 5px;">리뷰
+										더보기</a>
+									</div>
+
+									<br />
+									<button style="float: right;" onclick="location.href='/bestUser/bestUserSection'">돌아가기</button>
+									<br />
+									<br />
+								</div>
+							</div>
+
 						</div>
+						<!-- /container -->
+
 					</div>
-					<div class="pull-right" style="margin-left:10px;">${scoreList["0"].count }</div>
 				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">4 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">${scoreList["1"].count }</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">3 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">${scoreList["2"].count }</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">2 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">${scoreList["3"].count }</div>
-				</div>
-				<div class="pull-left">
-					<div class="pull-left" style="width:35px; line-height:1;">
-						<div style="height:9px; margin:5px 0;">1 <span class="glyphicon glyphicon-star"></span></div>
-					</div>
-					<div class="pull-left" style="width:180px;">
-						<div class="progress" style="height:9px; margin:8px 0;">
-						  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
-							<span class="sr-only">80% Complete (danger)</span>
-						  </div>
-						</div>
-					</div>
-					<div class="pull-right" style="margin-left:10px;">${scoreList["4"].count }</div>
-				</div>
-			</div>			
-		</div>			
-		
-		<div class="row">
-			<div class="col-sm-7">
-				<hr/>
-				
-				<!-- 리뷰 리스트에 대한 AJAX 처리할 부분 -->
-				<div class="review-block"></div>
-				<div class="reviewBtn"><a href="javascript:showNextReview()" style="float:center; text-decoration:none;border:1px solid; border-radius:10px; padding:5px;">리뷰 더보기</a></div>
-				
-				<br/>
-				<button style="float:right;" onclick="location.href='/bestUser/bestUserSection'">돌아가기</button>
-				<br/><br/>
+				</section>
 			</div>
 		</div>
-		
-    </div> <!-- /container -->
-				
-			</div>
-		</div>
-		</section>  
-		
-		
-		<script type="text/javascript">
+	</div>
+
+
+
+	<script type="text/javascript">
 			var reviewCnt = 0;	// 리뷰 총 갯수
 			var reviewStartRow = 0;
 			
@@ -293,7 +331,7 @@ body {
 			}// end of showNextReview
 			
 		
-		</script>  
+		</script>
 	</div>
 </body>
 </html>
