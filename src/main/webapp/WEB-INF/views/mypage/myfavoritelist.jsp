@@ -1,238 +1,207 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
-<link rel="stylesheet" href="/resources/css/sidebar.css" >
-	<style>
-		.star_rating {font-size:0; letter-spacing:-4px;}
-		.star_rating a {
-		    font-size:22px;
-		    letter-spacing:0;
-		    display:inline-block;
-		    margin-left:5px;
-		    color:#ccc;
-		    text-decoration:none;
-		}
-		.star_rating a:first-child {margin-left:0;}
-		.star_rating a.on {color:#F78E41;}
-		
-		
-	</style>
+<link rel="stylesheet" href="/resources/css/sidebar.css">
+
+<style>
+.star_rating {
+	font-size: 0;
+	letter-spacing: -4px;
+}
+
+.star_rating a {
+	font-size: 22px;
+	letter-spacing: 0;
+	display: inline-block;
+	margin-left: 5px;
+	color: #ccc;
+	text-decoration: none;
+}
+
+.star_rating a:first-child {
+	margin-left: 0;
+}
+
+.star_rating a.on {
+	color: #F78E41;
+}
+</style>
 </head>
 <body>
-
-<!-- 네비게이션 -->
-<nav class="navbar navbar-m2p sidebar" role="navigation" id="customSideBar">
-    <div class="container-fluid"">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                Mypage <span id="main_icon" class="glyphicon glyphicon-align-justify"></span>
-            </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <!-- Dashboard -->
-                <li class="">
-                  <a href="javascript:favirtelist();"> 좋아요 목록</a>
-                </li>
-                <li class="">
-                    <a href="javascript:myWriteList();" >내가 올린 글 </a>
-                </li>
-                <li >
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      		  쪽지 보관함 <span class="caret"></span></a>
-                    <ul class="dropdown-menu forAnimate" role="menu">
-                        <li><a href="/note/listReceive"><i class="material-icons">받은쪽지함</i> </a></li>
-                        <li><a href="/note/listSend"><i class="material-icons">보낸쪽지함</i> </a></li>
-                    </ul>
-                </li>
-                <li >
-                    <a data-toggle="modal" data-target="#myModal">회원정보 수정 </a>
-                </li>
-                <li >
-                    <a href="javascript:myExchangeList();" >거래중인 게시물 </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-          
-    </div>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1"style="margin-left:0;margin-right:0;">
+			<div class="col-md-2">
+				<!-- 네비게이션 -->
+				<aside>
+				<h3 class="navibar" style="margin-bottom: 20px;">
+					My Page<span class="arrow-down glyphicon glyphicon-menu-down"
+						aria-hidden="true" style="float: right;"></span>
+				</h3>
+				<ul class="navibar">
+					<li><a href="javascript:favirtelist();"> 좋아요 목록</a></li>
+					<li><a href="javascript:myWriteList();">내가 올린 글 </a></li>
+					<li><a href="#"> 쪽지 보관함 <span class="caret"></span></a>
+					<li style="margin-left: 7%;"><a href="/note/listReceive">받은쪽지함</a></li>
+					<li style="margin-left: 7%;"><a href="/note/listSend">보낸쪽지함</a></li>
+					<li><a data-toggle="modal" data-target="#myModal">회원정보 수정
+					</a></li>
+					<li><a href="javascript:myExchangeList();">거래중인 게시물 </a></li>
+				</ul>
+				</aside>
+			</div>
+
+			<div class="col-md-8 col-md-offset-1">
+
 				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">
-	               <div class="modal-dialog">
-	                  <div class="modal-content">
-	                     <!-- header -->
-	                     <div class="modal-header">
-	                        <!-- 닫기(x) 버튼 -->
-	                        <button type="button" class="close" data-dismiss="modal"></button>
-	                        <!-- header title -->
-	                        <h4 class="modal-title">구매결정 폼</h4>
-	                     </div>
-	                     <!-- body -->
-	                     
-	                     <div class="modal-body">
-	                        <label>거래할 사용자 ID</label> 
-	                        <div class="input-group">
-	                           <input type="hidden" id="bnoId" /><br /> 
-	                           <input type="hidden" id="userIdVal" /> 
-	                           <input type="hidden" id="cateIdVal" />
-	                           <input type="text" class="determine form-control" />
-	                           <span class="input-group-btn">
-	                              <button type='button' class='btn btn-primary determineBtn' style="margin-top: 20px">결정</button>
-	                           </span>
-	                        </div>
-	                     </div>
-	                  </div>
-	               </div>
-	            </div>
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- header -->
+							<div class="modal-header">
+								<!-- 닫기(x) 버튼 -->
+								<button type="button" class="close" data-dismiss="modal"></button>
+								<!-- header title -->
+								<h4 class="modal-title">구매결정</h4>
+							</div>
+							<!-- body -->
 
-				<!-- 후기작성 모달창 -->
-		      <div class="modal fade" id="reviewModal" >
-		        <div class="modal-dialog">
-		          <div class="modal-content">
-		            <!-- header -->
-		            <div class="modal-header">
-		              <!-- 닫기(x) 버튼 -->
-		              <button type="button" class="close" data-dismiss="modal"></button>
-		              <!-- header title -->
-		            <h3 class="modal-title">구매 후기 작성</h3>
-		            </div>
-		               <!-- body -->
-		               <div class="modal-body">
-		               <br>
-		               <table class="table-bordered">
-		                  <tr>
-		                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">판매자</th>
-		                     <td><span id="userId" style="margin-left:5px;"></span></td>
-		                  </tr>
-		                  <tr>
-		                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">거래인</th>
-		                     <td><span id="buyerId" style="margin-left:5px;" ></span></td>
-		                  </tr>
-		                  <tr>
-		                     <th style="text-align: center; background-color: #F6F6F6">내용</th>
-		                     <td><textarea rows="10" cols="80" name="pcontent" id="pcontent" class="form-control"></textarea></td>
-		                  </tr>
-		                  <tr>
-		                     <th style="text-align: center; height:34px; background-color: #F6F6F6">별점</th>
-		                     <td><p class="star_rating">
-		                         <a href="#" class="on">★</a>
-		                         <a href="#">★</a>
-		                         <a href="#">★</a>
-		                         <a href="#">★</a>
-		                         <a href="#">★</a></p>
-		                        <input type="hidden" class="form-control" name="pscore" id="pscore"/></td>
-		                  </tr>
-		               </table>
-		               
-		               </div>
-		               <!-- Footer -->
-		               <div class="modal-footer">
-		                  <input type="hidden" name="bno" id="bno" /> 
-		               <button id="reviewBtn" type="button" class="btn btn-warning">작성하기</button>
-		                 <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-		               </div>
-		             </div>
-		         </div>
-		      </div>
-
-
-				<div class="content-frame">
-<!-- 					<div id="side_nav" -->
-<!-- 						style="float: left; height: 100%; line-height: 6;"> -->
-<!-- 						<ul style="list-style: none;"> -->
-<!-- 							<li><a href="javascript:favirtelist();">좋아요 목록</a></li> -->
-<!-- 							<li><a href="javascript:myWriteList();">내가 올린 글</a></li> -->
-<!-- 							<li><a href="#">쪽지 보관함</a></li> -->
-<!-- 							<li><a data-toggle="modal" data-target="#myModal">회원정보 -->
-<!-- 									수정</a></li> -->
-<!-- 							<li><a href="javascript:myExchangeList();">거래중인 게시물</a></li> -->
-<!-- 						</ul> -->
-<!-- 					</div> -->
-
-					<!-- 회원수정 페이지로 이동하기 위한 패스워드 입력 모달창 -->
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog">
-
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">×</button>
-									<h4 class="modal-title">패스워드 확인창</h4>
-								</div>
-								<div class="modal-body">
-									<form id="form1" action="/user/modifyInfo" method="post">
-										<p>회원정보를 수정하기 위해 패스워드를 확인해주세요.</p>
-										<label>비밀번호</label><input id="pwId" type="password"
-											name="password" class="form-control" /><br />
-									</form>
-								</div>
-								<div class="modal-footer">
-									<button id="btnClick" type="button" class="btn btn-default">확인</button>
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
+							<div class="modal-body">
+								<label>거래할 사용자 ID</label>
+								<div class="input-group">
+									<input type="hidden" id="bnoId" /><br /> 
+									<input type="hidden" id="userIdVal" /> 
+									<input type="hidden" id="cateIdVal" /> 
+									<input type="text" class="determine form-control" /> 
+									<span class="input-group-btn">
+										<button type='button' class='btn btn-primary determineBtn' style="margin-top: 20px">결정</button>
+									</span>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
+				</div>
 
-					<div id="formWrapper" style="float: left;">
-
-						<div id="form-contact" style="padding-left: 1%">
-							<table class="table table-hover">
-								<tr style="background-color:#D1E0EF;">
-									<th style="width: 10%; text-align: center; ">글번호</th>
-									<th style="width: 15%; text-align: center; ">카테고리</th>
-									<th style="width: 35%; text-align: center; ">제목</th>
-									<th style="width: 10%; text-align: center; ">작성자</th>
-									<th style="width: 20%; text-align: center; ">작성날짜</th>
-									<th style="width: 10%; text-align: center; ">좋아요</th>
-								</tr>
-								<c:if test="${empty MyFavoriteList}">
+				<!-- 후기작성 모달창 -->
+				<div class="modal fade" id="reviewModal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- header -->
+							<div class="modal-header">
+								<!-- 닫기(x) 버튼 -->
+								<button type="button" class="close" data-dismiss="modal"></button>
+								<!-- header title -->
+								<h3 class="modal-title">구매 후기 작성</h3>
+							</div>
+							<!-- body -->
+							<div class="modal-body">
+								<br>
+								<table class="table-bordered">
 									<tr>
-										<td colspan="7" style="text-align: center">좋아요한 게시글이
-											없습니다.</td>
+										<th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">판매자</th>
+										<td><span id="userId" style="margin-left: 5px;"></span></td>
 									</tr>
-								</c:if>
-								<c:forEach items="${MyFavoriteList}" var="boardDTO"
-									varStatus="status">
-									<tr id="table123" style="text-align: center">
-										<td id="tablebNo">${boardDTO.bNo}</td>
-										<td>${boardDTO.cateName}</td>
-										<td><a
-											href="/board/category/detailContent?bno=${boardDTO.bNo}">${boardDTO.bTitle }</a></td>
-										<td>${boardDTO.userId }</td>
-										<td>${boardDTO.bRegDate }</td>
-										<td>
-											<%-- 	<button id="likeButton" type="button"
-									value="${status.count}" style="width: 70px;"></button> --%> <img
-											id="likeImage" src="/resources/images/like2.png"
-											style="width: 20px; height: 20px;" /> <span id="likeCount"></span>
-										</td>
+									<tr>
+										<th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">거래인</th>
+										<td><span id="buyerId" style="margin-left: 5px;"></span></td>
 									</tr>
-								</c:forEach>
-							</table>
+									<tr>
+										<th style="text-align: center; background-color: #F6F6F6">내용</th>
+										<td><textarea rows="10" cols="80" name="pcontent"
+												id="pcontent" class="form-control"></textarea></td>
+									</tr>
+									<tr>
+										<th
+											style="text-align: center; height: 34px; background-color: #F6F6F6">별점</th>
+										<td><p class="star_rating">
+												<a href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
+												<a href="#">★</a> <a href="#">★</a>
+											</p> <input type="hidden" class="form-control" name="pscore" id="pscore" /></td>
+									</tr>
+								</table>
 
-							<%-- 	<form action="/mypage/myFavoriteList">
+							</div>
+							<!-- Footer -->
+							<div class="modal-footer">
+								<input type="hidden" name="bno" id="bno" />
+								<button id="reviewBtn" type="button" class="btn btn-primary">작성하기</button>
+								<button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<!-- 회원수정 페이지로 이동하기 위한 패스워드 입력 모달창 -->
+				<!-- Modal -->
+				<div class="modal fade" id="myModal" role="dialog">
+					<div class="modal-dialog">
+
+						<!-- Modal content-->
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"></button>
+								<h4 class="modal-title">패스워드 확인</h4>
+							</div>
+							<div class="modal-body">
+								<form id="form1" action="/user/modifyInfo" method="post">
+									<p style="color:blue;">회원정보를 수정하기 위해 패스워드를 확인해주세요.</p> <br/><br/>
+									<label>비밀번호</label>
+									<input id="pwId" type="password" name="password" class="form-control" />
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button id="btnClick" type="button" class="btn btn-primary">확인</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="formWrapper" style="float: left;">
+
+					<div id="form-contact" style="padding-left: 1%">
+						<table class="table table-hover">
+							<tr style="background-color: #D1E0EF;">
+								<th style="width: 10%; text-align: center;">글번호</th>
+								<th style="width: 15%; text-align: center;">카테고리</th>
+								<th style="width: 35%; text-align: center;">제목</th>
+								<th style="width: 10%; text-align: center;">작성자</th>
+								<th style="width: 20%; text-align: center;">작성날짜</th>
+								<th style="width: 10%; text-align: center;">좋아요</th>
+							</tr>
+							<c:if test="${empty MyFavoriteList}">
+								<tr>
+									<td colspan="7" style="text-align: center">좋아요한 게시글이 없습니다.</td>
+								</tr>
+							</c:if>
+							<c:forEach items="${MyFavoriteList}" var="boardDTO"
+								varStatus="status">
+								<tr id="table123" style="text-align: center">
+									<td id="tablebNo">${boardDTO.bNo}</td>
+									<td>${boardDTO.cateName}</td>
+									<td><a
+										href="/board/category/detailContent?bno=${boardDTO.bNo}">${boardDTO.bTitle }</a></td>
+									<td>${boardDTO.userId }</td>
+									<td>${boardDTO.bRegDate }</td>
+									<td>
+										<%-- 	<button id="likeButton" type="button"
+									value="${status.count}" style="width: 70px;"></button> --%> <img
+										id="likeImage" src="/resources/images/like2.png"
+										style="width: 20px; height: 20px;" /> <span id="likeCount"></span>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+
+						<%-- 	<form action="/mypage/myFavoriteList">
 						<table align="center">
 							<tr>
 								<td><select name="searchType" class="form-control col-md-3">
@@ -262,54 +231,54 @@
 							</tr>
 						</table>
 					</form> --%>
-							<!-- 
+						<!-- 
                        	[이전][1][2][3]...[10][다음] 부분 작성
                         -->
-							<!-- [이전] -->
-							<div class="text-center">
-								<ul class="pagination">
-									<li><a href="/mypage/myList${pageMaker.pageQuery(1)}">처음</a>
-									</li>
-									<c:if test="${pageMaker.prev}">
-										<li><a
-											href="/mypage/myList${pageMaker.pageQuery(pageMaker.startPage-1)}">◀</a>
-										</li>
-									</c:if>
-									<!-- [1][2][3]...[10] -->
-									<c:forEach var="index" begin="${pageMaker.startPage}"
-										end="${pageMaker.endPage}">
-										<li ${pageMaker.page == index ? 'class=active' : '' }><a
-											href="/mypage/myList${pageMaker.pageQuery(index)}">${index}</a>
-										</li>
-									</c:forEach>
-									<!-- [다음] -->
-									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-										<li><a
-											href="/mypage/myList${pageMaker.pageQuery(pageMaker.endPage+1)}">▶</a>
-										</li>
-									</c:if>
-									<!-- [마지막] -->
+						<!-- [이전] -->
+						<div class="text-center">
+							<ul class="pagination">
+								<li><a href="/mypage/myList${pageMaker.pageQuery(1)}">처음</a>
+								</li>
+								<c:if test="${pageMaker.prev}">
 									<li><a
-										href="/mypage/myList${pageMaker.pageQuery(pageMaker.entireEndPage)}">마지막</a>
+										href="/mypage/myList${pageMaker.pageQuery(pageMaker.startPage-1)}">◀</a>
 									</li>
-								</ul>
-							</div>
-							<!-- 쪽지 페이징 처리 -->
-
+								</c:if>
+								<!-- [1][2][3]...[10] -->
+								<c:forEach var="index" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage}">
+									<li ${pageMaker.page == index ? 'class=active' : '' }><a
+										href="/mypage/myList${pageMaker.pageQuery(index)}">${index}</a>
+									</li>
+								</c:forEach>
+								<!-- [다음] -->
+								<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+									<li><a
+										href="/mypage/myList${pageMaker.pageQuery(pageMaker.endPage+1)}">▶</a>
+									</li>
+								</c:if>
+								<!-- [마지막] -->
+								<li><a
+									href="/mypage/myList${pageMaker.pageQuery(pageMaker.entireEndPage)}">마지막</a>
+								</li>
+							</ul>
 						</div>
+						<!-- 쪽지 페이징 처리 -->
+
 					</div>
-
-
 				</div>
-				<!-- 회원정보수정 -->
-				<c:if test="${map.msg eq 'FAIL'}">
-					<script>
+
+
+			</div>
+			<!-- 회원정보수정 -->
+			<c:if test="${map.msg eq 'FAIL'}">
+				<script>
 						alert("실패했습니다");
 					</script>
-				</c:if>
+			</c:if>
 
 
-				<script>
+			<script>
 					/* 회원정보수정 */
 					
 					$(document).ready(function() {
@@ -1162,8 +1131,33 @@
 					    
 					});
 				</script>
-			</div>
+			<script type="text/javascript">
+				$(document).ready(function () {
+					  
+					$(window).resize(function() {
+					  
+					        $checkWidth = $(window).width();
+
+					        if ($checkWidth > 1000) {
+					           	$("aside ul").css( "display", "block" );
+					        } else {
+					            	$("aside ul").css( "display", "none" );
+					        }
+					});
+
+					  
+					  $("aside h3").click(function () {
+					    
+						      if( $(window).width() < 1000) {   
+				     	     $(this).next("ul").slideToggle();
+					           
+					       } 
+					   });
+					 });
+
+				</script>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
