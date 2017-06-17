@@ -69,7 +69,7 @@
     right: 0;
     margin: 0 20px;
     border: 1px solid #000;
-    background: #1c1c1c;
+    /* background: #1c1c1c; */
     border-radius: 5px;
     cursor:pointer;
     width: 35px;
@@ -154,15 +154,8 @@
     display: block;
 }
 .timeline{
-    margin: 0 auto;
-    background-color:#000;
     display: block;
-    float: left;
     height: 100%;
-    left: 400px;
-    margin-top: 0;
-    position: absolute;
-    width: 4px;
 }
 </style>
 
@@ -238,7 +231,6 @@
 				<!--  -->
 				<a name="above"></a>
 
-				<div style="border: solid 1px #DDD !important; margin-top: 3%;">
 					<ul id="showTimeline" class="timeline">
 						<script id="entry-template2" type="text/x-handlebars-template"> 
 							<div id="timeline">    
@@ -270,11 +262,11 @@
            				 </script>
 					</ul>
 					<!--     <p><ul id="showTimeline"></ul></p>  -->
-				</div>
-			</div>
+			
+			
 
 
-			<div class="col-sm-offset-10 col-sm-4">
+			<!-- <div class="col-sm-offset-10 col-sm-4">
 				<div class="app">
 					<aside class="side">
 					<ul class="tabs">
@@ -400,8 +392,8 @@
 					minutes ago</time> </footer> </article> </section>
 				</div>
 
+			</div> -->
 			</div>
-
 		</div>
 	</div>
 </body>
