@@ -37,20 +37,20 @@
 												${loginSession.userId}</h5>
 											<tr>
 												<th
-													style="text-align: center; width: 15%; background-color: #D1E0EF">받는
+													style="text-align: center; width: 15%; ">받는
 													사람</th>
 												<td><input type="text" class="form-control"
 													name="recvId" id="recvId" value="${sendTo}" /></td>
 											</tr>
 
 											<tr>
-												<th style="text-align: center; background-color: #D1E0EF">제목</th>
+												<th style="text-align: center; ">제목</th>
 												<td><input type="text" class="form-control"
 													name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
 											</tr>
 
 											<tr>
-												<th style="text-align: center; background-color: #D1E0EF vertical-align: middle;">내용</th>
+												<th style="text-align: center; vertical-align: middle;">내용</th>
 												<td><textarea rows="10" cols="80" name="mcontent"
 														id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
 											</tr>

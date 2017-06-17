@@ -246,11 +246,11 @@
         							</div> <!-- #cont_pic -->
         							<div class="info">
            								 <div class="up_cont">
-                							<h3><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1">{{btitle}}</a></strong></h3>
+                							<h3><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1" style="display:block;margin:0 auto; max-width:500px; min-width:200px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{{btitle}}</a></strong></h3>
                 							 <p class="timeline-event-thumbnail">{{dateVal bregdate}}</p>
-											 <p>{{cateName}}</p>
-											 <p>{{distanceVal distance}}</p>
-											 <p>{{value}} 원</p>
+											 <h5><p><span class="glyphicon glyphicon-tags" style="color: #F29661;"/>&nbsp;{{cateName}}</p></h5>
+											 <h5><p><span class="glyphicon glyphicon-road" style="color: #9FC93C;"/>{{distanceVal distance}}</p></h5>
+											 <h5><p><span class="glyphicon glyphicon-usd" style="color: #FFBB00;"/>{{value}} 원</p></h5>
             							</div> <!-- #up_cont -->
             							<div class="down_cont">
                 							<time class="timeago">{{dateVal bregdate}}</time>

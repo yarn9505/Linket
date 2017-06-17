@@ -151,13 +151,16 @@ public class TimelineController {
 
 	// 필터된 게시글 ajax 호출용
 	@RequestMapping(value = "/timeline/filterList")
-	public @ResponseBody Map<String, Object> filterList(PagingDTO page,
+	public @ResponseBody Map<String, Object> filterList(HttpSession session,PagingDTO page,
 			@RequestParam(value = "fcateArr") List<String> fcateArr, @RequestParam(value = "fvalue1") String fvalue1,
 			@RequestParam(value = "fvalue2") String fvalue2) {
 		logger.info("필터 ajax 호출되었습니당^0^");
 		FilterDTO filter = new FilterDTO();
 		logger.info("fvalue1 : " + fvalue1);
 		logger.info("fvalue2 : " + fvalue2);
+		
+		UserVO vo = null;
+		vo = (UserVO) session.getAttribute("loginSession");
 
 		/* fvalue1 과 fvalue2의 조건문 : 가치에 따른 분류를 위함 */
 		if (!fvalue1.equals("")) {
@@ -215,6 +218,13 @@ public class TimelineController {
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println("bno : " + list.get(i).getBno() + ", cateId : " + list.get(i).getCateId() + ", value : "
 					+ list.get(i).getValue());
+		}
+		
+		//좋아요 하트 뜨게하기 위함
+		for (int i = 0; i < list.size(); i++) {
+			int fcnt = service.searchFavorite(list.get(i).getBno(), vo.getUserId());
+			list.get(i).setCheckfavorite(fcnt+"");
+			System.out.println(list.get(i).getBno()+","+vo.getUserId());
 		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
