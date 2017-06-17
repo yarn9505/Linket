@@ -12,9 +12,6 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-::-webkit-scrollbar {
-display:none;
-}
 
 html {
   font-family: sans-serif;
@@ -4287,6 +4284,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   line-height: 20px;
   height: 50px;
 }
+
 .navbar-brand:hover,
 .navbar-brand:focus {
   text-decoration: none;
@@ -4347,7 +4345,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     border: 0;
     -webkit-box-shadow: none;
             box-shadow: none;
+    
   }
+::-webkit-scrollbar {
+display:none;
+}
   .navbar-nav .open .dropdown-menu > li > a,
   .navbar-nav .open .dropdown-menu .dropdown-header {
     padding: 5px 15px 5px 25px;
