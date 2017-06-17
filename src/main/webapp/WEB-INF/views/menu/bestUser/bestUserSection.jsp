@@ -53,7 +53,9 @@
 </style>
 <script type="text/javascript">
 	$(function() {
-
+				
+	 
+	 	
 		$.ajax({
 			type : "post",
 			url : "/bestUser/lowerUserList",
@@ -64,14 +66,15 @@
 
 					var str = "";
 					str += "<div id='lowerRow'>";
+					
 					$.each(data.lowerUserList, function(i, user) {
-						str += "<div id='userBox' class='panel panel-default'>" +
+						str += "<div id='userBox' class='panel panel-default divClickClass'>" +
 						"<div class='panel-heading'>" +
-							"<font style='font-size:15px;'>" + user.userId + "</font>" +
+							"<font class='fontTagId' style='font-size:15px;'>" + user.userId + "</font>" +
 						"</div>" +
 						"<div class='panel-body'>"+
 							"<h2 class='bold padding-bottom-7'>" +
-								"<span style='color:#330099;font-weight: bold;'>" + user.avg + "</span> <small>/ 5" +
+								"<span style='color:#330099;font-weight: bold;' class='avgspan'>" + user.avg + "</span> <small>/ 5" +
 								"<span style='font-size:14px;color:black;'> &nbsp;[" + user.totReviewCnt + "]</span></small>" +
 							"</h2>" +
 							"<a href='/bestUser/userReview?userId=" + user.userId + "&avg=" + user.avg + "'>" +
@@ -108,8 +111,17 @@
 					$("#lowerUserList").append(str);
 				}
 			}
+			
 		});
-
+		
+		$(document).on("click",".divClickClass",function(event){
+			 var divObj = $(this);
+	 		var fontObj = divObj.find(".fontTagId");
+	 		var userId = fontObj.text();
+	 		var avg = divObj.find(".panel-body").find(".avgspan").text();
+	 		alert("userId : " + userId + " avg : " + avg);
+	 		location.href="/bestUser/userReview?userId="+userId+"&avg="+ avg;
+	 	});
 	}); // end of ready
 
 	// 페이징 처리 함수
@@ -134,7 +146,7 @@
 					
 					$.each(data.lowerUserList, function(i, user) {		
 						
-						str += "<div id='userBox' class='panel panel-default'>" +
+						str += "<div id='userBox' class='panel panel-default' >" +
 						"<div class='panel-heading'>" +
 							"<font style='font-size:15px;'>" + user.userId + "</font>" +
 						"</div>" +
@@ -193,7 +205,7 @@
 					<h2 style="margin-left: 20px;">파워 딜러</h2>
 					<br />
 					<c:forEach items="${evalList}" var="evalDTO" varStatus="status">
-						<div id="userBox" class="panel">
+						<div id="userBox" class="panel" onClick="location.href='/bestUser/userReview?userId=${evalDTO.userId}&avg=${evalDTO.avg}'">
 							<div class="panel-heading"  style="background-color: #E4F7BA;">
 								<font style="color: #dd0000;font-size:20px;">${status.count}. </font>
 								<font style="font-size:20px;">${evalDTO.userId}</font>
