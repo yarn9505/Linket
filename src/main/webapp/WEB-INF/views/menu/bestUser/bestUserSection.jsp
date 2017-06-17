@@ -162,7 +162,7 @@
 					});
 
 					// 페이징 처리
-					str += "<div align = 'center'>" +
+					str += "<div align = 'center' class='pageBox'>" +
 						"<ul class='pagination pagination-sm'>";
 					if (data.pagingDTO.groupNo > 1) {
 						str += "<li>"
@@ -192,6 +192,9 @@
 			}
 		});
 
+		var offset =  $(".pageBox").offset();
+		$( 'html, body' ).stop().animate( { scrollTop : offset } );
+		
 	} // end of paging
 </script>
 

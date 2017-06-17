@@ -60,8 +60,8 @@
     word-wrap:break-word; 
 }
 #timeline .item  .cont_pic{
-    margin:10px;
-    padding: 20px;
+    /* margin:10px; */
+    padding: 10px;
     position: relative;
 }
 #timeline .item  .cont_pic .like_pic {
@@ -240,19 +240,19 @@
         							</div>
    							 	</div>
    							 <!-- item -->
-    							<div class="item "> 
-        							<div class="cont_pic" style="background-image: url('{{imgPath}}');height:150px">
-            							<div class="like_pic" ><img class="likeImg" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/></div>
+    							<div class="item " style="padding-left:15px;"> 
+        							<div class="cont_pic" >
+										<img class="cont_img" src="{{imgPath}}" width="100%" height="180px"/> 
         							</div> <!-- #cont_pic -->
         							<div class="info">
            								 <div class="up_cont">
-                							<h3><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1" style="display:block;margin:0 auto; max-width:500px; min-width:200px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{{btitle}}</a></strong></h3>
-                							 <p class="timeline-event-thumbnail">{{dateVal bregdate}}</p>
-											 <h5><p><span class="glyphicon glyphicon-tags" style="color: #F29661;"/>&nbsp;{{cateName}}</p></h5>
-											 <h5><p><span class="glyphicon glyphicon-road" style="color: #9FC93C;"/>{{distanceVal distance}}</p></h5>
-											 <h5><p><span class="glyphicon glyphicon-usd" style="color: #FFBB00;"/>{{value}} 원</p></h5>
+                							<h3 style="margin-top:5px;"><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1" style="display:block;margin:0 auto; max-width:500px; min-width:200px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{{btitle}}</a></strong></h3>
+											 <h5><p><span class="glyphicon glyphicon-tags" style="color: #F29661;"/>&nbsp; {{cateName}}</p></h5>
+											 <h5><p><span class="glyphicon glyphicon-road" style="color: #9FC93C;"/>&nbsp; {{distanceVal distance}}</p></h5>
+											 <h5><p><span class="glyphicon glyphicon-usd" style="color: #FFBB00;"/>&nbsp; {{value}} 원</p></h5>
             							</div> <!-- #up_cont -->
             							<div class="down_cont">
+            								<span class="like_pic"><img class="likeImg" style="margin-top:5px;width:25px;height:25px;" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/></span>
                 							<time class="timeago">{{dateVal bregdate}}</time>
             							</div> <!-- #down_cont -->
         							</div> <!-- #info -->
@@ -262,7 +262,6 @@
            				 </script>
 					</ul>
 					<!--     <p><ul id="showTimeline"></ul></p>  -->
-			
 			
 
 
