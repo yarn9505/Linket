@@ -45,7 +45,7 @@
 
 				<br /><br />
 
-				<table class="table table-bordered">
+				<table class="table table table-hover">
 					<tr style="background-color: #D1E0EF;">
 						<th style="width: 10%; text-align: center;">No</th>
 						<th style="width: 45%; text-align: center;">제목</th>

@@ -14,15 +14,14 @@
 			<div class="col-md-10 col-md-offset-1">
 				<div class="content-frame">
 						<h4>
-							<span class="glyphicon glyphicon-envelope"
-								style="color: #0E3E59;">&nbsp;보낸 쪽지함</span>
+							<span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;보낸 쪽지함</span>
 						</h4>
 						<br>
 						<br>
 
-						<table class="table tableCustom">
+						<table class="table table-hover">
 
-							<tr >
+							<tr style="background-color: #D1E0EF;">
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">받는사람</th>
 								<th style="text-align: center; width: 40%;">제목</th>
@@ -42,8 +41,8 @@
 									<td style="text-align: center;"><a
 										href="/note/readDetail?mno=${NoteVO.mno}">${NoteVO.mtitle}</a></td>
 									<td style="text-align: center;"><a
-										href="/note/readDetail?mno=${NoteVO.mno}"> <fmt:formatDate
-												pattern="YY년MM월dd일 " value="${NoteVO.date_sender}" />
+										href="/note/readDetail?mno=${NoteVO.mno}"> 
+										<fmt:formatDate pattern="YY년MM월dd일 " value="${NoteVO.date_sender}" />
 									</a></td>
 									<td style="text-align: center;"
 										${NoteVO.date_receiver == null ? "style='color:red'" : ""}>
@@ -54,8 +53,8 @@
 												value="${NoteVO.date_receiver}" />
 										</c:if>
 									</td>
-									<td style="text-align: center;"><button
-											class="btn btn-link" id="delBtn" type="button">삭제</button></td>
+									<td style="text-align: center;">
+									<button class="btn btn-link" id="delBtn" type="button">삭제</button></td>
 
 									<input id="mnoId" type="hidden" value="${NoteVO.mno}" />
 								</tr>

@@ -12,54 +12,40 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-				<div class="content-frame">
 					<div class="what-row clearfix image-on-left">
 						<div class="what-row clearfix image-on-right">
 							<div>
 								<!-- 쪽지쓰기 모달창 띄우기 -->
-<!-- 								<div class="panel"> -->
-<!-- 									<a href="#login_form" id="login_pop"><span class="glyphicon glyphicon-envelope" -->
-<!-- 								style="color: #0E3E59;">&nbsp;쪽지 쓰기</span></a> -->
-<!-- 								</div> -->
-
-								<!-- popup form #1 -->
-<!-- 								<a href="#x" class="overlay" id="login_form"></a> -->
 								<div class="popup" style="text-align: center;">
 									<center>
-										<h3 alicn="center"><span class="glyphicon glyphicon-envelope"
-									style="color: #0E3E59;">&nbsp;쪽지 쓰기</span></h3>
+										<h3 alicn="center"><span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;쪽지 쓰기</span></h3>
 									</center>
 									<br>
 									<form id="formName" action="/note/insertNote" method="post">
 										<table class="table table-bordered">
 											<!-- 세션에서 id를 넣어 놓음(어차피 로그인한 사용자만 가능해야함): 로그인 기능 구현 전까지 임의로 입력해 놓겠음. -->
-											<h5 align="right" style="color: navy;"> from:
-												${loginSession.userId}</h5>
+											<h5 align="right" style="color: navy;"> from: ${loginSession.userId}</h5>
 											<tr>
 												<th
-													style="text-align: center; width: 15%; ">받는
-													사람</th>
-												<td><input type="text" class="form-control"
-													name="recvId" id="recvId" value="${sendTo}" /></td>
+													style="text-align: center; width: 15%; ">받는 사람</th>
+												<td><input type="text" class="form-control" name="recvId" id="recvId" value="${sendTo}" /></td>
 											</tr>
 
 											<tr>
 												<th style="text-align: center; ">제목</th>
-												<td><input type="text" class="form-control"
-													name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
+												<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>
 											</tr>
 
 											<tr>
 												<th style="text-align: center; vertical-align: middle;">내용</th>
-												<td><textarea rows="10" cols="80" name="mcontent"
-														id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
+												<td><textarea rows="10" cols="80" name="mcontent" id="mcontent" class="form-control">${NoteVO.mcontent}</textarea></td>
 											</tr>
 										</table>
 
 										<br>
 										<div align="right">
 											<button id="cancelBtn" type="button" class="btn btn-default">취소</button>
-											<button id="sendBtn" type="button" class="btn btn-warning">보내기</button>
+											<button id="sendBtn" type="button" class="btn btn-default">보내기</button>
 										</div>
 									</form>
 									<a class="close" href="#close"></a>
@@ -102,7 +88,6 @@
 				</script>
 			</div>
 		</div>
-	</div>
 
 </body>
 </html>
