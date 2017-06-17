@@ -61,7 +61,7 @@
                     </ul>
                 </li>
                 <li >
-                    <a href="#" data-toggle="modal" data-target="#myModal">회원정보 수정 </a>
+                    <a data-toggle="modal" data-target="#myModal">회원정보 수정 </a>
                 </li>
                 <li >
                     <a href="javascript:myExchangeList();" >거래중인 게시물 </a>
@@ -82,7 +82,7 @@
 							<!-- header -->
 							<div class="modal-header">
 								<!-- 닫기(x) 버튼 -->
-								<button type="button" class="close" data-dismiss="modal"></button>
+								<button type="button" class="close" data-dismiss="modal">×</button>
 								<!-- header title -->
 								<h4 class="modal-title">구매결정 폼</h4>
 							</div>
@@ -177,14 +177,14 @@
 							<!-- Modal content-->
 							<div class="modal-content">
 								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal"></button>
+									<button type="button" class="close" data-dismiss="modal">×</button>
 									<h4 class="modal-title">패스워드 확인창</h4>
 								</div>
 								<div class="modal-body">
 									<form id="form1" action="/user/modifyInfo" method="post">
-										<p style="color: blue;">회원정보를 수정하기 위해 패스워드를 확인해주세요.</p><br/><br/>
+										<p>회원정보를 수정하기 위해 패스워드를 확인해주세요.</p>
 										<label>비밀번호</label><input id="pwId" type="password"
-											name="password" class="form-control" />
+											name="password" class="form-control" /><br />
 									</form>
 								</div>
 								<div class="modal-footer">
@@ -195,58 +195,7 @@
 							</div>
 						</div>	
 					</div>
-					
-					<!-- 후기작성 모달창 -->
-			      <div class="modal fade" id="reviewModal" >
-			        <div class="modal-dialog">
-			          <div class="modal-content">
-			            <!-- header -->
-			            <div class="modal-header">
-			              <!-- 닫기(x) 버튼 -->
-			              <button type="button" class="close" data-dismiss="modal"></button>
-			              <!-- header title -->
-			            <h3 class="modal-title">구매 후기 작성</h3>
-			            </div>
-			               <!-- body -->
-			               <div class="modal-body">
-			               <br>
-			               <table class="table-bordered">
-			                  <tr>
-			                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">판매자</th>
-			                     <td><span id="userId" style="margin-left:5px;"></span></td>
-			                  </tr>
-			                  <tr>
-			                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">거래인</th>
-			                     <td><span id="buyerId" style="margin-left:5px;" ></span></td>
-			                  </tr>
-			                  <tr>
-			                     <th style="text-align: center; background-color: #F6F6F6">내용</th>
-			                     <td><textarea rows="10" cols="80" name="pcontent" id="pcontent" class="form-control"></textarea></td>
-			                  </tr>
-			                  <tr>
-			                     <th style="text-align: center; height:34px; background-color: #F6F6F6">별점</th>
-			                     <td><p class="star_rating">
-			                         <a href="#" class="on">★</a>
-			                         <a href="#">★</a>
-			                         <a href="#">★</a>
-			                         <a href="#">★</a>
-			                         <a href="#">★</a></p>
-			                        <input type="hidden" class="form-control" name="pscore" id="pscore"/></td>
-			                  </tr>
-			               </table>
-			               
-			               </div>
-			               <!-- Footer -->
-			               <div class="modal-footer">
-			                  <input type="hidden" name="bno" id="bno" /> 
-			               <button id="reviewBtn" type="button" class="btn btn-warning">작성하기</button>
-			                 <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-			               </div>
-			             </div>
-			         </div>
-			      </div>
-				<!-- 후기작성 모달창 end -->
-				
+
 					<div id="formWrapper" style="float: left;">
 
 						<div id="form-contact" style="padding-left: 1%">
@@ -476,7 +425,7 @@
 			                       str += "<tr id='table123' style='text-align: center'>";
 			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-			                       str += "<td class=''> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:20px; height:20px;'/></td>";
@@ -732,10 +681,10 @@
                     $("#form-contact").remove();
                     str += "<div id='form-contact' style='padding-left: 1%'>";
                     str += "<table class='table table-bordered'>";
-                    str += "<tr style='background-color: #D1E0EF;'>";
+                    str += "<tr style='background-color: #FFA800;'>";
                     str += "<th style='width: 5%; text-align: center;'>No</th>";
-                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
-                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
+                    str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
+                    str += "<th style='width: 35%; text-align: center;'>제목</th>";
                     str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                     str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
                     str += "<th style='text-align:center;'>구매결정</th>";

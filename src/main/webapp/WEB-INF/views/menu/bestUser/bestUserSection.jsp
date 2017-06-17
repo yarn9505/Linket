@@ -203,8 +203,7 @@
 				<!-- 파워 딜러 10명의 리스트 뿌리기 (고정) -->
 				<div id="powerDealer" class="col-sm-7">
 					<h3>
-							<span class="glyphicon glyphicon-tasks"
-								style="color: #0E3E59;">&nbsp;파워딜러</span>
+							<span class="glyphicon glyphicon glyphicon-link" style="color: #0E3E59;">&nbsp;파워딜러</span>
 						</h3>
 					<br />
 					<c:forEach items="${evalList}" var="evalDTO" varStatus="status">
