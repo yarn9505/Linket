@@ -6,8 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${cateDTO.cateName}</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="/resources/js/fileupload.js"></script>
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
+	<!-- <link rel="stylesheet" type="text/css" href="/resources/daumEditor/css/editor.css"></link>
+	<script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script> -->
 </head>
 <body>
 	<div class="container">
@@ -22,12 +22,12 @@
 						<tr>
 							<th style="width: 10%; vertical-align: middle; text-align: center;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
-								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+								<input type="hidden" name="cateId" id="cateId" value="${cateDTO.cateId}" />
 						</tr>
 						<tr>
 							<th style="width: 10%; vertical-align: middle ; text-align: center;">작성자</th>
 							<td><input type="text" class="form-control" value = "${loginSession.userId}" readonly>
-								<input type="hidden" name="userId" value="${loginSession.userId}" />
+								<input type="hidden" name="userId" id="userId" value="${loginSession.userId}" />
 							</td>
 						</tr>
 						<tr>
@@ -269,6 +269,7 @@
 						url : "/board/category/writeBoardProc",
 						method : "post",
 						data : param,
+						dataType : "json",
 						success : function(data) {
 							if (data.result == "ok") {
 								$(".contentArea").attr("style","display:none");
