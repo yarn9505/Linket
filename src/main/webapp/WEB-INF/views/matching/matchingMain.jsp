@@ -770,22 +770,17 @@ width:100%;
 	                           });//요청하기 ajax
                         
 	                           
-	                           $("#1Container").on("click",function(event){
-	                        	  alert("1"); 
-	                           });
-	                           $("#2Container").on("click",function(event){
-	                        	  alert("2"); 
-	                        	   
-	                           });
-	                           $("#3Container").on("click",function(event){
-	                        	  alert("3"); 
-	                        	   
-	                           });
-	                           $("#4Container").on("click",function(event){
-	                        	  alert("4"); 
-	                        	   
-	                           });
-	                           
+	                           var confirmVal;
+	                           for(var i=1; i<=4; i++){
+		                           $("#"+i+"Container").on("click",function(event){
+										var parentObj = $(this);
+										var mno = parentObj.find("#"+i+"MnoId").val();
+										confirmVal = confirm("해당 요청을 선택하시겠습니까?");
+										if(confirmVal){
+											
+										};
+		                           });
+	                           }
 	                           
                      });// end of ready()
                   </script>
