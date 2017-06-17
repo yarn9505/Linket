@@ -37,6 +37,7 @@
 <script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
 <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
+<script type="text/javascript" src="/resources/js/matching/dashboard.js"></script>
 
 <title><decorator:title default="Linket" /></title>
 <link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 

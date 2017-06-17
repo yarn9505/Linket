@@ -20,8 +20,15 @@ public class BoardDTO {
    private String lat; // 위도
    private String lon; // 경도
    private String addr1;
+   private String buyerId;
    
-   private String cateName;//카테고리 아이디를 네임으로 바꿀려고 만듬
+   public String getBuyerId() {
+	return buyerId;
+}
+public void setBuyerId(String buyerId) {
+	this.buyerId = buyerId;
+}
+private String cateName;//카테고리 아이디를 네임으로 바꿀려고 만듬
    
    private String imgPath[];
    private String imgOriginName[];
