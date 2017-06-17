@@ -238,7 +238,7 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	         for (BoardDTO boardDTO : list) {
 	            CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
 	            boardDTO.setCateName(dto.getCateName());
-	            logger.info("거래인:"+boardDTO.getBuyerId());
+	         //   logger.info("거래인:"+boardDTO.getBuyerId());
 	            
 	         }
 	         res.put("success","success"); 
