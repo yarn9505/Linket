@@ -207,7 +207,7 @@
 						</h3>
 					<br />
 					<c:forEach items="${evalList}" var="evalDTO" varStatus="status">
-						<div id="userBox" class="panel" onClick="location.href='/bestUser/userReview?userId=${evalDTO.userId}&avg=${evalDTO.avg}'">
+						<div id="userBox" class="panel" onclick="location.href='/bestUser/userReview?userId=${evalDTO.userId}&avg=${evalDTO.avg}'">
 							<div class="panel-heading"  style="background-color: #D1E0EF;">
 								<font style="color: #dd0000;font-size:20px;">${status.count}. </font>
 								<font style="font-size:20px;">${evalDTO.userId}</font>

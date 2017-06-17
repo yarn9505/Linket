@@ -103,7 +103,6 @@
 	                  </div>
 	               </div>
 	            </div>
-				<!-- End of 구매결정 모달창 -->
 
 				<!-- 후기작성 모달창 -->
 		      <div class="modal fade" id="reviewModal" >
