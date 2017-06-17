@@ -75,76 +75,85 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1"style="margin-left:0;margin-right:0;">
+				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<!-- header -->
-							<div class="modal-header">
-								<!-- 닫기(x) 버튼 -->
-								<button type="button" class="close" data-dismiss="modal">×</button>
-								<!-- header title -->
-								<h4 class="modal-title">구매결정 폼</h4>
-							</div>
-							<!-- body -->
-							<div class="modal-body">
-								<input type="hidden" id="bnoId" /><br /> <input type="hidden"
-									id="userIdVal" /><br /> <input type="hidden" id="cateIdVal" />
-								<label>거래할 사용자 ID</label> <input type="text" class="determine" />
-								<button type='button' class='determineBtn'>결정</button>
-							</div>
-							<!-- Footer -->
-							<div class="modal-footer">
-								<button id="closeBtn" type="button" class="btn btn-default"
-									data-dismiss="modal">닫기</button>
-							</div>
-						</div>
-					</div>
-				</div>
+	               <div class="modal-dialog">
+	                  <div class="modal-content">
+	                     <!-- header -->
+	                     <div class="modal-header">
+	                        <!-- 닫기(x) 버튼 -->
+	                        <button type="button" class="close" data-dismiss="modal"></button>
+	                        <!-- header title -->
+	                        <h4 class="modal-title">구매결정 폼</h4>
+	                     </div>
+	                     <!-- body -->
+	                     
+	                     <div class="modal-body">
+	                        <label>거래할 사용자 ID</label> 
+	                        <div class="input-group">
+	                           <input type="hidden" id="bnoId" /><br /> 
+	                           <input type="hidden" id="userIdVal" /> 
+	                           <input type="hidden" id="cateIdVal" />
+	                           <input type="text" class="determine form-control" />
+	                           <span class="input-group-btn">
+	                              <button type='button' class='btn btn-primary determineBtn' style="margin-top: 20px">결정</button>
+	                           </span>
+	                        </div>
+	                     </div>
+	                  </div>
+	               </div>
+	            </div>
 				<!-- End of 구매결정 모달창 -->
 
 				<!-- 후기작성 모달창 -->
-				<a href="#x" class="overlay" id="review_form"></a>
-				<div class="popup">
-					<center>
-						<h3 align="center">구매 후기 작성</h3>
-					</center>
-					<br>
-					<form id="formName" action="/mypage/writeReview" method="post">
-						<table class="table-bordered">
-							<tr>
-								<th
-									style="text-align: center; width: 15%; height: 34px; background-color: #D1E0EF">판매자</th>
-								<td><span id="userId" style="margin-left: 5px;"></span></td>
-							</tr>
-							<tr>
-								<th
-									style="text-align: center; width: 15%; height: 34px; background-color: #D1E0EF">거래인</th>
-								<td><span id="buyerId" style="margin-left: 5px;"></span></td>
-							</tr>
-							<tr>
-								<th style="text-align: center; background-color: #D1E0EF">내용</th>
-								<td><textarea rows="10" cols="80" name="pcontent"
-										id="pcontent" class="form-control"></textarea></td>
-							</tr>
-							<tr>
-								<th
-									style="text-align: center; height: 34px; background-color: #D1E0EF">별점</th>
-								<td><p class="star_rating">
-										<a href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
-										<a href="#">★</a> <a href="#">★</a>
-									</p> <input type="hidden" class="form-control" name="pscore"
-									id="pscore" /></td>
-							</tr>
-						</table>
-
-						<br> <input type="hidden" name="bno" id="bno" />
-						<div align="right">
-							<button id="cancelBtn" type="button" class="btn btn-default">취소</button>
-							<button id="reviewBtn" type="button" class="btn btn-warning">작성하기</button>
-						</div>
-					</form>
-					<a class="close" href="#close"></a>
-				</div>
+		      <div class="modal fade" id="reviewModal" >
+		        <div class="modal-dialog">
+		          <div class="modal-content">
+		            <!-- header -->
+		            <div class="modal-header">
+		              <!-- 닫기(x) 버튼 -->
+		              <button type="button" class="close" data-dismiss="modal"></button>
+		              <!-- header title -->
+		            <h3 class="modal-title">구매 후기 작성</h3>
+		            </div>
+		               <!-- body -->
+		               <div class="modal-body">
+		               <br>
+		               <table class="table-bordered">
+		                  <tr>
+		                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">판매자</th>
+		                     <td><span id="userId" style="margin-left:5px;"></span></td>
+		                  </tr>
+		                  <tr>
+		                     <th style="text-align: center; width: 15%; height:34px; background-color: #F6F6F6">거래인</th>
+		                     <td><span id="buyerId" style="margin-left:5px;" ></span></td>
+		                  </tr>
+		                  <tr>
+		                     <th style="text-align: center; background-color: #F6F6F6">내용</th>
+		                     <td><textarea rows="10" cols="80" name="pcontent" id="pcontent" class="form-control"></textarea></td>
+		                  </tr>
+		                  <tr>
+		                     <th style="text-align: center; height:34px; background-color: #F6F6F6">별점</th>
+		                     <td><p class="star_rating">
+		                         <a href="#" class="on">★</a>
+		                         <a href="#">★</a>
+		                         <a href="#">★</a>
+		                         <a href="#">★</a>
+		                         <a href="#">★</a></p>
+		                        <input type="hidden" class="form-control" name="pscore" id="pscore"/></td>
+		                  </tr>
+		               </table>
+		               
+		               </div>
+		               <!-- Footer -->
+		               <div class="modal-footer">
+		                  <input type="hidden" name="bno" id="bno" /> 
+		               <button id="reviewBtn" type="button" class="btn btn-warning">작성하기</button>
+		                 <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+		               </div>
+		             </div>
+		         </div>
+		      </div>
 
 
 				<div class="content-frame">
@@ -550,7 +559,7 @@
          } 
 		//myfavorListPaging 마이페이지 ajax로 페이징 하기
 
-							/** 내가 쓴 글  업데이트  2번째 꺼*/
+			/** 내가 쓴 글  업데이트  2번째 꺼*/
 		  function myWriteList() {
            $.ajax({
               type : 'get',
@@ -697,20 +706,20 @@
                        str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
                        str += "<td style='text-align: center;'>" + board.userId + "</td>";
                        str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-                        if(board.isSwap == 'Y'){
-                               str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
-                            }else if ( board.buyerId != null ){
-                                str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
-                             }else{
-                                str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
-                             }
-                             str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
+                       if(board.isSwap == 'Y'){
+                       		str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                       }else if ( board.buyerId != null ){
+                       		str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                       }else{
+                       		str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                       }
+                       str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                        str += "</tr>";
                     });
                     str += "</div>";
                     str += "</table>";
                     
-               var pageMaker=result.pageMaker;//페이징 객체
+              		 var pageMaker=result.pageMaker;//페이징 객체
                     // 페이징 처리
                     str += "<div class='text-center' >" +
                                 "<ul class='pagination'>";
@@ -724,18 +733,18 @@
                      for(i=pageMaker.startPage; i<=pageMaker.endPage; i++){
                         if(pageMaker.page==i){
                             str += "<li class='active'><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                            }else{
+                        }else{
                             str += "<li><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                            }
-                         }
-                      if(pageMaker.next){
+                        }
+                     }
+                     if(pageMaker.next){
                          str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.endPage)+1)+','+pageMaker.perPageNum+")'>▶</a></li>" ;
-                        }
-                        if(pageMaker.entireEndPage>1){   
+                     }
+                     if(pageMaker.entireEndPage>1){   
                         str +="<li><a href='javascript:myWritepaging("+pageMaker.entireEndPage+','+pageMaker.perPageNum+")'>마지막</a></li>";
-                        }
-                      str +="</ul>"
-                      +"</div>";
+                     }
+                     str +="</ul>"
+                     +"</div>";
                      }
                   
                  $("#formWrapper").append(str);
@@ -853,51 +862,57 @@
             $("#bnoId").val(bno);
             $("#userIdVal").val(userId);
             
-         });
-		$(document).on("click", "#closeBtn", function(event) {
+        });
+		
+        $(document).on("click", "#closeBtn", function(event) {
 			$(".determine").val("");
 		});
 
-					// 구매 결정 모달창에서 거래할 사람 아이디가 존재하는지 확인하고 있으면 검색처리 진행
-					$(".determineBtn").on("click", function(event) {
-						var txt = $(".determine").val();
-						if (txt == null || txt == '') {
-							alert("사용자를 지정하세요.");
-							txt.focus();
-							return;
-						} else {
-							$.ajax({
-								type : 'post',
-								url : '/mypage/existIdCheck',
-								headers : {
-									"Content-Type" : "application/json"
-								},
-								dataType : 'text',
-								data : JSON.stringify({
-									userId : $("#userIdVal").val(),
-									bno : $("#bnoId").val(),
-									cateId : $("#cateIdVal").val(),
-									buyerId : txt
-								}),
-								success : function(data) {
-									if (data == 'FAIL') {
-										alert("존재하지 않는 사용자 입니다. 다시 확인해주세요.");
-										$(".determine").focus();
-									} else if (data == 'SUCCESS') {
-										alert("게시글의 상태가 거래중으로 바꼈습니다.");
-										//해당 버튼 비활성화하기
-										buyerBtn.prop("disabled", true);
-										$("#layerpop").hide();
-										$(".determine").val("");
-										spanCustomer.html(txt);
-									} else if (data == "DUPLICATE") {
-										alert("이미 거래중인 고객입니다.");
-										$(".determine").focus();
-									}
-								}
-							});
+		// 구매 결정 모달창에서 거래할 사람 아이디가 존재하는지 확인하고 있으면 검색처리 진행
+		$(".determineBtn").on("click", function(event) {
+			var txt = $(".determine").val();
+			if(txt == "${loginSession.userId }"){
+				alert("자신을 지정할 수 없습니다.");
+				txt.focus();
+				return;
+			}
+			if (txt == null || txt == '') {
+				alert("사용자를 지정하세요.");
+				txt.focus();
+				return;
+			} else {
+				$.ajax({
+					type : 'post',
+					url : '/mypage/existIdCheck',
+					headers : {
+						"Content-Type" : "application/json"
+					},
+					dataType : 'text',
+					data : JSON.stringify({
+						userId : $("#userIdVal").val(),
+						bno : $("#bnoId").val(),
+						cateId : $("#cateIdVal").val(),
+						buyerId : txt
+					}),
+					success : function(data) {
+						if (data == 'FAIL') {
+							alert("존재하지 않는 사용자 입니다. 다시 확인해주세요.");
+							$(".determine").focus();
+						} else if (data == 'SUCCESS') {
+							alert("게시글의 상태가 거래중으로 바꼈습니다.");
+							//해당 버튼 비활성화하기
+							buyerBtn.prop("disabled", true);
+							$("#layerpop").hide();
+							$(".determine").val("");
+							spanCustomer.html(txt);
+						} else if (data == "DUPLICATE") {
+							alert("이미 거래중인 고객입니다.");
+							$(".determine").focus();
 						}
-					});
+					}
+				});
+			}
+		});
 
 					//5번 거래중인 게시물
 					function myExchangeList(){
@@ -940,10 +955,8 @@
 			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-			                       /* str += "<td style='text-align: center;'><button class='reviewBtn' data-target='#login_form' data-toggle='overlay'>후기 작성</button></td>"; */
 			                       str += "<td style='text-align: center;'>"
-			                          /* +  "<a href='#review_form' id='a_review' class='btn btn-link' data-toggle='popup' style='text-decoration:none;background-color:#eee;border-radius:10px;'><span>후기 작성</span></a></td>"; */
-			                          + "<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>"
+			                          	+ 	"<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>";
 			                       str += "</tr>";
 			                    });
 			                    str += "</div>";
@@ -1000,7 +1013,7 @@
 				                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
 				                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
 				                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
-				                    str += "<th style='width: 15%; text-align: center;''>작성날짜</th>";
+				                    str += "<th style='width: 15%; text-align: center;'>작성날짜</th>";
 				                    str += "<th style='text-align:center;'>구매결정</th>";
 				                    str += "<th>거래인</th>";
 				                    str += "</tr>";
@@ -1053,7 +1066,7 @@
 					}
 
 					// 후기 작성 버튼 눌렀을 때 데이터 저장 처리
-					$(document).on("click","#a_review",function(event) {
+					$(document).on("click",".writePost",function(event) {
 						var bno = $(this).parent().prev().prev().prev().prev().prev().text();
 						var userId = $(this).parent().prev().prev().text();
 						var buyerId = "${loginSession.userId }";
