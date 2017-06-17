@@ -16,11 +16,10 @@
 					<div class="what-row clearfix image-on-left">
 						<div class="what-row clearfix image-on-right">
 							<div>
-								<h4><span class="glyphicon glyphicon-envelope"
-								style="color: #0E3E59;">&nbsp;안 읽은 쪽지함</span></h4>
+								<h4><span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;안 읽은 쪽지함</span></h4>
 								<br/><br/>
 								<table class="table table-hover">
-									<tr>
+									<tr style="background-color: #D1E0EF;">
 										<th style="text-align: center;">No</th>
 										<th style="text-align: center;">보낸사람</th>
 										<th style="text-align: center;">제목</th>
