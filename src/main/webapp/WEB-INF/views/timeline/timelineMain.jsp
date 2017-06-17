@@ -96,7 +96,6 @@
     border-bottom: 1px dotted #ccc;
 }
 #timeline .item .info .up_cont h3{
-    
     font-size: 24px;
 }
 #timeline .item .info .down_cont .left_icons .view{
@@ -240,7 +239,6 @@
 				<a name="above"></a>
 
 				<div style="border: solid 1px #DDD !important; margin-top: 3%;">
-
 					<ul id="showTimeline" class="timeline">
 						<script id="entry-template2" type="text/x-handlebars-template"> 
 							<div id="timeline">    
@@ -252,17 +250,14 @@
    							 <!-- item -->
     							<div class="item "> 
         							<div class="cont_pic" style="background-image: url('{{imgPath}}');height:150px">
-            							<div class="like_pic" ><i class="fa fa-heart-o"></i></div>
+            							<div class="like_pic" ><img class="likeImg" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/></div>
         							</div> <!-- #cont_pic -->
         							<div class="info">
            								 <div class="up_cont">
                 							<h3><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1">{{btitle}}</a></strong></h3>
                 							 <p class="timeline-event-thumbnail">{{dateVal bregdate}}</p>
-                       						 <br/>
 											 <p>{{cateName}}</p>
-                       						 <br/>
 											 <p>{{distanceVal distance}}</p>
-                       						 <br/>
 											 <p>{{value}} 원</p>
             							</div> <!-- #up_cont -->
             							<div class="down_cont">
