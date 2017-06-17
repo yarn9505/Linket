@@ -20,7 +20,6 @@
 						<br>
 
 						<table class="table table-hover">
-
 							<tr style="background-color: #D1E0EF;">
 								<th style="text-align: center;">No</th>
 								<th style="text-align: center;">받는사람</th>
