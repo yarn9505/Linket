@@ -256,7 +256,7 @@
 					<label style="font-style: bold;">판매자ID </label>
 					<div id="search" style="float: right;" class="input-group">
 						<input type="hidden" name="searchType" id="searchType" value="userId" /> 
-							<input type="text" name="searchText" class="form-control" vid="searchText" value="${pagingDTO.searchText }" />
+							<input type="text" name="searchText" class="form-control" id="searchText" value="${pagingDTO.searchText }" />
 						<div class="input-group-btn">
 							<button onclick="paging('1');" class="btn btn-default btn-lg" style="padding-bottom: 11px; padding-top: 11px;">
 								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
