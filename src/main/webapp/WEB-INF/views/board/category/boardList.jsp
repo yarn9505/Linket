@@ -45,7 +45,7 @@
 
 				<br /><br />
 
-				<table class="table table table-hover">
+				<table class="table table table-hover" style="table-layout: fixed;">
 					<tr style="background-color: #D1E0EF;">
 						<th style="width: 10%; text-align: center;">No</th>
 						<th style="width: 45%; text-align: center;">제목</th>
@@ -61,7 +61,7 @@
 					<c:forEach items="${boardList}" var="boardDTO" varStatus="status">
 						<tr style="text-align: center">
 							<td>${status.count }</td>
-							<td><a href="/board/category/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }" style="display:block;margin:0 auto; max-width:500px; min-width:200px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;"> ${boardDTO.bTitle }</a></td>
+							<td><a href="/board/category/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }" style="display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">${boardDTO.bTitle }</a></td>
 							<td>${boardDTO.userId }</td>
 							<td>${boardDTO.bRegDate }</td>
 							<td><span class="badge" style="background-color: #BFC2C3;">${boardDTO.viewCnt}</span></td>

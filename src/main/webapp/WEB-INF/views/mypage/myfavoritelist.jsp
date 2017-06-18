@@ -168,7 +168,7 @@
 				<div id="formWrapper" style="float: left;">
 
 					<div id="form-contact" style="padding-left: 1%">
-						<table class="table table-hover">
+						<table class="table table-hover" style="table-layout:fixed;">
 							<tr style="background-color: #D1E0EF;">
 								<th style="width: 10%; text-align: center;">글번호</th>
 								<th style="width: 15%; text-align: center;">카테고리</th>
@@ -188,7 +188,7 @@
 									<td id="tablebNo">${boardDTO.bNo}</td>
 									<td>${boardDTO.cateName}</td>
 									<td><a
-										href="/board/category/detailContent?bno=${boardDTO.bNo}">${boardDTO.bTitle }</a></td>
+										href="/board/category/detailContent?bno=${boardDTO.bNo}" style="display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">${boardDTO.bTitle }</a></td>
 									<td>${boardDTO.userId }</td>
 									<td>${boardDTO.bRegDate }</td>
 									<td>
@@ -374,7 +374,7 @@
 			                   	$("#form-contact").remove();
 			                   	var str = "";
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
-			                    str += "<table class='table table-hover'>";
+			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                 	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
 			                 	str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -393,7 +393,7 @@
 			                       str += "<tr id='table123' style='text-align: center'>";
 			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+" style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:20px; height:20px;'/></td>";
@@ -454,7 +454,7 @@
                     	$("#form-contact").remove();
                     	var str = "";
                         str += "<div id='form-contact' style='padding-left: 1%'>";
-                        str += "<table class='table table-hover'>";
+                        str += "<table class='table table-hover' style='table-layout:fixed;'>";
                         str += "<tr style='background-color:#D1E0EF;'>";
                     	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
                     	str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -478,7 +478,7 @@
                             str += "<tr id='table123' style='text-align: center'>";
                             str += "<td style='text-align: center;'>" + board.bNo + "</td>";
                             str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-                            str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                            str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                             str += "<td style='text-align: center;'>" + board.userId + "</td>";
                             str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                             str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:20px; height:20px;'/></td>";
@@ -542,7 +542,7 @@
                     var str = "";
                     $("#form-contact").remove();
                     str += "<div id='form-contact' style='padding-left: 1%'>";
-                    str += "<table class='table table-hover'>";
+                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
                     str += "<tr style='background-color:#D1E0EF;'>";
                     str += "<th style='width: 10%; text-align: center;'>글번호</th>";
                     str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -565,7 +565,7 @@
                        str += "<tr>";
                        str += "<td style='text-align: center;'>" + board.bNo + "</td>";
                        str += "<td>" + board.cateName + "</td>";
-                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                        str += "<td style='text-align: center;'>" + board.userId + "</td>";
                        str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                        
@@ -648,8 +648,8 @@
                     var str = "";
                     $("#form-contact").remove();
                     str += "<div id='form-contact' style='padding-left: 1%'>";
-                    str += "<table class='table table-bordered'>";
-                    str += "<tr style='background-color: #FFA800;'>";
+                    str += "<table class='table table-bordered' style='table-layout:fixed;'>";
+                    str += "<tr style='background-color: #D1E0EF;'>";
                     str += "<th style='width: 5%; text-align: center;'>No</th>";
                     str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
                     str += "<th style='width: 35%; text-align: center;'>제목</th>";
@@ -671,7 +671,7 @@
                        str += "<tr>";
                        str += "<td style='text-align: center;'>" + board.bNo + "</td>";
                        str += "<td>" + board.cateName + "</td>";
-                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                        str += "<td style='text-align: center;'>" + board.userId + "</td>";
                        str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                        if(board.isSwap == 'Y'){
@@ -744,8 +744,8 @@
                       var str = "";
                       $("#form-contact").remove();
                       str += "<div id='form-contact' style='padding-left: 1%'>";
-                      str += "<table class='table table-bordered'>";
-                      str += "<tr style='background-color: #FFA800;'>";
+                      str += "<table class='table table-bordered' style='table-layout:fixed;'>";
+                      str += "<tr style='background-color: #D1E0EF;'>";
                       str += "<th style='width: 5%; text-align: center;'>No</th>";
                       str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
                       str += "<th style='width: 35%; text-align: center;'>제목</th>";
@@ -767,7 +767,7 @@
                           str += "<tr>";
                           str += "<td style='text-align: center;'>" + board.bNo + "</td>";
                           str += "<td>" + board.cateName + "</td>";
-                          str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+                          str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                           str += "<td style='text-align: center;'>" + board.userId + "</td>";
                           str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                            if(board.isSwap == 'Y'){
@@ -900,7 +900,7 @@
 			                    
 			                    $("#form-contact").remove();
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
-			                    str += "<table class='table table-hover'>";
+			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
 			                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -920,7 +920,7 @@
 			                       str += "<tr>";
 			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 			                       str += "<td>" + board.cateName + "</td>";
-			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 			                       str += "<td style='text-align: center;'>"
@@ -975,7 +975,7 @@
 									
 									$("#form-contact").remove();
 									str += "<div id='form-contact' style='padding-left: 1%'>";
-				                    str += "<table class='table table-hover'>";
+				                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 				                    str += "<tr style='background-color:#D1E0EF;'>";
 				                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
 				                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -989,7 +989,7 @@
 										str += "<tr>";
 										str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 										str += "<td>" + board.cateName + "</td>";
-										str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"'>"+ board.bTitle +" </a> </td>";
+										str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 										str += "<td style='text-align: center;'>" + board.userId + "</td>";
 										str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 										str += "<td style='text-align: center;'>"
