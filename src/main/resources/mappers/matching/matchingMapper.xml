@@ -57,11 +57,6 @@
       where userId = #{userId}
    </select>
    
-   <!-- allowVal을 게시글 작성자가 누른 경우 mno조건으로 allowVal 상태가 변경됨 -->
-   <update id="updateAllowVal">
-      update board set allowVal = 'Y' where bno=(select bno from matchingT where mno = #{mno}) 
-   </update>
-   
    <!-- 내가 요청을 받은 게시글 리스트 확인 -->
    <select id="listMyMatch" resultType="matchingCntDTO">
       select matchingT.bno, board.btitle, board.value, count(matchingT.bno) AS bnoNum, ROUND(AVG(matchingT.wantedValue)) AS avgValue
@@ -121,6 +116,74 @@
          from board left outer join usertable on usertable.userId = board.userId
          where usertable.userId = #{vo.userId} and board.bno = (select bno from matchingT where mno = #{mno})
    </select>
+   
+   <!-- mno를 가지고 bno와 sellerId를 가지고 오는 매퍼 -->
+	<select id="infoForUpdate" resultType="BoardDTO">
+		select board.bno as bNo, board.userId
+		from board
+		where board.bno = (select bno from matchingT where mno=#{mno})
+	</select>
+	
+	<!-- 게시자가 원하는 요청글을 선택한 경우, mno를 받아서 allowVal을 바꾸고 sellerId에 판매자 아이디 추가 -->
+	<!-- 6월 18일 데이터베이스 조금 수정, sql문도 좀 바꿈 -->
+	<!-- swit 상태 : ON) 요청   ,   OFF)요청취소 -->
+	<update id = "updateAllowVal">
+		update board join matchingT
+		on board.bno = matchingT.bno
+		set 
+		<if test='swit=="ON"'>
+		board.allowVal='Y',
+		matchingT.sellerId = #{sellerId}
+		</if>
+		<if test='swit=="OFF"'>
+		board.allowVal='N',
+		matchingT.sellerId = NULL
+		</if>
+		where board.bno = #{bno} and matchingT.mno=#{mno};
+	</update>
+	
+	<!-- isSwap = 'N' /allowVal ='Y' 인 게시글 중에서 내 아이디를 검색 -->
+	<select id="selectMyBno" resultType = "matchingDTO">
+		select
+			matchingT.bno, board.userId as userId, board.btitle as btitle, 
+			board.bcontent as bcontent, board.value as bcontent, board.bregdate as bregdate,
+			matchingT.requestMsg, matchingT.wantedValue, matchingT.mno, matchingT.sellerId
+		from matchingT left outer join board on matchingT.bno = board.bno
+		where board.allowVal = 'Y' and board.isSwap = 'N' and 
+		((board.userId = #{userId} and matchingT.sellerId is not NULL ) or (matchingT.sellerId = #{userId}))
+	</select>
+	
+	<!-- 나와 거래중인 사용자의 정보를 가지고 옴 -->
+	<!-- matchingT의 userId(내가 거래자인경우)와 matchingT의 seller가 나인 경우(내가 판매자) 구분하여 상대방 정보를 가지고 온다 -->	
+	<!-- 어차피 웹상에서 판매자와 거래자의 자리가 정해져있기 때문에 -->
+	<!-- 1) 내가 판매자인 경우 : 구매자의 정보를 가지고 옴  -->
+	<!-- 2) 내가 구매자인 경우 : 판매자의 정보를 가지고 옴 -->
+	<!-- 3) 내 정보를 가지고 오기 -->
+	<select id = "WhoAmI" resultType = "UserVO">
+		select userId, userName, userHp, rank
+		from usertable
+		where userId = #{userId}
+	</select>
+	
+	
+	<!-- 후기에 정보 넣어주기 -->
+	<insert id="insertTranPost">
+		insert into eval(userId, bno, cateId, buyerId, pscore)
+		values(
+		(select sellerId from matchingT where mno = #{mno} and requester = #{vo.userId}),
+		(select bno from matchingT where mno= #{mno}),
+		(select board.cateId from board left outer join matchingT on board.bno=matchingT.bno 
+		where board.bno=(select bno from matchingT where mno=#{mno}) and matchingT.mno = #{mno} ),
+		#{vo.userId},
+		1)
+	</insert>
+	
+	<!-- eval에서 구매후기 정보 가지고 오기 -->
+	<select id="selectEval" resultType = "EvalDTO">
+		select eval.bno, eval.userId, eval.buyerId
+		from eval left outer join matchingT on eval.bno = matchingT.bno
+		where eval.bno = (select bno from matchingT where mno=#{mno})
+	</select>
    
 </mapper>
 

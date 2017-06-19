@@ -83,6 +83,30 @@ width:100%;
 	.hero-widget label { font-size: 17px; }
 	.hero-widget .options { margin-top: 10px; }
 	
+	/* 후기작성 모달창 */
+	.star_rating {
+	   font-size: 0;
+	   letter-spacing: -4px;
+	}
+	
+	.star_rating a {
+	   font-size: 22px;
+	   letter-spacing: 0;
+	   display: inline-block;
+	   margin-left: 5px;
+	   color: #ccc;
+	   text-decoration: none;
+	}
+	
+	.star_rating a:first-child {
+	   margin-left: 0;
+	}
+	
+	.star_rating a.on {
+	   color: #F78E41;
+	}
+	
+	
 </style>
 
 
@@ -90,6 +114,55 @@ width:100%;
 </head>
 
 <body>
+
+	<!-- 후기작성 모달창 -->
+            <div class="modal fade" id="reviewModal" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <!-- header -->
+                     <div class="modal-header">
+                        <!-- 닫기(x) 버튼 -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- header title -->
+                        <h3 class="modal-title">구매 후기 작성</h3>
+                     </div>
+                     <!-- body -->
+                     <div class="modal-body">
+                        <br>
+                        <table class="table-bordered">
+                           <tr>
+                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">판매자</th>
+                              <td><span id="userId" style="margin-left: 5px;"></span></td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">거래인</th>
+                              <td><span id="buyerId" style="margin-left: 5px;"></span></td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; background-color: #F6F6F6">내용</th>
+                              <td><textarea rows="10" cols="80" name="pcontent"
+                                    id="pcontent" class="form-control"></textarea></td>
+                           </tr>
+                           <tr>
+                              <th
+                                 style="text-align: center; height: 34px; background-color: #F6F6F6">별점</th>
+                              <td><p class="star_rating">
+                                    <a href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
+                                    <a href="#">★</a> <a href="#">★</a>
+                                 </p> <input type="hidden" class="form-control" name="pscore" id="pscore" /></td>
+                           </tr>
+                        </table>
+
+                     </div>
+                     <!-- Footer -->
+                     <div class="modal-footer">
+                        <input type="hidden" name="bno" id="bno" />
+                        <button id="reviewBtn" type="button" class="btn btn-primary" data-dismiss="modal">작성하기</button>
+                        <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
      <!-- 비교하기 누르면 나타나는 모달창 -->
                 <!-- 화면 꽉찬 modal -->
@@ -399,7 +472,8 @@ width:100%;
                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'><b>게시판별 요청받은 게시글</b>
                
                <!-- 비교하기 버튼 -->   
-                <button id='compareBtn' style='border-radius: 5px;margin-left:10px;' data-toggle="modal" data-target="#myFullsizeModal">비교하기</button>                  
+                <button id='compareBtn' class="btn btn-default" style='border-radius: 5px;margin-left:10px;width: 64px;height: 19px;
+    padding: 0px;' data-toggle="modal" data-target="#myFullsizeModal">비교하기</button>                  
                      <!-- 스위치 -->
                      <div class="btn-group" id="status" data-toggle="buttons" style='float:right;'>
                     <label class="btn btn-default btn-on btn-xs active" id="checkedPrice" >
@@ -418,22 +492,30 @@ width:100%;
                      </div>
                   </div>
                
-               
-                  <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
+                <!-- 매칭 성사돈 경우 둘간의 정보를 표시해줄 곳!! -->
+                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
                      <h1 class="BoxTitle" style='background-color:#D1E0EF;'>콘텐츠 박스</h1>
-                     <div class="BoxBody">
-                        이곳에 내용 작성
+					 <button  id="sellingBtn">판매중인 정보</button>
+					 <button  id="buyingBtn">구매중인 정보</button>
+                     <div id="matchingDiv" class="BoxBody" style="margin:0 auto;">
+							<!-- 이곳에 내용... -->
+                     	
                      </div>
                   </div>
+                <!-- END of 매칭 성사 -->  
+                  
+                  
+                  
+                  
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
                      <h1 class="BoxTitle" style='background-color:#D1E0EF;'>
                         서브 버튼은 이렇게
                         <div class="BoxToolbar">
-                           <button>버튼 1</button>
-                           <button>버튼 2</button>
-                           <button>버튼 3</button>
-                           <button>버튼 4</button>
+                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 1</button>
+                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 2</button>
+                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 3</button>
+                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 4</button>
                         </div>
                      </h1>
                      <div class="BoxBody">
@@ -459,18 +541,17 @@ width:100%;
                      <h1 class="BoxTitle" style='background-color:#D1E0EF;'>구매 희망 품목 설정창</h1>
                      <div class="BoxBody">
                         <p><b>구매를 희망하는 상품명을 등록하세요.</b></p>
-                        <table cellpadding="5" cellspacing="0">
+                        <table cellpadding="5" cellspacing="0" class="form-group">
                            <tr>
-                              <td valign="top"><label style="margin-right:10px;">상품명</label></td>
-                              <td colspan="2"><input id="keywordId" type="text" name="productKeywords"/></td>
-                              <td align="right"><button id="listBtn" style="margin-left:5px;">등록</button></td>
+                              <td valign="top" style="padding-top: 10px;"><label style="margin-right:10px;">상품명</label></td>
+                              <td colspan="2"><input class="form-control" id="keywordId" type="text" name="productKeywords"/></td>
+                              <td align="right"><button id="listBtn" class="btn btn-default">등록</button></td>
                            </tr>
                         </table>
                      </div>
                   </div>
                   <script type="text/javascript">
                      $(document).ready(function(){
-                        
                         //button : 저기서 bno받아오는애...
                         var button ; 
                         // 요청받은 목록 띄우기
@@ -503,7 +584,6 @@ width:100%;
                         $("#checkedDistance").on("click",function(){
                            listMatchContent(button, "distance");
                         });
-                        
                         
                         /* 세부요청게시글 */
                         function listMatchContent(button, condi){
@@ -726,8 +806,210 @@ width:100%;
 	                               });
 	                            }//if
 	                         });//삽입에 사용하기 위한 버튼
-	                      
 	                         
+	                         
+	                         // 내가 판매자인 경우 버튼 클릭
+	                         $("#sellingBtn").on("click",function(event){
+	                        	 listMyTransactionInfo("sellingBtn");
+	                         });
+	                         // 내가 구매자인 경우 버튼 클릭
+	                         $("#buyingBtn").on("click",function(event){
+	                        	listMyTransactionInfo("buyingBtn"); 
+	                         });
+	                         
+	                        /* 초기에 내 거래내용 뿌려주기 위한 함수  */
+	                        function listMyTransactionInfo(status){
+	                        	$("#matchingDiv").empty();
+	                        	var str="";
+	                        	if( status == "sellingBtn" ){
+	                        		$.ajax({
+		                                  type:"GET",
+		                                  headers:{
+		                                     "Content-Type":"application/json"
+		                                  },
+		                                  url:"/matching/matchingResult?mno=",
+		                                  dataType:"json",
+		                                  success:function(data){
+		                                	  console.log("^0^거래리스트 켜지고 바로 도착!");
+		                                	  // 내 기준 판매자일 때의 정보
+		                                	 	for(var i=0; i<data.IamSeller.length;i++){
+		                                			// IamSeller : 내가 판매자인 경우
+		                                	 		 str += 
+		                                	 			 	"<div class='panel panel-default' style='float:left;width:220px;margin-left:22px;'>"
+		 		 	                                          	+"<div id='"+data.IamSeller[i].mno+"' class='panel-heading mnoVal'>내 정보(판매중)</div>"
+		 		 	                                          	+"<table class='table'>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>판매자 ID</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userId +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>판매자 이름</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userName +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>판매자 Tel</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userHp +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>게시글 제목</td>"
+		 		 	                                          			+"<td>"+ data.IamSeller[i].btitle +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          	+"</table>"
+			 	                                          	+"</div>"
+			 	                                          	+"<div class='panel panel-default' style='float:left;width:220px;margin-left:20px;'>"
+			 	                                          		+"<div class='panel-heading'>매칭된 고객(구매중)</div>"
+			 	                                          		+"<table class='table'>"
+			 	                                          			+"<tr>"
+			 	                                          				+"<td>거래인 ID</td>"
+			 	                                          				+"<td>"+ data.MyCustomerList[i].userId +"</td>"
+			 	                                          			+"</tr>"
+		 		 	                                          		+"<tr>"
+			 	                                          				+"<td>거래인 이름</td>"
+			 	                                          				+"<td>"+ data.MyCustomerList[i].userName +"</td>"
+			 	                                          			+"</tr>"
+			 	                                          			+"<tr>"
+			 	                                          				+"<td>Tel</td>"
+			 	                                          				+"<td>"+ data.MyCustomerList[i].userHp +"</td>"
+			 	                                          			+"</tr>"
+		 		 	                                          		+"<tr>"
+			 	                                          				+"<td>요청 정보</td>"
+			 	                                          				+"<td>"+ data.IamCustomer[i].requestMsg +"</td>"
+			 	                                          			+"</tr>"
+// 			 	                                          			+"<input type='hidden' value='"+data.IamSeller[i].mno"' style='display:none;' />"
+			 	                                          		+"</table>"
+			 	                                          	+"</div>"
+			 	                                          	+"<div style='margin-left:340px;clear:both;'>"
+			 	                                          		+"<button class='cancelBtn btn btn-primary' type='button'>거래취소</button>"
+			 	                                          		+"<hr/><br/>"
+			 	                                          	+"</div>"
+		                                	 	} // end of for
+		                                	 	$("#matchingDiv").prepend(str);
+		                                	 	$("#matchingDiv").prepend("<div style='font-weight:bold;text-align:center;'><판매 대기중인 내역></div><hr/>");
+		                                  }//end of success
+		                        	});// end of ajax
+	                        	}else if( status == "buyingBtn" ){ // 내가 판매자인 경우 버튼 클릭시...
+	                        		$.ajax({
+		                                  type:"GET",
+		                                  headers:{
+		                                     "Content-Type":"application/json"
+		                                  },
+		                                  url:"/matching/matchingResult?mno=",
+		                                  dataType:"json",
+		                                  success:function(data){
+		                                	  console.log("^0^거래리스트 켜지고 바로 도착!");
+		                                	  // 내 기준 판매자일 때의 정보
+		                                	 	for(var i=0; i<data.IamCustomer.length;i++){
+		                                			// IamCustomer : 내가 거래 요청자인 경우
+		                                	 		 str += 
+		                                	 			 	"<div class='panel panel-default' style='float:left;width:220px;margin-left:22px;'>"
+		 		 	                                          	+"<div id='"+data.IamCustomer[i].mno+"' class='panel-heading mnoVal'>내정보(구매중)</div>"
+		 		 	                                          	+"<table class='table'>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>ID</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userId +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>이름</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userName +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>Tel</td>"
+		 		 	                                          			+"<td>"+ data.myinfo.userHp +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          		+"<tr>"
+		 		 	                                          			+"<td>요청 Msg</td>"
+		 		 	                                          			+"<td>"+ data.IamCustomer[i].requestMsg +"</td>"
+		 		 	                                          		+"</tr>"
+		 		 	                                          	+"</table>"
+			 	                                          	+"</div>"
+			 	                                          	+"<div class='panel panel-default' style='float:left;width:220px;margin-left:20px;'>"
+			 	                                          		+"<div class='panel-heading'>판매자 정보(판매중)</div>"
+			 	                                          		+"<table class='table'>"
+			 	                                          			+"<tr>"
+			 	                                          				+"<td>판매자 ID</td>"
+			 	                                          				+"<td>"+ data.MySellerList[i].userId +"</td>"
+			 	                                          			+"</tr>"
+		 		 	                                          		+"<tr>"
+			 	                                          				+"<td>판매자 이름</td>"
+			 	                                          				+"<td>"+ data.MySellerList[i].userName +"</td>"
+			 	                                          			+"</tr>"
+			 	                                          			+"<tr>"
+			 	                                          				+"<td>Tel</td>"
+			 	                                          				+"<td>"+ data.MySellerList[i].userHp +"</td>"
+			 	                                          			+"</tr>"
+		 		 	                                          		+"<tr>"
+			 	                                          				+"<td>게시글 제목</td>"
+			 	                                          				+"<td>"+ data.MySellerList[i].btitle +"</td>"
+			 	                                          			+"</tr>"
+			 	                                          		+"</table>"
+			 	                                          	+"</div>"
+			 	                                          	+"<div style='margin-left:340px;clear:both;'>"
+			 	                                          		+"<button class='btn btn-default writePost' data-target='#reviewModal' >후기 작성</button>"
+			 	                                          		+"<button class='cancelBtn btn btn-primary' type='button'>거래취소</button>"
+			 	                                          		+"<hr/><br/>"
+			 	                                          	+"</div>"
+		                                	 	} // end of for
+		                                	 	$("#matchingDiv").prepend(str);
+		                                	 	$("#matchingDiv").prepend("<div style='font-weight:bold;text-align:center;'><구매 대기중인 내역></div><hr/>");
+		                                  }//end of success
+		                        	});// end of ajax
+	                        	}
+	                        }//end of listMyTransactionInfo()
+	                         
+	                        
+	                        // 처음 페이지 뜰 때 매칭되어져 있는 상태 표시
+	                        listMyTransactionInfo("sellingBtn");
+	                      
+	                        // 구매 최종 확정 버튼 클릭시...
+	                        $(document).on("click",".writePost",function(event){
+								var obj = $(this); // 클릭된 객체 가져오기
+								var mnoDiv = obj.parent().prev().prev().find(".mnoVal");
+	                        	var mno = mnoDiv.attr("id");
+	                       		$.ajax({
+	                       			type:"GET",
+	                       			headers:{
+	                       				"Content-Type":"application/json"
+	                       			},
+	                       			url:"/matching/confirmMatching?mno="+mno,
+	                       			dataType:"json",
+	                       			success:function(data){
+										//bno를 받아오고
+										//modal 쇼해주고...
+										var userId = data.eval.userId;
+										var buyerId = data.eval.buyerId;
+										var bno = data.eval.bno;
+										$("#bno").val(bno);
+							            $("#userId").text(userId);
+							            $("#buyerId").text(buyerId);
+
+							            $("#reviewModal").show();
+	                       			}
+	                       		});
+	                        });
+	
+	                        // 구매 취소 버튼 클릭시...
+	                        $(document).on("click",".cancelBtn",function(event){
+	                        	var obj = $(this); // 클릭된 객체 가져오기
+								var mnoDiv = obj.parent().prev().prev().find(".mnoVal");
+	                        	var mno = mnoDiv.attr("id");
+	                        	$.ajax({
+	                       			type:"GET",
+	                       			headers:{
+	                       				"Content-Type":"application/json"
+	                       			},
+	                       			url:"/matching/cancelMatching?mno="+mno,
+	                       			dataType:"text",
+	                       			success:function(data){
+	                       				if ( data == "cancelSUCCESS" ){
+	                       					// 취소 성공
+	                       					alert("거래가 취소되었습니다.");
+	                       				}
+	                       			}
+	                       		});
+	                        });
+	                        
+	                        
+	                        
 	                        // 요청하기 버튼 클릭시... 요청정보를 controller에 있는 애한테 정보를 보내야됨
 	                        $(document).on("click",".sendBtn",function(event){
 	                           
@@ -757,7 +1039,7 @@ width:100%;
 	                           var requestMsgObj = $("#requestMsg");
 	                           // 모달에 세팅
 	                           // 제목 전달
-	                            $("#modalTitle").html(titleObj.text()); 
+	                           $("#modalTitle").html(titleObj.text()); 
 	                           $("#modalUserId").val(userIdObj.val());                           
 	                           $("#modalBno").val(bnoObj.val());
 	                           $("#modalCategory").html(cateNameObj.val());
@@ -768,20 +1050,40 @@ width:100%;
 	                           $("#modalContent").html(bcontentObj.val());
 	                              
 	                           });//요청하기 ajax
-                        
 	                           
-	                           var confirmVal;
-	                           for(var i=1; i<=4; i++){
-		                           $("#"+i+"Container").on("click",function(event){
-										var parentObj = $(this);
-										var mno = parentObj.find("#"+i+"MnoId").val();
-										confirmVal = confirm("해당 요청을 선택하시겠습니까?");
-										if(confirmVal){
-											
-										};
-		                           });
-	                           }
+		                        var confirmVal;
+	                           	var mno;
+	                           $("#1Container").on("click",function(event){
+	                        	   var parentObj = $(this);
+		                           mno = parentObj.find("#1MnoId").val();
+								   isConfirmVal();
+	                           });
+	                           $("#2Container").on("click",function(event){
+	                        	   var parentObj = $(this);
+		                           mno = parentObj.find("#2MnoId").val();
+								   isConfirmVal();
+	                           });
+	                           $("#3Container").on("click",function(event){
+	                        	   var parentObj = $(this);
+		                           mno = parentObj.find("#3MnoId").val();
+								   isConfirmVal();
+	                           });
+	                           $("#4Container").on("click",function(event){
+	                        	   var parentObj = $(this);
+		                           mno = parentObj.find("#4MnoId").val();
+								   isConfirmVal();
+	                           });
+	                            
 	                           
+	                            function isConfirmVal(){
+	                            	confirmVal = confirm("해당 요청을 선택하시겠습니까?");
+	                            	var str = "";
+	                            	if(confirmVal){ // 확인창 true
+	                            		listMyTransactionInfo("sellingBtn");
+	 	                            };// end of confirmVal if
+	                            	
+	                            }//end of isConfirmVal()
+	                            
                      });// end of ready()
                   </script>
                   
