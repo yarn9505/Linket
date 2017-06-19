@@ -7,7 +7,7 @@
 	<!-- 네비게이션 -->
 	<aside>
 		<h3 class="navibar" style="margin-bottom: 20px;">
-			My Page<span class="arrow-down glyphicon glyphicon-menu-down"
+			My Page<span class=" glyphicon glyphicon-menu-down"
 				aria-hidden="true" style="float: right;"></span>
 		</h3>
 		<ul class="navibar">

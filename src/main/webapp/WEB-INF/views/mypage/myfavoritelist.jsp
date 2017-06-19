@@ -986,27 +986,6 @@
 			    
 			});
 		</script>
-		<script type="text/javascript">
-			$(document).ready(function () {
-				$(window).resize(function() {
-			        $checkWidth = $(window).width();
-	
-			        if ($checkWidth > 1000) {
-			           	$("aside ul").css( "display", "block" );
-			        } else {
-			            	$("aside ul").css( "display", "none" );
-			        }
-				});
-
-				  
-				$("aside h3").click(function () {
-					if( $(window).width() < 1000) {   
-			     		$(this).next("ul").slideToggle();
-				    } 
-				});
-			});
-
-			</script>
 		</div>
 	</div>
 </body>

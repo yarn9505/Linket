@@ -1,3 +1,9 @@
+@mixin transition {
+-webkit-transition: all 0.5s ease-in-out;
+-moz-transition: all 0.5s ease-in-out;
+transition: all 0.5s ease-in-out;
+}
+
 
 .navibar h2 {
 	font-weight: 300;
@@ -7,6 +13,7 @@
 }
 
 aside {
+	background-color: white;
 	position: absolute;
 	width: 200px;
 	/* border: solid 1px #e3e3e3; */
@@ -40,35 +47,26 @@ aside {
 	text-decoration: none;
 }
 
-.navibar li a:active { @include transition;
+
+.navibar li a:hover { 
+	@include transition;
 	background: #e3e3e3;
 	color: #158cba;
 	text-decoration: none;
 }
 
-.navibar li a:hover { @include transition;
-	background: #e3e3e3;
-	color: #158cba;
-	text-decoration: none;
-}
 
-}
 @media ( max-width : 980px) {
-	aside {h3 { cursor:pointer;
+	aside 
+	{
 		position: relative;
+		border: solid 1px #e3e3e3;
+		border-top: 1px solid #158cba;
+		width: 100%;
 	}
 	.navibar ul {
 		display: none;
 	}
-	.arrow-down {
-		width: 0;
-		height: 0;
-		border-left: 10px solid transparent;
-		border-right: 10px solid transparent;
-		border-top: 10px solid orange;
-		position: absolute;
-		right: 0;
-		top: 7px;
-	}
-}
+	
+	
 }
