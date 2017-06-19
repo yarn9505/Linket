@@ -58,7 +58,7 @@
 			</div>
 
 			<div class="col-md-8 col-md-offset-1">
-
+				
 				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">
 					<div class="modal-dialog">
@@ -166,8 +166,9 @@
 				</div>
 
 				<div id="formWrapper" style="float: left;">
-
 					<div id="form-contact" style="padding-left: 1%">
+					<h3><span class="glyphicon glyphicon-ok-circle likeTitle" style="color: #0E3E59;">&nbsp;좋아요 목록</span></h3>
+					<br/><br/>
 						<table class="table table-hover" style="table-layout:fixed;">
 							<tr style="background-color: #D1E0EF;">
 								<th style="width: 10%; text-align: center;">글번호</th>
@@ -201,36 +202,6 @@
 							</c:forEach>
 						</table>
 
-						<%-- 	<form action="/mypage/myFavoriteList">
-						<table align="center">
-							<tr>
-								<td><select name="searchType" class="form-control col-md-3">
-										<option value="titleContent"
-											<c:if test="${pageMaker.searchType eq 'titleContent'}" > selected="selected" </c:if>>제목+내용</option>
-										<option value="writer"
-											<c:if test="${pageMaker.searchType eq 'writer'}" > selected="selected" </c:if>>글쓴이</option>
-										<option value="title"
-											<c:if test="${pageMaker.searchType eq 'title'}" > selected="selected" </c:if>>제목</option>
-								</select></td>
-								<td>&nbsp;&nbsp;</td>
-								<td>
-								
-									<div class="input-group">
-										<input style="width: 400px" type="text" name="searchText"
-											class="form-control col-md-3"
-											value="${pagingDTO.searchText }" /> <input type="hidden"
-											name="cateId" value="${cateDTO.cateId }" /> <span
-											class="input-group-btn">
-											<button type="submit" class="btn btn-default">
-												<img src="/resources/images/search.png" style="width: 21px;">
-											</button>
-										</span>
-									</div>
-									
-								</td>
-							</tr>
-						</table>
-					</form> --%>
 						<!-- 
                        	[이전][1][2][3]...[10][다음] 부분 작성
                         -->
@@ -372,9 +343,13 @@
 			                  success : function(result) {
 			                  if (result.success == "success") {
 			                   	$("#form-contact").remove();
+			                   	$(".likeTitle").remove();
+			                   
 			                   	var str = "";
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
 			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
+								str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;좋아요 목록</span></h3>";
+								str += "<br/><br/>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                 	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
 			                 	str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
@@ -452,8 +427,11 @@
                    success : function(result) {
                    if (result.success == "success") {
                     	$("#form-contact").remove();
+                    	$(".likeTitle").remove();
                     	var str = "";
                         str += "<div id='form-contact' style='padding-left: 1%'>";
+                        str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;좋아요 목록</span></h3>";
+						str += "<br/><br/>";
                         str += "<table class='table table-hover' style='table-layout:fixed;'>";
                         str += "<tr style='background-color:#D1E0EF;'>";
                     	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
@@ -541,7 +519,10 @@
                  if (result.success == "success") {
                     var str = "";
                     $("#form-contact").remove();
+                    $(".likeTitle").remove();
                     str += "<div id='form-contact' style='padding-left: 1%'>";
+					str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
+					str += "<br/><br/>";
                     str += "<table class='table table-hover' style='table-layout:fixed;'>";
                     str += "<tr style='background-color:#D1E0EF;'>";
                     str += "<th style='width: 10%; text-align: center;'>글번호</th>";
@@ -647,7 +628,10 @@
                  if (result.success == "success") {
                     var str = "";
                     $("#form-contact").remove();
+                    $(".likeTitle").remove();
                     str += "<div id='form-contact' style='padding-left: 1%'>";
+                    str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
+					str += "<br/><br/>";
                     str += "<table class='table table-bordered' style='table-layout:fixed;'>";
                     str += "<tr style='background-color: #D1E0EF;'>";
                     str += "<th style='width: 5%; text-align: center;'>No</th>";
@@ -743,7 +727,10 @@
                    if (result.success == "success") {
                       var str = "";
                       $("#form-contact").remove();
+                      $(".likeTitle").remove();
                       str += "<div id='form-contact' style='padding-left: 1%'>";
+                      str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
+  					  str += "<br/><br/>";
                       str += "<table class='table table-bordered' style='table-layout:fixed;'>";
                       str += "<tr style='background-color: #D1E0EF;'>";
                       str += "<th style='width: 5%; text-align: center;'>No</th>";
@@ -894,12 +881,14 @@
 			              url : '/mypage/myExchangeList',
 			              dataType : 'json',
 			              success : function(data) {
-			                 console.log(data);
 			                 if (data.result == "ok") {
 			                    var str = "";
 			                    
 			                    $("#form-contact").remove();
+			                    $(".likeTitle").remove();
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
+			                    str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
+								str += "<br/><br/>";
 			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
@@ -969,12 +958,14 @@
 							url : '/mypage/myExchangeList?pageNo='+pageNoVal,
 							dataType : 'json',
 							success : function(data) {
-								console.log(data);
 								if (data.result == "ok") {
 									var str = "";
 									
 									$("#form-contact").remove();
+									$(".likeTitle").remove();
 									str += "<div id='form-contact' style='padding-left: 1%'>";
+									str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
+									str += "<br/><br/>";
 				                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 				                    str += "<tr style='background-color:#D1E0EF;'>";
 				                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
@@ -1078,7 +1069,6 @@
 								pscore : score
 							}),
 							success : function(result) {
-								console.log(result);
 								if(result == "ok"){
 									alert("등록되었습니다.");
 									$("#reviewModal").hide();
@@ -1157,7 +1147,6 @@
 
 				</script>
 		</div>
-	</div>
 	</div>
 </body>
 </html>
