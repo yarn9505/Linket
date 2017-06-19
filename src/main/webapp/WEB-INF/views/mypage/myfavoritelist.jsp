@@ -171,10 +171,8 @@
 									<td>${boardDTO.userId }</td>
 									<td>${boardDTO.bRegDate }</td>
 									<td>
-										<%-- 	<button id="likeButton" type="button"
-									value="${status.count}" style="width: 70px;"></button> --%> <img
-										id="likeImage" src="/resources/images/like2.png"
-										style="width: 15px; height: 15px;" /> <span id="likeCount"></span>
+										<img id="likeImage" src="/resources/images/like2.png"
+											style="width: 15px; height: 15px;" /> <span id="likeCount"></span>
 									</td>
 								</tr>
 							</c:forEach>
@@ -252,8 +250,6 @@
 								var favoriteBtn = $(this);
 								tablebno = $(this).parent().parent().find(
 										"#tablebNo").text();
-								//alert($(this).val()); //현재 위치 값
-								//alert("확인 : " + $(this).parent().parent().find("#tablebNo").text());
 								update(tablebno, favoriteBtn);
 							});
 
@@ -275,12 +271,10 @@
 								if (result == "SUCCESS") {
 									btn.attr("src",
 											"/resources/images/like2.png");
-									//count(tablebno);
 								}
 								if (result == "FAIL") {
 									btn.attr("src",
 											"/resources/images/like1.png");
-									//count(tablebno);
 								}
 
 							}
@@ -500,11 +494,11 @@
                     str += "<tr style='background-color: #D1E0EF;'>";
                     str += "<th style='width: 5%; text-align: center;'>No</th>";
                     str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
-                    str += "<th style='width: 35%; text-align: center;'>제목</th>";
+                    str += "<th style='width: 32%; text-align: center;'>제목</th>";
                     str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                     str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
-                    str += "<th style='text-align:center;'>거래상태</th>";
-                    str += "<th>거래인</th>";
+                    str += "<th style='width: 13%; text-align:center;'>거래상태</th>";
+                    str += "<th style='width: 10%; text-align: center;'>거래인</th>";
                     str += "</tr>";
                     
                     if(result.pageMaker.totalCount == 0){
@@ -513,7 +507,6 @@
                         return;
                      }
                     
-                    /* alert(result.pageMaker.totalCount+"");//갯수 */
                     
                     $.each(result.MyBoardList, function(i, board) {
                        str += "<tr>";
@@ -527,7 +520,7 @@
                        }else if ( board.buyerId != null ){
                        		str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                        }else{
-                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' style='margin:0px;' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-toggle='modal'>거래인 지정</button></td>";
                        }
                        str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                        str += "</tr>";
@@ -578,7 +571,6 @@
       * 내가 쓴글 AJAX 페이징 처리하는 함수 2번째 꺼
       */
       function myWritepaging(page,perPageNum){
-           /* alert("page="+page+"perPageNum="+perPageNum); */
            $.ajax({
                 type : 'get',
                 headers : {
@@ -595,15 +587,15 @@
                       str += "<div id='form-contact' style='padding-left: 1%'>";
                       str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
   					  str += "<br/><br/>";
-                      str += "<table class='table table-bordered' style='table-layout:fixed;'>";
+  					  str += "<table class='table table-bordered' style='table-layout:fixed;'>";
                       str += "<tr style='background-color: #D1E0EF;'>";
                       str += "<th style='width: 5%; text-align: center;'>No</th>";
                       str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
                       str += "<th style='width: 35%; text-align: center;'>제목</th>";
                       str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                       str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
-                      str += "<th style='text-align:center;'>거래상태</th>";
-                      str += "<th>거래인</th>";
+                      str += "<th style='width: 10%; text-align:center;'>거래상태</th>";
+                      str += "<th style='width: 10%; text-align: center;'>거래인</th>";
                       str += "</tr>";
                       
                       if(result.pageMaker.totalCount == 0){
@@ -612,7 +604,6 @@
                           return;
                        }
                       
-                      /* alert(result.pageMaker.totalCount+"");//갯수 */
                       
                       $.each(result.MyBoardList, function(i, board) {
                           str += "<tr>";
@@ -626,7 +617,7 @@
                                }else if ( board.buyerId != null ){
                                    str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                                 }else{
-                                   str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                                   str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-toggle='modal'>거래인 지정</button></td>";
                                 }
                                 str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                           str += "</tr>";
