@@ -325,8 +325,8 @@
 			                   
 			                   	var str = "";
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
-			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 								str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;좋아요 목록</span></h3>";
+			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
 								str += "<br/><br/>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                 	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
@@ -346,7 +346,7 @@
 			                       str += "<tr id='table123' style='text-align: center'>";
 			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+" style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:15px; height:15px;'/></td>";
