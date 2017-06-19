@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
-<link rel="stylesheet" href="/resources/css/sidebar.css">
 
 <style>
 .star_rating {
@@ -37,28 +36,8 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-				<!-- 네비게이션 -->
-				<aside>
-				<h3 class="navibar" style="margin-bottom: 20px;">
-					My Page<span class="arrow-down glyphicon glyphicon-menu-down"
-						aria-hidden="true" style="float: right;"></span>
-				</h3>
-				<ul class="navibar">
-					<li><a href="javascript:favirtelist();"> 좋아요 목록</a></li>
-					<li><a href="javascript:myWriteList();">내가 올린 글 </a></li>
-					<li><a href="#"> 쪽지 보관함 <span class="caret"></span></a>
-					<li style="margin-left: 7%;"><a href="/note/listReceive">받은쪽지함</a></li>
-					<li style="margin-left: 7%;"><a href="/note/listSend">보낸쪽지함</a></li>
-					<li><a data-toggle="modal" data-target="#myModal">회원정보 수정
-					</a></li>
-					<li><a href="javascript:myExchangeList();">거래중인 게시물 </a></li>
-				</ul>
-				</aside>
-			</div>
-
-			<div class="col-md-8 col-md-offset-1">
-				
+			<%@include file="/WEB-INF/views/layout/aside.jsp"%>
+			<div class="col-md-8 col-md-offset-3">
 				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">
 					<div class="modal-dialog">
@@ -196,7 +175,7 @@
 										<%-- 	<button id="likeButton" type="button"
 									value="${status.count}" style="width: 70px;"></button> --%> <img
 										id="likeImage" src="/resources/images/like2.png"
-										style="width: 20px; height: 20px;" /> <span id="likeCount"></span>
+										style="width: 15px; height: 15px;" /> <span id="likeCount"></span>
 									</td>
 								</tr>
 							</c:forEach>
@@ -371,7 +350,7 @@
 			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+" style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:20px; height:20px;'/></td>";
+			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:15px; height:15px;'/></td>";
 			                       str +="<span id='likeCount'></span>";
 			                       str += "</tr>";
 			                    });
@@ -446,12 +425,7 @@
                          $("#formWrapper").append(str);
                          return;
                         }
-                         /* alert(result.pageMaker.totalCount+"");//갯수 */
-
-                    /*<td>
-                  <img id="likeImage" src="/resources/images/like2.png" style="width: 20px; height: 20px;" />
-                   <span id="likeCount"></span>
-                    </td> */
+                        
                          $.each(result.MyBoardList, function(i, board) {
                             str += "<tr id='table123' style='text-align: center'>";
                             str += "<td style='text-align: center;'>" + board.bNo + "</td>";
@@ -459,7 +433,7 @@
                             str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                             str += "<td style='text-align: center;'>" + board.userId + "</td>";
                             str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-                            str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:20px; height:20px;'/></td>";
+                            str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:15px; height:15px;'/></td>";
                             str +="<span id='likeCount'></span>";
                             str += "</tr>";
                          });

@@ -1,3 +1,4 @@
+
 .navibar h2 {
 	font-weight: 300;
 	text-align: center;
@@ -6,7 +7,7 @@
 }
 
 aside {
-	width: 250px;
+	width: 230px;
 	border: solid 1px #e3e3e3;
 	border-top: 1px solid #158cba;
 	padding: 0px 10px 0px 10px;
