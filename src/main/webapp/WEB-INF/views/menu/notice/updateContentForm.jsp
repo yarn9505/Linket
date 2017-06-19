@@ -51,32 +51,32 @@
 			</div>
 		</div>
 		<script type="text/javascript">
-					$("#updateForm").submit(function(event) {
-						event.preventDefault ? event.preventDefault(): (event.returnValue = false);
-						console.log("updateForm");
-						var that = $(this); //updateForm
-						var title = $("#bTitle").val(); // 제목	(빈 값 검사하기 위해)
-						var content = $("#bContent").val(); // 내용
+			$("#updateForm").submit(function(event) {
+				event.preventDefault ? event.preventDefault(): (event.returnValue = false);
+				console.log("updateForm");
+				var that = $(this); //updateForm
+				var title = $("#bTitle").val(); // 제목	(빈 값 검사하기 위해)
+				var content = $("#bContent").val(); // 내용
 
-						if (title.trim() == ""|| content.trim() == "") { // trim() 앞,뒤 공백 제거
-							alert("제목과 내용은 필수 입력사항입니다.");
-							return;
-						}
+				if (title.trim() == ""|| content.trim() == "") { // trim() 앞,뒤 공백 제거
+					alert("제목과 내용은 필수 입력사항입니다.");
+					return;
+				}
 
-						/* var str = "";
-						//fileDrop 클래스의 samll 태그 각각의 값을 가져와서 str에 input hidden 속성으로 붙임 value = file fullName
-						$(".fileDrop small").each(function(index) {
-						str += "<input type='hidden' name='files' value='"+ $(this).attr("data-src")+ "'>";
-						});
-						that.append(str); */
+				/* var str = "";
+				//fileDrop 클래스의 samll 태그 각각의 값을 가져와서 str에 input hidden 속성으로 붙임 value = file fullName
+				$(".fileDrop small").each(function(index) {
+				str += "<input type='hidden' name='files' value='"+ $(this).attr("data-src")+ "'>";
+				});
+				that.append(str); */
 
-						that.action = "/notice/updateContentProc";
-						that.method = "post";
-						alert("게시글 작성이 완료되었습니다.");
-						that.get(0).submit(); // get(0) : 순수 DOM 객체를 얻어냄
+				that.action = "/notice/updateContentProc";
+				that.method = "post";
+				alert("게시글 작성이 완료되었습니다.");
+				that.get(0).submit(); // get(0) : 순수 DOM 객체를 얻어냄
 
-					});
-				</script>
+			});
+		</script>
 	</div>
 </body>
 </html>

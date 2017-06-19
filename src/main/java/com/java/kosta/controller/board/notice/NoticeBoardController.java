@@ -27,7 +27,7 @@ public class NoticeBoardController {
    
    /** 게시판 보기 */
    @RequestMapping("/boardList")
-   public String noticeBoardList(BoardPagingDTO pagingDTO, Model model, @RequestParam(value="cateId") int cateId){
+   public String noticeBoardList(BoardPagingDTO pagingDTO, Model model, @RequestParam(value="cateId") int cateId, HttpServletRequest request){
       try {
          // 전체 레코드 갯수 획득
          int totRecord = service.selectBoardListTotalCount(pagingDTO, cateId);
@@ -42,6 +42,10 @@ public class NoticeBoardController {
          List<BoardDTO> list = service.selectBoardList(pagingDTO, cateId);
          model.addAttribute("boardList", list);
          model.addAttribute("pagingDTO", pagingDTO);
+         
+         // 로그인 세션 넘겨주기
+         UserVO user = (UserVO) request.getSession().getAttribute(Constants.LOGINSESSION);
+         model.addAttribute("loginSession", user);
       
       } catch (Exception e) {
          e.printStackTrace();
@@ -88,7 +92,7 @@ public class NoticeBoardController {
    
    /** 선택 게시글 상세 보기 */
    @RequestMapping("/detailContent")
-   public String detailContent(@RequestParam(value="bno") String bNo, Model model){
+   public String detailContent(@RequestParam(value="bno") String bNo, Model model, HttpServletRequest request){
       try {
          // 게시글 한건 조회
          BoardDTO dto = service.selectBoardOne(bNo);
@@ -100,6 +104,10 @@ public class NoticeBoardController {
          //카테고리 조회
          CategoryDTO cateDTO = service.selectCategory(dto.getCateId());
          model.addAttribute("cateDTO", cateDTO);
+         
+         // 로그인 세션 넘겨주기
+         UserVO user = (UserVO) request.getSession().getAttribute(Constants.LOGINSESSION);
+         model.addAttribute("loginSession", user);
 
       } catch (Exception e) {
          e.printStackTrace();
@@ -138,7 +146,7 @@ public class NoticeBoardController {
       } catch (Exception e) {
          e.printStackTrace();
       }
-      return "redirect:/notice/boardList?cateId="+bDTO.getCateId()+"&pageNo="+pageNo;
+      return "redirect:/notice/detailContent?bno="+bDTO.getbNo()+"&pageNo="+pageNo;
    }
    
    /** 선택 게시글 삭제 처리 */

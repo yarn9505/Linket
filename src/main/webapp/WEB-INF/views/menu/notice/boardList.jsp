@@ -68,10 +68,12 @@
 					</c:forEach>
 				</table>
 			
-				<div align="right">
-					<button type="button" class="btn btn-default" onclick="location.href='/notice/writeBoardForm?cateId=${cateDTO.cateId}'">
-					<img src="/resources/images/writeBtn.png" style="width: 60px;"></button>
-				</div>
+				<c:if test="${loginSession.rank == 1 }">
+					<div align="right">
+						<button type="button" class="btn btn-default" onclick="location.href='/notice/writeBoardForm?cateId=${cateDTO.cateId}'">
+						<img src="/resources/images/writeBtn.png" style="width: 60px;"></button>
+					</div>
+				</c:if>
 				
 				<br/><br/>
 				
