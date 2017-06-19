@@ -149,8 +149,9 @@
 			board.bcontent as bcontent, board.value as bcontent, board.bregdate as bregdate,
 			matchingT.requestMsg, matchingT.wantedValue, matchingT.mno, matchingT.sellerId
 		from matchingT left outer join board on matchingT.bno = board.bno
-		where board.allowVal = 'Y' and board.isSwap = 'N' and 
-		((board.userId = #{userId} and matchingT.sellerId is not NULL ) or (matchingT.sellerId = #{userId}))
+		where 
+		(board.allowVal = 'Y' and board.isSwap = 'N' and board.userId = #{userId} and matchingT.sellerId is not NULL)
+		or (board.allowVal = 'Y' and board.isSwap = 'N' and matchingT.sellerId = #{userId})
 	</select>
 	
 	<!-- 나와 거래중인 사용자의 정보를 가지고 옴 -->

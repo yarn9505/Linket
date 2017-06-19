@@ -1008,6 +1008,7 @@ width:100%;
 	                       				if ( data == "cancelSUCCESS" ){
 	                       					// 취소 성공
 	                       					alert("거래가 취소되었습니다.");
+											location.reload();
 	                       				}
 	                       			}
 	                       		});
