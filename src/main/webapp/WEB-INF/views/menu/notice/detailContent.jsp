@@ -40,8 +40,10 @@
 				<span style="height: 500px; border: 1px solid #BDBDBD;" class="form-control">${boardDTO.bContent}</span>
 				<br/><br/>
 				<div align="right">
-					<button type="button" class="btn btn-default" onclick="deleteContent()">글삭제</button>
-					<button type="button" class="btn btn-default" onclick="location.href='/notice/updateContentForm?bNo=${boardDTO.bNo}&pageNo=${param.pageNo }'">수정</button>
+					<c:if test="${loginSession.rank == 1 }">
+						<button type="button" class="btn btn-default" onclick="deleteContent()">글삭제</button>
+						<button type="button" class="btn btn-default" onclick="location.href='/notice/updateContentForm?bNo=${boardDTO.bNo}&pageNo=${param.pageNo }'">수정</button>
+					</c:if>
 					<button type="button" class="btn btn-default" onclick="location.href='/notice/boardList?cateId=${cateDTO.cateId}&pageNo=${param.pageNo }'">목록</button>
 				</div>
 				<br /> <br />

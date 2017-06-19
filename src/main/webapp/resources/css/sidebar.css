@@ -7,8 +7,9 @@
 }
 
 aside {
-	width: 230px;
-	border: solid 1px #e3e3e3;
+	position: absolute;
+	width: 200px;
+	/* border: solid 1px #e3e3e3; */
 	border-top: 1px solid #158cba;
 	padding: 0px 10px 0px 10px;
 }
@@ -39,6 +40,12 @@ aside {
 	text-decoration: none;
 }
 
+.navibar li a:active { @include transition;
+	background: #e3e3e3;
+	color: #158cba;
+	text-decoration: none;
+}
+
 .navibar li a:hover { @include transition;
 	background: #e3e3e3;
 	color: #158cba;
@@ -46,7 +53,7 @@ aside {
 }
 
 }
-@media ( max-width : 1000px) {
+@media ( max-width : 980px) {
 	aside {h3 { cursor:pointer;
 		position: relative;
 	}
