@@ -22,6 +22,7 @@
 <script src="/resources/daumEditor/js/editor_loader.js?environment=production" type="text/javascript" charset="utf-8"></script>
 
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
+<script src="/resources/js/aside.js"></script>
 <script src="/resources/js/login/login.js"></script>
 <script src="/resources/js/join/join.js"></script>
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>

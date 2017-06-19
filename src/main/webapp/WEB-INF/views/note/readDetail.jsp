@@ -18,31 +18,31 @@
 				<br> <br>
 				<table class="table table-bordered">
 					<tr>
-						<th style="text-align: center; width: 20%;">보낸사람</th>
+						<th style="text-align: center; width: 20%;background: #E9EFF5;">보낸사람</th>
 						<td>${NoteVO.userId}</td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">받은시간</th>
+						<th style="text-align: center;background: #E9EFF5;">받은시간</th>
 						<td><fmt:formatDate pattern="yyyy년MM월dd일 (a) hh:mm:ss" value="${NoteVO.date_sender}" /></td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">읽은시간</th>
+						<th style="text-align: center;background: #E9EFF5;">읽은시간</th>
 						<td><fmt:formatDate pattern="YYYY년MM월dd일  HH:mm:ss" value="${NoteVO.date_receiver}" /></td>
 					</tr>
 					<tr>
-						<th style="text-align: center;">제목</th>
+						<th style="text-align: center;background: #E9EFF5;">제목</th>
 						<td>${NoteVO.mtitle}</td>
 					</tr>
 					<tr>
 						<th
-							style="text-align: center; height: 200px; vertical-align: middle;">내용</th>
+							style="text-align: center; height: 200px; vertical-align: middle;background: #E9EFF5;">내용</th>
 						<td>${NoteVO.mcontent}</td>
 					</tr>
 				</table>
 				<div align="right">
-					<button id="cancelBtn" class="btn btn-default">목록보기</button>
-					<button id="delBtn" class="btn btn-danger">삭제</button>
-					<button class="btn btn-warning" data-target="#layerpop" data-toggle="modal">답장</button>
+					<button type ="button" id="cancelBtn" class="btn btn-default">목록보기</button>
+					<button type ="button" id="delBtn" class="btn btn-default">삭제</button>
+					<button type ="button" class="btn btn-primary" data-target="#layerpop" data-toggle="modal">답장</button>
 					<br />
 				</div>
 			</div>

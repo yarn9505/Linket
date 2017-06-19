@@ -49,9 +49,10 @@
     margin: 0 auto; 
 }
 #timeline .item {
-    width: 45%;
+    width: 60%;
     margin: 10px;
     float: left;
+    margin-left:30px;
     margin-top:10px;
     background-color:#ffffff;
     border:solid 1px #B4BBCD;
@@ -234,11 +235,6 @@
                <ul id="showTimeline" class="timeline">
                   <script id="entry-template2" type="text/x-handlebars-template"> 
                      <div id="timeline">    
-                         <div class="timeline_container">
-                             <div class="timeline">
-                                 <div class="plus"></div>
-                             </div>
-                            </div>
                          <!-- item -->
                          <div class="item " style="padding-left:15px;"> 
                              <div class="cont_pic" >
@@ -265,133 +261,112 @@
          
 
 
-         <!-- <div class="col-sm-offset-10 col-sm-4">
-            <div class="app">
-               <aside class="side">
-               <ul class="tabs">
-                  <li><a href="index.html"><i class="icon-dribbble icon2"></i>
-                        Dribbble</a></li>
+<!--          <div class="col-sm-offset-10 col-sm-4"> -->
+<!--             <div class="app"> -->
+<!--                <section class="main"> <article class="item"> -->
+<!--                <p>혜연바보</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic1.png"></a> <a href="index.html">@한혜연</a> -->
+<!--                <time datetime="2012-04-05T10:30:21+00:00" pubdate>4 minutes -->
+<!--                ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>주희는 진짜로 천재같다..</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic3.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:26:27+00:00" pubdate>8 minutes -->
+<!--                ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Anim pariatur cliche reprehenderit, enim eiusmod high life -->
+<!--                   accusamus terry richardson ad squid.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic2.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:15:45+00:00" pubdate>15 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> <article class="item"> -->
+<!--                <p>Praesent arcu in mauris bibendum id ornare tortor -->
+<!--                   scelerisque.</p> -->
+<!--                <footer> <a href="index.html" class="avatar"><img -->
+<!--                   src="resources/images/pic4.png"></a> <a href="index.html">@someone</a> -->
+<!--                <time datetime="2012-04-05T10:14:01+00:00" pubdate>16 -->
+<!--                minutes ago</time> </footer> </article> </section> -->
+<!--             </div> -->
 
-
-                  <li class="active"><a href="index.html"><i
-                        class="icon-twitter icon2"></i> Twitter</a></li>
-
-
-                  <li><a href="index.html"><i class="icon-rss icon2"></i>
-                        RSS</a></li>
-
-
-                  <li><a href="index.html"><i class="icon-facebook icon2"></i>
-                        Facebook</a></li>
-               </ul>
-               <a href="index.html" class="add"><i class="icon-plus icon2"></i>
-                  Add</a> </aside>
-
-
-               <section class="main"> <article class="item">
-               <p>혜연바보</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic1.png"></a> <a href="index.html">@한혜연</a>
-               <time datetime="2012-04-05T10:30:21+00:00" pubdate>4 minutes
-               ago</time> </footer> </article> <article class="item">
-               <p>주희는 진짜로 천재같다..</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic3.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:26:27+00:00" pubdate>8 minutes
-               ago</time> </footer> </article> <article class="item">
-               <p>Anim pariatur cliche reprehenderit, enim eiusmod high life
-                  accusamus terry richardson ad squid.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic2.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:15:45+00:00" pubdate>15
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> <article class="item">
-               <p>Praesent arcu in mauris bibendum id ornare tortor
-                  scelerisque.</p>
-               <footer> <a href="index.html" class="avatar"><img
-                  src="resources/images/pic4.png"></a> <a href="index.html">@someone</a>
-               <time datetime="2012-04-05T10:14:01+00:00" pubdate>16
-               minutes ago</time> </footer> </article> </section>
-            </div>
-
-         </div> -->
+         </div> 
          </div>
       </div>
    </div>
