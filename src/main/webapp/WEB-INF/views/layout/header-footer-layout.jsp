@@ -10,10 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<!-- 
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-
 <link rel="stylesheet" href="/resources/css/custom.min.css">
 <link rel="stylesheet" href="/resources/css/matching.css">
 <link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
@@ -202,7 +198,6 @@
 				</ul></li>
 				<li><a href="/bestUser/bestUserSection">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
-               <li><a id="about" href="/aboutUsSection">About Us</a></li>
                
                <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">
@@ -215,32 +210,27 @@
             
             
             <ul class="nav navbar-nav navbar-right" style="line-height: 50px;">
-            	<c:if test="${loginSession.userId != null}">
-                	<li id="userIcon">
-                 		<span style="font-weight: bold;">
-                     		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a> &nbsp;
-                  		</span>
-                  		<img class="msg_img" src="/resources/images/message.png" />
-            		</li> 
-                  	<li style="width: 10%;">
-                  		<a class="msg_a" href="/note/listReceive">
-                     	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
-                  		</a>
-                  	</li>
-                  	<li id="sectionBar">
-                  		┃ 
-                  	</li>
-                  	<li>
-                  		<a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
-                  	</li>
-					</c:if>
+               <c:if test="${loginSession.userId != null}">
+                   <li id="userIcon">
+                       <span style="font-weight: bold;float:left;margin-top:-10px;">
+                           <a class="mypage" href="/mypage/myList">${loginSession.userId}</a> &nbsp;
+                        </span>
+                        <a class="mypage" href="/mypage/myList"><img class="msg_img" src="/resources/images/message.png" style="float:left;"/></a>
+                        <a class="msg_a" href="/note/listReceive" style="width:150px;float:left;margin-left:15px;margin-top:5px;">
+                        <!-- 읽지 않은 쪽지 -->
+                        <span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
+                        </a>
+                  </li> 
+                     <li style="clear:both;">
+                        <a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
+                     </li>
+               </c:if>
                
                <c:if test="${loginSession.userId == null}">
                   <li><a href="/user/login">로그인</a>
                   <li><a href="/user/subscribeJoin" >회원가입</a></li>
                </c:if>
-            </ul>     
+            </ul>
          </div>
       </div>
    </div>
