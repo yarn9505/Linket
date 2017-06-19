@@ -7,7 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
 
 <style>
 .star_rating {
@@ -36,7 +35,7 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<%@include file="/WEB-INF/views/layout/aside.jsp"%>
+			<%@include file="/WEB-INF/views/layout/mypageAside.jsp"%>
 			<div class="col-md-8 col-md-offset-3">
 				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">

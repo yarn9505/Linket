@@ -14,9 +14,6 @@
 				<ul class="navibar">
 					<li><a href="javascript:favirtelist();"> 좋아요 목록</a></li>
 					<li><a href="javascript:myWriteList();">내가 올린 글 </a></li>
-					<li><a href="#"> 쪽지 보관함 <span class="caret"></span></a>
-					<li style="margin-left: 7%;"><a href="/note/listReceive">받은쪽지함</a></li>
-					<li style="margin-left: 7%;"><a href="/note/listSend">보낸쪽지함</a></li>
 					<li><a href="javascript:myExchangeList();">거래중인 게시물 </a></li>
 					<li><a data-toggle="modal" data-target="#myModal">회원정보 수정
 					</a></li>
