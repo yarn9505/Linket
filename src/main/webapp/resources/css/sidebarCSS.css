@@ -248,10 +248,12 @@ a:hover {
 
 .app {
   position: fixed;
-  bottom:0px;
-  height: 90%;
-  width:20%;
-  overflow: hidden;
+  bottom:10px;
+  right : 15%;
+  height: 50%;
+  width:25%;
+  overflow: scroll;
+  overflow-x:hidden;
   background: #fff ;
   border-radius: 3px;
   -webkit-box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.3);
@@ -366,7 +368,7 @@ a:hover {
   font-size: 10px;
 }
 .item time {
-  color: #94CFBB ;
+  color: #4374D9 ;
 }
 .item .avatar {
   display: block;

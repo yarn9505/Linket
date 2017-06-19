@@ -340,7 +340,7 @@
 			                       str += "<tr id='table123' style='text-align: center'>";
 			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+" style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+" ' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
 			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
 			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
 			                       str +="<td><img id='likeImage' src='/resources/images/like2.png' style='width:15px; height:15px;'/></td>";
