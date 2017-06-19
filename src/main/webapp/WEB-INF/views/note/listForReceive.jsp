@@ -12,10 +12,10 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
+			<%@include file="/WEB-INF/views/layout/noteAside.jsp"%>
+			<div class="col-md-9 col-md-offset-3">
 						<h3>
-							<span class="glyphicon glyphicon-envelope"
-								style="color: #0E3E59;">&nbsp;받은 쪽지함</span>
+							<span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;받은 쪽지함</span>
 						</h3>
 						<br><br>
 

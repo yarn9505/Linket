@@ -11,11 +11,11 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-10 col-md-offset-1">
-				<div class="content-frame">
-						<h4>
+			<%@include file="/WEB-INF/views/layout/noteAside.jsp"%>
+				<div class="col-md-9 col-md-offset-3">
+						<h3>
 							<span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;보낸 쪽지함</span>
-						</h4>
+						</h3>
 						<br>
 						<br>
 
@@ -53,9 +53,9 @@
 										</c:if>
 									</td>
 									<td style="text-align: center;">
-									<button class="btn btn-link" id="delBtn" type="button">삭제</button></td>
+									<button class="btn btn-link" id="delBtn" type="button">삭제</button>
 
-									<input id="mnoId" type="hidden" value="${NoteVO.mno}" />
+									<input id="mnoId" type="hidden" value="${NoteVO.mno}" /></td>
 								</tr>
 							</c:forEach>
 						</table>
@@ -95,7 +95,6 @@
 						<!-- 쪽지 페이징 처리 -->
 					</div>
 				</div>
-				</section>
 				<div class="arrow"></div>
 			</div>
 			<!-- END TEAM SECTION -->
@@ -107,7 +106,6 @@
 					}); // end of click delBtn
 				})
 			</script>
-		</div>
 
 </body>
 </html>
