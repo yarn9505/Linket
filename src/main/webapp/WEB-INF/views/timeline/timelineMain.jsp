@@ -44,119 +44,132 @@
 	text-decoration: none;
 }
 
-#timeline	{
-    width:810px;
-    margin: 0 auto; 
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -ms-box-sizing: border-box;
 }
-#timeline .item {
-    width: 380px;
-    margin: 10px;
-    float: left;
-    margin-top:10px;
-    background-color:#ffffff;
-    border:solid 1px #B4BBCD;
-    min-height:50px;
-    text-align:justify;
-    word-wrap:break-word; 
+/* a { */
+/*   text-decoration: none; */
+/* } */
+
+/* body { */
+/*   -webkit-font-smoothing: antialiased; */
+/*   font-family: 'Roboto', sans-serif; */
+/* } */
+
+
+/* .container { */
+/*   max-width: 1200px; */
+/*   display: -webkit-box; */
+/*   display: -moz-box; */
+/*   display: -ms-flexbox; */
+/*   display: -webkit-flex; */
+/*   display: flex; */
+/*   -webkit-flex-flow: row wrap; */
+/*   flex-flow: row wrap; */
+/*   justify-content: center; */
+/*   margin: 100px auto; */
+/* } */
+.container .news-item {
+  width: 45%;
+  height: 510px;
+  margin: 15px;
+  padding-left:10px;
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.55);
+  box-shadow: 0px 0px 30px 0px rgba(50, 50, 50, 0.55);
+  border-radius: 5px;
 }
-#timeline .item  .cont_pic{
-    /* margin:10px; */
-    padding: 10px;
-    position: relative;
+.container .news-item .news-image {
+  width: 100%;
+  height: 350px;
+  background-size: cover;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  position: relative;
 }
-#timeline .item  .cont_pic .like_pic {
-    position: absolute;
-    right: 0;
-    margin: 0 20px;
-    border: 1px solid #000;
-    /* background: #1c1c1c; */
-    border-radius: 5px;
-    cursor:pointer;
-    width: 35px;
-    height: 35px;
-    text-align: center;
-    color: #FFF;
-    font-size: 23px;
-    font-weight: 100;
-    line-height: 36px;
-    opacity: 0.4;
-    transition: all 0.3s;
+.container .news-item .news-image ul {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background: #95b0ff;
+  border-top-right-radius: 5px;
 }
-#timeline .item  .cont_pic .like_pic:hover {
-    opacity: 0.8;
+.container .news-item .news-image ul li {
+  list-style: none;
+  color: #FFF;
+  padding: 5px 10px;
 }
-#timeline .item .info{
-    color: #111;
-    z-index: 10;
-    position: relative;
-    padding: 10px;
-    overflow: hidden;
+.container .news-item .news-infor-content {
+/*   padding: 0 10px; */
 }
-#timeline .item .info .up_cont{
-    border-bottom: 1px dotted #ccc;
+.container .news-item .time-to-read {
+  padding: 0;
+  margin: 10px 0 0;
+  font-size: 1em;
+  max-width: 110px;
+  color: #999;
+  border-bottom: 1px solid;
 }
-#timeline .item .info .up_cont h3{
-    font-size: 24px;
+.container .news-item .tittle, .container .news-item .paragraph {
+  max-width: 300px;
+  padding: 0;
+  margin: 0;
+  font-size: .9rem;
 }
-#timeline .item .info .down_cont .left_icons .view{
-    display: inline-block;
-    float: left;
-    padding-left: 24px;
-    margin-top: 6px;
-    margin-right: 10px;
+.container .news-item .tittle {
+  color: #333333;
+  border-width: 0px;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  filter: blur(0px);
+  font-size: 24px;
+  text-transform: none;
+  color: black;
+  font-weight: 100;
+  font-style: normal;
+  z-index: 46;
+  font-family: 'Roboto', sans-serif;
+  line-height: 24px;
+  overflow: visible;
+}
+.container .news-item .paragraph {
+  font-size: .9rem;
+  color: #8b8b8b;
+  font-weight: 900;
+}
+.container .news-item .bottom-content {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 0 auto;
+  -ms-flex: 1 0 auto;
+  flex: 1 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  min-height: 30px;
+  color: #008299;
+  opacity: .7;
+  font-size: 1em;
 }
 
-#timeline .item .info .down_cont .left_icons .like{
-    display: inline-block;
-    float: left;
-    padding-left: 24px;
-    margin-top: 6px;
-    margin-right: 10px;
-}
-#timeline .item .info .down_cont .left_icons .comment{
-    display: inline-block;
-    float: left;
-    padding-left: 24px;
-    margin-top: 6px;
-    margin-right: 10px;
-}
-#timeline .item .info .down_cont .timeago{
-    float: right;
-    margin-top: 6px;
-}
 
-.rightCorner { 
-    background-image: url("http://ciftslash.com/upload/MQ/timeline_sol.png");
-    display: block;
-    height: 15px;
-    margin-left: 380px;
-    margin-top: 8px;
-    padding: 0;
-    vertical-align: top;
-    width: 13px;
-    z-index:2;
-    position: absolute;
-}
-.leftCorner{
-    background-image: url("http://ciftslash.com/upload/MQ/timeline_sag.png");
-    display: block;
-    height: 15px;
-    width: 13px;
-    margin-left: -13px;
-    margin-top: 8px;
-    position: absolute;
-    z-index:2;
-}
-.timeline_container{
-    width: 16px;
-    text-align: center;
-    margin: 0 auto;
-    display: block;
-}
-.timeline{
-    display: block;
-    height: 100%;
-}
 </style>
 
 </head>
@@ -233,32 +246,26 @@
 
 					<ul id="showTimeline" class="timeline">
 						<script id="entry-template2" type="text/x-handlebars-template"> 
-							<div id="timeline">    
-    							<div class="timeline_container">
-        							<div class="timeline">
-            							<div class="plus"></div>
-        							</div>
-   							 	</div>
-   							 <!-- item -->
-    							<div class="item " style="padding-left:15px;"> 
-        							<div class="cont_pic" >
-										<img class="cont_img" src="{{imgPath}}" width="100%" height="180px"/> 
-        							</div> <!-- #cont_pic -->
-        							<div class="info">
-           								 <div class="up_cont">
-                							<h3 style="margin-top:5px;"><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1" style="display:block;margin:0 auto; max-width:500px; min-width:200px;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{{btitle}}</a></strong></h3>
-											 <h5><p><span class="glyphicon glyphicon-tags" style="color: #F29661;"/>&nbsp; {{cateName}}</p></h5>
-											 <h5><p><span class="glyphicon glyphicon-road" style="color: #9FC93C;"/>&nbsp; {{distanceVal distance}}</p></h5>
-											 <h5><p><span class="glyphicon glyphicon-usd" style="color: #FFBB00;"/>&nbsp; {{value}} 원</p></h5>
-            							</div> <!-- #up_cont -->
-            							<div class="down_cont">
-            								<span class="like_pic"><img class="likeImg" style="margin-top:5px;width:25px;height:25px;" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/></span>
+							<div class="container">
+								<div class="news-item">
+    								<div class="news-image" ><img class="cont_img" src="{{imgPath}}" />
+   									</div>
+    								<div class="news-infor-content">
+    									<p  class="time-to-read">{{userId}}</p>
+      									<div><img class="likeImg" style="vertical-align:top;margin-top:5px;width:25px;height:25px;" id="likeImg{{bno}}" src={{check checkfavorite}} onclick="like({{bno}})"/>
+										<h4><strong><a href="/board/category/detailContent?bno={{bno}}&pageNo=1" style="display:inline-block; max-width:80%; min-width:20%;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">{{btitle}}</a></strong></h4>
+    									</div>
+										<div class="paragraph">
+      										 <h5><span class="glyphicon glyphicon-tags" style="color: #F29661;"/>&nbsp; {{cateName}} &nbsp;
+											 <span class="glyphicon glyphicon-road" style="color: #9FC93C;"/>&nbsp; {{distanceVal distance}} &nbsp;
+											 <span class="glyphicon glyphicon-usd" style="color: #FFBB00;"/>&nbsp; {{value}} 원</h5>
+    									</div>
+    									<div class="bottom-content" style="text-align:right; margin-right:10px;">
                 							<time class="timeago">{{dateVal bregdate}}</time>
-            							</div> <!-- #down_cont -->
-        							</div> <!-- #info -->
-    							</div>
+    									</div>
+      								</div>
+  								</div>
 							</div>
-
            				 </script>
 					</ul>
 					<!--     <p><ul id="showTimeline"></ul></p>  -->
