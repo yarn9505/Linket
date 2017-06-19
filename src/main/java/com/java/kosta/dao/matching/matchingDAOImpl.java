@@ -10,8 +10,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
+import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.matching.matchingCntDTO;
 import com.java.kosta.dto.matching.matchingDTO;
+import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.timeline.TimelineDTO;
 import com.java.kosta.dto.user.UserVO;
 
@@ -87,5 +89,46 @@ public class matchingDAOImpl implements matchingDAO{
       map.put("mno", mno);
       return session.selectOne(NAMESPACE+".showMyBoard", map);
    }
+   
+   @Override
+	public void updateAllowVal(String mno, String bno, String sellerId,String swit) {
+		HashMap<String, Object> map= new HashMap<String, Object>();
+		map.put("mno", mno);
+		map.put("bno", bno);
+		map.put("sellerId", sellerId);
+		map.put("swit", swit);
+		session.selectOne(NAMESPACE + ".updateAllowVal", map);
+	}
+
+	@Override
+	public List<matchingDTO> selectMyBno(String userId){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		return session.selectList(NAMESPACE + ".selectMyBno", map);
+	}
+
+
+	@Override
+	public UserVO WhoAmI(String userId) {
+		return session.selectOne(NAMESPACE + ".WhoAmI", userId);
+	}
+
+	@Override
+	public BoardDTO infoForUpdate(String mno) {
+		return session.selectOne(NAMESPACE + ".infoForUpdate", mno);
+	}
+
+	@Override
+	public void insertTranPost(String mno, UserVO vo) {
+		HashMap<String , Object> map = new HashMap<String, Object>();
+		map.put("mno", mno);
+		map.put("vo", vo);
+		session.selectOne(NAMESPACE + ".insertTranPost", map);
+	}
+
+	@Override
+	public EvalDTO selectEval(String mno) {
+		return session.selectOne(NAMESPACE + ".selectEval", mno);
+	}
    
 }// end of dao

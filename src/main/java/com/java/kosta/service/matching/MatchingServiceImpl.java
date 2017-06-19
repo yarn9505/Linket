@@ -7,8 +7,10 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.java.kosta.dao.matching.matchingDAOImpl;
+import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.matching.matchingCntDTO;
 import com.java.kosta.dto.matching.matchingDTO;
+import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.timeline.TimelineDTO;
 import com.java.kosta.dto.user.UserVO;
 
@@ -64,5 +66,35 @@ public class MatchingServiceImpl implements MatchingService {
    public TimelineDTO showMyBoard(UserVO vo, String mno) {
       return dao.showMyBoard(vo, mno);
    }
+   
+   @Override
+	public void updateAllowVal(String mno, String bno, String sellerId, String swit) {
+		dao.updateAllowVal(mno,bno,sellerId,swit);
+	}
+
+	@Override
+	public List<matchingDTO> selectMyBno(String userId) {
+		return dao.selectMyBno(userId);
+	}
+
+	@Override
+	public UserVO WhoAmI(String userId) {
+		return dao.WhoAmI(userId);
+	}
+
+	@Override
+	public BoardDTO infoForUpdate(String mno) {
+		return dao.infoForUpdate(mno);
+	}
+
+	@Override
+	public void insertTranPost(String mno, UserVO vo) {
+		dao.insertTranPost(mno, vo);
+	}
+
+	@Override
+	public EvalDTO selectEval(String mno) {
+		return dao.selectEval(mno);
+	}
 
 } // end of service
