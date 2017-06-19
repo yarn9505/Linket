@@ -38,13 +38,13 @@
 			<%@include file="/WEB-INF/views/layout/mypageAside.jsp"%>
 			<div class="col-md-9 col-md-offset-3">
 				<!-- 거래인 지정 모달창 -->
-				<div class="modal fade" id="layerpop">
+				<div class="modal fade" id="layerpop" role="dialog">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<!-- header -->
 							<div class="modal-header">
 								<!-- 닫기(x) 버튼 -->
-								<button type="button" class="close" data-dismiss="modal"></button>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<!-- header title -->
 								<h4 class="modal-title">구매결정</h4>
 							</div>
@@ -58,7 +58,7 @@
 									<input type="hidden" id="cateIdVal" /> 
 									<input type="text" class="determine form-control" /> 
 									<span class="input-group-btn">
-										<button type='button' class='btn btn-primary determineBtn' style="margin-top: 20px">결정</button>
+										<button type='button' class='btn btn-primary determineBtn' data-dismiss="modal" style="margin-top: 20px">결정</button>
 									</span>
 								</div>
 							</div>
@@ -67,13 +67,13 @@
 				</div>
 
 				<!-- 후기작성 모달창 -->
-				<div class="modal fade" id="reviewModal">
+				<div class="modal fade" id="reviewModal" role="dialog">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<!-- header -->
 							<div class="modal-header">
 								<!-- 닫기(x) 버튼 -->
-								<button type="button" class="close" data-dismiss="modal"></button>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<!-- header title -->
 								<h3 class="modal-title">구매 후기 작성</h3>
 							</div>
@@ -108,7 +108,7 @@
 							<!-- Footer -->
 							<div class="modal-footer">
 								<input type="hidden" name="bno" id="bno" />
-								<button id="reviewBtn" type="button" class="btn btn-primary">작성하기</button>
+								<button id="reviewBtn" type="button" class="btn btn-primary" data-dismiss="modal">작성하기</button>
 								<button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
 							</div>
 						</div>
@@ -125,7 +125,7 @@
 						<!-- Modal content-->
 						<div class="modal-content">
 							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"></button>
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">패스워드 확인</h4>
 							</div>
 							<div class="modal-body">
@@ -393,7 +393,7 @@
 					//end of favorite()                  
 					
 					//myfavorListPaging 마이페이지 ajax로 페이징 하기
-		function myfavorListPaging(page,perPageNum) {
+			function myfavorListPaging(page,perPageNum) {
                 $.ajax({
                    type : 'get',
                    headers : {
@@ -477,115 +477,6 @@
                });
          } 
 		//myfavorListPaging 마이페이지 ajax로 페이징 하기
-
-			/** 내가 쓴 글  업데이트  2번째 꺼*/
-		  function myWriteList() {
-           $.ajax({
-              type : 'get',
-              headers : {
-                 "Content-Type" : "application/json",
-                 "X-HTTP-Method-Override" : "GET"
-              },
-              url : '/mypage/myBoardList',
-              dataType : 'json',
-              success : function(result) {
-                 if (result.success == "success") {
-                    var str = "";
-                    $("#form-contact").remove();
-                    $(".likeTitle").remove();
-                    str += "<div id='form-contact' style='padding-left: 1%'>";
-					str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
-					str += "<br/><br/>";
-                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
-                    str += "<tr style='background-color:#D1E0EF;'>";
-                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
-                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
-                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
-                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
-                    str += "<th style='width: 15%; text-align: center;''>작성날짜</th>";
-                    str += "<th style='text-align:center;'>구매결정</th>";
-                    str += "<th>거래인</th>";
-                    str += "</tr>";
-                    
-                    if(result.pageMaker.totalCount == 0){
-                        str +="<tr><td colspan='7' style='text-align:center;'> 내가 올린글이 없습니다. </td></tr> ";   
-                        $("#formWrapper").append(str);
-                        return;
-                     }
-                    
-                    /* alert(result.pageMaker.totalCount+"");//갯수 */
-                    
-                    $.each(result.MyBoardList, function(i, board) {
-                       str += "<tr>";
-                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
-                       str += "<td style='text-align: center;'> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
-                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
-                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-                       
-                       // bno값가지고 eval 테이블에서 해당 거래자 id가져오기
-                       $.ajax({
-                          type:'GET',
-                          async:false,
-                          url:'/mypage/getCustomer?bno='+board.bNo,
-                          headers:{
-                             "Content-Type":"application/json"
-                          },
-                          success:function(result){
-                        	 if(result.isSwap == 'Y'){
-                        		 str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
-                        	 }else if ( result.customerId != null ){
-                                str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</span></td>";
-                             }else{
-                                str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
-                             }
-                             str += "<td style='text-align: center;'><span class='customerId'>"+ ((result.customerId == null) ? " " : result.customerId) +"</span></td>";
-                          }
-                       }); // end of ajax
-                       str += "</tr>";
-                    });
-                    str += "</div>";
-                    str += "</table>";
-                    
-               var pageMaker=result.pageMaker;//페이징 객체
-                    // 페이징 처리
-                    str += "<div class='text-center' >" +
-                          		"<ul class='pagination'>";
-                    if(pageMaker.entireEndPage>1){	      		
-                    str +="<li><a href='javascript:myWritepaging("+1+','+pageMaker.perPageNum+")'>처음</a></li>" ;
-                    }
-                    if(pageMaker.prev){
-                   	 str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.startPage)-1)+','+pageMaker.perPageNum+")'>◀</a></li>" ;
-                    } 		
-                    
-                  	for(i=pageMaker.startPage; i<=pageMaker.endPage; i++){
-                  		if(pageMaker.page==i){
-                      		str += "<li class='active'><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                      		}else{
-                      		str += "<li><a  href='javascript:myWritepaging("+i+','+pageMaker.perPageNum+")'>" +i +"</a></li>";
-                      		}
-                      	}
-                  	}
-                    
-                  	if(pageMaker.next){
-                  	 str +="<li><a href='javascript:myWritepaging("+(parseInt(result.pageMaker.endPage)+1)+','+pageMaker.perPageNum+")'>▶</a></li>" ;
-                  	}
-                  	if(pageMaker.entireEndPage>1){	
-                  	str +="<li><a href='javascript:myWritepaging("+pageMaker.entireEndPage+','+pageMaker.perPageNum+")'>마지막</a></li>";
-                  	}
-                   str +="</ul>"
-                   +"</div>";
-            	   
-                 $("#formWrapper").append(str);
-                 
-                 }
-                 
- 
-              
-              }
-           
-           );
-        } // end of myWriteList()
         
         /** 내가 쓴 글  업데이트  2번째 꺼*/
         function myWriteList() {
@@ -612,7 +503,7 @@
                     str += "<th style='width: 35%; text-align: center;'>제목</th>";
                     str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                     str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
-                    str += "<th style='text-align:center;'>구매결정</th>";
+                    str += "<th style='text-align:center;'>거래상태</th>";
                     str += "<th>거래인</th>";
                     str += "</tr>";
                     
@@ -634,9 +525,9 @@
                        if(board.isSwap == 'Y'){
                        		str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                        }else if ( board.buyerId != null ){
-                       		str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</button></td>";
+                       		str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                        }else{
-                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' style='margin:0px;' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                        }
                        str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                        str += "</tr>";
@@ -711,7 +602,7 @@
                       str += "<th style='width: 35%; text-align: center;'>제목</th>";
                       str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                       str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
-                      str += "<th style='text-align:center;'>구매결정</th>";
+                      str += "<th style='text-align:center;'>거래상태</th>";
                       str += "<th>거래인</th>";
                       str += "</tr>";
                       
@@ -733,7 +624,7 @@
                            if(board.isSwap == 'Y'){
                                   str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                                }else if ( board.buyerId != null ){
-                                   str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</button></td>";
+                                   str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                                 }else{
                                    str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                                 }
@@ -829,6 +720,7 @@
 						} else if (data == 'SUCCESS') {
 							alert("게시글의 상태가 거래중으로 바꼈습니다.");
 							//해당 버튼 비활성화하기
+							buyerBtn.text("거래중");
 							buyerBtn.prop("disabled", true);
 							$("#layerpop").hide();
 							$(".determine").val("");
@@ -842,283 +734,279 @@
 			}
 		});
 
-					//5번 거래중인 게시물
-					function myExchangeList(){
-			           var form = $("#form-contact");
-			           $.ajax({
-			              type : 'get',
-			              headers : {
-			                 "Content-Type" : "application/json",
-			                 "X-HTTP-Method-Override" : "GET"
-			              },
-			              url : '/mypage/myExchangeList',
-			              dataType : 'json',
-			              success : function(data) {
-			                 if (data.result == "ok") {
-			                    var str = "";
-			                    
-			                    $("#form-contact").remove();
-			                    $(".likeTitle").remove();
-			                    str += "<div id='form-contact' style='padding-left: 1%'>";
-			                    str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
-								str += "<br/><br/>";
-			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
-			                    str += "<tr style='background-color:#D1E0EF;'>";
-			                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
-			                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
-			                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
-			                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
-			                    str += "<th style='width: 15%; text-align: center;''>작성날짜</th>";
-			                    str += "<th style='text-align:center;'>구매결정</th>";
-			                    str += "<th>거래인</th>";
-			                    str += "</tr>";
-			                    if( data.pagingDTO.totalRecordCount == 0){
-			                       str +="<tr><td colspan='6' style='text-align:center;'> 거래중인 게시글이 없습니다. </td></tr> ";   
-			                       $("#formWrapper").append(str);
-			                       return;
-			                    }
-			                    
-			                    $.each(data.MyExchangeList, function(i, board) {
-			                       str += "<tr>";
-			                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-			                       str += "<td>" + board.cateName + "</td>";
-			                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
-			                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
-			                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-			                       str += "<td style='text-align: center;'>"
-			                          	+ 	"<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>";
-			                       str += "</tr>";
-			                    });
-			                    str += "</div>";
-			                    str += "</table>";
-			                    
-			                    // 페이징 처리
-			                    str += "<div align = 'center'>" +
-			                             "<ul class='pagination pagination-sm'>";
-			                             if(data.pagingDTO.groupNo > 1){
-			                                str += "<li><a href='javascript:paging("+1+")'>처음</a></li>" 
-			                                   + "<li><a href='javascript:paging("+(parseInt(data.pagingDTO.pageStartNo) - 1)+")'>◀</a></li>";
-			                             }
-			                             for(var i=data.pagingDTO.pageStartNo; i <= data.pagingDTO.pageEndNo; i++){
-			                                if(data.pagingDTO.pageNo != i){
-			                                   str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
-			                                }else{
-			                                   str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
-			                                }
-			                                
-			                             }
-			                             if(data.pagingDTO.groupNo < data.pagingDTO.totalGroupCount){
-			                                str += "<li><a href='javascript:paging("+ (parseInt(data.pagingDTO.pageEndNo) + 1) +")'>▶</a></li>"
-			                                   + "<li><a href='javascript:paging("+data.pagingDTO.totalPageCount+")'>마지막</a></li>";
-			                             }      
-			                          str +="</ul>"
-			                          +"</div>";
-			                    
-			                    $("#formWrapper").append(str);
-			                 }
-			              }
-			           });
-			        } // end of myExchangeList()
-			        
-			     // AJAX 페이징 처리하는 함수
-					function paging(pageNoVal){
-						$.ajax({
-							type : 'get',
-							headers : {
-								"Content-Type" : "application/json",
-								"X-HTTP-Method-Override" : "GET"
-							},
-							url : '/mypage/myExchangeList?pageNo='+pageNoVal,
-							dataType : 'json',
-							success : function(data) {
-								if (data.result == "ok") {
-									var str = "";
-									
-									$("#form-contact").remove();
-									$(".likeTitle").remove();
-									str += "<div id='form-contact' style='padding-left: 1%'>";
-									str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
-									str += "<br/><br/>";
-				                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
-				                    str += "<tr style='background-color:#D1E0EF;'>";
-				                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
-				                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
-				                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
-				                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
-				                    str += "<th style='width: 15%; text-align: center;'>작성날짜</th>";
-				                    str += "<th style='text-align:center;'>구매결정</th>";
-				                    str += "<th>거래인</th>";
-				                    str += "</tr>";
-									$.each(data.MyExchangeList, function(i, board) {
-										str += "<tr>";
-										str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-										str += "<td>" + board.cateName + "</td>";
-										str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
-										str += "<td style='text-align: center;'>" + board.userId + "</td>";
-										str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
-										str += "<td style='text-align: center;'>"
-											+ "<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>"
-										str += "</tr>";
-									});
-									str += "</div>";
-									str += "</table>";
-									
-									// 페이징 처리
-									str += "<div align = 'center'>" +
-												"<ul class='pagination pagination-sm'>";
-												if(data.pagingDTO.groupNo > 1){
-													str += "<li>" 
-														+	"<a href='javascript:paging("+1+")'>처음</a>" 
-														+ "</li>" 
-														+ "<li>"
-														+ 	"<a href='javascript:paging("+(parseInt(data.pagingDTO.pageStartNo) - 1)+")'>◀</a>" 
-														+ "</li>";
-												}
-												for(var i=data.pagingDTO.pageStartNo; i <= data.pagingDTO.pageEndNo; i++){
-													if(data.pagingDTO.pageNo != i){
-														str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
-													}else{
-														str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
-													}
-													
-												}
-												if(data.pagingDTO.groupNo < data.pagingDTO.totalGroupCount){
-													str += "<li><a href='javascript:paging("+(parseInt(data.pagingDTO.pageEndNo) + 1) +")'>▶</a></li>"
-														+ "<li><a href='javascript:paging("+data.pagingDTO.totalPageCount+")'>마지막</a></li>";
-												}		
-											str +="</ul>"
-											+"</div>";
-									
-									$("#formWrapper").append(str);
-								}
-							}
-						});
-						
-						
-					}
-
-					// 후기 작성 버튼 눌렀을 때 데이터 저장 처리
-					$(document).on("click",".writePost",function(event) {
-						var bno = $(this).parent().prev().prev().prev().prev().prev().text();
-						var userId = $(this).parent().prev().prev().text();
-						var buyerId = "${loginSession.userId }";
-						$("#bno").val(bno);
-						$("#userId").text(userId);
-						$("#buyerId").text(buyerId);
-
-					});
-
-					// 별점 클릭했을 때 동작하는 함수
-					$(".star_rating a").click(function() {
-						$(this).parent().children("a").removeClass("on");
-						$(this).addClass("on").prevAll("a").addClass("on");
-						return false;
-					});
-
-					var formName = $("#formName");
-					// 후기 작성 모달창에서 작성을 누르면 호출되는 이벤트 함수 
-					$("#reviewBtn").on("click",function(event){
-						var score = $(".star_rating").find(".on").length;
-						
-						// 후기 내용과 별점 데이터 넘기기
-						if($("#pcontent").val().trim() == ""){
-							alert("내용을 작성해주세요 :)");
-							return false;
+			//5번 거래중인 게시물
+			function myExchangeList(){
+	           var form = $("#form-contact");
+	           $.ajax({
+	              type : 'get',
+	              headers : {
+	                 "Content-Type" : "application/json",
+	                 "X-HTTP-Method-Override" : "GET"
+	              },
+	              url : '/mypage/myExchangeList',
+	              dataType : 'json',
+	              success : function(data) {
+	            	  console.log(data);
+	                 if (data.result == "ok") {
+	                    var str = "";
+	                    
+	                    $("#form-contact").remove();
+	                    $(".likeTitle").remove();
+	                    str += "<div id='form-contact' style='padding-left: 1%'>";
+	                    str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
+						str += "<br/><br/>";
+	                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
+	                    str += "<tr style='background-color:#D1E0EF;'>";
+	                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
+	                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
+	                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
+	                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
+	                    str += "<th style='width: 15%; text-align: center;''>작성날짜</th>";
+	                    str += "<th style='text-align:center;'>후기작성</th>";
+	                    str += "<th>거래인</th>";
+	                    str += "</tr>";
+	                    if( data.pagingDTO.totalRecordCount == 0){
+	                       str +="<tr><td colspan='6' style='text-align:center;'> 거래중인 게시글이 없습니다. </td></tr> ";   
+	                       $("#formWrapper").append(str);
+	                       return;
+	                    }
+	                    
+	                    $.each(data.MyExchangeList, function(i, board) {
+	                       str += "<tr>";
+	                       str += "<td style='text-align: center;'>" + board.bNo + "</td>";
+	                       str += "<td>" + board.cateName + "</td>";
+	                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+	                       str += "<td style='text-align: center;'>" + board.userId + "</td>";
+	                       str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
+	                       str += "<td style='text-align: center;'>"
+	                          	+ 	"<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>";
+	                       str += "</tr>";
+	                    });
+	                    str += "</div>";
+	                    str += "</table>";
+	                    
+	                    // 페이징 처리
+	                    str += "<div align = 'center'>" +
+	                             "<ul class='pagination pagination-sm'>";
+	                             if(data.pagingDTO.groupNo > 1){
+	                                str += "<li><a href='javascript:paging("+1+")'>처음</a></li>" 
+	                                   + "<li><a href='javascript:paging("+(parseInt(data.pagingDTO.pageStartNo) - 1)+")'>◀</a></li>";
+	                             }
+	                             for(var i=data.pagingDTO.pageStartNo; i <= data.pagingDTO.pageEndNo; i++){
+	                                if(data.pagingDTO.pageNo != i){
+	                                   str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
+	                                }else{
+	                                   str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
+	                                }
+	                                
+	                             }
+	                             if(data.pagingDTO.groupNo < data.pagingDTO.totalGroupCount){
+	                                str += "<li><a href='javascript:paging("+ (parseInt(data.pagingDTO.pageEndNo) + 1) +")'>▶</a></li>"
+	                                   + "<li><a href='javascript:paging("+data.pagingDTO.totalPageCount+")'>마지막</a></li>";
+	                             }      
+	                          str +="</ul>"
+	                          +"</div>";
+	                    
+	                    $("#formWrapper").append(str);
+	                 }
+	              }
+	           });
+	        } // end of myExchangeList()
+	        
+	     // AJAX 페이징 처리하는 함수
+			function paging(pageNoVal){
+				$.ajax({
+					type : 'get',
+					headers : {
+						"Content-Type" : "application/json",
+						"X-HTTP-Method-Override" : "GET"
+					},
+					url : '/mypage/myExchangeList?pageNo='+pageNoVal,
+					dataType : 'json',
+					success : function(data) {
+						if (data.result == "ok") {
+							var str = "";
+							
+							$("#form-contact").remove();
+							$(".likeTitle").remove();
+							str += "<div id='form-contact' style='padding-left: 1%'>";
+							str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;거래중인 게시물</span></h3>";
+							str += "<br/><br/>";
+		                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
+		                    str += "<tr style='background-color:#D1E0EF;'>";
+		                    str += "<th style='width: 10%; text-align: center;'>글번호</th>";
+		                    str += "<th style='width: 15%; text-align: center;'>카테고리</th>";
+		                    str += "<th style='width: 30%; text-align: center;'>제목</th>";
+		                    str += "<th style='width: 10%; text-align: center;'>작성자</th>";
+		                    str += "<th style='width: 15%; text-align: center;'>작성날짜</th>";
+		                    str += "<th style='text-align:center;'>후기작성</th>";
+		                    str += "<th>거래인</th>";
+		                    str += "</tr>";
+							$.each(data.MyExchangeList, function(i, board) {
+								str += "<tr>";
+								str += "<td style='text-align: center;'>" + board.bNo + "</td>";
+								str += "<td>" + board.cateName + "</td>";
+								str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+								str += "<td style='text-align: center;'>" + board.userId + "</td>";
+								str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
+								str += "<td style='text-align: center;'>"
+									+ "<button class='btn btn-default writePost' data-target='#reviewModal' data-toggle='modal'>후기 작성</button></td>"
+								str += "</tr>";
+							});
+							str += "</div>";
+							str += "</table>";
+							
+							// 페이징 처리
+							str += "<div align = 'center'>" +
+										"<ul class='pagination pagination-sm'>";
+										if(data.pagingDTO.groupNo > 1){
+											str += "<li>" 
+												+	"<a href='javascript:paging("+1+")'>처음</a>" 
+												+ "</li>" 
+												+ "<li>"
+												+ 	"<a href='javascript:paging("+(parseInt(data.pagingDTO.pageStartNo) - 1)+")'>◀</a>" 
+												+ "</li>";
+										}
+										for(var i=data.pagingDTO.pageStartNo; i <= data.pagingDTO.pageEndNo; i++){
+											if(data.pagingDTO.pageNo != i){
+												str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
+											}else{
+												str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
+											}
+											
+										}
+										if(data.pagingDTO.groupNo < data.pagingDTO.totalGroupCount){
+											str += "<li><a href='javascript:paging("+(parseInt(data.pagingDTO.pageEndNo) + 1) +")'>▶</a></li>"
+												+ "<li><a href='javascript:paging("+data.pagingDTO.totalPageCount+")'>마지막</a></li>";
+										}		
+									str +="</ul>"
+									+"</div>";
+							
+							$("#formWrapper").append(str);
 						}
-						if(score == "0"){
-							alert("별점은 1점 이상이어야합니다.");	
-							return false;
-						}
-						
-						$.ajax({
-							type : 'post',
-							url : '/mypage/writeReview',
-							contentType : "application/json; charset=UTF-8",
-							dataType : 'text',
-							data:JSON.stringify({
-								bno : $("#bno").val(),
-								pcontent : $("#pcontent").val(),
-								/* encodeURI(encodeURIComponent()) */	
-								pscore : score
-							}),
-							success : function(result) {
-								if(result == "ok"){
-									alert("등록되었습니다.");
-									$("#reviewModal").hide();
-									//$("#a_review").val("수정");
-								}else{
-									alert("등록 실패");
-								}
-							}
-						});
-						
-						//초기값으로 세팅해주기
-						$("#pcontent").val("");
-						$(".star_rating").children("a").removeClass("on");
-						// 데이터 리스트 다시 뿌려주기 위해 함수 호출
-						myExchangeList();
-					});
-
-					$("#cancelBtn").on("click", function(evnet) {
-						$("#pcontent").val(""); // 내용 비우기
-						$(".star_rating").children("a").removeClass("on"); // 별점 지우기
-						history.back(); // 뒤로가기
-					}); // end of cancelBtn
-					
-
-					function htmlbodyHeightUpdate() {
-					    var height3 = $(window).height();
-					    var height1 = $('.nav').height() + 50;
-					    height2 = $('.container-main').height();
-					    if (height2 > height3) {
-					        $('html').height(Math.max(height1, height3, height2) + 10);
-					        $('body').height(Math.max(height1, height3, height2) + 10);
-					       
-					    } else
-					    {
-					        $('html').height(Math.max(height1, height3, height2));
-					        $('body').height(Math.max(height1, height3, height2));
-					    }
-
 					}
-					$(document).ready(function () {
-					    htmlbodyHeightUpdate();
-					    $(window).resize(function () {
-					        htmlbodyHeightUpdate();
-					    });
-					    
-					    $(window).scroll(function () {
-					        height2 = $('.container-main').height();
-					        htmlbodyHeightUpdate();
-					    });
-					    
-					});
-				</script>
-			<script type="text/javascript">
-				$(document).ready(function () {
-					  
-					$(window).resize(function() {
-					  
-					        $checkWidth = $(window).width();
+				});
+				
+				
+			}
 
-					        if ($checkWidth > 1000) {
-					           	$("aside ul").css( "display", "block" );
-					        } else {
-					            	$("aside ul").css( "display", "none" );
-					        }
-					});
+			// 후기 작성 버튼 눌렀을 때 데이터 저장 처리
+			$(document).on("click",".writePost",function(event) {
+				var bno = $(this).parent().prev().prev().prev().prev().prev().text();
+				var userId = $(this).parent().prev().prev().text();
+				var buyerId = "${loginSession.userId }";
+				$("#bno").val(bno);
+				$("#userId").text(userId);
+				$("#buyerId").text(buyerId);
 
-					  
-					  $("aside h3").click(function () {
-					    
-						      if( $(window).width() < 1000) {   
-				     	     $(this).next("ul").slideToggle();
-					           
-					       } 
-					   });
-					 });
+			});
 
-				</script>
+			// 별점 클릭했을 때 동작하는 함수
+			$(".star_rating a").click(function() {
+				$(this).parent().children("a").removeClass("on");
+				$(this).addClass("on").prevAll("a").addClass("on");
+				return false;
+			});
+
+			// 후기 작성 모달창에서 작성을 누르면 호출되는 이벤트 함수 
+			$("#reviewBtn").on("click",function(event){
+				var score = $(".star_rating").find(".on").length;
+				
+				// 후기 내용과 별점 데이터 넘기기
+				if($("#pcontent").val().trim() == ""){
+					alert("내용을 작성해주세요 :)");
+					return false;
+				}
+				if(score == "0"){
+					alert("별점은 1점 이상이어야합니다.");	
+					return false;
+				}
+				
+				$.ajax({
+					type : 'post',
+					url : '/mypage/writeReview',
+					contentType : "application/json; charset=UTF-8",
+					dataType : 'text',
+					data:JSON.stringify({
+						bno : $("#bno").val(),
+						pcontent : $("#pcontent").val(),
+						/* encodeURI(encodeURIComponent()) */	
+						pscore : score
+					}),
+					success : function(result) {
+						if(result == "ok"){
+							alert("등록되었습니다.");
+							$("#reviewModal").hide();
+							//$("#a_review").val("수정");
+						}else{
+							alert("등록 실패");
+						}
+					}
+				});
+				
+				//초기값으로 세팅해주기
+				$("#pcontent").val("");
+				$(".star_rating").children("a").removeClass("on");
+				// 데이터 리스트 다시 뿌려주기 위해 함수 호출
+				myExchangeList();
+			});
+
+			$("#cancelBtn").on("click", function(evnet) {
+				$("#pcontent").val(""); // 내용 비우기
+				$(".star_rating").children("a").removeClass("on"); // 별점 지우기
+				history.back(); // 뒤로가기
+			}); // end of cancelBtn
+			
+
+			function htmlbodyHeightUpdate() {
+			    var height3 = $(window).height();
+			    var height1 = $('.nav').height() + 50;
+			    height2 = $('.container-main').height();
+			    if (height2 > height3) {
+			        $('html').height(Math.max(height1, height3, height2) + 10);
+			        $('body').height(Math.max(height1, height3, height2) + 10);
+			       
+			    } else
+			    {
+			        $('html').height(Math.max(height1, height3, height2));
+			        $('body').height(Math.max(height1, height3, height2));
+			    }
+
+			}
+			$(document).ready(function () {
+			    htmlbodyHeightUpdate();
+			    $(window).resize(function () {
+			        htmlbodyHeightUpdate();
+			    });
+			    
+			    $(window).scroll(function () {
+			        height2 = $('.container-main').height();
+			        htmlbodyHeightUpdate();
+			    });
+			    
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$(window).resize(function() {
+			        $checkWidth = $(window).width();
+	
+			        if ($checkWidth > 1000) {
+			           	$("aside ul").css( "display", "block" );
+			        } else {
+			            	$("aside ul").css( "display", "none" );
+			        }
+				});
+
+				  
+				$("aside h3").click(function () {
+					if( $(window).width() < 1000) {   
+			     		$(this).next("ul").slideToggle();
+				    } 
+				});
+			});
+
+			</script>
 		</div>
 	</div>
 </body>
