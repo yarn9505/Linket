@@ -188,7 +188,7 @@
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=2&pageNo=1">뷰티/패션/잡화</a></li>
 					<li class="divider"></li>
-					<li><a href="/board/category/boardList?cateId=3&pageNo=1">애완동물용품</a></li>
+					<li><a href="/board/category/boardList?cateId=3&pageNo=1">음식/음료</a></li>
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=4&pageNo=1">인테리어/생활용품</a></li>
 					<li class="divider"></li>
@@ -210,27 +210,32 @@
             
             
             <ul class="nav navbar-nav navbar-right" style="line-height: 50px;">
-               <c:if test="${loginSession.userId != null}">
-                   <li id="userIcon">
-                       <span style="font-weight: bold;float:left;margin-top:-10px;">
-                           <a class="mypage" href="/mypage/myList">${loginSession.userId}</a> &nbsp;
-                        </span>
-                        <a class="mypage" href="/mypage/myList"><img class="msg_img" src="/resources/images/message.png" style="float:left;"/></a>
-                        <a class="msg_a" href="/note/listReceive" style="width:150px;float:left;margin-left:15px;margin-top:5px;">
-                        <!-- 읽지 않은 쪽지 -->
-                        <span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
-                        </a>
-                  </li> 
-                     <li style="clear:both;">
-                        <a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
-                     </li>
-               </c:if>
+            	<c:if test="${loginSession.userId != null}">
+                	<li id="userIcon">
+                 		<span style="font-weight: bold;">
+                     		<a class="mypage" href="/mypage/myList">${loginSession.userId}</a> &nbsp;
+                  		</span>
+                  		<img class="msg_img" src="/resources/images/message.png" />
+            		</li> 
+                  	<li style="width: 10%;">
+                  		<a class="msg_a" href="/note/listReceive">
+                     	<!-- 읽지 않은 쪽지 -->
+                     	<span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
+                  		</a>
+                  	</li>
+                  	<li id="sectionBar">
+                  		┃ 
+                  	</li>
+                  	<li>
+                  		<a class="logout" href="/user/Logout" style="font-weight: bold;">로그아웃</a>
+                  	</li>
+					</c:if>
                
                <c:if test="${loginSession.userId == null}">
                   <li><a href="/user/login">로그인</a>
                   <li><a href="/user/subscribeJoin" >회원가입</a></li>
                </c:if>
-            </ul>
+            </ul>     
          </div>
       </div>
    </div>
