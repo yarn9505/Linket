@@ -36,7 +36,7 @@
 	<div class="container">
 		<div class="row">
 			<%@include file="/WEB-INF/views/layout/mypageAside.jsp"%>
-			<div class="col-md-8 col-md-offset-3">
+			<div class="col-md-9 col-md-offset-3">
 				<!-- 거래인 지정 모달창 -->
 				<div class="modal fade" id="layerpop">
 					<div class="modal-dialog">
@@ -142,7 +142,7 @@
 						</div>
 					</div>
 				</div>
-
+				
 				<div id="formWrapper" style="float: left;">
 					<div id="form-contact" style="padding-left: 1%">
 					<h3><span class="glyphicon glyphicon-ok-circle likeTitle" style="color: #0E3E59;">&nbsp;좋아요 목록</span></h3>
@@ -518,8 +518,8 @@
                     $.each(result.MyBoardList, function(i, board) {
                        str += "<tr>";
                        str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-                       str += "<td>" + board.cateName + "</td>";
-                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
+                       str += "<td style='text-align: center;'> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                        str += "<td style='text-align: center;'>" + board.userId + "</td>";
                        str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                        
@@ -627,16 +627,16 @@
                     $.each(result.MyBoardList, function(i, board) {
                        str += "<tr>";
                        str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-                       str += "<td>" + board.cateName + "</td>";
-                       str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+                       str += "<td style='text-align: center;'>" + board.cateName + "</td>";
+                       str += "<td style='text-align: center;'> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                        str += "<td style='text-align: center;'>" + board.userId + "</td>";
                        str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                        if(board.isSwap == 'Y'){
-                       		str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                       		str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                        }else if ( board.buyerId != null ){
-                       		str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                       		str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</button></td>";
                        }else{
-                       		str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                        }
                        str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                        str += "</tr>";
@@ -726,16 +726,16 @@
                       $.each(result.MyBoardList, function(i, board) {
                           str += "<tr>";
                           str += "<td style='text-align: center;'>" + board.bNo + "</td>";
-                          str += "<td>" + board.cateName + "</td>";
-                          str += "<td> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
+                          str += "<td style='text-align: center;'>" + board.cateName + "</td>";
+                          str += "<td style='text-align: center;'> <a href='/board/category/detailContent?bno="+board.bNo+"' style='display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;'>"+ board.bTitle +" </a> </td>";
                           str += "<td style='text-align: center;'>" + board.userId + "</td>";
                           str += "<td style='text-align: center;'>" + board.bRegDate + "</td>";
                            if(board.isSwap == 'Y'){
-                                  str += "<td style='text-align: center;'><span style='border:1px solid; padding:5px; border-radius:10px;border-color:red;'>거래 완료</span></td>";
+                                  str += "<td style='text-align: center;'><span style='color:red; font-size:0.9em'>거래 완료</span></td>";
                                }else if ( board.buyerId != null ){
-                                   str += "<td style='text-align: center;'><button  disabled=true class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래중</button></td>";
+                                   str += "<td style='text-align: center;'><span style='color:gray; font-size:0.9em'>거래중</button></td>";
                                 }else{
-                                   str += "<td style='text-align: center;'><button class='btn btn-default testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
+                                   str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                                 }
                                 str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                           str += "</tr>";
