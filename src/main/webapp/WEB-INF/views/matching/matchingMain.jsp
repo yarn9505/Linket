@@ -116,7 +116,7 @@ width:100%;
 <body>
 
 	<!-- 후기작성 모달창 -->
-            <div class="modal fade" id="reviewModal" role="dialog">
+            <div class="modal fade" id="reviewModal" data-dismis="modal" role="dialog">
                <div class="modal-dialog">
                   <div class="modal-content">
                      <!-- header -->
@@ -167,7 +167,7 @@ width:100%;
      <!-- 비교하기 누르면 나타나는 모달창 -->
                 <!-- 화면 꽉찬 modal -->
             <!-- Fullsize Modal -->
-            <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" aria-labelledby="myFullsizeModalLabel">
+            <div class="modal fade" id="myFullsizeModal" tabindex="-1" role="dialog" data-dismiss="modal" aria-labelledby="myFullsizeModalLabel">
               <div class="modal-dialog modal-fullsize" role="document">
                 <div class="modal-content modal-fullsize">
                   <div class="modal-header">
@@ -402,7 +402,7 @@ width:100%;
 				                        
                <!-- 클릭한 게시글 상세 보여주기 모달창 -->
                <!-- Modal -->
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-dismis="modal" aria-labelledby="myModalLabel" aria-hidden="true">
                  <div class="modal-dialog">
                    <div class="modal-content">
                      <div class="modal-header">
@@ -438,7 +438,7 @@ width:100%;
                         <!-- 가치, 주소 -->
                      <textarea class="form-control" rows="3" id="requestMsg"></textarea>
                        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                       <button type="button" class="btn btn-primary" id="sendContent">요청하기</button>
+                       <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendContent">요청하기</button>
                      </div>
                    </div>
                  </div>
@@ -798,7 +798,9 @@ width:100%;
 	                                    $("#wantedValue").val("");
 	                                    $("#requestMsg").val("");
 	                                    // 모달창 닫음
-	                                    $("#myModal").fadeOut(500);
+	                                    //$("#myModal").fadeOut(500);
+	                                    $("#myModal").hide();
+	                                    listMyTransactionInfo("sellingBtn");
 	                                 },
 	                                 error:function(data){
 	                                    console.log("error");
@@ -959,7 +961,10 @@ width:100%;
 	                        
 	                        // 처음 페이지 뜰 때 매칭되어져 있는 상태 표시
 	                        listMyTransactionInfo("sellingBtn");
-	                      
+
+
+	                        
+	                        
 	                        // 구매 최종 확정 버튼 클릭시...
 	                        $(document).on("click",".writePost",function(event){
 								var obj = $(this); // 클릭된 객체 가져오기
@@ -1051,35 +1056,50 @@ width:100%;
 	                              
 	                           });//요청하기 ajax
 	                           
+	                           
+	                           
+	                           // 비교하기 모달 창에서 최종 선택하기 (div 클릭)
 		                        var confirmVal;
 	                           	var mno;
 	                           $("#1Container").on("click",function(event){
 	                        	   var parentObj = $(this);
 		                           mno = parentObj.find("#1MnoId").val();
-								   isConfirmVal();
+								   isConfirmVal(mno);
 	                           });
 	                           $("#2Container").on("click",function(event){
 	                        	   var parentObj = $(this);
 		                           mno = parentObj.find("#2MnoId").val();
-								   isConfirmVal();
+								   isConfirmVal(mno);
 	                           });
 	                           $("#3Container").on("click",function(event){
 	                        	   var parentObj = $(this);
 		                           mno = parentObj.find("#3MnoId").val();
-								   isConfirmVal();
+								   isConfirmVal(mno);
 	                           });
 	                           $("#4Container").on("click",function(event){
 	                        	   var parentObj = $(this);
 		                           mno = parentObj.find("#4MnoId").val();
-								   isConfirmVal();
+								   isConfirmVal(mno);
 	                           });
 	                            
 	                           
-	                            function isConfirmVal(){
+	                            function isConfirmVal(mno){
+	                            	var mno = mno;
 	                            	confirmVal = confirm("해당 요청을 선택하시겠습니까?");
 	                            	var str = "";
 	                            	if(confirmVal){ // 확인창 true
-	                            		listMyTransactionInfo("sellingBtn");
+	                            		$.ajax({
+	                            			type:"GET",
+	                            			headers:{
+	                            				"Content-Type":"application/json"
+	                            			},
+	                            			url:"/matching/matchingResult?mno="+mno,
+	                            			dataType:"json",
+	                            			success:function(data){
+	                            				$("#myFullsizeModal").hide();
+	                            				location.reload();
+	                            			}
+	                            		});
 	 	                            };// end of confirmVal if
 	                            	
 	                            }//end of isConfirmVal()

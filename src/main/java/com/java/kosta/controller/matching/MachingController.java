@@ -110,6 +110,7 @@ public class MachingController {
    @RequestMapping(value="/insertMatching",method=RequestMethod.POST)
    public @ResponseBody String insertMatch(HttpSession session, @RequestBody matchingDTO dto){
       UserVO vo = (UserVO) session.getAttribute("loginSession");
+      logger.info("insertMatching : " + dto.getMno());
       logger.info("lat : " + dto.getLat() + "lon : " + dto.getLon() + " addr1 : " + dto.getAddr1() + "wantedValue : " + dto.getWantedValue());
       //실제 삽입 처리
       service.insertMatchingT(vo, dto);
