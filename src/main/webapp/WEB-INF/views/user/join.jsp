@@ -137,25 +137,25 @@ input[type=checkbox]:checked + label:before {
 	         <label class="control-label">관심분야 </label> 
 	         <div class="input-group">
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId1" class="checkbox-style"  /><label for="cateId1">유아/취미/완구</label>
+	            <input type="checkbox" name="checkbox" id="cateId1" value="n" class="checkbox-style"  /><label for="cateId1">유아/취미/완구</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId2" class="checkbox-style"  /><label for="cateId2">뷰티/패션/잡화</label>
+	            <input type="checkbox" name="checkbox" id="cateId2" value="n" class="checkbox-style"  /><label for="cateId2">뷰티/패션/잡화</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId3" class="checkbox-style"  /><label for="cateId3">애완동물 용품</label>
+	            <input type="checkbox" name="checkbox" id="cateId3" value="n" class="checkbox-style"  /><label for="cateId3">음식/음료</label>
 	            </label> 
 	            
 	            <br/><br/>
 	            
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId4" class="checkbox-style"  /><label for="cateId4">홈인테리어/생활용품</label>
+	            <input type="checkbox" name="checkbox" id="cateId4" value="n" class="checkbox-style"  /><label for="cateId4">홈인테리어/생활용품</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId5" class="checkbox-style"  /><label for="cateId5">도서/음반</label>
+	            <input type="checkbox" name="checkbox" id="cateId5" value="n" class="checkbox-style"  /><label for="cateId5">도서/음반</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox"   id="cateId6" value="n" class="checkbox-style"  /><label for="cateId6">지역 할인 쿠폰</label>
+	            <input type="checkbox" name="checkbox"  id="cateId6" value="n" class="checkbox-style"  /><label for="cateId6">지역 할인 쿠폰</label>
 	            </label>
 	            
 	             <input type="hidden" name="uniqId" value="${UserVO.uniqId}" id="uniqId">
