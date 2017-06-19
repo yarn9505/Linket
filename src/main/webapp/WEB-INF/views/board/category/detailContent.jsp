@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>${cateDTO.cateName}</title>
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
-<%@include file="/WEB-INF/views/note/includeModalCSS.jsp"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 /* 구글맵 style 적용 */

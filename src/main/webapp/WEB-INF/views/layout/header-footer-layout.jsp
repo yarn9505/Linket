@@ -10,14 +10,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-<!-- <link rel="stylesheet" href="/resources/css/custom.min.css">
-<link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
-<link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
-<script type="text/javascript" src="/resources/js/json2.js"></script>
-<script type="text/javascript" src="/resources/js/sockjs.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script> -->
-
 <link rel="stylesheet" href="/resources/css/custom.min.css">
 <link rel="stylesheet" href="/resources/css/matching.css">
 <link rel="stylesheet" href="/resources/fonts/glyphicons-halflings-regular.ttf">
@@ -34,7 +26,6 @@
 <script src="/resources/js/join/join.js"></script>
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
 <script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
 <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <script type="text/javascript" src="/resources/js/matching/dashboard.js"></script>
@@ -196,7 +187,7 @@
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=2&pageNo=1">뷰티/패션/잡화</a></li>
 					<li class="divider"></li>
-					<li><a href="/board/category/boardList?cateId=3&pageNo=1">애완동물용품</a></li>
+					<li><a href="/board/category/boardList?cateId=3&pageNo=1">음식/음료</a></li>
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=4&pageNo=1">인테리어/생활용품</a></li>
 					<li class="divider"></li>
@@ -206,7 +197,6 @@
 				</ul></li>
 				<li><a href="/bestUser/bestUserSection">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
-               <li><a id="about" href="/aboutUsSection">About Us</a></li>
                
                <form class="navbar-form navbar-left" role="search">
                   <div class="form-group">

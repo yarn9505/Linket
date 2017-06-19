@@ -1,14 +1,11 @@
 package com.java.kosta.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,12 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.java.kosta.common.Constants;
 import com.java.kosta.dto.board.BoardDTO;
-import com.java.kosta.dto.board.CategoryDTO;
-import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.board.BoardPagingDTO;
+import com.java.kosta.dto.board.CategoryDTO;
+import com.java.kosta.dto.user.UserVO;
 import com.java.kosta.service.board.BoardServiceImpl;
 
 /**
@@ -35,11 +32,15 @@ public class HomeController {
    
    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
    
-   @RequestMapping(value = "/timelineSection", method = RequestMethod.GET)
-   public String timeLineSection(Locale locale, Model model) {
-      logger.info("timeLineSection Controller");
+   @RequestMapping(value = "/")
+   public String main(Locale locale, Model model, HttpServletRequest request) {
+      System.out.println("main Controller");
+      UserVO login = (UserVO) request.getSession().getAttribute(Constants.LOGINSESSION);
+	  if(login != null){
+		  return "timeline/timelineMain";
+	  }
       
-      return "timeline/timelineMain";
+      return "/user/login";
    }
    
    @RequestMapping(value = "/categorySection", method = RequestMethod.GET)

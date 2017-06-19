@@ -192,8 +192,8 @@
 			}
 		});
 
-		var offset =  $(".pageBox").offset();
-		$( 'html, body' ).stop().animate( { scrollTop : offset } );
+		var offset =  $("#lowerRow").offset();
+		$( 'html, body' ).animate( { scrollTop : offset.top } );
 		
 	} // end of paging
 </script>
