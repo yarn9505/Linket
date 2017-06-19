@@ -325,8 +325,8 @@
 			                   
 			                   	var str = "";
 			                    str += "<div id='form-contact' style='padding-left: 1%'>";
-								str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;좋아요 목록</span></h3>";
 			                    str += "<table class='table table-hover' style='table-layout:fixed;'>";
+								str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;좋아요 목록</span></h3>";
 								str += "<br/><br/>";
 			                    str += "<tr style='background-color:#D1E0EF;'>";
 			                 	str += "<th style='width: 10%; text-align: center;'>글번호</th>";
