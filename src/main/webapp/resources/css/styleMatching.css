@@ -47,3 +47,10 @@ div.Dash.plus-minus div.BoxTitle-collapse {background: url("/resources/images/mi
 div.Dash.plus-minus div.BoxContents.collapse div.BoxTitle-collapse {background-image: url("/resources/images/plus.png");}
 div.Dash.padded div.BoxContents h1.BoxTitle {border: 1px solid #CCCCCC !important;}
 div.Dash.padded div.BoxContents, div.Dash.padded div.DashboardSection { padding: 4px; }
+
+/**윤오가 필요로 한 공통 css*/
+
+.BoxTitle{
+	background: #158cb !important;
+	color: #ffffff !important;
+}
