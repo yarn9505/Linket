@@ -53,9 +53,8 @@
 										</c:if>
 									</td>
 									<td style="text-align: center;">
-									<button class="btn btn-link" id="delBtn" type="button">삭제</button>
-
-									<input id="mnoId" type="hidden" value="${NoteVO.mno}" /></td>
+									<button onclick="del('${NoteVO.mno }')" type="button" class="btn btn-link">삭제</button></td>
+									<input id="mnoId" type="hidden" value="${NoteVO.mno}" />
 								</tr>
 							</c:forEach>
 						</table>
@@ -99,12 +98,15 @@
 			</div>
 			<!-- END TEAM SECTION -->
 			<script>
-				$(document).ready(function() {
-					$("#sel td").on("click", "#delBtn", function() {
-						var mno = $(this).parent().next().val();
-						self.location = "/note/delFromSender?mno=" + mno;
-					}); // end of click delBtn
-				})
+			function del(bno){
+				var result=confirm("삭제하시겠습니까?");
+				if(result==true){
+					var mno = bno;
+					console.log(mno);
+					self.location = "/note/delFromSender?mno=" + mno;
+				}
+			}
+
 			</script>
 
 </body>

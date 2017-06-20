@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.socket.TextMessage;
@@ -65,10 +66,11 @@ public class NoteController {
    
    // 쪽지 보내기(삽입) 처리
    @RequestMapping(value="/insertNote",method=RequestMethod.POST)
-   public String insertNote(NoteVO vo,RedirectAttributes rttr,BindingResult errors,HttpSession session){
+   public String insertNote(@RequestParam(value="bno")String bno,NoteVO vo,RedirectAttributes rttr,BindingResult errors,HttpSession session){
       UserVO uvo = (UserVO) session.getAttribute("loginSession");
       vo.setUserId(uvo.getUserId());
-//      logger.info("확인 : " + vo);
+      System.out.println(bno);
+      logger.info("확인 : " + vo);
       String destination = "";
       HashMap<String,String> error = new HashMap<String,String>();
       ValidationForNote validation = new ValidationForNote(error);
@@ -176,7 +178,7 @@ public class NoteController {
          
          
          
-         destination = "note/listForReceive";            
+         destination = "redirect:/board/category/detailContent?bno="+bno;            
          
       }
       return destination;
@@ -274,7 +276,7 @@ public class NoteController {
       service.deliteFromSenderUpdate(mno);
       // 실재 삭제작업 수행할 수 있는지 해보기
       service.deleteBoth(mno);
-      return "redirect:/";
+      return "redirect:/note/listSend";
    }; // end of delFromReceiver
    
    // 쪽지 답장하기

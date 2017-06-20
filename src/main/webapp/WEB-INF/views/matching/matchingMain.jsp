@@ -116,7 +116,7 @@ width:100%;
 <body>
 
 	<!-- 후기작성 모달창 -->
-            <div class="modal fade" id="reviewModal" data-dismiss="modal" role="dialog">
+            <div class="modal fade" id="reviewModal" data-dismis="modal" role="dialog">
                <div class="modal-dialog">
                   <div class="modal-content">
                      <!-- header -->
@@ -637,7 +637,7 @@ width:100%;
                                  $("#listMatchContent").append(str3);
                                  // 추천하는 요청사항의 속성을 변경하는 부분
                               $("#indexContent0").attr("style","border:5px solid yellow;");
-                                var i = $("#indexContent0").find(".imgVictory").attr("src","/resources/images/crown.png");
+                                var i = $("#indexContent0").find(".imgVictory").attr("src","/resources/images/victory.png");
                                 $("#indexContent0").find(".imgVictory").attr("style","border:0px;display:inline;float:right;margin-top:-28px;");
                               },
                               error:function(){
@@ -1008,7 +1008,7 @@ width:100%;
 	                       				if ( data == "cancelSUCCESS" ){
 	                       					// 취소 성공
 	                       					alert("거래가 취소되었습니다.");
-	                       					location.reload();
+											location.reload();
 	                       				}
 	                       			}
 	                       		});

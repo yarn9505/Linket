@@ -252,7 +252,7 @@ a:hover {
   right : 15%;
   height: 50%;
   width:25%;
-  overflow: scroll;
+  overflow:scroll;
   overflow-x:hidden;
   background: #fff ;
   border-radius: 3px;

@@ -143,11 +143,9 @@ input[type=checkbox]:checked + label:before {
 	            <input type="checkbox" name="checkbox" id="cateId2" value="n" class="checkbox-style"  /><label for="cateId2">뷰티/패션/잡화</label>
 	            </label> 
 	            <label class="checkbox-inline"> 
-	            <input type="checkbox" name="checkbox" id="cateId3" value="n" class="checkbox-style"  /><label for="cateId3">애완동물 용품</label>
+	            <input type="checkbox" name="checkbox" id="cateId3" value="n" class="checkbox-style"  /><label for="cateId3">음식/음료</label>
 	            </label> 
-	            
 	            <br/><br/>
-	            
 	            <label class="checkbox-inline"> 
 	            <input type="checkbox" name="checkbox" id="cateId4" value="n" class="checkbox-style"  /><label for="cateId4">홈인테리어/생활용품</label>
 	            </label> 

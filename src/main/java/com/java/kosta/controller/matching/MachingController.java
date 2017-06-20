@@ -2,7 +2,6 @@ package com.java.kosta.controller.matching;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -57,8 +56,7 @@ public class MachingController {
       /** 사이의 상대적 거리값과 오차범위를 가지고 있음  : 오차범위가 크고 거리값이 작으면 적정수준임 */
       matchingDTO comp1 = service.calcCompare(vo, content1.getBno());    
       matchingDTO comp2 = service.calcCompare(vo, content2.getBno());
-      
-      
+   
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("comp1", comp1);
       map.put("comp2", comp2);
@@ -141,7 +139,6 @@ public class MachingController {
       Collections.sort(list);
       
       
-      
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("list", list);
       map.put("myboard", myboard);
@@ -163,7 +160,6 @@ public class MachingController {
 			
 			// 요청글 상태를 바꾸기 위한 필요한 정보 가져오기
 			BoardDTO info = service.infoForUpdate(mno);
-			logger.info("잘 가져왔나?" + info.getbNo() + "," + info.getUserId());
 			
 			// 게시자가 요청글을 선택한 경우
 			service.updateAllowVal(mno, info.getbNo(), info.getUserId(), swit);
@@ -171,11 +167,11 @@ public class MachingController {
 
 		// 내 정보 가지고 오기
 		UserVO myinfo = service.WhoAmI(myId);
-
+		
 		// 게시글 중에서 내 아이디를 검색한 리스트 가지고옴
 		List<matchingDTO> mylist = new ArrayList<matchingDTO>();
 		mylist = service.selectMyBno(myId);
-		logger.info("mylist의 크기 : " + mylist.size());
+		logger.info("mylist size : " + mylist.size());
 		// 판매자용 리스트
 		List<matchingDTO> IamSeller = new ArrayList<matchingDTO>();
 		List<UserVO> MyCustomerList = new ArrayList<UserVO>();
@@ -195,7 +191,8 @@ public class MachingController {
 				} // if
 				/**원래 userId와 sellerId가 동일하지 않기 때문에 else if로 써줘야 하지만*/
 				/**테스트 환경에서는 userId와 sellerId가 동일하기 때문에 원활한 테스트를 위해서 if문을 써줌 */
-				if (mylist.get(i).getRequester().equals(myId)) {
+
+				else if (mylist.get(i).getUserId().equals(myId)) {
 					// 내가 구매자인 경우
 					IamCustomer.add(mylist.get(i));
 					// 내가 구매자인 경우 판매자의 정보를 가지고 옴
@@ -205,9 +202,12 @@ public class MachingController {
 			} // for
 		} // if
 
+
 		/** 뿌려줄때..둘이 거래가 성립된 날짜와 시간 순서대로 sort 해줘야되나... */
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
+		logger.info("IamSeller size : " + IamSeller.size());
+		logger.info("MyCustomerList size : " + MyCustomerList.size());
 		map.put("myinfo", myinfo); // 내 정보
 		map.put("IamSeller", IamSeller); // 내가 판매자인 경우 내 게시글 정보(requestMsg등의 정보를 담고 있음) ,
 		map.put("MyCustomerList", MyCustomerList); // 내 게시글 구매자 정보를 담고 있음
@@ -221,7 +221,6 @@ public class MachingController {
 	@RequestMapping(value = "/confirmMatching")
 	public @ResponseBody Map<String, Object> confirmMatching(@RequestParam("mno") String mno, HttpSession session){
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
-		logger.info("구매 확정해서 후기로 고고고고고고고고고!");
 		
 		//넣음넣음
 		service.insertTranPost(mno,vo);
@@ -236,17 +235,15 @@ public class MachingController {
 	/** cacleMatching 정상작동하는 거 확인했음!! */
 	@RequestMapping(value = "/cancelMatching")
 	public @ResponseBody String cancleMatching(HttpSession session, @RequestParam("mno") String mno) {
-		logger.info("취소컨트롤러 들어왔음!");
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
 		swit = "OFF";
 
 		// 요청글 상태를 바꾸기 위한 필요한 정보 가져오기
 		BoardDTO info = service.infoForUpdate(mno);
-		logger.info("취소할거 잘 가져왔나?" + info.getbNo() + "," + info.getUserId());
 
 		// 게시자가 요청글을 선택한 경우
 		service.updateAllowVal(mno, info.getbNo(), info.getUserId(), swit);
-		return "cancle";
+		return "cancelSUCCESS";
 	}// end of cancleMatching
 	
 	

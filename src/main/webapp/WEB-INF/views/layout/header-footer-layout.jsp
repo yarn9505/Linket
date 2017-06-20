@@ -217,10 +217,10 @@
                   		</span>
                   		<img class="msg_img" src="/resources/images/message.png" />
             		</li> 
-                  	<li style="width: 10%;">
+                  	<li class="bedgeSt" style="width: 10%;">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge" style="margin-right: -20%;">${sessionScope.notOpen}  </span>
+                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}  </span>
                   		</a>
                   	</li>
                   	<li id="sectionBar">

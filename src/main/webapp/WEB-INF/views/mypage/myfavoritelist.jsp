@@ -520,7 +520,7 @@
                        }else if ( board.buyerId != null ){
                        		str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                        }else{
-                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-toggle='modal'>거래인 지정</button></td>";
+                       		str += "<td style='text-align: center;'><button class='btn btn-link testBtn' style='padding:0px;' data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                        }
                        str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                        str += "</tr>";
@@ -588,13 +588,13 @@
                       str += "<h3><span class='glyphicon glyphicon-ok-circle' style='color: #0E3E59;'>&nbsp;내가 올린 글</span></h3>";
   					  str += "<br/><br/>";
   					  str += "<table class='table table-bordered' style='table-layout:fixed;'>";
-                      str += "<tr style='background-color: #D1E0EF;'>";
+  					  str += "<tr style='background-color: #D1E0EF;'>";
                       str += "<th style='width: 5%; text-align: center;'>No</th>";
                       str += "<th style='width: 10%; text-align: center;'>카테고리</th>";
-                      str += "<th style='width: 35%; text-align: center;'>제목</th>";
+                      str += "<th style='width: 32%; text-align: center;'>제목</th>";
                       str += "<th style='width: 10%; text-align: center;'>작성자</th>";
                       str += "<th style='width: 20%; text-align: center;''>작성날짜</th>";
-                      str += "<th style='width: 10%; text-align:center;'>거래상태</th>";
+                      str += "<th style='width: 13%; text-align:center;'>거래상태</th>";
                       str += "<th style='width: 10%; text-align: center;'>거래인</th>";
                       str += "</tr>";
                       
@@ -617,7 +617,7 @@
                                }else if ( board.buyerId != null ){
                                    str += "<td style='text-align: center;'><span style='color:#aaa; font-size:0.9em'>거래중</button></td>";
                                 }else{
-                                   str += "<td style='text-align: center;'><button class='btn btn-link testBtn' data-toggle='modal'>거래인 지정</button></td>";
+                                   str += "<td style='text-align: center;'><button class='btn btn-link testBtn' style='padding:0px;'  data-target='#layerpop' data-toggle='modal'>거래인 지정</button></td>";
                                 }
                                 str += "<td style='text-align: center;'><span class='customerId'>"+ ((board.buyerId == null) ? " " : board.buyerId) +"</span></td>";
                           str += "</tr>";
@@ -787,7 +787,7 @@
 	                                if(data.pagingDTO.pageNo != i){
 	                                   str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
 	                                }else{
-	                                   str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
+	                                   str += "<li><a href='#' style='background-color: #158cba; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
 	                                }
 	                                
 	                             }
@@ -862,7 +862,7 @@
 											if(data.pagingDTO.pageNo != i){
 												str += "<li><a href='javascript:paging("+i+")'>" +i +"</a></li>";
 											}else{
-												str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
+												str += "<li><a href='#' style='background-color: #158cba; color: white; font-weight: bold;'>&nbsp;"+ i +"&nbsp;</a></li>";
 											}
 											
 										}

@@ -156,6 +156,7 @@
 		(board.allowVal = 'Y' and board.isSwap = 'N' and (board.userId = #{userId} and matchingT.sellerId is not NULL ))
 		or
 		(board.allowVal = 'Y' and board.isSwap = 'N' and (matchingT.sellerId = #{userId}))
+
 	</select>
 	
 	<!-- 나와 거래중인 사용자의 정보를 가지고 옴 -->
