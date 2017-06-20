@@ -4855,6 +4855,10 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 	#noteIcon a {
 		display: inline;
 	}
+	.bedgeSt{
+		display: inline-block !important;
+	}
+	
 
 }
 
