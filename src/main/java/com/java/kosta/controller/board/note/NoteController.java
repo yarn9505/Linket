@@ -285,6 +285,7 @@ public class NoteController {
    public String replyNoteForm(NoteVO vo,Model model){
       // vo에 userId와 recvId가 넘어옴
       service.sendInsert(vo);
+      logger.info("답장 : " + vo);
       return "redirect:/note/listReceive";
    }
    
