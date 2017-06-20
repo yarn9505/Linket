@@ -21,11 +21,13 @@
     $(document).ready(function(){
         sock = new SockJS("/echo-ws");
           sock.onopen=function(){
+        	  sock.send("접속${loginSession.userId}");
+        	  
           }
           sock.onmessage=function(evt){
-                alert("테스트 소켓 : " + evt.data);
                 console.log("안들어오나?" + evt.data);
-               // notifyMe(evt.data); // notification
+                alert(evt.data);
+                //notifyMe(evt.data); // notification
 //               if(${loginSession.userId eq sessionScope.NotiRecvId}){
 //              } 
           }
