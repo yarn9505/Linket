@@ -58,8 +58,6 @@ public class MachingController {
       matchingDTO comp1 = service.calcCompare(vo, content1.getBno());    
       matchingDTO comp2 = service.calcCompare(vo, content2.getBno());
       
-      logger.info("comp1 : "+comp1);
-      logger.info("comp2 : "+comp2);
       
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("comp1", comp1);
@@ -75,7 +73,6 @@ public class MachingController {
       
       // 리스트 가져오기...
       List<matchingCntDTO> list = service.listMyMatch(vo);
-      logger.info("요청받은건??모닝?? : " + list);
       return list;
    }// end of receiveList()
    
@@ -85,7 +82,6 @@ public class MachingController {
       UserVO vo = (UserVO) session.getAttribute("loginSession");
       //테스트용으로 condi는 value값을 넘겨줌 , 뷰단 수정후 받는 값을 condi에 넘겨주면 됨
       List<matchingDTO> list = service.listMatchContent(vo, dto.getBno(),dto.getCondi());
-      logger.info("내가 요청받은 내역은? : "+list);
       return list;
    }
    
@@ -95,23 +91,17 @@ public class MachingController {
       // 로그인 세션 정보를 가져옴
       UserVO vo = (UserVO) session.getAttribute("loginSession");
       String productKeywords = dto.getProductKeywords();
-      logger.info("유저 : " + vo.getUserId() + " 키워드 : " + productKeywords);
 
 
       // 사고자하는 상품명 입력한 문구를 포함하는 게시글 리스트를 가져옴
       List<matchingDTO> list = service.requestList(vo, productKeywords);
 
-      logger.info("requestList : " + list);
-      logger.info("size : " + list.size());
-      logger.info("화아아아아아아앙ㄱ잉: " + service.testCount());
       return list;
    }// end of requestList()
    
    @RequestMapping(value="/insertMatching",method=RequestMethod.POST)
    public @ResponseBody String insertMatch(HttpSession session, @RequestBody matchingDTO dto){
       UserVO vo = (UserVO) session.getAttribute("loginSession");
-      logger.info("insertMatching : " + dto.getMno());
-      logger.info("lat : " + dto.getLat() + "lon : " + dto.getLon() + " addr1 : " + dto.getAddr1() + "wantedValue : " + dto.getWantedValue());
       //실제 삽입 처리
       service.insertMatchingT(vo, dto);
       
@@ -134,28 +124,28 @@ public class MachingController {
    // 비교하기 버튼 클릭시... 처리
    @RequestMapping(value="/compareMatching",method=RequestMethod.POST)
    public @ResponseBody Map<String, Object> compareMatching(HttpSession session,@RequestParam("sendData") String[] checkObj){
-      logger.info("컨트롤러 진입 확인 : " + Arrays.toString(checkObj));
       UserVO vo = (UserVO) session.getAttribute("loginSession");
       int size = checkObj.length;
       List<matchingDTO> list = new ArrayList<matchingDTO>();
-      logger.info("checkObj[0]: " + checkObj[0]);
       TimelineDTO myboard= service.showMyBoard(vo, checkObj[0]);
+      List<Integer> absList = new ArrayList<Integer>();
       
-      logger.info("사용자 정보 : " + myboard);
       
       /** 계산을 하는 부분 **/
       
       for (int i = 0; i < size; i++) {
        list.add(service.calcCompare(vo, checkObj[i]));
+       absList.add(Math.abs(Integer.parseInt(list.get(i).getRelValue())));
       }
       
       Collections.sort(list);
       
-      logger.info("확인 : " + list);
+      
       
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("list", list);
       map.put("myboard", myboard);
+      map.put("absList", absList);
       
       return map;
    }
@@ -165,7 +155,6 @@ public class MachingController {
 	// 매칭 성사된 경우 둘간의 정보를 표시함
 	@RequestMapping(value = "/matchingResult")
 	public @ResponseBody Map<String, Object> matchingResult(HttpSession session, @RequestParam("mno") String mno) {
-		logger.info("들어와따!");
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
 		String myId = vo.getUserId();
 		
@@ -201,12 +190,12 @@ public class MachingController {
 				if (mylist.get(i).getSellerId().equals(myId)) {
 					IamSeller.add(mylist.get(i));
 					// 내가 판매자인 경우 구매자의 정보를 가지고 옴
-					String MyCustomerId = mylist.get(i).getUserId();
+					String MyCustomerId = mylist.get(i).getRequester();
 					MyCustomerList.add(service.WhoAmI(MyCustomerId));
 				} // if
 				/**원래 userId와 sellerId가 동일하지 않기 때문에 else if로 써줘야 하지만*/
 				/**테스트 환경에서는 userId와 sellerId가 동일하기 때문에 원활한 테스트를 위해서 if문을 써줌 */
-				if (mylist.get(i).getUserId().equals(myId)) {
+				if (mylist.get(i).getRequester().equals(myId)) {
 					// 내가 구매자인 경우
 					IamCustomer.add(mylist.get(i));
 					// 내가 구매자인 경우 판매자의 정보를 가지고 옴
@@ -215,27 +204,6 @@ public class MachingController {
 				} // else
 			} // for
 		} // if
-		logger.info("IamSeller의 사이즈 : " + IamSeller.size());
-		logger.info("MyCustomerList의 사이즈 : " + MyCustomerList.size());
-		if (IamSeller.size() == MyCustomerList.size() && IamSeller.size() != 0) {
-			logger.info("내가 판매자인 경우 사이즈 일치합니다.");
-			for (int i = 0; i < IamSeller.size(); i++) {
-				logger.info("게시글번호 : " + IamSeller.get(i).getBno() + ", 요청한사람 : " + IamSeller.get(i).getUserId()
-						+ ", 판매자아이디 : " + IamSeller.get(i).getSellerId() + ", 구매자이름 : "
-						+ MyCustomerList.get(i).getUserName());
-			}
-		} // if
-		
-		logger.info("IamCustomer의 사이즈 : " + IamCustomer.size());
-		logger.info("MySellerList의 사이즈 : " + MySellerList.size());
-		if (IamCustomer.size() == MySellerList.size() && IamCustomer.size() != 0) {
-			logger.info("내가 구매자인 경우 사이즈 일치합니다.");
-			for (int i = 0; i < IamSeller.size(); i++) {
-				logger.info("mno : " + IamCustomer.get(i).getMno() + "게시글번호 : " + IamCustomer.get(i).getBno() + ", 판매자 : " + IamCustomer.get(i).getSellerId()
-						+ ", 구매자아이디 : " + IamCustomer.get(i).getUserId() + ", 판매자이름 : "
-						+ MySellerList.get(i).getUserName());
-			}
-		}
 
 		/** 뿌려줄때..둘이 거래가 성립된 날짜와 시간 순서대로 sort 해줘야되나... */
 
