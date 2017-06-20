@@ -9,7 +9,7 @@
 <title>회원가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-
+<script src="/resources/js/join/join.js"></script>
 <!-- 
 	@File name : join.jsp
  	@author 송아름, 황영롱(다음 주소 api -> 네이버 주소->위도,경도 연동)
