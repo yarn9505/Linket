@@ -12,10 +12,8 @@
 
 <link rel="stylesheet" type="text/css" href="/resources/css/styleMatching.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/style.css" />s
-<link rel="stylesheet" type="text/css" href="/resources/css/left-sidebar.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/matching.css" />
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
 body {background: #F9F9F9;}
 #Dash {min-height: 500px;background: white;border: 1px solid #EEEEEE;margin: 20px;margin-top: 0;}
@@ -36,6 +34,10 @@ width:100%;
 </script>
   
 <style>
+*{
+	margin: 0;
+	padding: 0;
+}
    .rollOver{
       opacity:0.7;
    }
@@ -111,6 +113,10 @@ width:100%;
 		font-weight: bold;
 	}
 	
+	.btitleP{
+		width: 70%;
+		margin :0;
+	}
 </style>
 
 
@@ -563,7 +569,7 @@ width:100%;
                            var str = "";
                            $.getJSON("/matching/receiveList",function(data){
                               $(data).each(function(){
-                                 str += "<div class='panel panel-default rollOver' style='height:50px;'>"
+                                 str += "<div class='panel panel-default rollOver'>"
                                           +"<div class='panel-body'>"
                                              +"No.<p class='bnoP' style='display:inline;'>"+this.bno+"</p>" 
                                              +"글제목 : <p class='btitleP' style='display:inline;'>"+this.btitle+"</p>" 
@@ -755,7 +761,7 @@ width:100%;
 	                              }),
 	                              success:function(data){
 	                                 $(data).each(function(){
-	                                    str2 += "<div class='panel panel-default rollOver' style='height:50px;'>"
+	                                    str2 += "<div class='panel panel-default rollOver'>"
 	                                             +"<div class='panel-body'>"
 	                                                  +"<input class='bnoVal' type='hidden' value='"+this.bno+"' />"
 	                                                +"<input class='userIdVal' type='hidden' value='"+this.userId+"' />"
