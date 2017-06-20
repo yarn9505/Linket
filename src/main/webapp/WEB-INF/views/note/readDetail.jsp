@@ -81,6 +81,7 @@
 					<form id="form2">
 						<table class="table-bordered" style="width: 100%;">
 							<h5 align="right" style="color: navy;">from: ${NoteVO.recvId}</h5>
+							<input type="hidden" class="form-control" name="userId" value="${NoteVO.recvId }"/>
 							<tr>
 								<th style="text-align: center; width: 15%;">받는 사람</th>
 								<td><input type="text" class="form-control" name="recvId" value="${NoteVO.userId}" readonly="readonly" /></td>

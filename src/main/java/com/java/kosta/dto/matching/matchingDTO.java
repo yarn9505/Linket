@@ -23,6 +23,26 @@ public class matchingDTO implements Comparable<matchingDTO> {
 	private String mno;
 	private String weightValue;
 	private String sellerId;
+	private String requester;
+	private String receiver;
+	
+	
+
+	public String getRequester() {
+		return requester;
+	}
+
+	public void setRequester(String requester) {
+		this.requester = requester;
+	}
+
+	public String getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(String receiver) {
+		this.receiver = receiver;
+	}
 
 	public String getSellerId() {
 		return sellerId;

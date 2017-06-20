@@ -2,7 +2,6 @@ package com.java.kosta.controller.matching;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -57,8 +56,7 @@ public class MachingController {
       /** 사이의 상대적 거리값과 오차범위를 가지고 있음  : 오차범위가 크고 거리값이 작으면 적정수준임 */
       matchingDTO comp1 = service.calcCompare(vo, content1.getBno());    
       matchingDTO comp2 = service.calcCompare(vo, content2.getBno());
-
-      
+   
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("comp1", comp1);
       map.put("comp2", comp2);
@@ -128,12 +126,14 @@ public class MachingController {
       int size = checkObj.length;
       List<matchingDTO> list = new ArrayList<matchingDTO>();
       TimelineDTO myboard= service.showMyBoard(vo, checkObj[0]);
+      List<Integer> absList = new ArrayList<Integer>();
       
       
       /** 계산을 하는 부분 **/
       
       for (int i = 0; i < size; i++) {
        list.add(service.calcCompare(vo, checkObj[i]));
+       absList.add(Math.abs(Integer.parseInt(list.get(i).getRelValue())));
       }
       
       Collections.sort(list);
@@ -142,6 +142,7 @@ public class MachingController {
       HashMap<String, Object> map = new HashMap<String, Object>();
       map.put("list", list);
       map.put("myboard", myboard);
+      map.put("absList", absList);
       
       return map;
    }
@@ -185,11 +186,12 @@ public class MachingController {
 				if (mylist.get(i).getSellerId().equals(myId)) {
 					IamSeller.add(mylist.get(i));
 					// 내가 판매자인 경우 구매자의 정보를 가지고 옴
-					String MyCustomerId = mylist.get(i).getUserId();
+					String MyCustomerId = mylist.get(i).getRequester();
 					MyCustomerList.add(service.WhoAmI(MyCustomerId));
 				} // if
 				/**원래 userId와 sellerId가 동일하지 않기 때문에 else if로 써줘야 하지만*/
 				/**테스트 환경에서는 userId와 sellerId가 동일하기 때문에 원활한 테스트를 위해서 if문을 써줌 */
+
 				else if (mylist.get(i).getUserId().equals(myId)) {
 					// 내가 구매자인 경우
 					IamCustomer.add(mylist.get(i));
@@ -199,7 +201,7 @@ public class MachingController {
 				} // else
 			} // for
 		} // if
-		
+
 
 		/** 뿌려줄때..둘이 거래가 성립된 날짜와 시간 순서대로 sort 해줘야되나... */
 

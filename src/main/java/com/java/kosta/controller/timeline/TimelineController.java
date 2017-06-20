@@ -1,11 +1,13 @@
 package com.java.kosta.controller.timeline;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.kosta.common.Constants;
 import com.java.kosta.dto.board.BoardAttachDTO;
@@ -153,7 +156,7 @@ public class TimelineController {
 	@RequestMapping(value = "/timeline/filterList")
 	public @ResponseBody Map<String, Object> filterList(HttpSession session,PagingDTO page,
 			@RequestParam(value = "fcateArr") List<String> fcateArr, @RequestParam(value = "fvalue1") String fvalue1,
-			@RequestParam(value = "fvalue2") String fvalue2) {
+			@RequestParam(value = "fvalue2") String fvalue2,HttpServletResponse res,RedirectAttributes rttr) throws IOException {
 		logger.info("필터 ajax 호출되었습니당^0^");
 		FilterDTO filter = new FilterDTO();
 		logger.info("fvalue1 : " + fvalue1);

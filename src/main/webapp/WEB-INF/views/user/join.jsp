@@ -145,9 +145,7 @@ input[type=checkbox]:checked + label:before {
 	            <label class="checkbox-inline"> 
 	            <input type="checkbox" name="checkbox" id="cateId3" value="n" class="checkbox-style"  /><label for="cateId3">음식/음료</label>
 	            </label> 
-	            
 	            <br/><br/>
-	            
 	            <label class="checkbox-inline"> 
 	            <input type="checkbox" name="checkbox" id="cateId4" value="n" class="checkbox-style"  /><label for="cateId4">홈인테리어/생활용품</label>
 	            </label> 

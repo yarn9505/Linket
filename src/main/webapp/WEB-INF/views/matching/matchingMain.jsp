@@ -700,12 +700,12 @@ width:100%;
 		                        		$("#"+i+"ValueId").text(data.list[i-1].wantedValue);
 		                        		/* relValue */
 		                        		if( parseInt(data.list[i-1].relValue) < 0 ){
-		                        			$("#"+i+"ValueId").append("<p>"+data.list[i-1].relValue+"</p>");
-			                        		$("#"+i+"ValueId").append("<img src='/resources/images/downImg.png' style='width:25px;height:25px;'/>");
+		                        			$("#"+i+"ValueId").append("<p>"+"+"+data.absList[i-1]+"</p>");
+			                        		$("#"+i+"ValueId").append("<img src='/resources/images/upImg.png' style='width:25px;height:25px;'/>");	
 		                        		}
 		                        		else if(parseInt(data.list[i-1].relValue) >= 0){
-		                        			$("#"+i+"ValueId").append("<p>"+"+"+data.list[i-1].relValue+"</p>");
-			                        		$("#"+i+"ValueId").append("<img src='/resources/images/upImg.png' style='width:25px;height:25px;'/>");	
+			                        		$("#"+i+"ValueId").append("<p>"+data.absList[i-1]+"</p>");
+			                        		$("#"+i+"ValueId").append("<img src='/resources/images/downImg.png' style='width:25px;height:25px;'/>");
 		                        		}
 		                        		
 		                        		/* 요청 거리 */

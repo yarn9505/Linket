@@ -18,7 +18,7 @@
         isSwap
     </sql>
     
-   <!-- 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 -->
+<!-- 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 -->
    <select id="keywordListSel" resultType="matchingDTO">
       SELECT <include refid="boardCol"></include>,
          (6371*acos(cos(radians(#{UserVO.lat}))*cos(radians(lat))*cos(radians(lon)
@@ -27,9 +27,11 @@
       FROM
          board LEFT OUTER JOIN category ON board.cateId = category.cateId 
       WHERE
-         (isSwap = 'N' and allowVal = 'N' and bcontent LIKE CONCAT('%',#{productKeywords},'%'))
+          board.userId != #{UserVO.userId} 
+         and
+         ((isSwap = 'N' and allowVal = 'N' and bcontent LIKE CONCAT('%',#{productKeywords},'%'))
          or
-         (isSwap = 'N' and allowVal = 'N' and btitle LIKE CONCAT('%',#{productKeywords},'%'))
+         (isSwap = 'N' and allowVal = 'N' and btitle LIKE CONCAT('%',#{productKeywords},'%')))
       ORDER BY
          bno desc, value asc, distance asc
    </select>
@@ -98,15 +100,15 @@
    
    
   <!-- 적정가격은 희망가격>가치 인 경우, 가치>희망가격인 경우를 컨트롤러에서 판별해서 들어오면 계산한 거리와 가치를 반환해줌 -->
-   <!-- 가격 : 거리 = 6:4 -->
+   <!-- 가격 : 거리 = 7:3 -->
    <select id="calcCompare" resultType="matchingDTO">
       select matchingT.*,board.bno,
          (6371*acos(cos(radians(#{vo.lat}))*cos(radians(matchingT.lat))*cos(radians(matchingT.lon)
             -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(matchingT.lat))))
             AS distance,
          (board.value-matchingT.wantedValue) AS relValue,matchingT.requester as userId,
-            ROUND(ABS(board.value-matchingT.wantedValue) * 0.6 - (6371*acos(cos(radians(#{vo.lat}))*cos(radians(matchingT.lat))*cos(radians(matchingT.lon)
-            -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(matchingT.lat)))) * 0.4) AS weightValue
+            ROUND(ABS(board.value-matchingT.wantedValue) * 0.7 - (6371*acos(cos(radians(#{vo.lat}))*cos(radians(matchingT.lat))*cos(radians(matchingT.lon)
+            -radians(#{vo.lon}))+sin(radians(#{vo.lat}))*sin(radians(matchingT.lat)))) * 0.3) AS weightValue
          from matchingT left outer join board on matchingT.bno = board.bno
          where receiver = #{vo.userId} and board.bno = (select bno from matchingT where mno = #{mno}) and mno=#{mno}
    </select>
@@ -145,13 +147,16 @@
 	<!-- isSwap = 'N' /allowVal ='Y' 인 게시글 중에서 내 아이디를 검색 -->
 	<select id="selectMyBno" resultType = "matchingDTO">
 		select
+			matchingT.requester, matchingT.receiver,
 			matchingT.bno, board.userId as userId, board.btitle as btitle, 
 			board.bcontent as bcontent, board.value as bcontent, board.bregdate as bregdate,
 			matchingT.requestMsg, matchingT.wantedValue, matchingT.mno, matchingT.sellerId
 		from matchingT left outer join board on matchingT.bno = board.bno
 		where 
-		(board.allowVal = 'Y' and board.isSwap = 'N' and board.userId = #{userId} and matchingT.sellerId is not NULL)
-		or (board.allowVal = 'Y' and board.isSwap = 'N' and matchingT.sellerId = #{userId})
+		(board.allowVal = 'Y' and board.isSwap = 'N' and (board.userId = #{userId} and matchingT.sellerId is not NULL ))
+		or
+		(board.allowVal = 'Y' and board.isSwap = 'N' and (matchingT.sellerId = #{userId}))
+
 	</select>
 	
 	<!-- 나와 거래중인 사용자의 정보를 가지고 옴 -->
