@@ -21,7 +21,7 @@
 						<tr>
 							<th style="width: 10%;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
-								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+								<input type="hidden" name="cateId" value="${cateDTO.cateId}" />
 							</td>
 						</tr>
 						<tr>
@@ -32,11 +32,11 @@
 						</tr>
 						<tr>
 							<th style="width: 10%;">제목</th>
-							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" required="required" /></td>
+							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}"/></td>
 						</tr>
 						<tr>
 							<th style="width: 10%;">내용</th>
-							<td><textarea id="bContent" name="bContent" class="form-control" required="required" style="height: 400px;">${boardDTO.bContent}</textarea></td>
+							<td><textarea id="bContent" name="bContent" class="form-control" style="height: 400px;">${boardDTO.bContent}</textarea></td>
 						</tr>
 					</table>
 					<div align="right">
@@ -62,13 +62,6 @@
 					alert("제목과 내용은 필수 입력사항입니다.");
 					return;
 				}
-
-				/* var str = "";
-				//fileDrop 클래스의 samll 태그 각각의 값을 가져와서 str에 input hidden 속성으로 붙임 value = file fullName
-				$(".fileDrop small").each(function(index) {
-				str += "<input type='hidden' name='files' value='"+ $(this).attr("data-src")+ "'>";
-				});
-				that.append(str); */
 
 				that.action = "/notice/updateContentProc";
 				that.method = "post";
