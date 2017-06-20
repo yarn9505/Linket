@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<script type="text/javascript" src="/resources/js/timelineJS.js?ver=3"></script>
+<script type="text/javascript" src="/resources/js/timelineJS.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- handlebars 추가 -->
 <script type="text/javascript" src="/resources/js/handlebars-v4.0.10.js"></script>
