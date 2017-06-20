@@ -1,19 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% request.setCharacterEncoding("utf-8"); %>
-<% response.setContentType("text/html; charset=utf-8"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>http://www.blueb.co.kr</title>
-
-<link rel="stylesheet" type="text/css" href="/resources/css/styleMatching.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />s
-<link rel="stylesheet" type="text/css" href="/resources/css/matching.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/resources/css/styleMatching.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/matching.css" />
 <style type="text/css">
 body {background: #F9F9F9;}
 #Dash {min-height: 500px;background: white;border: 1px solid #EEEEEE;margin: 20px;margin-top: 0;}
@@ -412,48 +407,73 @@ width:100%;
 				                        
                <!-- 클릭한 게시글 상세 보여주기 모달창 -->
                <!-- Modal -->
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-dismis="modal" aria-labelledby="myModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                   <div class="modal-content">
-                     <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       <h4 id="modalTitle" class="modal-title" id="myModalLabel">Modal title</h4>
-                     </div>
-                     <div class="modal-body">
-                      <%@include file="./modalImport.jsp" %>
-                     <!-- 게시글 번호(hidden) -->
-                     <input type="hidden" id="modalBno"/>                        
-                        <input type="hidden" id="modalUserId" />
-                        <input type="hidden" id="latId" />
-                        <input type="hidden" id="lonId" />
-                     </div>
-                     <div class="modal-footer">
-                     
-                        <div class="row">
-                        <!-- 가치, 주소  -->
-                       <div class="col-lg-6">
-                         <div class="input-group">
-                           <span class="input-group-addon">가치 </span>
-                           <input id="wantedValue" type="text" class="form-control" aria-label="..." placeholder="거래하고 싶은 금액 혹은 교환품목의 상응가액을 입력하세요">
-                         </div><!-- end of 가치  -->
-                       </div>
-                       <!-- 거래희망지 -->
-                       <div class="col-lg-6">
-                         <div class="input-group">
-                           <span class="input-group-addon">거래 희망지</span>
-                           <input id="wantedArea" type="text" class="form-control" aria-label="..." readonly="readonly">
-                         </div><!-- 거래희망지 -->
-                       </div><!-- /.col-lg-6 -->
-                     </div><!-- /.row -->
-                        <!-- 가치, 주소 -->
-                     <textarea class="form-control" rows="3" id="requestMsg"></textarea>
-                       <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                       <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendContent">요청하기</button>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <!-- END OF 모달 -->                 
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-dismis="modal" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        		<h3 id='modalCategory' class="panel-title">Category</h3>
+				</div>
+				<div class="modal-body">
+					<h5><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;검색한 게시물 상세내용</h5>
+					<table class="table table-bordered" style="width: 100%;">
+						<tr>
+							<th style="text-align: center; width: 20%; background-color: #E9EFF5">거리</th>
+							<td id="modalDistance"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">가치</th>
+							<td id="modalValue"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">등록일</th>
+							<td id="modalRegdate"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">거래완료여부</th>
+							<td id="modalIsSwap"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">내용</th>
+							<td id="modalContent"></td>
+						</tr>
+					</table>
+			
+					<!-- 게시글 번호(hidden) -->
+					<input type="hidden" id="modalBno" /> 
+					<input type="hidden" id="modalUserId" /> 
+					<input type="hidden" id="latId" /> 
+					<input type="hidden" id="lonId" />
+
+					<br/>
+					<h5><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;요청사항</h5>
+					<table class="table" style="width: 100%;">
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5">거래희망지</th>
+							<td><input id="wantedArea" type="text" class="form-control" aria-label="..." readonly="readonly"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5; width: 20%;">가치</th>
+							<td><input id="wantedValue" type="text" class="form-control" aria-label="..." placeholder="거래하고 싶은 금액 혹은 교환품목의 상응가액을 입력하세요"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5">메세지</th>
+							<td><textarea class="form-control" rows="3" id="requestMsg" placeholder="전할 메세지를 입력해주세요."></textarea></td>
+						</tr>
+					</table>
+					
+					
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendContent">요청하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- END OF 모달 -->                 
                         
                         
                    <div id="Dash">
@@ -688,8 +708,6 @@ width:100%;
 		                        dataType:"json",
 		                        success:function(data){
 		                        	
-		                        	console.log(data);
-		                        	console.log("check");
 									// 게시글 등록일
 		                        	$("#sellerDateId").text(data.myboard.bregdate);
 		                        	// 제목
