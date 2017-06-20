@@ -111,6 +111,7 @@
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=6&pageNo=1">지역 할인 쿠폰</a></li>
 				</ul></li>
+				<li><a href="/matching/matchingMain">Smart Matching</a></li>
 				<li><a href="/bestUser/bestUserSection">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
                
