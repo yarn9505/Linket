@@ -103,5 +103,20 @@ CREATE TABLE `message` (
 		delete from message
 		where mno=#{mno} and sender_del="Y" and recv_del="Y"
 	</delete>
+	
+	<!-- 롱플링용 beforeAlarmCount에 현재값을 넣는 mapper -->
+	<update id="updateBeforeAlarmCount">
+		update usertable 
+		set beforeAlarmCount = #{beforeAlarmCount}
+		where userId=#{vo.userId}
+	</update>
+	
+	<!-- 롱플링용 beforeAlarmCount에 비교를 위한 현재값을 가지고 오는 mapper -->
+	<select id="selectBeforeAlarmCount" resultType="int">
+		select beforeAlarmCount 
+		from usertable 
+		where userId=#{userId}
+	</select>
+	
 </mapper>
 

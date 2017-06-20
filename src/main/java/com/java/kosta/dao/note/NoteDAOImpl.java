@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.java.kosta.dto.note.NoteVO;
 import com.java.kosta.dto.note.PagingDTO;
+import com.java.kosta.dto.user.UserVO;
 
 @Repository
 public class NoteDAOImpl implements NoteDAO {
@@ -87,11 +88,17 @@ public class NoteDAOImpl implements NoteDAO {
 		return sqlSession.selectList("NoteMapper.listNotOpen",map);
 	}
 
+	@Override
+	public void updateBeforeAlarmCount(UserVO uvo, int beforeAlarmCount) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("vo", uvo);
+		map.put("beforeAlarmCount", beforeAlarmCount);
+		sqlSession.update("NoteMapper.updateBeforeAlarmCount", map);
+	}
 
-
-	
-	
-	
-	
+	@Override
+	public int selectBeforeAlarmCount(UserVO uvo) {
+		return sqlSession.selectOne("NoteMapper.selectBeforeAlarmCount", uvo);
+	}
 
 }

@@ -34,117 +34,32 @@
 <title><decorator:title default="Linket" /></title>
 <link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 
 <script>
-/* 
-       
-///         alert("제 이름은 폴링! 방금 실행되쬬^0^*");
-       $(function(){
-           poll();
-        });
-       
-       function poll(){
-          setTimeout(function(){
-             $.ajax({
-                url : "/note/alarmNote",
-                type : "POST",
-                success : function(){
-                   console.log(new Date());
-                },
-                dateType : "json",
-                complete : poll,
-                timeout : 3000
-                
-             })
-          },5000);
-       }
-           
-     }//if
-    
-     function poll(){ 
-       $.ajax({ 
-       url: "/note/listNotOpen", 
-       success: function(){
-       }, 
-       dataType: "json", 
-       complete: poll, 
-       timeout: 10000
-       }); 
-    } 
-     */
-</script>
-
-<script>
-
-//    var sock = null;
-//    $(document).ready(function(){
-//        sock = new SockJS("/echo-ws");
-//          sock.onopen=function(){
-//          }
-//          sock.onmessage=function(evt){
-//                console.log("안들어오나?");
-//                notifyMe(evt.data);
-//             /* if(${loginSession.userId eq sessionScope.NotiRecvId}){
-//             } */
-//          }
-//          sock.onclose = function(){
-//          }      
-         
-//    });
-   
-//    var notification = new Notification(title, options);
-   
-//    function notifyMe(data) {
-//       console.log("노티함수 : " + data);
-//       Notification.requestPermission(function (permission) {
-//          Notification.requestPermission(function (result) {
-
-//                 //요청을 거절하면,
-//                 if (result === 'denied') {
-//                     return;
-//                 }
-//                 //요청을 허용하면,
-//                 else {
-//                     return;
-//                 }
-//             });
-//       var parameter_noti = {
-//             icon : "https://image-proxy.namuwikiusercontent.com/r/https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F7%2F7e%2FPatrick_Star.png",
-//             body: data
-//       };
-      
-//       //브라우저가 Notification 기능을 지원하는지 체크
-//       if (!"Notification" in window) {
-//          alert("이 브라우저는 noti를 제공하지 않아요!");
-//       }
-//       //사용자가 Notification 사용을 허락했는지 체크
-//       else if (Notification.permission === "granted") {
-//          console.log("사용자가 승낙한 경우");
-//          //허락했다면 Notification을 생성
-//          var notification = new Notification(parameter_noti.title,{
-//             icon : parameter_noti.icon,
-//             body : parameter_noti.body
-//          });
-//       }
-//       //크롬 브라우저는 permission 속성이 구현되어 있지 않기 때문에
-//       //사용자가 의도적으로 'denied' 한 경우만 체크
-//       else if (Notification.permission !== 'denied') {
-//          console.log("사용자가 노티 사용 거부한 경우");
-        
-//             //사용자가 사용 여부를 체크했다면, 크롬 Notification 상태를 갱신
-//             if(!('permission' in Notification)) {
-               
-//                Notification.permission = permission;
-//             }
-//             //사용자가 승낙했다면, Notifiation을 생성
-//             if (permission === "granted") {
-//                console.log("사용자가 노티 승낙했을 경우 들어오는 부분");
-//                var notification = new Notification(parameter_noti.title,{
-//                   icon : parameter_noti.icon,
-//                   body : parameter_noti.body
-//                });
-//             }
-//          });
-//       }
-//    }//notifyMe
+	$(function(){
+		if('${loginSession != null}'){
+ 		   poll();
+ 	   }//if
+ 	   
+ 	  function poll(){
+ 		 $.ajax({
+             url : "/note/alarmNote",
+             type : "POST",
+             dateType : "json",
+             success : function(value){
+                console.log("변화감지");
+                console.log("totalCnt : "+value);
+                $("#noteBadge").html(value);
+                poll();
+             },
+             error : function(){
+                console.log("변화감지실패");
+             },
+          });
+ 	   }//poll()
+	});//end of 함수
+	
+	
+	
+	
     
 </script>
 <style type="text/css">
@@ -220,7 +135,7 @@
                   	<li class="bedgeSt" style="width: 10%;">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}  </span>
+                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}</span>
                   		</a>
                   	</li>
                   	<li id="sectionBar">
