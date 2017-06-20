@@ -47,12 +47,10 @@ public class TimelineController {
 	// 타임라인 메인으로 이동
 	@RequestMapping(value = "/timeline")
 	public String timelineMain(HttpServletRequest req, NoteVO vo) throws Exception {
-		logger.info("타임라인 폼으로 이동");
 		
 		HttpSession session = req.getSession();
 		UserVO uvo = (UserVO) session.getAttribute("loginSession");
 		if(uvo != null){
-			logger.info("타임라인 진입때 안읽은 쪽지함 갯수 뿌려줬나");
 			vo.setRecvId(uvo.getUserId());
 			String NotReadCnt = noteService.totalCntNotOpen(vo)+"";
 			session.setAttribute("notOpen", NotReadCnt);
@@ -65,12 +63,10 @@ public class TimelineController {
 	@RequestMapping(value = "/timeline/listPaging")
 	public @ResponseBody Map<String, Object> timelineMain(HttpSession session, PagingDTO page,
 			@RequestParam("keywords") String keywords, Model model) {
-		logger.info("타임라인 리스트 ajax 메서드로 이동");
 		UserVO vo = null;
 		List<TimelineDTO> list = null;
 		// 현재 로그인되어 있는 사용자 객체 가져오기
 		vo = (UserVO) session.getAttribute("loginSession");
-		logger.info("keywords: " + keywords);
 		if (vo != null) {
 			page.setTotalCount(service.countTimeline(vo, keywords));
 			page.setPerPageNum(5); // 5개씩만 가져오도록...
@@ -82,29 +78,30 @@ public class TimelineController {
 			// 타임라인에 이미지 하나만 보여주기 위함 (by.이윤지)
 			try {
 				for(TimelineDTO tlDTO : list){
+					boolean exist = false;	// 파일 데이터에 이미지가 존재하지 않을 경우 로고 이미지를 뿌려주기위해 검사하는 변수
 					List<BoardAttachDTO> files = bService.selectAttach(tlDTO.getBno());
 					for(BoardAttachDTO baDTO : files){
 						if(baDTO.getAttachType().equals("2")){
 							tlDTO.setImgPath(baDTO.getFileName());
-							System.out.println(tlDTO.getBno()+"번 : "+baDTO.getFileName());
+							exist = true;
 							break;
 						}
 					}
+					if(exist == false){
+						tlDTO.setImgPath("/resources/images/noimage3.png");
+					}
 				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			
-
-			logger.info("넘어온 값 : keywords : " + keywords + " page : " + page.getPage());
 		}
 		for (int i = 0; i < list.size(); i++) {
 			int fcnt = service.searchFavorite(list.get(i).getBno(), vo.getUserId());
 			list.get(i).setCheckfavorite(fcnt+"");
-			System.out.println(list.get(i).getBno()+","+vo.getUserId());
 		}
 		
-		logger.info("가져온 값 : " + list);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
 		map.put("pageMaker", page);
@@ -118,8 +115,6 @@ public class TimelineController {
 		UserVO vo = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
 		String userId = vo.getUserId();
 		String result="";
-		
-		System.out.println("checkFavorite"+bno+","+userId);
 		
 		int fcnt=service.searchFavorite(bno, userId);
 		
@@ -139,8 +134,6 @@ public class TimelineController {
 		UserVO vo = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
 		String userId = vo.getUserId();
 		
-		System.out.println("들어오나확인하자."+bno+","+userId);
-		
 		int fcnt = service.searchFavorite(bno, userId);
 		
 		if(fcnt != 0){
@@ -157,10 +150,7 @@ public class TimelineController {
 	public @ResponseBody Map<String, Object> filterList(HttpSession session,PagingDTO page,
 			@RequestParam(value = "fcateArr") List<String> fcateArr, @RequestParam(value = "fvalue1") String fvalue1,
 			@RequestParam(value = "fvalue2") String fvalue2,HttpServletResponse res,RedirectAttributes rttr) throws IOException {
-		logger.info("필터 ajax 호출되었습니당^0^");
 		FilterDTO filter = new FilterDTO();
-		logger.info("fvalue1 : " + fvalue1);
-		logger.info("fvalue2 : " + fvalue2);
 		
 		UserVO vo = null;
 		vo = (UserVO) session.getAttribute("loginSession");
@@ -177,7 +167,6 @@ public class TimelineController {
 			filter.setFvalue2(Integer.toString(service.maxValue()));
 		}
 
-		logger.info("fcateArr : " + fcateArr);
 
 		for (int i = 0; i < fcateArr.size(); i++) {
 			if (fcateArr.get(i).equals("true")) {
@@ -185,7 +174,6 @@ public class TimelineController {
 			} else
 				fcateArr.set(i, "N");
 		}
-		logger.info("fcateArr Y/N : " + fcateArr);
 
 		/* 카테고리에서 가져와서 필터링 */
 		filter.setFcate1(fcateArr.get(0));
@@ -197,7 +185,6 @@ public class TimelineController {
 
 		// 페이징을 위한 작업
 		page.setTotalCount(service.countFilterList(filter));
-		logger.info("필터 전체 수 : " + service.countFilterList(filter));
 		page.setPerPageNum(5);
 		List<TimelineDTO> list = service.listFilter(filter, page);
 		
@@ -205,29 +192,27 @@ public class TimelineController {
 		// 타임라인에 이미지 하나만 보여주기 위함 (by.이윤지)
 		try {
 			for(TimelineDTO tlDTO : list){
+				boolean exist = false;	// 파일 데이터에 이미지가 존재하지 않을 경우 로고 이미지를 뿌려주기위해 검사하는 변수
 				List<BoardAttachDTO> files = bService.selectAttach(tlDTO.getBno());
 				for(BoardAttachDTO baDTO : files){
 					if(baDTO.getAttachType().equals("2")){
 						tlDTO.setImgPath(baDTO.getFileName());
-						System.out.println(tlDTO.getBno()+"번 : "+baDTO.getFileName());
+						exist = true;
 						break;
 					}
+				}
+				if(exist == false){
+					tlDTO.setImgPath("/resources/images/noimage3.png");
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		for (int i = 0; i < list.size(); i++) {
-			System.out.println("bno : " + list.get(i).getBno() + ", cateId : " + list.get(i).getCateId() + ", value : "
-					+ list.get(i).getValue());
-		}
-		
 		//좋아요 하트 뜨게하기 위함
 		for (int i = 0; i < list.size(); i++) {
 			int fcnt = service.searchFavorite(list.get(i).getBno(), vo.getUserId());
 			list.get(i).setCheckfavorite(fcnt+"");
-			System.out.println(list.get(i).getBno()+","+vo.getUserId());
 		}
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
