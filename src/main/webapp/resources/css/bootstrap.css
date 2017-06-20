@@ -4863,6 +4863,23 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 }
 
 @media ( min-width : 1200px) {
+	#sectionBar {
+		display: none;
+	}
+	#userIcon {
+		display: inline;
+		margin-left: 15px;
+	}
+	#noteIcon {
+		display: inline;
+	}
+	#noteIcon a {
+		display: inline;
+	}
+	.bedgeSt{
+		display: inline-block !important;
+	}
+	
 	.navbar-form {
 		width: auto;
 		border: 0;
