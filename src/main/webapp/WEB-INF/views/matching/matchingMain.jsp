@@ -115,54 +115,6 @@ width:100%;
 
 <body>
 
-	<!-- 후기작성 모달창 -->
-            <div class="modal fade" id="reviewModal" data-dismis="modal" role="dialog">
-               <div class="modal-dialog">
-                  <div class="modal-content">
-                     <!-- header -->
-                     <div class="modal-header">
-                        <!-- 닫기(x) 버튼 -->
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <!-- header title -->
-                        <h3 class="modal-title">구매 후기 작성</h3>
-                     </div>
-                     <!-- body -->
-                     <div class="modal-body">
-                        <br>
-                        <table class="table-bordered">
-                           <tr>
-                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">판매자</th>
-                              <td><span id="userId" style="margin-left: 5px;"></span></td>
-                           </tr>
-                           <tr>
-                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">거래인</th>
-                              <td><span id="buyerId" style="margin-left: 5px;"></span></td>
-                           </tr>
-                           <tr>
-                              <th style="text-align: center; background-color: #F6F6F6">내용</th>
-                              <td><textarea rows="10" cols="80" name="pcontent"
-                                    id="pcontent" class="form-control"></textarea></td>
-                           </tr>
-                           <tr>
-                              <th
-                                 style="text-align: center; height: 34px; background-color: #F6F6F6">별점</th>
-                              <td><p class="star_rating">
-                                    <a href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
-                                    <a href="#">★</a> <a href="#">★</a>
-                                 </p> <input type="hidden" class="form-control" name="pscore" id="pscore" /></td>
-                           </tr>
-                        </table>
-
-                     </div>
-                     <!-- Footer -->
-                     <div class="modal-footer">
-                        <input type="hidden" name="bno" id="bno" />
-                        <button id="reviewBtn" type="button" class="btn btn-primary" data-dismiss="modal">작성하기</button>
-                        <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
 
      <!-- 비교하기 누르면 나타나는 모달창 -->
                 <!-- 화면 꽉찬 modal -->
@@ -501,6 +453,9 @@ width:100%;
 							<!-- 이곳에 내용... -->
                      	
                      </div>
+					<div id="reviewBox">
+					
+					</div>
                   </div>
                 <!-- END of 매칭 성사 -->  
                   
@@ -946,7 +901,7 @@ width:100%;
 			 	                                          		+"</table>"
 			 	                                          	+"</div>"
 			 	                                          	+"<div style='margin-left:340px;clear:both;'>"
-			 	                                          		+"<button class='btn btn-default writePost' data-target='#reviewModal' >후기 작성</button>"
+			 	                                          		+"<button class='btn btn-default writePost' >후기 작성</button>"
 			 	                                          		+"<button class='cancelBtn btn btn-primary' type='button'>거래취소</button>"
 			 	                                          		+"<hr/><br/>"
 			 	                                          	+"</div>"
@@ -970,6 +925,7 @@ width:100%;
 								var obj = $(this); // 클릭된 객체 가져오기
 								var mnoDiv = obj.parent().prev().prev().find(".mnoVal");
 	                        	var mno = mnoDiv.attr("id");
+	                        	var str = "";
 	                       		$.ajax({
 	                       			type:"GET",
 	                       			headers:{
@@ -978,19 +934,103 @@ width:100%;
 	                       			url:"/matching/confirmMatching?mno="+mno,
 	                       			dataType:"json",
 	                       			success:function(data){
+	                       				console.log("myeval 들어왔음!");
+	                       				console.log(data);
 										//bno를 받아오고
 										//modal 쇼해주고...
-										var userId = data.eval.userId;
-										var buyerId = data.eval.buyerId;
-										var bno = data.eval.bno;
-										$("#bno").val(bno);
-							            $("#userId").text(userId);
-							            $("#buyerId").text(buyerId);
-
-							            $("#reviewModal").show();
+										var sellerId= data.myeval.sellerId;
+										var requester = data.myeval.requester;
+										var bno = data.myeval.bno;
+													
+							            str += "<table class='table-bordered' style='width:100%'>"
+							            	+ "<tr>"
+							                + "<th style='text-align: center; width: 15%; height: 34px; background-color: #F6F6F6'>판매자</th>"
+			                                + "<td><span id='userId' style='margin-left: 5px;'></span></td>"
+			                                + "</tr>"
+			                                + "<tr>"
+			                                + "<th style='text-align: center; width: 15%; height: 34px; background-color: #F6F6F6'>거래인</th>"
+			                                + "<td><span id='buyerId' style='margin-left: 5px;'></span></td>"
+			                                + "</tr>"
+			                                + "<tr>"
+			                                + "<th style='text-align: center; background-color: #F6F6F6'>내용</th>"
+			                                + "<td><textarea rows='10' name='pcontent' id='pcontent' class='form-control' style='width:100%'></textarea></td>"
+			                             	+ "</tr>"
+			                             	+ "<tr>"
+			                                + "<th style='text-align: center; height: 34px; background-color: #F6F6F6'>별점</th>"
+			                                + "<td><span class='star_rating'>"
+			                                +     "<a href='#' class='on'>★</a> <a href='#''>★</a> <a href='#'>★</a>"
+			                                +      "<a href='#'>★</a> <a href='#'>★</a>"
+			                                +   "</span>" 
+			                                + "<input type='hidden' name='bno' id='bno' />"
+                                       		+ "<input type='hidden' class='form-control' name='pscore' id='pscore' />"
+			                                +      "<button class='btn btn-default' id ='sendReview' >후기 작성</button>"
+                                       		+      "<button class='btn btn-default' id ='cancleReview' >후기 취소</button>"
+			                                + "</td>"
+			                             	+ "</tr>"
+			                          		+ "</table>";
+			                          		
+			                          	$("#reviewBox").append(str);
+							            $("#bno").val(bno);
+							            $("#userId").text(sellerId);
+							            $("#buyerId").text(requester);
+							            $('.writePost').attr('disabled',true); 
+		
 	                       			}
 	                       		});
 	                        });
+	                        
+	                        /* 후기 취소를 눌렀을때 발생하는 이벤트 */
+	                        $(document).on("click","#cancleReview",function(){
+	                        	console.log("후기 취소!");
+	                        	$("#reviewBox").empty();
+	                        	$('.writePost').attr('disabled',false); 
+	                        });//end of 후기취소
+	                        
+	                        /* 후기 보내기를 눌렀을때 발생하는 이벤트 */
+	                        $(document).on("click","#sendReview",function(){
+	                        	console.log("후기보내기^0^");
+	                        	var score = $(".star_rating").find(".on").length;
+	                            
+	                            // 후기 내용과 별점 데이터 넘기기
+	                            if($("#pcontent").val().trim() == ""){
+	                               alert("내용을 작성해주세요 :)");
+	                               return false;
+	                            }
+	                            if(score == "0"){
+	                               alert("별점은 1점 이상이어야합니다.");   
+	                               return false;
+	                            }
+	                            
+	                            $.ajax({
+	                               type : 'post',
+	                               url : '/mypage/writeReview',
+	                               contentType : "application/json; charset=UTF-8",
+	                               dataType : 'text',
+	                               data:JSON.stringify({
+	                                  bno : $("#bno").val(),
+	                                  pcontent : $("#pcontent").val(),
+	                                  /* encodeURI(encodeURIComponent()) */   
+	                                  pscore : score
+	                               }),
+	                               success : function(result) {
+	                                  if(result == "ok"){
+	                                     alert("등록되었습니다.");
+	                                  }else{
+	                                     alert("등록 실패");
+	                                  }
+	                               }
+	                            });
+
+	                        });//end of 후기보내기
+	                        
+	                        // 별점 클릭했을 때 동작하는 함수
+	                        $(document).on("click",".star_rating a",function() {
+	                        	
+	                           $(this).parent().children("a").removeClass("on");
+	                           $(this).addClass("on").prevAll("a").addClass("on");
+	                           return false;
+	                        });
+
 	
 	                        // 구매 취소 버튼 클릭시...
 	                        $(document).on("click",".cancelBtn",function(event){

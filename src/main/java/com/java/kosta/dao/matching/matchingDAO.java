@@ -49,7 +49,7 @@ public interface matchingDAO {
  //후기에 정보 넣어주기
    public void insertTranPost(String mno, UserVO vo);
    
-   public EvalDTO selectEval(String mno);
+   public matchingDTO selectEval(String mno);
    
    
    

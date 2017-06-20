@@ -127,7 +127,7 @@ public class matchingDAOImpl implements matchingDAO{
 	}
 
 	@Override
-	public EvalDTO selectEval(String mno) {
+	public matchingDTO selectEval(String mno) {
 		return session.selectOne(NAMESPACE + ".selectEval", mno);
 	}
    

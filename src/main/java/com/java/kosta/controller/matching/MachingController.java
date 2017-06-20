@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.java.kosta.dto.board.BoardDTO;
 import com.java.kosta.dto.matching.matchingCntDTO;
 import com.java.kosta.dto.matching.matchingDTO;
-import com.java.kosta.dto.mypage.EvalDTO;
 import com.java.kosta.dto.timeline.TimelineDTO;
 import com.java.kosta.dto.user.UserVO;
 import com.java.kosta.service.matching.MatchingServiceImpl;
@@ -223,11 +222,12 @@ public class MachingController {
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
 		
 		//넣음넣음
-		service.insertTranPost(mno,vo);
+//		service.insertTranPost(mno,vo);
 		
-		EvalDTO eval = service.selectEval(mno);
+		matchingDTO myeval = service.selectEval(mno);
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("eval", eval);
+		map.put("myeval", myeval);
 		
 		return map;
 	}

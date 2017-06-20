@@ -93,7 +93,7 @@ public class MatchingServiceImpl implements MatchingService {
 	}
 
 	@Override
-	public EvalDTO selectEval(String mno) {
+	public matchingDTO selectEval(String mno) {
 		return dao.selectEval(mno);
 	}
 

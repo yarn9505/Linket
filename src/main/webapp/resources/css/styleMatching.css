@@ -37,10 +37,10 @@ div.BoxContents input[type="text"], div.BoxContents textarea {padding: 5px 6px;b
 div.BoxContents textarea { height: 80px; }
 div.BoxContents input[type="text"]:focus, div.BoxContents textarea:focus {color: black;border-color: #999999;}
 
-div.BoxContents button::-moz-focus-inner { border: none; }
+/* div.BoxContents button::-moz-focus-inner { border: none; }
 div.BoxContents button {-moz-border-radius: 2px;background: #D7D7D7 url("/resources/images/button.png") repeat-x;border: 1px solid #C0C0C0;padding: 4px 9px;font-size: 12px;font-family: 돋움;color: black;cursor: pointer;}
 div.BoxContents button:active {border-color: #888888;background: #9E9E9E url("/resources/images/button-pressed.png") repeat-x;color: #EEEEEE;}
-
+ */
 h1.BoxTitle button { -moz-box-shadow: #F5F5F5 1px 1px 0; }
 
 div.Dash.plus-minus div.BoxTitle-collapse {background: url("/resources/images/minus.png") no-repeat center 9px;}

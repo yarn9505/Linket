@@ -185,10 +185,10 @@
 	</insert>
 	
 	<!-- eval에서 구매후기 정보 가지고 오기 -->
-	<select id="selectEval" resultType = "EvalDTO">
-		select eval.bno, eval.userId, eval.buyerId
-		from eval left outer join matchingT on eval.bno = matchingT.bno
-		where eval.bno = (select bno from matchingT where mno=#{mno})
+	<select id="selectEval" resultType = "matchingDTO">
+		select requester, sellerId, bno
+		from matchingT
+		where mno = #{mno}
 	</select>
    
 </mapper>
