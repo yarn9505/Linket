@@ -25,7 +25,6 @@
         	  
           }
           sock.onmessage=function(evt){
-                console.log("안들어오나?" + evt.data);
                 alert(evt.data);
                 //notifyMe(evt.data); // notification
 //               if(${loginSession.userId eq sessionScope.NotiRecvId}){
