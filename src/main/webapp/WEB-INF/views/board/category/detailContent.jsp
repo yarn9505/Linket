@@ -106,6 +106,7 @@ input[type=checkbox]:checked+label:before {
       
                formN.submit();
             }); // end of sendBtn
+            
             $("#cancelBtn").on("click", function(evnet) {
                history.back(); // 뒤로가기
             }); // end of cancelBtn
@@ -509,8 +510,8 @@ input[type=checkbox]:checked+label:before {
 											<td>&nbsp;&nbsp;${boardDTO.userId} 
 												<input type="hidden" class="form-control" name="recvId" id="recvId" value="${boardDTO.userId}" />
 											</td>
+											<td><input type="hidden" class="form-control" name="bno" id="bno" value="${boardDTO.bNo }"/></td>
 										</tr>
-
 										<tr>
 											<th style="text-align: center; background-color: #D1E0EF">제목</th>
 											<td><input type="text" class="form-control" name="mtitle" id="mtitle" value="${NoteVO.mtitle}" /></td>

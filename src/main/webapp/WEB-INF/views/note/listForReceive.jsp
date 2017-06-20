@@ -18,7 +18,6 @@
 							<span class="glyphicon glyphicon-envelope" style="color: #0E3E59;">&nbsp;받은 쪽지함</span>
 						</h3>
 						<br><br>
-
 						<table class="table table-hover">
 
 							<tr style="background-color: #D1E0EF;">
@@ -42,7 +41,7 @@
 									<td style="text-align: center;"><fmt:formatDate
 											value="${NoteVO.date_sender}" pattern="YY년MM월dd일 " /></td>
 									<td style="text-align: center;">
-										<button id="delBtn" type="button" class="btn btn-link">삭제</button>
+										<button onclick="del('${NoteVO.mno}')" type="button" class="btn btn-link">삭제</button>
 									</td>
 									<input id="mnoId" type="hidden" value="${NoteVO.mno}" />
 								</tr>
@@ -89,14 +88,16 @@
 				<div class="arrow"></div>
 			</div>
 			<script>
-				$(document).ready(function() {
-					$("#sel td").on("click", "#delBtn", function() {
-						//var mno = $(this).parent().value();
-						var mno = $(this).parent().next().val();
-						self.location = "/note/delFromReceiver?mno=" + mno;
-					}); // end of delBtn click
-
-				})
+				function del(bno){
+					var result=confirm("삭제하시겠습니까?");
+					if(result=true){
+						var mno = bno;
+						console.log(mno);
+						self.location="/note/delFromReceiver?mno="+mno;
+					}
+				}
+				
+				
 			</script>
 
 </body>

@@ -112,5 +112,17 @@ WHERE  userId=#{userId} and userName=#{userName}
  update usertable set userPw=PASSWORD(#{userPw}) where userId=#{userId}
 </update>
 
+<!-- userId에 안드로이드 토큰값 가져오기 (쪽지 보낼 때 상대방 토큰값 가져오기 위해)  -->
+<select id = "checkToken" resultType="String">
+SELECT token
+FROM usertable
+WHERE userId = #{userId} 
+</select>
+
+<!-- userId의 토큰값 업데이트 -->
+<update id="inputToken">
+   update usertable set token=#{token} where userId=#{userId}
+</update>
+
 
 </mapper>
