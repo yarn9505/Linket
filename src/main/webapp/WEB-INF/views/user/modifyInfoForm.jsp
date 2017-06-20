@@ -142,7 +142,7 @@ input[type=checkbox]:checked+label:before {
 							<label class="checkbox-inline"> 
 							<input type="checkbox" name="checkbox" id="cateId3" ${loginSession.cateId3 eq 'Y' ? 'checked' : '' }
 								value="${loginSession.cateId3 eq 'Y' ? 'Y' :'N' }">
-								<label for="cateId3">애완동물 용품</label>
+								<label for="cateId3">음식/음료</label>
 
 							</label> <br /> <br /> 
 							
