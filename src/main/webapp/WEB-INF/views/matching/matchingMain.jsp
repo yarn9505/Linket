@@ -106,6 +106,10 @@ width:100%;
 	   color: #F78E41;
 	}
 	
+	div.BoxTitle-title{
+		color: #ffffff !important;
+		font-weight: bold;
+	}
 	
 </style>
 
@@ -457,7 +461,7 @@ width:100%;
                   </div>
                
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color: #158cba;'>요청받은 게시글</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;color:#ffffff;'>요청받은 게시글</h1>
                      <div class="BoxBody">
                         <div  class="BoxBody">
                         <ol id="receiveShow">
@@ -469,7 +473,7 @@ width:100%;
                   <!--  -->
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                    <h1 class="BoxTitle" style='background-color: #158cba;'><b>게시판별 요청받은 게시글</b>
+                    <h1 class="BoxTitle" style='background-color: #158cba;'><b style="color: #ffffff">게시판별 요청받은 게시글</b>
                
                <!-- 비교하기 버튼 -->   
                 <button id='compareBtn' class="btn btn-default" style='border-radius: 5px;margin-left:10px;width: 64px;height: 19px;
@@ -495,8 +499,8 @@ width:100%;
                 <!-- 매칭 성사돈 경우 둘간의 정보를 표시해줄 곳!! -->
                    <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
                      <h1 class="BoxTitle" style='background-color: #158cba;'>콘텐츠 박스</h1>
-					 <button  id="sellingBtn">판매중인 정보</button>
-					 <button  id="buyingBtn">구매중인 정보</button>
+					 <button  id="sellingBtn" class="btn btn-default">판매중인 정보</button>
+					 <button  id="buyingBtn" class="btn btn-default">구매중인 정보</button>
                      <div id="matchingDiv" class="BoxBody" style="margin:0 auto;">
 							<!-- 이곳에 내용... -->
                      	
@@ -524,7 +528,7 @@ width:100%;
                   </div>
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color: #158cba;'>타이틀</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;color: #ffffff'>타이틀</h1>
                      <div class="BoxBody">
                      내용
                      </div>
