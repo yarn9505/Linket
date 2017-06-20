@@ -77,7 +77,9 @@
    padding:0 5px 0 5px;
    color:white;
 }
-
+.jungyo_menu li:hover{
+	background:#f8f8f8 !important;
+}
 </style>
 <decorator:head />
 </head>

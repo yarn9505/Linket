@@ -4999,6 +4999,12 @@ textarea.input-group-sm>.form-control, textarea.input-group-sm>.input-group-addo
 }
 
 @media ( max-width : 1200px) {
+	.jungyo_menu>li>a{
+		background:#f8f8f8;
+	}
+	.jungyo_menu>li:hover{
+		background:#f8f8f8 !important;
+	}
 	.navbar-default .navbar-nav .open .dropdown-menu>li>a {
 		color: #999999;
 	}
