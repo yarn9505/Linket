@@ -92,9 +92,10 @@ public class NoteController {
          map.put("title", vo.getMtitle());
          map.put("content", vo.getMcontent());
          map.put("recvDate", vo.getDate_sender());
+         map.put("recvId", vo.getRecvId());
          echo.EchoNoti(map);
          try {
-            echo.handleMessage(null, new TextMessage(""));
+            echo.handleMessage(null, new TextMessage("쪽지보내기"));
             logger.info("try문 들어왔음");
             session.setAttribute("NotiRecvId", vo.getRecvId());
          } catch (Exception e) {
@@ -284,6 +285,7 @@ public class NoteController {
    public String replyNoteForm(NoteVO vo,Model model){
       // vo에 userId와 recvId가 넘어옴
       service.sendInsert(vo);
+      logger.info("답장 : " + vo);
       return "redirect:/note/listReceive";
    }
    

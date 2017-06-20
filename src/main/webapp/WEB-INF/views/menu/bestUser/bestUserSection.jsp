@@ -97,7 +97,7 @@
 						if (data.pagingDTO.pageNo != i) {
 							str += "<li><a href='javascript:paging(" + i + ")'>" + i + "</a></li>";
 						} else {
-							str += "<li><a href='#' style='background-color: #085B86; color: white; font-weight: bold;'>&nbsp;" + i + "&nbsp;</a></li>";
+							str += "<li><a href='#' style='background-color: #158cba; color: white; font-weight: bold;'>&nbsp;" + i + "&nbsp;</a></li>";
 						}
 
 					}

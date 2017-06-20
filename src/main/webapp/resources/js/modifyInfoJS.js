@@ -1,9 +1,5 @@
-/**
- * @JavaScript : 회원수정 js
- * @author 황영롱
- * @Desc 회원수정 유효성 체크
- */
 $(document).ready(function(){
+	alert("인식확인");
 	// 수정버튼 클릭시 welcome 페이지로 분기
 	$('#cancelBtnModi').click(function(){
 		location.replace("/mypage/myList");

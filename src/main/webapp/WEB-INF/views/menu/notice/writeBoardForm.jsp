@@ -19,23 +19,23 @@
 						<tr>
 							<th style="width: 10%; vertical-align: middle ; text-align: center;">카테고리</th>
 							<td><input type="text" class="form-control" value = "${cateDTO.cateName}" readonly>
-								<input type="hidden" name="cateId" value="${boardDTO.cateId}" />
+								<input type="hidden" name="cateId" value="${cateDTO.cateId}" />
 							</td>
 						</tr>
 						<tr>
 							<th style="width: 10%; vertical-align: middle ; text-align: center;">작성자</th>
 							<td>
-								<input type="text" class="form-control" value = "관리리자" readonly>
+								<input type="text" class="form-control" value = "관리자" readonly>
 								<input type="hidden" name="userId" value="${loginSession.userId }" />
 							</td>
 						</tr>
 						<tr>
 							<th style="width: 10%; vertical-align: middle ; text-align: center;">제목</th>
-							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" required="required" /></td>
+							<td><input id="bTitle" class="form-control" type="text" name="bTitle" value="${boardDTO.bTitle}" /></td>
 						</tr>
 						<tr>
 							<th style="width: 10%; vertical-align: middle ; text-align: center;">내용</th>
-							<td><textarea name="bContent" style="height: 400px;" class="form-control" required ></textarea></td>
+							<td><textarea id="bContent" name="bContent" style="height: 400px;" class="form-control"></textarea></td>
 						</tr>
 					</table>
 					<div align="right">
@@ -50,32 +50,25 @@
 		</div>
 	
 		<script type="text/javascript">
-					$("#insertForm").submit(function(event) {
-						event.preventDefault ? event.preventDefault(): (event.returnValue = false);
-						console.log("insertForm");
-						var that = $(this); //insertForm
-						var title = $("#bTitle").val(); // 제목	(빈 값 검사하기 위해)
-						var content = $("#bContent").val(); // 내용
+			$("#insertForm").submit(function(event) {
+				event.preventDefault ? event.preventDefault(): (event.returnValue = false);
+				console.log("insertForm");
+				var that = $(this); //insertForm
+				var title = $("#bTitle").val(); // 제목	(빈 값 검사하기 위해)
+				var content = $("#bContent").val(); // 내용
 
-						if (title.trim() == ""|| content.trim() == "") { // trim() 앞,뒤 공백 제거
-							alert("제목과 내용은 필수 입력사항입니다.");
-							return;
-						}
+				if (title.trim() == ""|| content.trim() == "") { // trim() 앞,뒤 공백 제거
+					alert("제목과 내용은 필수 입력사항입니다.");
+					return;
+				}
 
-						/* var str = "";
-						//fileDrop 클래스의 samll 태그 각각의 값을 가져와서 str에 input hidden 속성으로 붙임 value = file fullName
-						$(".fileDrop small").each(function(index) {
-							str += "<input type='hidden' name='files' value='"+ $(this).attr("data-src")+ "'>";
-						});
-						that.append(str); */
+				that.action = "/notice/writeBoardProc";
+				that.method = "post";
+				alert("게시글 작성이 완료되었습니다.");
+				that.get(0).submit(); // get(0) : 순수 DOM 객체를 얻어냄
 
-						that.action = "/notice/writeBoardProc";
-						that.method = "post";
-						alert("게시글 작성이 완료되었습니다.");
-						that.get(0).submit(); // get(0) : 순수 DOM 객체를 얻어냄
-
-					});
-				</script>
+			});
+		</script>
 		<!-- 각 페이지별 메뉴 색깔 제어 -->
 		<script>
 			$(document).ready(function() {

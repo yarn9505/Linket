@@ -23,8 +23,8 @@
 
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/aside.js"></script>
-<script src="/resources/js/login/login.js"></script>
-<script src="/resources/js/join/join.js"></script>
+
+
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
 <script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
 <link rel="stylesheet" href="/resources/css/sidebarCSS.css" />

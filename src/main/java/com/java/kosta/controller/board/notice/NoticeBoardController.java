@@ -87,7 +87,7 @@ public class NoticeBoardController {
          e.printStackTrace();
       }
       
-      return "redirect:/notice/boardList?cateId="+boardDTO.getCateId();
+      return "redirect:/notice/boardList?cateId="+boardDTO.getCateId()+"&pageNo=1";
    }
    
    /** 선택 게시글 상세 보기 */

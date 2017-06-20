@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	
+	
    var page = 1;
    var keywords;
    var login;
@@ -93,19 +95,30 @@ $(document).ready(function(){
          var cate5 = $("#cateId5").is(":checked");
          var cate6 = $("#cateId6").is(":checked");
          var fcateArr = [cate1, cate2, cate3, cate4, cate5, cate6];
-         console.log("fcateArr : "+fcateArr);
+         var count = 0;
+         for(var i=0; i<fcateArr.length; i++){
+        	 if ( fcateArr[i] == true ){
+        		 count++;
+        	 }
+         }
+         console.log("체크된 것 개수 : " + count);
+         if ( count == 0 ){
+        	 listAll(page,keywords);
+        	 alert("관심사는 하나 이상을 선택해주세요.");
+         }else{
 
-         /* 가치의 범위값 가지고 오기 */
-         var fvalue1 = document.getElementById("fvalue1").value;
-         var fvalue2 = document.getElementById("fvalue2").value;
-         console.log("fvalue1 : "+fvalue1);
-         console.log("fvalue2 : "+fvalue2);
+             /* 가치의 범위값 가지고 오기 */
+             var fvalue1 = document.getElementById("fvalue1").value;
+             var fvalue2 = document.getElementById("fvalue2").value;
+             console.log("fvalue1 : "+fvalue1);
+             console.log("fvalue2 : "+fvalue2);
 
-         /* 필수 필수 */
-         allData = {"fcateArr" : fcateArr, "fvalue1" : fvalue1, "fvalue2" : fvalue2};
-         console.log("page : "+page);
+             /* 필수 필수 */
+             allData = {"fcateArr" : fcateArr, "fvalue1" : fvalue1, "fvalue2" : fvalue2};
+             console.log("page : "+page);
 
-         listFilter(page,allData); // ajax로 호출
+             listFilter(page,allData); // ajax로 호출
+         }
          
       });//end of event( filterBtn )
       
