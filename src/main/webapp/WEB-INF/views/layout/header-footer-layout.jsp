@@ -187,15 +187,9 @@
       </div>
    </div>
    
-   <div style="margin-top: 3%;" >
+   <div style="margin-top: 5%;" >
       <decorator:body></decorator:body>
     </div>
    	
-   	<!-- footer -->
-   	<div align="center" class="footer">
-   		<img src="/resources/images/logo2.png" class="img-responsive" style="margin-bottom: 10px;">
-   		<p>황영롱, 이윤지, 한혜연, 이한나, 송아름, 정윤오, 김용래</p>
-   		<p>Linket Copyright © 2017 Design Shack</p>
-   	</div>
 </body>
 </html>
