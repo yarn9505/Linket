@@ -78,7 +78,7 @@ width:100%;
 	/* 비교하기 누르면 나오는 모달창의 css안의 내용 */
 	.hero-widget { text-align: center; padding-top: 20px; padding-bottom: 20px; }
 	.hero-widget .icon { display: block; font-size: 96px; line-height: 96px; margin-bottom: 10px; text-align: center; }
-	.hero-widget var { display: block; height: 64px; font-size: 64px; line-height: 64px; font-style: normal; }
+	.hero-widget var { display: block; height: 64px; font-size: 15px; line-height: 64px; font-style: normal; font-weight: bold;}
 	.hero-widget label { font-size: 17px; }
 	.hero-widget .options { margin-top: 10px; }
 	
@@ -114,6 +114,12 @@ width:100%;
 		width: 70%;
 		margin :0;
 	}
+	.panel-heading{
+		background-color: #D1E0EF !important;
+	}
+	.options{
+		padding: 2px auto !important;
+	}
 </style>
 
 
@@ -129,15 +135,15 @@ width:100%;
                 <div class="modal-content modal-fullsize">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">전지 Modal</h4>
+                    <h4 class="modal-title" id="myModalLabel" style="font-weight: bold;">추천 비교</h4>
                   </div>
                   <div class="modal-body" style="height: 500px;">
                      <!--  -->
                      <div class="container" >
-                  <div class="row" style="padding-left:300px;">
+                  <div class="row" style="padding-left:10%;">
                      <div class="col-sm-5" style="margin :0 auto;">
                            <div class="hero-widget well well-sm" style='height:318px;'>
-                               <div class='col-sm-4' style='margin-left:20px;'>
+                               <div class='col-sm-4' style="margin: 5px;">
                                   <div class="icon">
                                        <i>
                                          <img src = "/resources/images/circleuser.png" style="width:90px;height:90px;"></img>
@@ -153,7 +159,7 @@ width:100%;
                                  <div class="panel panel-default" style='width:100%;height:100%;'>
                                 <!-- Default panel contents -->
                                 <div class="panel-heading"><b>내가 올린 게시글 정보</b></div>
-                                <div class="panel-body">
+                                <div class="panel-body" style="padding: 2px 10px;">
                                   <img src="/resources/images/messageImg.png" style='width:50px;height:50px;float:left;'/><p id='myTitleId' style='font-weight:bold;'>글제목</p>
                                 </div>
                               
@@ -183,17 +189,17 @@ width:100%;
                                   </div>
                                   <div class="text">
                                       <div style="margin-top : -18px;"><var id="1UserId">614</var></div>
-                                      <label class="text-muted">★추천합니다!★</label>
+                                      <label class="text-muted">추천</label>
                                   </div>
-                                  <div class="options" style='margin-left:-20px;'>
-									<button id="1MapId">위치 보기</button>
+                                  <div class="options" style='margin: 2px auto;'>
+									<button id="1MapId" class="btn btn-default">위치 보기</button>
                                   </div>
                                </div>
                            <div class='col-sm-7' style='background-color:white;float:right;height:270px;margin-left:-10px;border-radius:5px;padding:0px;'>
                                  <div class="panel panel-default" style='width:100%;height:100%;'>
                                 <!-- Default panel contents -->
-                                <div class="panel-heading">제시 사항</div>
-                                <div class="panel-body">
+                                <div class="panel-heading" style="font-weight: bold; background: #D1E0EF;">제시 사항</div>
+                                <div class="panel-body" style="padding: 2px 10px;">
                                   <img src="/resources/images/messageImg.png" style='width:50px;height:50px;float:left;'/><p id="1TitleId">추천제목</p>
                                 </div>
                               
@@ -225,10 +231,10 @@ width:100%;
 				     
 				     <!-- footer -->
 				      <div class="modal-footer" style='clear:both:clear;display:block;'>
-		                <div class="row" style="padding-left:300px;margin-left:-200px;">
+		                <div class="row" style="padding-left:10%;">
 		                     <div class="col-sm-3" style="margin :0 auto; display:none;" id = "2Container">
 		                           <div class="hero-widget well well-sm" style='height:318px;'>
-		                               <div class='col-sm-4' style='margin-left:20px;'>
+		                               <div class='col-sm-4' style='margin-left:5px;'>
 		                                  <div class="icon">
 		                                       <i>
 		                                         <img src = "/resources/images/circleuser.png" style="width:90px;height:90px;"></img>
@@ -236,17 +242,17 @@ width:100%;
 		                                  </div>
 		                                  <div class="text">
 		                                      <div><var id="2UserId">614</var></div>
-		                                      <label class="text-muted">2th Recommandation</label>
+		                                      <label class="text-muted">2번째 추천</label>
 		                                  </div>
-		                                  <div class="options" style='margin-left:-20px;'>
-											<button id="2MapId">위치 보기</button>
+		                                  <div class="options" style='margin: 2px auto;'>
+											<button id="2MapId" class="btn btn-default">위치 보기</button>
 		                                  </div>
 		                               </div>
 		                           <div class='col-sm-7' style='background-color:white;float:right;height:270px;margin-left:-10px;border-radius:5px;padding:0px;'>
-		                                 <div class="panel panel-default" style='width:100%;height:100%;'>
+		                                 <div class="panel panel-default" style='width:100%;height:100%;overflow: hidden'>
 		                                <!-- Default panel contents -->
 		                                <div class="panel-heading">제시 사항</div>
-		                                <div class="panel-body">
+		                                <div class="panel-body" style="padding: 2px 10px;">
 		                                  <img src="/resources/images/messageImg.png" style='width:50px;height:50px;float:left;'/><p id="2TitleId">제목</p>
 		                                </div>
 		                              
@@ -277,10 +283,10 @@ width:100%;
 		                                  </div>
 		                                  <div class="text">
 		                                      <div style="margin-top : -18px;"><var id="3UserId">614</var></div>
-		                                      <label class="text-muted">3th Recommandation</label>
+		                                      <label class="text-muted">3번째 추천</label>
 		                                  </div>
-		                                  <div class="options" style='margin-left:-20px;'>
-											<button id="3MapId">위치 보기</button>
+		                                   <div class="options" style='margin: 2px auto;'>
+											<<button id="3MapId" class="btn btn-default">위치 보기</button>
 		                                  </div>
 		                               </div>
 		                           <div class='col-sm-7' style='background-color:white;float:right;height:270px;margin-left:-10px;border-radius:5px;padding:0px;'>
@@ -308,7 +314,7 @@ width:100%;
 		                          </div>
 		                           
 		                     </div>
-		                     <div class="col-sm-3" style="margin :0 auto; display:none; " id = "4Container">
+		                     <div class="col-sm-4" style="margin :0 auto; display:none; " id = "4Container">
 		                           <div class="hero-widget well well-sm" style='height:318px;'>
 		                               <div class='col-sm-4' style='margin-left:20px;'>
 		                                  <div class="icon">
@@ -318,7 +324,7 @@ width:100%;
 		                                  </div>
 		                                  <div class="text">
 		                                      <div style="margin-top : -18px;"><var id="4UserId">614</var></div>
-		                                      <label class="text-muted">4th Recommandation</label>
+		                                      <label class="text-muted">4번째 추천</label>
 		                                  </div>
 		                                  <div class="options" style='margin-left:-20px;'>
 		                                 	<button id="4MapId">위치 보기</button>
@@ -489,13 +495,16 @@ width:100%;
                      </div>
                      <div class="src_box" id="_public_data"> 
                      	<fieldset> 
-                     		<select name="dtd_select" class="_select" style="width:115px"> 
+                     		<select name="dtd_select" class="_select form-control"> 
                      			<option class="_option" data-value="H" seleted="">전화번호</option> 
                      			<option class="_option" data-value="A">계좌번호</option>
                      		 </select> 
-                     		 <legend>신고 번호 조회</legend> 
-                     		 <input id="inputCriminalId" type="text" maxlength="40" id="srch_txt" title="검색" placeholder="예) 010-0000-0000" name="" class="srch_txt _input">
-                     		 <input id="showCriminal" type="image" src="https://ssl.pstatic.net/sstatic/keypage/outside/life/2013122610445393884.png" alt="검색" class="img_btn _search">
+                     		 <legend style="margin-bottom: 0;">신고 번호 조회</legend> 
+                     		 <div class="input-group">
+                     		 	<input id="inputCriminalId" class ="form-control" type="text" maxlength="40" id="srch_txt" title="검색" placeholder="예) 010-0000-0000" name="" class="srch_txt _input" style="width: 100%;">
+                     		 	<span class="input-group-btn">
+                     		 		<input id="showCriminal" class="btn btn-primary" type="button"  value="검색" class="img_btn _search">
+                     		 	</span>
                      	 </fieldset>
                       </div>
                       <script>
@@ -594,22 +603,23 @@ width:100%;
                               success:function(list){
                                  
                                  $(list).each(function(index){
-                                    str3 += "<div id='indexContent"+index+"' class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>"
-                                       +"<div class='panel panel-default'>"
-                                       +"<div class='panel-heading' role='tab' id='headingOne'>"
-	                                       +"<h4 class='panel-title'>"
-	                                             +"<input id='"+index+"' type='checkbox' name='checkCompareName' class='checkCompare' value='"+this.mno+"'/>"
-	                                          +"<span style='width:100px;float:right;margin-left:5px;'>"+this.wantedValue+"원</span>"
-	                                          +"<div style='width:140px;float:right;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;'>"+this.addr1+"</div>"
-	                                          +"<a data-toggle='collapse' data-parent='#accordion' href='#collapseOne"+index+"' aria-expanded='true' aria-controls='collapseOne' style='text-decoration:none;color:black;'>"
-	                                          +"<p style='width:200px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requestMsg+"</p>"
-	                                          +"<img class='imgVictory' src='' width='20px' height='20px' style='border:0px;display:inline;float:right;margin-top:-28px;display:none;'/>"
-	                                          +"</a>"
-	                                       +"</h4>"
-                                       +"</div>"
-                                                +"<div id='collapseOne"+index+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingOne'>"
-                                                +"<div class='panel-body' style='display:inline;'>"+this.requestMsg+"</div>"
-                                                +"<button class='decideBtn' style='display:inline;float:right;'>요청 승인</button>"
+                                	 str3 += "<div id='indexContent"+index+"' class='panel-group' id='accordion' role='tablist' aria-multiselectable='true' style='margin-bottom: 40px;'>"
+                                     +"<div class='panel panel-default'>"
+                                     +"<div class='panel-heading' role='tab' id='headingOne'>"
+                                     +"<h4 class='panel-title'>"
+                                           +"<input id='"+index+"' type='checkbox' name='checkCompareName' class='checkCompare' value='"+this.mno+"'/>"
+                                        +"<span style='width:100px;float:right;margin-left:5px;'>"+this.wantedValue+"원</span>"
+                                        +"<a data-toggle='collapse' data-parent='#accordion' href='#collapseOne"+index+"' aria-expanded='true' aria-controls='collapseOne' style='text-decoration:none;color:black;'>"
+                                        +"<p style='width:200px;padding-left: 20px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requestMsg+"</p>"
+                                        +"<div style='width:100%;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;'>"+this.addr1+"</div>"
+                                        /* +"<img class='imgVictory' src='' width='20px' height='20px' style='border:0px;display:inline;float:right;margin-top:-28px;display:none;'/>" */
+                                        +"<span class='badge badge-danger imgVictory' style='float:right; background:#ED0000 !important;'></span>"
+                                        +"</a>"
+                                     +"</h4>"
+                                     +"</div>"
+                                              +"<div id='collapseOne"+index+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingOne'>"
+                                              +"<div class='panel-body'>"+this.requestMsg+"</div>"
+                                                +"<button class='decideBtn btn btn-default' style='display:inline;float:right;'>요청 승인</button>"
                                                 +"</div>"
                                                 +"</div>"
                                                 +"</div>";
@@ -617,8 +627,7 @@ width:100%;
                                  });//each
                                  $("#listMatchContent").append(str3);
                                  // 추천하는 요청사항의 속성을 변경하는 부분
-                              $("#indexContent0").attr("style","border:5px solid yellow;");
-                                var i = $("#indexContent0").find(".imgVictory").attr("src","/resources/images/victory.png");
+                           	 	var i = $("#indexContent0").find(".imgVictory").html("추천");
                                 $("#indexContent0").find(".imgVictory").attr("style","border:0px;display:inline;float:right;margin-top:-28px;");
                               },
                               error:function(){
@@ -947,7 +956,7 @@ width:100%;
 			 	                                          		+"</table>"
 			 	                                          	+"</div>"
 			 	                                          	+"<div style='margin-left:340px;clear:both;'>"
-			 	                                          		+"<button class='btn btn-default writePost' data-target='#reviewModal' >후기 작성</button>"
+			 	                                          		+"<button class='btn btn-default writePost' data-target='#' >후기 작성</button>"
 			 	                                          		+"<button class='cancelBtn btn btn-primary' type='button'>거래취소</button>"
 			 	                                          		+"<hr/><br/>"
 			 	                                          	+"</div>"
