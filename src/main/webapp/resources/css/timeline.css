@@ -1,0 +1,181 @@
+@CHARSET "UTF-8";
+.msg_a {
+	position: relative;
+	top: -10px;
+	left: -25px;
+	text-decoration: none;
+}
+
+#timeline {
+	width: 100%;
+	margin: 0 auto;
+}
+
+#timeline .item {
+	width: 45%;
+	margin: 10px;
+	float: left;
+	margin-left: 30px;
+	margin-top: 10px;
+	background-color: #ffffff;
+	border: solid 1px #B4BBCD;
+	min-height: 50px;
+	text-align: justify;
+	word-wrap: break-word;
+}
+
+#timeline .item  .cont_pic {
+	/* margin:10px; */
+	padding: 10px;
+	position: relative;
+}
+
+#timeline .item  .cont_pic .like_pic {
+	position: absolute;
+	right: 0;
+	margin: 0 20px;
+	border: 1px solid #000;
+	/* background: #1c1c1c; */
+	border-radius: 5px;
+	cursor: pointer;
+	width: 35px;
+	height: 35px;
+	text-align: center;
+	color: #FFF;
+	font-size: 23px;
+	font-weight: 100;
+	line-height: 36px;
+	opacity: 0.4;
+	transition: all 0.3s;
+}
+
+#timeline .item  .cont_pic .like_pic:hover {
+	opacity: 0.8;
+}
+
+#timeline .item .info {
+	color: #111;
+	z-index: 10;
+	position: relative;
+	padding: 10px;
+	overflow: hidden;
+}
+
+#timeline .item .info .up_cont {
+	border-bottom: 1px dotted #ccc;
+}
+
+#timeline .item .info .up_cont h3 {
+	font-size: 24px;
+}
+
+#timeline .item .info .down_cont .left_icons .view {
+	display: inline-block;
+	float: left;
+	padding-left: 24px;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+#timeline .item .info .down_cont .left_icons .like {
+	display: inline-block;
+	float: left;
+	padding-left: 24px;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+#timeline .item .info .down_cont .left_icons .comment {
+	display: inline-block;
+	float: left;
+	padding-left: 24px;
+	margin-top: 6px;
+	margin-right: 10px;
+}
+
+#timeline .item .info .down_cont .timeago {
+	float: right;
+	margin-top: 6px;
+}
+
+.rightCorner {
+	background-image: url("http://ciftslash.com/upload/MQ/timeline_sol.png");
+	display: block;
+	height: 15px;
+	margin-left: 380px;
+	margin-top: 8px;
+	padding: 0;
+	vertical-align: top;
+	width: 13px;
+	z-index: 2;
+	position: absolute;
+}
+
+.leftCorner {
+	background-image: url("http://ciftslash.com/upload/MQ/timeline_sag.png");
+	display: block;
+	height: 15px;
+	width: 13px;
+	margin-left: -13px;
+	margin-top: 8px;
+	position: absolute;
+	z-index: 2;
+}
+
+.timeline_container {
+	width: 16px;
+	text-align: center;
+	margin: 0 auto;
+	display: block;
+}
+
+.timeline {
+	display: block;
+	height: 100%;
+}
+
+@media screen and (max-width: 766px) {
+	#timeline .item {
+		width: 90%;
+		margin-left: 10px;
+	}
+}
+
+input[type=checkbox] {
+	display: none;
+}
+
+input[type=checkbox]+label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 15px;
+	font-size: 13px;
+}
+
+input[type=checkbox]+label:before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 1px;
+	background-color: #ccc;
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px
+		rgba(255, 255, 255, .8);
+}
+
+input[type=checkbox]:checked+label:before {
+	content: "\2713"; /* 체크모양 */
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+	font-size: 18px;
+	font-weight: 800;
+	color: #fff;
+	background: #2f87c1;
+	text-align: center;
+	line-height: 18px;
+}
