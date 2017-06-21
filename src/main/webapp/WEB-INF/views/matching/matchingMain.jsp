@@ -487,6 +487,33 @@ width:100%;
 							<!-- 이곳에 내용... -->
                      	
                      </div>
+                     <div class="src_box" id="_public_data"> 
+                     	<fieldset> 
+                     		<select name="dtd_select" class="_select" style="width:115px"> 
+                     			<option class="_option" data-value="H" seleted="">전화번호</option> 
+                     			<option class="_option" data-value="A">계좌번호</option>
+                     		 </select> 
+                     		 <legend>검색 영역</legend> 
+                     		 <input id="inputCriminalId" type="text" maxlength="40" id="srch_txt" title="검색" placeholder="예) 010-0000-0000" name="" class="srch_txt _input">
+                     		 <input id="showCriminal" type="image" src="https://ssl.pstatic.net/sstatic/keypage/outside/life/2013122610445393884.png" alt="검색" class="img_btn _search">
+                     	 </fieldset>
+                      </div>
+                      <script>
+                      	$(document).ready(function(){
+                      		$(document).on("click","#showCriminal",function(event){
+	                      		var tx = $("#inputCriminalId").val();
+	                      		if ( tx != null && tx != 'undefined' && tx != "" ){
+	                      			var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=800,width=1000,left=100,top=0';
+	                      	        // 자식창을 열고 자식창의 window 객체를 windowObj 변수에 저장
+	                      	        var windowObj = window.open("http://cyberbureau.police.go.kr/prevention/sub7.jsp?keyword="+tx,"신고조회",settings);
+	                      		}else{
+	                      			alert("신고검색을 할 전화번호를 입력하세요");
+	                      			$("#inputCriminalId").focus();
+	                      		}
+                      			
+                      		});
+                      	});
+                      </script>
                      <div id="reviewBox">
                      </div>
                   </div>
