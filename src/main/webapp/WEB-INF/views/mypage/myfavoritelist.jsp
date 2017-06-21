@@ -129,7 +129,7 @@
 								<h4 class="modal-title">패스워드 확인</h4>
 							</div>
 							<div class="modal-body">
-								<form id="form1" action="/user/modifyInfo" method="post">
+								<form id="form1" ><!-- action="/user/modifyInfo" method="post" -->
 									<p style="color:blue;">회원정보를 수정하기 위해 패스워드를 확인해주세요.</p> <br/><br/>
 									<label>비밀번호</label>
 									<input id="pwId" type="password" name="password" class="form-control" />
@@ -227,11 +227,30 @@
 
 			<script>
 					/* 회원정보수정 */
-					
 					$(document).ready(function() {
 						$("#btnClick").on("click", function(event) {
-							var formId = $("#form1");
-							formId.submit();
+							
+							var passwordVal = $("#pwId").val();
+							$.ajax({
+								type : 'post',
+								url : '/user/modifyInfo',
+								headers : {
+									"Content-Type" : "application/json"
+								}, 
+								dataType : 'text',
+								data:JSON.stringify({
+									userPw:passwordVal
+								}),
+								success : function(result) {
+									if (result=="ok") {
+										location.href="/user/modifyInfoForm";
+									}else{
+										alert("비밀번호가 잘못되었습니다. 다시 입력해주세요.");
+										return false;
+									}
+								}
+							});
+							
 						});// end of btnClick
 					});// end of ready()
 

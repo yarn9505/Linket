@@ -437,7 +437,7 @@ input[type=checkbox]:checked+label:before {
 					dataType : 'json',
 					success : function(data) {
 						if(data.result == "ok"){
-							location.replace("/");
+							location.replace("/mypage/myList");
 							alert(data.resultMsg);  
 							return;
 						}else{

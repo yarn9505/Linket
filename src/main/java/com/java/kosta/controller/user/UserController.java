@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,28 +33,36 @@ public class UserController {
 	 * @Author : 황영롱
 	 * @description : 회원가입 수정 폼으로 이동
 	 */
-	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
-	public String modifyInfo(RedirectAttributes rttr,HttpSession session,@RequestParam("password") String password){
+	@RequestMapping(value="/modifyInfo")
+	@ResponseBody
+	public String modifyInfo(RedirectAttributes rttr,HttpSession session,@RequestBody UserVO pVO){
 		// 세션에서 현재 회원정보 가져오기
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
 		// 로그인되어 있는 회원의 패스워드 가져오기
 		UserVO tempVO = new UserVO();
 		tempVO.setUserId(vo.getUserId());
-		tempVO.setUserPw(password);
+		tempVO.setUserPw(pVO.getUserPw());
 		UserVO vo2 = service.getPwd(tempVO); // 암호화된 패스워드가 넘어옴
 
 		if ( vo2 != null ){
 			// 입력한 암호가 맞는 경우
 			// 수정페이지로 이동
-			return "user/modifyInfoForm";
+			//return "user/modifyInfoForm";
+			return "ok";
 		}else{
 			// 입력한 암호가 잘못된 경우
-			Map map = new HashMap();
+			/*Map map = new HashMap();
 			map.put("msg", "FAIL");
 			rttr.addFlashAttribute("map",map);
-			return "redirect:/";
+			return "redirect:/";*/
+			return "fail";
 		}
 	}// end of modifyInfo()
+	
+	@RequestMapping(value="/modifyInfoForm")
+	public String modifyInfoForm(){
+		return "/user/modifyInfoForm";
+	}
 
 	/*
 	 * @method Name : modifyInfoProcess()
@@ -61,9 +70,16 @@ public class UserController {
 	 * @description : 회원가입 수정 처리
 	 */
 	@RequestMapping(value="/modifyInfoProcess", method=RequestMethod.POST)
-	public @ResponseBody HashMap<String,Object> modifyInfoProcess(UserVO vo){
+	public @ResponseBody HashMap<String,Object> modifyInfoProcess(UserVO vo, HttpSession session){
 
 		service.updateInfo(vo);
+		
+		//세션 반환 후 다시 set 해줘야함
+		session.removeAttribute(Constants.LOGINSESSION);
+		
+		session.setAttribute(Constants.LOGINSESSION, vo);
+		
+		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put(Constants.RESULT, Constants.RESULT_OK);
 		map.put(Constants.RESULT_MSG,"업데이트 되었습니다.");
