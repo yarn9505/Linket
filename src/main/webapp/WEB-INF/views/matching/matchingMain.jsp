@@ -618,20 +618,19 @@ width:100%;
                                     str3 += "<div id='indexContent"+index+"' class='panel-group' id='accordion' role='tablist' aria-multiselectable='true'>"
                                        +"<div class='panel panel-default'>"
                                        +"<div class='panel-heading' role='tab' id='headingOne'>"
-                                       +"<h4 class='panel-title'>"
-                                             +"<input id='"+index+"' type='checkbox' name='checkCompareName' class='checkCompare' value='"+this.mno+"'/>"
-                                          +"<span style='width:100px;float:right;margin-left:5px;'>"+this.wantedValue+"원</span>"
-                                          +"<div style='width:140px;float:right;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;'>"+this.addr1+"</div>"
-                                          +"<a data-toggle='collapse' data-parent='#accordion' href='#collapseOne"+index+"' aria-expanded='true' aria-controls='collapseOne' style='text-decoration:none;color:black;'>"
-                                          +"<p style='width:200px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requestMsg+"</p>"
-                                          +"<img class='imgVictory' src='' width='20px' height='20px' style='border:0px;display:inline;float:right;margin-top:-28px;display:none;'/>"
-                                          
-                                          +"</a>"
-                                       +"</h4>"
+	                                       +"<h4 class='panel-title'>"
+	                                             +"<input id='"+index+"' type='checkbox' name='checkCompareName' class='checkCompare' value='"+this.mno+"'/>"
+	                                          +"<span style='width:100px;float:right;margin-left:5px;'>"+this.wantedValue+"원</span>"
+	                                          +"<div style='width:140px;float:right;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;'>"+this.addr1+"</div>"
+	                                          +"<a data-toggle='collapse' data-parent='#accordion' href='#collapseOne"+index+"' aria-expanded='true' aria-controls='collapseOne' style='text-decoration:none;color:black;'>"
+	                                          +"<p style='width:200px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requestMsg+"</p>"
+	                                          +"<img class='imgVictory' src='' width='20px' height='20px' style='border:0px;display:inline;float:right;margin-top:-28px;display:none;'/>"
+	                                          +"</a>"
+	                                       +"</h4>"
                                        +"</div>"
                                                 +"<div id='collapseOne"+index+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingOne'>"
-                                                +"<div class='panel-body'>"+this.requestMsg+"</div>"
-                                                
+                                                +"<div class='panel-body' style='display:inline;'>"+this.requestMsg+"</div>"
+                                                +"<button class='decideBtn' style='display:inline;float:right;'>요청 승인</button>"
                                                 +"</div>"
                                                 +"</div>"
                                                 +"</div>";
@@ -649,6 +648,21 @@ width:100%;
                              });//ajax 
                         }//end of listMatchContent()
                         
+                        // 비교하기 누르지 않고 바로 승인하기
+                        $(document).on("click",".decideBtn",function(event){
+                        	var mnoObj = $(this).parent().parent().find(".checkCompare");
+                        	var mno = mnoObj.val();
+                        	alert("click : " + mno);
+                        	$.ajax({
+		                        type:'GET',
+		                        data:mno,
+		                        url:"/matching/matchingResult?mno="+mno,
+		                        dataType:"json",
+		                        success:function(data){
+		                        	location.reload();
+		                        }
+		                     });//ajax
+                        });
                         
                         // 비교하기 버튼을 클릭했을 때
                         $("#compareBtn").on("click",function(event){
@@ -727,7 +741,7 @@ width:100%;
 	                        
 	                              $(document).on("click",".rollOver",function(event){
 	                          		 button = $(this);                                 
-	                                 listMatchContent(button);
+	                                 listMatchContent(button,"price");
 	                                 
 	                              });
 	                        
@@ -772,38 +786,42 @@ width:100%;
 	                        
 	                        // 모달 창 내에서 요청 버튼 클릭시...(insert 작업...)
 	                         $("#sendContent").on("click",function(){
-	                            
-	                           
-	                            var check = confirm("정말 요청하시겠습니까?");
-	                            if(check==true){
-	                               $.ajax({
-	                                 type : 'POST',
-	                                 url : "/matching/insertMatching",
-	                                 headers:{
-	                                    "Content-Type":"application/json"
-	                                 },
-	                                 dataType : 'text',
-	                                 data : JSON.stringify({
-	                                    bno : $("#modalBno").val(),
-	                                    userId : $("#modalUserId").val(),
-	                                    requestMsg : $("#requestMsg").val(),
-	                                    lat:$("#latId").val(),
-	                                    lon:$("#lonId").val(),
-	                                    addr1:$("#wantedArea").val(),
-	                                    wantedValue:$("#wantedValue").val()
-	                                 }),
-	                                 success:function(data){
-	                                    $("#wantedValue").val("");
-	                                    $("#requestMsg").val("");
-	                                    // 모달창 닫음
-	                                    //$("#myModal").fadeOut(500);
-	                                    $("#myModal").hide();
-	                                    listMyTransactionInfo("sellingBtn");
-	                                 },
-	                                 error:function(data){
-	                                 }
-	                               });
-	                            }//if
+	                            	var req = $("#requestMsg").val();
+	                            	var value = $("#wantedValue").val();
+	                        	 if ( req != null && req != 'undefined' && req != "" && value != null && value != 'undefined' && value != "" ){
+	                        	 	var check = confirm("정말 요청하시겠습니까?");
+	 	                            if(check==true){
+	 	                               $.ajax({
+	 	                                 type : 'POST',
+	 	                                 url : "/matching/insertMatching",
+	 	                                 headers:{
+	 	                                    "Content-Type":"application/json"
+	 	                                 },
+	 	                                 dataType : 'text',
+	 	                                 data : JSON.stringify({
+	 	                                    bno : $("#modalBno").val(),
+	 	                                    userId : $("#modalUserId").val(),
+	 	                                    requestMsg : $("#requestMsg").val(),
+	 	                                    lat:$("#latId").val(),
+	 	                                    lon:$("#lonId").val(),
+	 	                                    addr1:$("#wantedArea").val(),
+	 	                                    wantedValue:$("#wantedValue").val()
+	 	                                 }),
+	 	                                 success:function(data){
+	 	                                    $("#wantedValue").val("");
+	 	                                    $("#requestMsg").val("");
+	 	                                    // 모달창 닫음
+	 	                                    //$("#myModal").fadeOut(500);
+	 	                                    $("#myModal").hide();
+	 	                                    listMyTransactionInfo("sellingBtn");
+	 	                                 },
+	 	                                 error:function(data){
+	 	                                 }
+	 	                               });
+	 	                            }//if
+	                        	 }else{
+	                        		 alert("요청 메시지와 가격은 필수 입력 항목입니다.");
+	                        	 }
 	                         });//삽입에 사용하기 위한 버튼
 	                         
 	                         
@@ -875,7 +893,7 @@ width:100%;
 			 	                                          			+"</tr>"
 		 		 	                                          		+"<tr>"
 			 	                                          				+"<td>요청 정보</td>"
-			 	                                          				+"<td>"+ data.IamCustomer[i].requestMsg +"</td>"
+			 	                                          				+"<td>"+ data.IamSeller[i].requestMsg +"</td>"
 			 	                                          			+"</tr>"
 // 			 	                                          			+"<input type='hidden' value='"+data.IamSeller[i].mno"' style='display:none;' />"
 			 	                                          		+"</table>"
@@ -923,7 +941,7 @@ width:100%;
 		 		 	                                          		+"</tr>"
 		 		 	                                          		+"<tr>"
 		 		 	                                          			+"<td>요청 Msg</td>"
-		 		 	                                          			+"<td>"+ data.IamCustomer[i].requestMsg +"</td>"
+		 		 	                                          			+"<td>"+ data.IamSeller[i].requestMsg +"</td>"
 		 		 	                                          		+"</tr>"
 		 		 	                                          	+"</table>"
 			 	                                          	+"</div>"
@@ -1046,6 +1064,9 @@ width:100%;
 	                           var distanceObj = parent.find(".distanceVal");
 	                           var valueObj = parent.find(".valueVal");
 	                           var requestMsgObj = $("#requestMsg");
+	                           
+	                           	
+	                           
 	                           // 모달에 세팅
 	                           // 제목 전달
 	                           $("#modalTitle").html(titleObj.text()); 

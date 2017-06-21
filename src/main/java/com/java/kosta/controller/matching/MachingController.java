@@ -176,7 +176,6 @@ public class MachingController {
 		// 구매자용 리스트
 		List<matchingDTO> IamCustomer = new ArrayList<matchingDTO>();
 		List<UserVO> MySellerList = new ArrayList<UserVO>();
-		System.out.println("myId : " + myId);
 
 		// 내가 판매자인 리스트
 		if (mylist.size() != 0) {
@@ -190,7 +189,7 @@ public class MachingController {
 				/**원래 userId와 sellerId가 동일하지 않기 때문에 else if로 써줘야 하지만*/
 				/**테스트 환경에서는 userId와 sellerId가 동일하기 때문에 원활한 테스트를 위해서 if문을 써줌 */
 
-				else if (mylist.get(i).getUserId().equals(myId)) {
+				else if (mylist.get(i).getRequester().equals(myId)) {
 					// 내가 구매자인 경우
 					IamCustomer.add(mylist.get(i));
 					// 내가 구매자인 경우 판매자의 정보를 가지고 옴
@@ -199,7 +198,7 @@ public class MachingController {
 				} // else
 			} // for
 		} // if
-
+		
 
 		/** 뿌려줄때..둘이 거래가 성립된 날짜와 시간 순서대로 sort 해줘야되나... */
 
@@ -209,7 +208,7 @@ public class MachingController {
 		map.put("MyCustomerList", MyCustomerList); // 내 게시글 구매자 정보를 담고 있음
 		map.put("IamCustomer", IamCustomer); // 내가 구매자인 경우((requestMsg등의 정보를 담고 있음),
 		map.put("MySellerList", MySellerList); // 내가 요청한 메시지의 판매자 정보를 담고 있음
-
+		
 		return map;
 	}
 	

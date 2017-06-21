@@ -208,7 +208,8 @@ public class matchingDTO implements Comparable<matchingDTO> {
 				+ ", value=" + value + ", viewcnt=" + viewcnt + ", bregdate=" + bregdate + ", isSwap=" + isSwap
 				+ ", cateName=" + cateName + ", distance=" + distance + ", productKeywords=" + productKeywords
 				+ ", requestMsg=" + requestMsg + ", lat=" + lat + ", lon=" + lon + ", addr1=" + addr1 + ", wantedValue="
-				+ wantedValue + ", relValue=" + relValue + ", mno=" + mno + ", weightValue=" + weightValue + "]";
+				+ wantedValue + ", relValue=" + relValue + ", mno=" + mno + ", weightValue=" + weightValue
+				+ ", sellerId=" + sellerId + ", requester=" + requester + ", receiver=" + receiver + "]";
 	}
 
 	@Override
