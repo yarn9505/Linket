@@ -72,7 +72,7 @@ public class TimelineController {
 		vo = (UserVO) session.getAttribute("loginSession");
 		if (vo != null) {
 			page.setTotalCount(service.countTimeline(vo, keywords));
-			page.setPerPageNum(5); // 5개씩만 가져오도록...
+			page.setPerPageNum(6); // 6개씩만 가져오도록...
 
 			// 관심사, 거리에 따른 게시글 목록 가져오기
 			list = service.listMatch(vo, page, keywords);
@@ -188,7 +188,7 @@ public class TimelineController {
 
 		// 페이징을 위한 작업
 		page.setTotalCount(service.countFilterList(filter));
-		page.setPerPageNum(5);
+		page.setPerPageNum(6);
 		List<TimelineDTO> list = service.listFilter(filter, page);
 		
 		// 해당 게시물의 파일 테이블을 리스트로 가져와서 첫번째 이미지 파일 경로를 TimelineDTO 에 set해줌
