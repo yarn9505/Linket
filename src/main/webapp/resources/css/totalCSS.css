@@ -92,3 +92,12 @@ a:hover {
   vertical-align: middle;
 }
 
+
+.footer{
+	bottom: 0px; 
+	position:absolute; 
+	background-color: #f8f8f8; 
+	width: 100%;
+	padding: 15px;
+}
+
