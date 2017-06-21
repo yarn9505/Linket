@@ -165,7 +165,21 @@
 	
 	</delete>
     
-   
+	<!-- 전체 게시글 검색 -->
+	<select id="allBoardList" resultType="TimelineDTO">
+		select * from board
+		where bcontent like CONCAT("%",#{keywords},"%")
+			or
+			  btitle like CONCAT("%",#{keywords},"%")
+		order by bno desc
+		limit #{page.pageStart},#{page.perPageNum}
+	</select>   
 
-
+	<!-- 전체 게시글 개수 가져오기 -->
+	<select id="allBoardListCnt" resultType="int">
+		select count(*) from board
+		where bcontent like CONCAT("%",#{keywords},"%")
+			or
+			  btitle like CONCAT("%",#{keywords},"%")
+	</select>
 </mapper>

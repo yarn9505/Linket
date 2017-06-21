@@ -32,4 +32,8 @@ public interface TimelineDAO {
 	// 타임라인 좋아요 취소
 	public void deleteFavorite(String bno, String userId);
 
+	// 전체 게시글 검색
+	public List<TimelineDTO> allBoardList(PagingDTO page,String keywords);
+	// 전체 게시글 개수
+	public int allBoardListCnt(String keywords);
 }

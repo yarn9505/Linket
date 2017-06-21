@@ -35,4 +35,7 @@ public interface TimelineService {
 	// 타임라인 좋아요 취소
 	public void deleteFavorite(String bno, String userId);
 
+	// 전체 게시글 조회
+	public List<TimelineDTO> allBoardList(PagingDTO page, String keywords);
+	public int allBoardListCnt(String keywords);
 }

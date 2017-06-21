@@ -46,6 +46,7 @@
 			<exclude-mapping path="/mypage/countClient/*"/>
 			<exclude-mapping path="/note/alarmNote/*"/>
 			<exclude-mapping path="/matching/matchingMain"/>
+			<exclude-mapping path="/echo-ws"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -86,5 +86,18 @@ public class TimelineDAOImpl implements TimelineDAO {
 		sqlSession.selectOne("timelineMapper.deleteFavorite",map);
 	}
 
+	@Override
+	public List<TimelineDTO> allBoardList(PagingDTO page, String keywords) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("page", page);
+		map.put("keywords", keywords);
+		return sqlSession.selectList("timelineMapper.allBoardList", map);
+	}
+
+	@Override
+	public int allBoardListCnt(String keywords) {
+		return sqlSession.selectOne("timelineMapper.allBoardListCnt",keywords);
+	}
+
 
 }

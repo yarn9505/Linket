@@ -46,7 +46,7 @@ public class PagingDTO {
 	
 	public PagingDTO() {
 		this.page = 1; // 현재 페이지 기본값 설정
-		this.perPageNum = 7; // 별 지정 없으면 10개씩 출력하도록... 초기 세팅
+		this.perPageNum = 10; // 별 지정 없으면 10개씩 출력하도록... 초기 세팅
 	}
 
 	// 왕중요! : BoardMapper.xml에서 페이지당 limit으로 가져올 행을 지정할 때

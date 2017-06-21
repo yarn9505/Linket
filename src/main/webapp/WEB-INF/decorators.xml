@@ -9,6 +9,7 @@
      <pattern>*handlebarsTest*</pattern>
      <pattern>/resources/daumEditor/editor_template*</pattern>
 	 <pattern>/resources/daumEditor/**</pattern>
+	 <pattern>/echo-ws"/</pattern>
 <!--  	 <pattern>*matching*</pattern>  -->
  </excludes>
 

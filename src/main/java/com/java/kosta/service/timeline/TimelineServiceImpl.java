@@ -64,4 +64,15 @@ public class TimelineServiceImpl implements TimelineService {
 		dao.deleteFavorite(bno, userId);
 	}
 
+	@Override
+	public List<TimelineDTO> allBoardList(PagingDTO page, String keywords) {
+
+		return dao.allBoardList(page, keywords);
+	}
+
+	@Override
+	public int allBoardListCnt(String keywords) {
+		return dao.allBoardListCnt(keywords);
+	}
+
 }

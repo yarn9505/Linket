@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,79 +72,49 @@
 </script>
 
 <script>
+ 
+    var sock = null;
+    $(document).ready(function(){
+        sock = new SockJS("/echo-ws");
+          sock.onopen=function(){
+        	  sock.send("접속${loginSession.userId}");
+        	  
+          }
+          sock.onmessage=function(evt){
+               // alert(evt.data);
+                notifyMe(evt.data);//Notification
+          }
+          sock.onclose = function(){
+          }      
+       
+    });
 
-//    var sock = null;
-//    $(document).ready(function(){
-//        sock = new SockJS("/echo-ws");
-//          sock.onopen=function(){
-//          }
-//          sock.onmessage=function(evt){
-//                console.log("안들어오나?");
-//                notifyMe(evt.data);
-//             /* if(${loginSession.userId eq sessionScope.NotiRecvId}){
-//             } */
-//          }
-//          sock.onclose = function(){
-//          }      
-         
-//    });
-   
-//    var notification = new Notification(title, options);
-   
-//    function notifyMe(data) {
-//       console.log("노티함수 : " + data);
-//       Notification.requestPermission(function (permission) {
-//          Notification.requestPermission(function (result) {
+    function notifyMe(data) {
 
-//                 //요청을 거절하면,
-//                 if (result === 'denied') {
-//                     return;
-//                 }
-//                 //요청을 허용하면,
-//                 else {
-//                     return;
-//                 }
-//             });
-//       var parameter_noti = {
-//             icon : "https://image-proxy.namuwikiusercontent.com/r/https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2F7%2F7e%2FPatrick_Star.png",
-//             body: data
-//       };
-      
-//       //브라우저가 Notification 기능을 지원하는지 체크
-//       if (!"Notification" in window) {
-//          alert("이 브라우저는 noti를 제공하지 않아요!");
-//       }
-//       //사용자가 Notification 사용을 허락했는지 체크
-//       else if (Notification.permission === "granted") {
-//          console.log("사용자가 승낙한 경우");
-//          //허락했다면 Notification을 생성
-//          var notification = new Notification(parameter_noti.title,{
-//             icon : parameter_noti.icon,
-//             body : parameter_noti.body
-//          });
-//       }
-//       //크롬 브라우저는 permission 속성이 구현되어 있지 않기 때문에
-//       //사용자가 의도적으로 'denied' 한 경우만 체크
-//       else if (Notification.permission !== 'denied') {
-//          console.log("사용자가 노티 사용 거부한 경우");
-        
-//             //사용자가 사용 여부를 체크했다면, 크롬 Notification 상태를 갱신
-//             if(!('permission' in Notification)) {
-               
-//                Notification.permission = permission;
-//             }
-//             //사용자가 승낙했다면, Notifiation을 생성
-//             if (permission === "granted") {
-//                console.log("사용자가 노티 승낙했을 경우 들어오는 부분");
-//                var notification = new Notification(parameter_noti.title,{
-//                   icon : parameter_noti.icon,
-//                   body : parameter_noti.body
-//                });
-//             }
-//          });
-//       }
-//    }//notifyMe
-    
+    	  var options = {
+    		      body: data,
+    		      icon: "/resources/images/notiImg.jpg"
+    	 }
+    	  
+    	  if (!("Notification" in window)) {
+    	    alert("This browser does not support desktop notification");
+    	  }
+
+    	  
+    	  else if (Notification.permission === "granted") {
+    	    var notification = new Notification("쪽지가 도착했습니다.",options);
+    	  }
+
+    	  else if (Notification.permission !== 'denied') {
+    	    Notification.requestPermission(function (permission) {
+    	      if (permission === "granted") {
+    	        var notification = new Notification(data);
+    	      }
+    	    });
+    	  }
+
+    	}
+   
 </script>
 <style type="text/css">
 
@@ -199,16 +168,30 @@
 				<li><a href="/bestUser/bestUserSection">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
                
-               <form class="navbar-form navbar-left" role="search">
+               <div class="navbar-form navbar-left" role="search">
                   <div class="form-group">
-                     <input type="text" class="form-control" placeholder="Search">
+                     <input id="searchValId" type="text" class="form-control" placeholder="Search">
                   </div>
-                  <button type="submit" class="btn btn-default">검색</button>
-               </form>
+                  <button id="totalSearchBtn" type="submit" class="btn btn-default">검색</button>
+               </div>
             </ul>
-            
-            
-            
+            <script>
+            	var page = 1;
+	            // 전체 검색...
+	            $(document).on("click","#totalSearchBtn",function(event){
+					searchMethod();
+	            });
+	            function searchMethod(){
+	            	var keywords = $("#searchValId").val();
+					if ( keywords == null || keywords == 'undefined' || keywords == ""){
+						alert("검색어를 입력하세요.");
+						$("#searchValId").focus();
+						return;
+					}else{
+						location.href="/timeline/totalSearch?keywords="+escape(encodeURIComponent(keywords)) 
+					}
+	            }
+            </script>
             <ul class="nav navbar-nav navbar-right" style="line-height: 50px;">
             	<c:if test="${loginSession.userId != null}">
                 	<li id="userIcon">
