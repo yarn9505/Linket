@@ -216,7 +216,6 @@ public class NoteController {
 	    	  if(beforeAlarmCount!=totalCnt){
 		    	  //변화가 발생한 경우 : DB에 있는 beforeAlarmCount값을 새로 업데이트
 		    	  service.updateBeforeAlarmCount(uvo, totalCnt);
-		    	  session.setAttribute("notOpen", totalCnt+"");
 		    	  String value = totalCnt+"";
 		    	  return value;
 	    	  }//if
