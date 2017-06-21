@@ -23,10 +23,8 @@
 <link rel= "stylesheet" type="text/css" href="/resources/css/totalCSS.css">
 <script src="/resources/js/aside.js"></script>
 
-
 <script type="text/javascript" src="/resources/js/fileupload.js"></script>
 <script type="text/javascript" src="/resources/js/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet" href="/resources/css/sidebarCSS.css" />
 <link rel="stylesheet" href="/resources/css/bootstrap.css" media="screen">
 <script type="text/javascript" src="/resources/js/matching/dashboard.js"></script>
 
@@ -192,5 +190,12 @@
    <div style="margin-top: 5%;">
       <decorator:body></decorator:body>
    </div>
+   
+   	<!-- footer -->
+   	<div align="center" class="footer">
+   		<img src="/resources/images/logo2.png" class="img-responsive" style="margin-bottom: 10px;">
+   		<p>황영롱, 이윤지, 한혜연, 이한나, 송아름, 정윤오, 김용래</p>
+   		<p>Linket Copyright © 2017 Design Shack</p>
+   	</div>
 </body>
 </html>
