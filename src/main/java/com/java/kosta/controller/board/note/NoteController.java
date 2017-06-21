@@ -212,7 +212,6 @@ public class NoteController {
 	    	  int beforeAlarmCount = service.selectBeforeAlarmCount(uvo);
 	    	  //totalCnt는 계속적으로 변화를 비교해줘야 하기 때문에 호출해줌
 	    	  int totalCnt = service.totalCntNotOpen(vo);
-	    	  session.setAttribute("notOpen", totalCnt);
 	    	  if(beforeAlarmCount!=totalCnt){
 		    	  //변화가 발생한 경우 : DB에 있는 beforeAlarmCount값을 새로 업데이트
 		    	  service.updateBeforeAlarmCount(uvo, totalCnt);

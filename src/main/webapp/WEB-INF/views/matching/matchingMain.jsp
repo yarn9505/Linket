@@ -420,6 +420,10 @@ width:100%;
 					<h5><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;검색한 게시물 상세내용</h5>
 					<table class="table table-bordered" style="width: 100%;">
 						<tr>
+							<th style="text-align: center; width: 20%; background-color: #E9EFF5">판매자ID</th>
+							<td id="modalSellerId"></td>
+						</tr>
+						<tr>
 							<th style="text-align: center; width: 20%; background-color: #E9EFF5">거리</th>
 							<td id="modalDistance"></td>
 						</tr>
@@ -1044,7 +1048,8 @@ width:100%;
 	                           // 모달에 세팅
 	                           // 제목 전달
 	                           $("#modalTitle").html(titleObj.text()); 
-	                           $("#modalUserId").val(userIdObj.val());                           
+	                           $("#modalUserId").val(userIdObj.val());
+	                           $("#modalSellerId").text(userIdObj.val());
 	                           $("#modalBno").val(bnoObj.val());
 	                           $("#modalCategory").html(cateNameObj.val());
 	                           $("#modalDistance").html(distanceObj.val());
