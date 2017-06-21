@@ -32,7 +32,6 @@ public class BoardReplyController {
    /** 댓글 작성 */
    @RequestMapping(value="/insertBoardReply", method=RequestMethod.POST)
    public Map<String, Object> insertBoardReply(@RequestBody BoardReplyDTO brDTO){
-      
       Map<String, Object> resMap = new HashMap<String, Object>();
       resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
       resMap.put(Constants.RESULT_MSG, "댓글 삽입 실패");
@@ -53,9 +52,6 @@ public class BoardReplyController {
    /** 댓글 리스트  AJAX로 뿌려주기 */
    @RequestMapping("/boardReplyAjax")
    public Map<String, Object> boardReplyAjax(BoardPagingDTO pagingDTO, HttpServletRequest req) {
-      
-      int num=0;
-      
       
       UserVO vo = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
       String userId = vo.getUserId();
@@ -142,7 +138,7 @@ public class BoardReplyController {
    /** 댓글 수정 */
    @RequestMapping(value="/{rno}",method={RequestMethod.PUT,RequestMethod.PATCH})
    public Map<String, Object> updateBoardReply(@PathVariable("rno") String rno, @RequestBody BoardReplyDTO brDTO){
-      
+      System.out.println(brDTO.getrContent());
       Map<String, Object> resMap = new HashMap<String, Object>();
       resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
       resMap.put(Constants.RESULT_MSG, "댓글 수정 실패");
