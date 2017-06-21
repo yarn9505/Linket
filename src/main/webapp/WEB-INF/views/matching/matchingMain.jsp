@@ -631,6 +631,7 @@ width:100%;
                                        +"</div>"
                                                 +"<div id='collapseOne"+index+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingOne'>"
                                                 +"<div class='panel-body'>"+this.requestMsg+"</div>"
+                                                
                                                 +"</div>"
                                                 +"</div>"
                                                 +"</div>";
