@@ -600,7 +600,7 @@ width:100%;
                                     }
                                     $("#listMatchContent").empty();
                                     var str3="";
-                                    
+                                    console.log("condi : " + condi + "bnoP : " + bnoP);
                                     $.ajax({
                                     type:'POST',
                                     url:"/matching/listMatchContent",
@@ -726,7 +726,7 @@ width:100%;
 	                        
 	                              $(document).on("click",".rollOver",function(event){
 	                          		 button = $(this);                                 
-	                                 listMatchContent(button);
+	                                 listMatchContent(button,"price");
 	                                 
 	                              });
 	                        
