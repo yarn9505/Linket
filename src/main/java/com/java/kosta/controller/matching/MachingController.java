@@ -79,6 +79,8 @@ public class MachingController {
       UserVO vo = (UserVO) session.getAttribute("loginSession");
       //테스트용으로 condi는 value값을 넘겨줌 , 뷰단 수정후 받는 값을 condi에 넘겨주면 됨
       List<matchingDTO> list = service.listMatchContent(vo, dto.getBno(),dto.getCondi());
+      	logger.info("condi : " + dto.getCondi());
+      logger.info("순서 : " + list);
       return list;
    }
    

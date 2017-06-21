@@ -552,7 +552,7 @@ width:100%;
                                     }
                                     $("#listMatchContent").empty();
                                     var str3="";
-                                    
+                                    console.log("condi : " + condi + "bnoP : " + bnoP);
                                     $.ajax({
                                     type:'POST',
                                     url:"/matching/listMatchContent",
