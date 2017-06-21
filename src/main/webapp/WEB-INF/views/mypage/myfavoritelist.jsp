@@ -946,7 +946,7 @@
 						if(result == "ok"){
 							alert("등록되었습니다.");
 							$("#reviewModal").hide();
-							//$("#a_review").val("수정");
+							
 						}else{
 							alert("등록 실패");
 						}

@@ -180,7 +180,6 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
 		if (fcnt != 0) {// 좋아요 취소
 			try {
-				System.out.println(fcnt);
 				bservice.unfavoriteBoard(userId, bNo);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -188,7 +187,6 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
 		} else if (fcnt == 0) {
 			try {
-				System.out.println(fcnt);
 				bservice.favoriteBoard(userId, bNo);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -300,7 +298,6 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 		String loginId = loginSession.getUserId();
 		
 		int totRecord = service.selectMyExchangeListCount(pagingDTO, loginId);	// eval 테이블에 있는 나의 거래중인 게시물(거래자 입장) 총 갯수
-		System.out.println(totRecord);
 		// 페이징 계산
 		pagingDTO.calcPage(totRecord);
 
