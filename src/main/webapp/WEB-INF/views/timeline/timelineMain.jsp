@@ -77,10 +77,15 @@
                   <span class="glyphicon glyphicon-check">&nbsp;검색조건</span>
                </div>
                <div class="panel-body">
-                  <span class="glyphicon glyphicon-hand-right" aria-hidden="true">
-                     <label class="control-label">관심분야 </label>
-                  </span> <br />
-                  <br /> <span class="input-group"> <label
+                  
+               		<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
+               			 <font style="font-weight: bold;font-size: 13px;">&nbsp;관심분야</font>
+               		</span>
+                  	
+                  	
+                  	<br/><br /> 
+                  	
+                  	<span class="input-group"> <label
                      class="checkbox-inline"> <input type="checkbox"
                         name="checkbox" id="cateId1"> <label for="cateId1">도서/음반
                      </label>
@@ -100,11 +105,16 @@
                         name="checkbox" id="cateId6"> <label for="cateId6">지역할인쿠폰
                      </label>
                   </label>
-                  </span> <br /> <span class="glyphicon glyphicon-hand-right"
-                     aria-hidden="true"> <label class="control-label">상품가치
-                  </label>
-                  </span> <br />
-                  <br />
+                  </span> <br /> 
+                  
+                  
+                  	
+          		<span class="glyphicon glyphicon-hand-right" aria-hidden="true">
+          			<font style="font-weight: bold;font-size: 13px;">&nbsp;상품가치</font>
+          		</span>
+                  	
+
+                 <br /><br />
                   <table style="width: 100%;">
                      <tr>
                         <td style="width: 20%;"><input type="text" id="fvalue1" class="form-control"></td>
