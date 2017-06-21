@@ -534,39 +534,6 @@ width:100%;
                   </div>
                 <!-- END of 매칭 성사 -->  
                   
-                  
-                  
-                  
-                  
-                  <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#158cba;'>
-                        서브 버튼은 이렇게
-                        <div class="BoxToolbar">
-                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 1</button>
-                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 2</button>
-                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 3</button>
-                           <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 4</button>
-                        </div>
-                     </h1>
-                     <div class="BoxBody">
-                        서브버튼등을 배치하여 탭메뉴 형식으로 만들수도 있겠죠..
-                     </div>
-                  </div>
-                  
-                  <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color: #158cba;color: #ffffff'>타이틀</h1>
-                     <div class="BoxBody">
-                     내용
-                     </div>
-                  </div>
-               
-                  <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color: #158cba;'>게시판 최근글</h1>
-                     <div class="BoxBody">
-                     내용
-                     </div>
-                  </div>
-                  
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
                      <h1 class="BoxTitle" style='background-color: #158cba;'>구매 희망 품목 설정창</h1>
                      <div class="BoxBody">
