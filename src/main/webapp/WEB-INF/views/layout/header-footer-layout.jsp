@@ -32,44 +32,6 @@
 
 <title><decorator:title default="Linket" /></title>
 <link rel="shortcut icon" href="/resources/images/small_logo_ico.ico" /> 
-<script>
-/* 
-       
-///         alert("제 이름은 폴링! 방금 실행되쬬^0^*");
-       $(function(){
-           poll();
-        });
-       
-       function poll(){
-          setTimeout(function(){
-             $.ajax({
-                url : "/note/alarmNote",
-                type : "POST",
-                success : function(){
-                   console.log(new Date());
-                },
-                dateType : "json",
-                complete : poll,
-                timeout : 3000
-                
-             })
-          },5000);
-       }
-           
-     }//if
-    
-     function poll(){ 
-       $.ajax({ 
-       url: "/note/listNotOpen", 
-       success: function(){
-       }, 
-       dataType: "json", 
-       complete: poll, 
-       timeout: 10000
-       }); 
-    } 
-     */
-</script>
 
 <script>
  
@@ -115,6 +77,30 @@
 
     	}
    
+	$(function(){
+		if('${loginSession != null}'){
+ 		   poll();
+ 	   }//if
+ 	   
+ 	  function poll(){
+ 		 $.ajax({
+             url : "/note/alarmNote",
+             type : "POST",
+             dateType : "json",
+             success : function(value){
+                console.log("변화감지");
+                console.log("totalCnt : "+value);
+                $("#noteBadge").html(value);
+                poll();
+             },
+             error : function(){
+                console.log("변화감지실패");
+             },
+          });
+ 	   }//poll()
+	});//end of 함수
+	
+    
 </script>
 <style type="text/css">
 
@@ -131,7 +117,9 @@
    padding:0 5px 0 5px;
    color:white;
 }
-
+.jungyo_menu li:hover{
+	background:#f8f8f8 !important;
+}
 </style>
 <decorator:head />
 </head>
@@ -165,6 +153,7 @@
 					<li class="divider"></li>
 					<li><a href="/board/category/boardList?cateId=6&pageNo=1">지역 할인 쿠폰</a></li>
 				</ul></li>
+				<li><a href="/matching/matchingMain">Smart Matching</a></li>
 				<li><a href="/bestUser/bestUserSection">Power Dealer</a></li>
                <li><a id="talktous" href="/noticeBoardSection?cateId=0&pageNo=1">Notice</a></li>
                
@@ -203,7 +192,7 @@
                   	<li class="bedgeSt" style="width: 10%;">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}  </span>
+                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}</span>
                   		</a>
                   	</li>
                   	<li id="sectionBar">

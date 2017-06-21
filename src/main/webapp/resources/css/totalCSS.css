@@ -66,6 +66,11 @@ a:hover {
 	}
 }
 
+@media (max-width: 1200px){
+	.dropdownCus ul li a:hover{
+	background: #f8f8f8 !important;
+}
+}
 
 
 .modal {

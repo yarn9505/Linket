@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.java.kosta.dto.note.NoteVO;
 import com.java.kosta.dto.note.PagingDTO;
+import com.java.kosta.dto.user.UserVO;
 
 public interface NoteDAO {
 
@@ -44,5 +45,12 @@ public interface NoteDAO {
 	
 	// 4-3) 안 읽은 쪽지 리스트 가져오기
 	public List<NoteVO> listNotOpen(NoteVO vo,PagingDTO page);
+	
+	//5. 롱폴링을 위한 beforeAlarmCount
+	//5-1)롱플링용 beforeAlarmCount에 현재값을 넣기
+	public void updateBeforeAlarmCount(UserVO uvo, int beforeAlarmCount);
+
+	//5-2)롱플링용 beforeAlarmCount에 비교를 위한 현재값을 가지고 옴
+	public int selectBeforeAlarmCount(UserVO uvo);
 	
 }

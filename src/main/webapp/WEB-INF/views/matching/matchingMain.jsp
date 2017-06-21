@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<% request.setCharacterEncoding("utf-8"); %>
-<% response.setContentType("text/html; charset=utf-8"); %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>http://www.blueb.co.kr</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/resources/css/styleMatching.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/style.css" />
-<link rel="stylesheet" type="text/css" href="/resources/css/left-sidebar.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/matching.css" />
-<script type="text/javascript" src="/resources/jquery-3.2.1.min.js"></script>
-
 <style type="text/css">
 body {background: #F9F9F9;}
 #Dash {min-height: 500px;background: white;border: 1px solid #EEEEEE;margin: 20px;margin-top: 0;}
@@ -36,6 +29,10 @@ width:100%;
 </script>
   
 <style>
+*{
+	margin: 0;
+	padding: 0;
+}
    .rollOver{
       opacity:0.7;
    }
@@ -106,7 +103,15 @@ width:100%;
 	   color: #F78E41;
 	}
 	
+	div.BoxTitle-title{
+		color: #ffffff !important;
+		font-weight: bold;
+	}
 	
+	.btitleP{
+		width: 70%;
+		margin :0;
+	}
 </style>
 
 
@@ -115,6 +120,54 @@ width:100%;
 
 <body>
 
+	<!-- 후기작성 모달창 -->
+            <div class="modal fade" id="reviewModal" data-dismis="modal" role="dialog">
+               <div class="modal-dialog">
+                  <div class="modal-content">
+                     <!-- header -->
+                     <div class="modal-header">
+                        <!-- 닫기(x) 버튼 -->
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- header title -->
+                        <h3 class="modal-title">구매 후기 작성</h3>
+                     </div>
+                     <!-- body -->
+                     <div class="modal-body">
+                        <br>
+                        <table class="table-bordered">
+                           <tr>
+                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">판매자</th>
+                              <td><span id="userId" style="margin-left: 5px;"></span></td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; width: 15%; height: 34px; background-color: #F6F6F6">거래인</th>
+                              <td><span id="buyerId" style="margin-left: 5px;"></span></td>
+                           </tr>
+                           <tr>
+                              <th style="text-align: center; background-color: #F6F6F6">내용</th>
+                              <td><textarea rows="10" cols="80" name="pcontent"
+                                    id="pcontent" class="form-control"></textarea></td>
+                           </tr>
+                           <tr>
+                              <th
+                                 style="text-align: center; height: 34px; background-color: #F6F6F6">별점</th>
+                              <td><p class="star_rating">
+                                    <a href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
+                                    <a href="#">★</a> <a href="#">★</a>
+                                 </p> <input type="hidden" class="form-control" name="pscore" id="pscore" /></td>
+                           </tr>
+                        </table>
+
+                     </div>
+                     <!-- Footer -->
+                     <div class="modal-footer">
+                        <input type="hidden" name="bno" id="bno" />
+                        <button id="reviewBtn" type="button" class="btn btn-primary" data-dismiss="modal">작성하기</button>
+                        <button id="closeBtn" type="button" class="btn btn-default" data-dismiss="modal">취소</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
 
      <!-- 비교하기 누르면 나타나는 모달창 -->
                 <!-- 화면 꽉찬 modal -->
@@ -354,53 +407,78 @@ width:100%;
 				                        
                <!-- 클릭한 게시글 상세 보여주기 모달창 -->
                <!-- Modal -->
-               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-dismis="modal" aria-labelledby="myModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                   <div class="modal-content">
-                     <div class="modal-header">
-                       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                       <h4 id="modalTitle" class="modal-title" id="myModalLabel">Modal title</h4>
-                     </div>
-                     <div class="modal-body">
-                      <%@include file="./modalImport.jsp" %>
-                     <!-- 게시글 번호(hidden) -->
-                     <input type="hidden" id="modalBno"/>                        
-                        <input type="hidden" id="modalUserId" />
-                        <input type="hidden" id="latId" />
-                        <input type="hidden" id="lonId" />
-                     </div>
-                     <div class="modal-footer">
-                     
-                        <div class="row">
-                        <!-- 가치, 주소  -->
-                       <div class="col-lg-6">
-                         <div class="input-group">
-                           <span class="input-group-addon">가치 </span>
-                           <input id="wantedValue" type="text" class="form-control" aria-label="..." placeholder="거래하고 싶은 금액 혹은 교환품목의 상응가액을 입력하세요">
-                         </div><!-- end of 가치  -->
-                       </div>
-                       <!-- 거래희망지 -->
-                       <div class="col-lg-6">
-                         <div class="input-group">
-                           <span class="input-group-addon">거래 희망지</span>
-                           <input id="wantedArea" type="text" class="form-control" aria-label="..." readonly="readonly">
-                         </div><!-- 거래희망지 -->
-                       </div><!-- /.col-lg-6 -->
-                     </div><!-- /.row -->
-                        <!-- 가치, 주소 -->
-                     <textarea class="form-control" rows="3" id="requestMsg"></textarea>
-                       <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
-                       <button type="button" class="btn btn-primary" data-dismiss="modal" id="sendContent">요청하기</button>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-               <!-- END OF 모달 -->                 
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" data-dismis="modal" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+	        		<h3 id='modalCategory' class="panel-title">Category</h3>
+				</div>
+				<div class="modal-body">
+					<h5><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;검색한 게시물 상세내용</h5>
+					<table class="table table-bordered" style="width: 100%;">
+						<tr>
+							<th style="text-align: center; width: 20%; background-color: #E9EFF5">거리</th>
+							<td id="modalDistance"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">가치</th>
+							<td id="modalValue"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">등록일</th>
+							<td id="modalRegdate"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">거래완료여부</th>
+							<td id="modalIsSwap"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center;background-color: #E9EFF5">내용</th>
+							<td id="modalContent"></td>
+						</tr>
+					</table>
+			
+					<!-- 게시글 번호(hidden) -->
+					<input type="hidden" id="modalBno" /> 
+					<input type="hidden" id="modalUserId" /> 
+					<input type="hidden" id="latId" /> 
+					<input type="hidden" id="lonId" />
+
+					<br/>
+					<h5><span class="glyphicon glyphicon-link" aria-hidden="true"></span>&nbsp;요청사항</h5>
+					<table class="table" style="width: 100%;">
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5">거래희망지</th>
+							<td><input id="wantedArea" type="text" class="form-control" aria-label="..." readonly="readonly"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5; width: 20%;">가치</th>
+							<td><input id="wantedValue" type="text" class="form-control" aria-label="..." placeholder="거래하고 싶은 금액 혹은 교환품목의 상응가액을 입력하세요"></td>
+						</tr>
+						<tr>
+							<th style="text-align: center; background-color: #E9EFF5">메세지</th>
+							<td><textarea class="form-control" rows="3" id="requestMsg" placeholder="전할 메세지를 입력해주세요."></textarea></td>
+						</tr>
+					</table>
+					
+					
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-primary" data-dismiss="modal" id="sendContent">요청하기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- END OF 모달 -->                 
                         
                         
                    <div id="Dash">
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>검색한 글</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;'>검색한 글</h1>
                      <div  class="BoxBody">
                         <ol id="keywordListOl">
                            <!-- keyword 검색한 것이 출력... -->
@@ -409,7 +487,7 @@ width:100%;
                   </div>
                
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>요청받은 게시글</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;color:#ffffff;'>요청받은 게시글</h1>
                      <div class="BoxBody">
                         <div  class="BoxBody">
                         <ol id="receiveShow">
@@ -421,7 +499,7 @@ width:100%;
                   <!--  -->
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                    <h1 class="BoxTitle" style='background-color:#D1E0EF;'><b>게시판별 요청받은 게시글</b>
+                    <h1 class="BoxTitle" style='background-color: #158cba;'><b style="color: #ffffff">게시판별 요청받은 게시글</b>
                
                <!-- 비교하기 버튼 -->   
                 <button id='compareBtn' class="btn btn-default" style='border-radius: 5px;margin-left:10px;width: 64px;height: 19px;
@@ -446,16 +524,13 @@ width:100%;
                
                 <!-- 매칭 성사돈 경우 둘간의 정보를 표시해줄 곳!! -->
                    <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>콘텐츠 박스</h1>
-					 <button  id="sellingBtn">판매중인 정보</button>
-					 <button  id="buyingBtn">구매중인 정보</button>
+                     <h1 class="BoxTitle" style='background-color: #158cba;'>콘텐츠 박스</h1>
+					 <button  id="sellingBtn" class="btn btn-default">판매중인 정보</button>
+					 <button  id="buyingBtn" class="btn btn-default">구매중인 정보</button>
                      <div id="matchingDiv" class="BoxBody" style="margin:0 auto;">
 							<!-- 이곳에 내용... -->
                      	
                      </div>
-					<div id="reviewBox">
-					
-					</div>
                   </div>
                 <!-- END of 매칭 성사 -->  
                   
@@ -464,7 +539,7 @@ width:100%;
                   
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>
+                     <h1 class="BoxTitle" style='background-color:#158cba;'>
                         서브 버튼은 이렇게
                         <div class="BoxToolbar">
                            <button class="btn btn-default" style="width:50px; height: 19px;padding: 0px;">버튼 1</button>
@@ -479,21 +554,21 @@ width:100%;
                   </div>
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>타이틀</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;color: #ffffff'>타이틀</h1>
                      <div class="BoxBody">
                      내용
                      </div>
                   </div>
                
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>게시판 최근글</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;'>게시판 최근글</h1>
                      <div class="BoxBody">
                      내용
                      </div>
                   </div>
                   
                   <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
-                     <h1 class="BoxTitle" style='background-color:#D1E0EF;'>구매 희망 품목 설정창</h1>
+                     <h1 class="BoxTitle" style='background-color: #158cba;'>구매 희망 품목 설정창</h1>
                      <div class="BoxBody">
                         <p><b>구매를 희망하는 상품명을 등록하세요.</b></p>
                         <table cellpadding="5" cellspacing="0" class="form-group">
@@ -514,7 +589,7 @@ width:100%;
                            var str = "";
                            $.getJSON("/matching/receiveList",function(data){
                               $(data).each(function(){
-                                 str += "<div class='panel panel-default rollOver' style='height:50px;'>"
+                                 str += "<div class='panel panel-default rollOver'>"
                                           +"<div class='panel-body'>"
                                              +"No.<p class='bnoP' style='display:inline;'>"+this.bno+"</p>" 
                                              +"글제목 : <p class='btitleP' style='display:inline;'>"+this.btitle+"</p>" 
@@ -633,8 +708,6 @@ width:100%;
 		                        dataType:"json",
 		                        success:function(data){
 		                        	
-		                        	console.log(data);
-		                        	console.log("check");
 									// 게시글 등록일
 		                        	$("#sellerDateId").text(data.myboard.bregdate);
 		                        	// 제목
@@ -706,7 +779,7 @@ width:100%;
 	                              }),
 	                              success:function(data){
 	                                 $(data).each(function(){
-	                                    str2 += "<div class='panel panel-default rollOver' style='height:50px;'>"
+	                                    str2 += "<div class='panel panel-default rollOver'>"
 	                                             +"<div class='panel-body'>"
 	                                                  +"<input class='bnoVal' type='hidden' value='"+this.bno+"' />"
 	                                                +"<input class='userIdVal' type='hidden' value='"+this.userId+"' />"
@@ -901,7 +974,7 @@ width:100%;
 			 	                                          		+"</table>"
 			 	                                          	+"</div>"
 			 	                                          	+"<div style='margin-left:340px;clear:both;'>"
-			 	                                          		+"<button class='btn btn-default writePost' >후기 작성</button>"
+			 	                                          		+"<button class='btn btn-default writePost' data-target='#reviewModal' >후기 작성</button>"
 			 	                                          		+"<button class='cancelBtn btn btn-primary' type='button'>거래취소</button>"
 			 	                                          		+"<hr/><br/>"
 			 	                                          	+"</div>"
@@ -925,7 +998,6 @@ width:100%;
 								var obj = $(this); // 클릭된 객체 가져오기
 								var mnoDiv = obj.parent().prev().prev().find(".mnoVal");
 	                        	var mno = mnoDiv.attr("id");
-	                        	var str = "";
 	                       		$.ajax({
 	                       			type:"GET",
 	                       			headers:{
@@ -934,103 +1006,19 @@ width:100%;
 	                       			url:"/matching/confirmMatching?mno="+mno,
 	                       			dataType:"json",
 	                       			success:function(data){
-	                       				console.log("myeval 들어왔음!");
-	                       				console.log(data);
 										//bno를 받아오고
 										//modal 쇼해주고...
-										var sellerId= data.myeval.sellerId;
-										var requester = data.myeval.requester;
-										var bno = data.myeval.bno;
-													
-							            str += "<table class='table-bordered' style='width:100%'>"
-							            	+ "<tr>"
-							                + "<th style='text-align: center; width: 15%; height: 34px; background-color: #F6F6F6'>판매자</th>"
-			                                + "<td><span id='userId' style='margin-left: 5px;'></span></td>"
-			                                + "</tr>"
-			                                + "<tr>"
-			                                + "<th style='text-align: center; width: 15%; height: 34px; background-color: #F6F6F6'>거래인</th>"
-			                                + "<td><span id='buyerId' style='margin-left: 5px;'></span></td>"
-			                                + "</tr>"
-			                                + "<tr>"
-			                                + "<th style='text-align: center; background-color: #F6F6F6'>내용</th>"
-			                                + "<td><textarea rows='10' name='pcontent' id='pcontent' class='form-control' style='width:100%'></textarea></td>"
-			                             	+ "</tr>"
-			                             	+ "<tr>"
-			                                + "<th style='text-align: center; height: 34px; background-color: #F6F6F6'>별점</th>"
-			                                + "<td><span class='star_rating'>"
-			                                +     "<a href='#' class='on'>★</a> <a href='#''>★</a> <a href='#'>★</a>"
-			                                +      "<a href='#'>★</a> <a href='#'>★</a>"
-			                                +   "</span>" 
-			                                + "<input type='hidden' name='bno' id='bno' />"
-                                       		+ "<input type='hidden' class='form-control' name='pscore' id='pscore' />"
-			                                +      "<button class='btn btn-default' id ='sendReview' >후기 작성</button>"
-                                       		+      "<button class='btn btn-default' id ='cancleReview' >후기 취소</button>"
-			                                + "</td>"
-			                             	+ "</tr>"
-			                          		+ "</table>";
-			                          		
-			                          	$("#reviewBox").append(str);
-							            $("#bno").val(bno);
-							            $("#userId").text(sellerId);
-							            $("#buyerId").text(requester);
-							            $('.writePost').attr('disabled',true); 
-		
+										var userId = data.eval.userId;
+										var buyerId = data.eval.buyerId;
+										var bno = data.eval.bno;
+										$("#bno").val(bno);
+							            $("#userId").text(userId);
+							            $("#buyerId").text(buyerId);
+
+							            $("#reviewModal").show();
 	                       			}
 	                       		});
 	                        });
-	                        
-	                        /* 후기 취소를 눌렀을때 발생하는 이벤트 */
-	                        $(document).on("click","#cancleReview",function(){
-	                        	console.log("후기 취소!");
-	                        	$("#reviewBox").empty();
-	                        	$('.writePost').attr('disabled',false); 
-	                        });//end of 후기취소
-	                        
-	                        /* 후기 보내기를 눌렀을때 발생하는 이벤트 */
-	                        $(document).on("click","#sendReview",function(){
-	                        	console.log("후기보내기^0^");
-	                        	var score = $(".star_rating").find(".on").length;
-	                            
-	                            // 후기 내용과 별점 데이터 넘기기
-	                            if($("#pcontent").val().trim() == ""){
-	                               alert("내용을 작성해주세요 :)");
-	                               return false;
-	                            }
-	                            if(score == "0"){
-	                               alert("별점은 1점 이상이어야합니다.");   
-	                               return false;
-	                            }
-	                            
-	                            $.ajax({
-	                               type : 'post',
-	                               url : '/mypage/writeReview',
-	                               contentType : "application/json; charset=UTF-8",
-	                               dataType : 'text',
-	                               data:JSON.stringify({
-	                                  bno : $("#bno").val(),
-	                                  pcontent : $("#pcontent").val(),
-	                                  /* encodeURI(encodeURIComponent()) */   
-	                                  pscore : score
-	                               }),
-	                               success : function(result) {
-	                                  if(result == "ok"){
-	                                     alert("등록되었습니다.");
-	                                  }else{
-	                                     alert("등록 실패");
-	                                  }
-	                               }
-	                            });
-
-	                        });//end of 후기보내기
-	                        
-	                        // 별점 클릭했을 때 동작하는 함수
-	                        $(document).on("click",".star_rating a",function() {
-	                        	
-	                           $(this).parent().children("a").removeClass("on");
-	                           $(this).addClass("on").prevAll("a").addClass("on");
-	                           return false;
-	                        });
-
 	
 	                        // 구매 취소 버튼 클릭시...
 	                        $(document).on("click",".cancelBtn",function(event){

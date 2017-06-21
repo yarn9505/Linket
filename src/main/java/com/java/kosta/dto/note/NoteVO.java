@@ -24,7 +24,15 @@ public class NoteVO {
 	private String recv_del;
 	// 보낸이가 쪽지를 삭제했는지 유무(N/Y)
 	private String sender_del;
+	// 이전 쪽지정보를 저장하는 변수 (롱폴링용)
+    private int beforeAlarmCount;
 	
+	public int getBeforeAlarmCount() {
+		return beforeAlarmCount;
+	}
+	public void setBeforeAlarmCount(int beforeAlarmCount) {
+		this.beforeAlarmCount = beforeAlarmCount;
+	}
 	// getter/setter
 	public String getUserId() {
 		return userId;

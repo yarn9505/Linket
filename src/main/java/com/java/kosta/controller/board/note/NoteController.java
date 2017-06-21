@@ -203,19 +203,35 @@ public class NoteController {
    // 알림에 쪽지 띄우기
    @RequestMapping(value="alarmNote")
    public @ResponseBody String alarmNote(HttpServletRequest req , NoteVO vo) throws Exception{
-      HttpSession session = req.getSession();
-      //현재 로그인세션정보를 가지고와서 UserVO로 형변환을 해준다.
-      UserVO uvo = (UserVO) session.getAttribute("loginSession");
-      String totalCnt=0+"";
-      if(uvo!=null){
-         //로그인 정보가 있는 경우 내가 받은 쪽지임으로 setRecvId에 내 아이디를 넣어줌
-         vo.setRecvId(uvo.getUserId());
-         //안읽은쪽지 리스트의 정보를 가지고 와서 그 크기를 알림으로 넘겨준다.
-         totalCnt = service.totalCntNotOpen(vo)+"";
-         session.setAttribute("notOpen", totalCnt);
-      }
-      return totalCnt;
-   }
+	   HttpSession session = req.getSession();
+	      //현재 로그인세션정보를 가지고와서 UserVO로 형변환을 해준다.
+	      UserVO uvo = (UserVO) session.getAttribute("loginSession");
+	      //로그인 정보가 있는 경우 내가 받은 쪽지임으로 setRecvId에 내 아이디를 넣어줌
+	      vo.setRecvId(uvo.getUserId());
+	      
+	      //리턴값을 담아서  보낼 부분
+	      while(true){
+	    	  //DB에 있는 beforeAlarmCount에 저장된 정보를 가지고 온다.
+	    	  int beforeAlarmCount = service.selectBeforeAlarmCount(uvo);
+	    	  //totalCnt는 계속적으로 변화를 비교해줘야 하기 때문에 호출해줌
+	    	  int totalCnt = service.totalCntNotOpen(vo);
+	    	  session.setAttribute("notOpen", totalCnt);
+	    	  if(beforeAlarmCount!=totalCnt){
+		    	  //변화가 발생한 경우 : DB에 있는 beforeAlarmCount값을 새로 업데이트
+		    	  service.updateBeforeAlarmCount(uvo, totalCnt);
+		    	  session.setAttribute("notOpen", totalCnt+"");
+		    	  String value = totalCnt+"";
+		    	  return value;
+	    	  }//if
+	    	  else if(beforeAlarmCount==totalCnt){
+	    	  //변화가 없는 경우
+	    		  try {
+					Thread.sleep(5000);
+				} catch (Exception e) {
+				}
+	    	  }//else
+	      }//while
+   }//end of alarmNote
 
    
    // 안 읽은 쪽지함 목록
