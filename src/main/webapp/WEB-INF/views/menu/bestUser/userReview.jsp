@@ -73,11 +73,9 @@
 		$(function(){
 			var avgVal = ${avgVal};
 			avgVal = Math.floor(avgVal);
-			//console.log(avgVal);
 			
 			for(var i=1; i <= avgVal; i++){
 				$("#star"+i).addClass("on");
-				console.log($("#star"+i));
 			}
 		});
 		
@@ -276,7 +274,6 @@
 							reviewCnt = data.reviewCnt;
 							reviewStartRow += data.reviewList.length * 1; //startRow += 5;  ( *1은 String일 경우 강제로 숫자로 계산하기 위함 )
 							
-							console.log("startRow : "+reviewStartRow);
 							if (reviewCnt > reviewStartRow) {
 								// 댓글 더보기 버튼 화면에 표시
 								$(".reviewBtn").show();

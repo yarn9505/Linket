@@ -302,7 +302,6 @@
 			
 			var param = $("#tx_editor_form").serialize();
 			
-			console.log(param);
 			
 			$.ajax({
 				url: "/board/category/updateBoardProc",
@@ -328,7 +327,6 @@
 	};
 		/* $("#updateForm").submit(function(event){
 			event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-			console.log("updateForm");
 			var that = $(this);	//updateForm
 			var title = $("#bTitle").val();		// 제목	(빈 값 검사하기 위해)
 			var content = $("#bContent").val();	// 내용
@@ -404,8 +402,6 @@
 		
 		$(".fileDrop").on("click", "small", function(event){
 			var that = $(this);		//this = small태그
-			console.log("small");
-			console.log(that.attr("data-src"));
 			$.ajax({
 				url:"/board/deleteFile",
 				type:"post",
@@ -414,7 +410,6 @@
 				},
 				dataType:"text",
 				success:function(data){
-					console.log(data);
 					if(data == "deleted"){
 						that.parent("span").remove();
 					}

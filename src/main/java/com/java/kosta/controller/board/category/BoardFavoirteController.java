@@ -29,7 +29,6 @@ public class BoardFavoirteController {
 	@ResponseBody
 	public String checkFavorite(@RequestParam(value = "bno") String bNo,
 			@RequestParam(value = "userId") String userId,Model model) {
-		logger.info("들어오는지 확인" + bNo + userId);
 
 		int fcnt = service.searchFavorite(userId, bNo);
 		int count = service.countFavorite(bNo);
@@ -52,7 +51,6 @@ public class BoardFavoirteController {
 	@ResponseBody
 	public String handlingFavorite(@RequestParam(value = "bno") String bNo,
 			@RequestParam(value = "userId") String userId) {
-		logger.info("handlingFavorite" + bNo + userId);
 
 		/*// 로그인 안되어있으면 좋아요 할 수 없음.
 		if (userId == null) {

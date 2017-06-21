@@ -35,7 +35,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 		
 		// 로그인이 안되어 있는 경우
 		if ( session.getAttribute("loginSession") == null ){
-			logger.info("로그인되어 있지 않은 경우");
 			
 			// 사용자가 로그인이 안된상태로 요청시 로그인페이지로 가도록 되어 있는데
 			// 로그인이 성공한 뒤에 자동으로 이동할 수 있도록 이동 경로를 미리 세션에 기억시켜놓기 위함
@@ -53,7 +52,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter{
 			}
 			
 			if ( request.getMethod().equalsIgnoreCase("GET") ){
-				logger.info("기억한 uri+query : " + (uri + query) );
 				// loginInterceptor에서 로그인 성공시 이동할 주소를 세션에 저장시켜 놓음.
 				session.setAttribute("destination", uri+query);
 			}

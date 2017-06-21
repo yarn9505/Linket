@@ -83,7 +83,6 @@ public class NoteController {
          destination = "redirect:/note/noteForm#login_form";
          rttr.addFlashAttribute("errors",errorMessage);
       }else{
-         logger.info("echo객체" + echo);
          // 쪽지 table에 추가!
          service.sendInsert(vo);
                   
@@ -96,7 +95,6 @@ public class NoteController {
          echo.EchoNoti(map);
          try {
             echo.handleMessage(null, new TextMessage("쪽지보내기"));
-            logger.info("try문 들어왔음");
             session.setAttribute("NotiRecvId", vo.getRecvId());
          } catch (Exception e) {
             e.printStackTrace();
@@ -196,7 +194,6 @@ public class NoteController {
       List<NoteVO> list = service.listForReceiver(vo, page);
       model.addAttribute("list", list);
       model.addAttribute("pageMaker", page);
-      logger.info("확인 : " + list);
       return "note/listForReceive";
    } // end of listForReceive
    
@@ -258,7 +255,6 @@ public class NoteController {
       vo.setUserId(uvo.getUserId());
       page.setTotalCount(service.totalCntSend(vo));
       List<NoteVO> list = service.listForSend(vo, page);
-      logger.info("확인 : " + list);
       model.addAttribute("list", list);
       model.addAttribute("pageMaker", page);
       return "note/listForSend";
@@ -301,7 +297,6 @@ public class NoteController {
    public String replyNoteForm(NoteVO vo,Model model){
       // vo에 userId와 recvId가 넘어옴
       service.sendInsert(vo);
-      logger.info("답장 : " + vo);
       return "redirect:/note/listReceive";
    }
    

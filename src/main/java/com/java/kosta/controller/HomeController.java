@@ -34,7 +34,6 @@ public class HomeController {
    
    @RequestMapping(value = "/")
    public String main(Locale locale, Model model, HttpServletRequest request) {
-      System.out.println("main Controller");
       UserVO login = (UserVO) request.getSession().getAttribute(Constants.LOGINSESSION);
 	  if(login != null){
 		  return "timeline/timelineMain";
@@ -45,7 +44,6 @@ public class HomeController {
    
    @RequestMapping(value = "/categorySection", method = RequestMethod.GET)
    public String categorySection(Locale locale, Model model) {
-      logger.info("categorySection Controller");
       
       return "menu/categorySection";
    }
@@ -53,7 +51,6 @@ public class HomeController {
    
    @RequestMapping(value = "/noticeBoardSection", method = RequestMethod.GET)
    public String noticeBoardSection(BoardPagingDTO pagingDTO, Model model, @RequestParam(value="cateId") int cateId) {
-      logger.info("noticeBoardSection Controller");
       
       // 전체 레코드 갯수 획득
       int totRecord;
@@ -80,14 +77,12 @@ public class HomeController {
    
    @RequestMapping(value = "/aboutUsSection", method = RequestMethod.GET)
    public String aboutUsSection(Locale locale, Model model) {
-      logger.info("aboutUsSection Controller");
       
       return "menu/aboutUsSection";
    }
    
    @RequestMapping(value = "/handlebarsTest")
    public String handlebarsTest(Locale locale, Model model) {
-	   logger.info("handlebars Controller");
 	   
 	   return "testView/handlebarsTest";
    }

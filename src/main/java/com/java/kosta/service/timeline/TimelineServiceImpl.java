@@ -47,7 +47,7 @@ public class TimelineServiceImpl implements TimelineService {
 	public int maxValue() {
 		return dao.maxValue();
 	}
-	
+
 	@Override
 	public int searchFavorite(String bno, String userId) {
 		// TODO Auto-generated method stub

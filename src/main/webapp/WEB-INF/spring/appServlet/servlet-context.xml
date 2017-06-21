@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
@@ -10,64 +9,69 @@
 		http://www.springframework.org/schema/util
    		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- DispatcherServlet Context: defines this servlet's request-processing 
+		infrastructure -->
+
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
+		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
+		in the /WEB-INF/views directory -->
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
+
 	<beans:bean id="authInterceptor" class="com.java.kosta.interceptor.AuthInterceptor"></beans:bean>
 	<beans:bean id="loginInterceptor" class="com.java.kosta.interceptor.LoginInterceptor"></beans:bean>
-	
-		<interceptors>
-	 	<interceptor>
-			<mapping path="/user/loginProc"/>
-			<beans:ref bean="loginInterceptor"/>
-		</interceptor> 
+
+	<interceptors>
 		<interceptor>
-			<mapping path="/**/*"/>
-			<exclude-mapping path="/api/google"/>
-			<exclude-mapping path="/Verification"/>
-			<exclude-mapping path="/callback"/>
-			<exclude-mapping path="/"/> <!-- 로그인 가능해야함으로 예외로... -->
-			<exclude-mapping path="/user/**/*"/>
-			<exclude-mapping path="/resources/**/*"/>
-			<exclude-mapping path="/board/category/boardList"/> <!-- 전체 게시글은 읽을 수 있어야함으로 예외로 등록... -->
-			<exclude-mapping path="/categorySection"/>
-			<exclude-mapping path="/address/*"/> <!-- 네이버 주소->위도경도 변환용 예외처리 -->
-			<exclude-mapping path="/mypage/countClient/*"/>
-			<exclude-mapping path="/note/alarmNote/*"/>
-			<exclude-mapping path="/matching/matchingMain"/>
-			<exclude-mapping path="/echo-ws"/>
-			<beans:ref bean="authInterceptor"/>
+			<mapping path="/user/loginProc" />
+			<beans:ref bean="loginInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/**/*" />
+			<exclude-mapping path="/api/google" />
+			<exclude-mapping path="/Verification" />
+			<exclude-mapping path="/callback" />
+			<exclude-mapping path="/" /> <!-- 로그인 가능해야함으로 예외로... -->
+			<exclude-mapping path="/user/**/*" />
+			<exclude-mapping path="/resources/**/*" />
+			<exclude-mapping path="/board/category/boardList" /> <!-- 전체 게시글은 읽을 수 있어야함으로 예외로 등록... -->
+			<exclude-mapping path="/categorySection" />
+			<exclude-mapping path="/address/*" /> <!-- 네이버 주소->위도경도 변환용 예외처리 -->
+			<exclude-mapping path="/mypage/countClient/*" />
+			<exclude-mapping path="/note/alarmNote/*" />
+			<exclude-mapping path="/matching/matchingMain" />
+			<exclude-mapping path="/echo-ws" />
+			<exclude-mapping path="/note/alarmNote/*" />
+			<beans:ref bean="authInterceptor" />
 		</interceptor>
 	</interceptors>
-	
+
 	<context:component-scan base-package="com.java.kosta" />
-	
+
 	<!-- MultipartResolver 설정 -->
-    <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <beans:property name="maxUploadSize" value="100000000" />
-        <beans:property name="maxInMemorySize" value="100000000" />
-    </beans:bean>
-    
-    <!-- 파일 경로 설정 -->
-	<!-- <beans:bean id="uploadPath" class="java.lang.String">
-	    <beans:constructor-arg value="C:\DEV\WORKS\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\KostaFinalProject\upPath">
-	    <beans:constructor-arg value="\resources\images\uppath">
-	    </beans:constructor-arg>
-	</beans:bean> -->
-	
-	
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+
+	<!-- 파일 경로 설정 -->
+	<!-- <beans:bean id="uploadPath" class="java.lang.String"> <beans:constructor-arg 
+		value="C:\DEV\WORKS\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\KostaFinalProject\upPath"> 
+		<beans:constructor-arg value="\resources\images\uppath"> </beans:constructor-arg> 
+		</beans:bean> -->
+
+
 	<!-- 다음에디터를 이용한 파일 경로 설정 파일 -->
-	<util:properties id="config" location="classpath:/config.properties"/>
-	
+	<util:properties id="config" location="classpath:/config.properties" />
+
 </beans:beans>

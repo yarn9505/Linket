@@ -27,7 +27,6 @@ public class TimelineDAOImpl implements TimelineDAO {
       map.put("UserVO", vo);
       map.put("pageMaker", pageMaker);
       map.put("keywords", keywords);
-      logger.info("dao에서 받은값 : " + keywords);
       return sqlSession.selectList("timelineMapper.listMatch", map);
    }
 

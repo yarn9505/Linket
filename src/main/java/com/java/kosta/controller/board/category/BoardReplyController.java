@@ -32,7 +32,6 @@ public class BoardReplyController {
    /** 댓글 작성 */
    @RequestMapping(value="/insertBoardReply", method=RequestMethod.POST)
    public Map<String, Object> insertBoardReply(@RequestBody BoardReplyDTO brDTO){
-      logger.info("insertBoardReply() : 댓글 삽입");
       
       Map<String, Object> resMap = new HashMap<String, Object>();
       resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
@@ -54,7 +53,6 @@ public class BoardReplyController {
    /** 댓글 리스트  AJAX로 뿌려주기 */
    @RequestMapping("/boardReplyAjax")
    public Map<String, Object> boardReplyAjax(BoardPagingDTO pagingDTO, HttpServletRequest req) {
-      logger.info("detailContentAjax() : 댓글 리스트 Json으로 뿌리기");
       
       int num=0;
       
@@ -104,7 +102,6 @@ public class BoardReplyController {
    /** 댓글 전체 목록 */
    @RequestMapping("/all")
    public Map<String, Object> boardReplyListAll(BoardReplyDTO brDTO, HttpServletRequest req){
-      logger.info("boardReplyListAll() : 댓글 전체목록 조회");
       
       UserVO vo = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
       String userId = vo.getUserId();
@@ -145,7 +142,6 @@ public class BoardReplyController {
    /** 댓글 수정 */
    @RequestMapping(value="/{rno}",method={RequestMethod.PUT,RequestMethod.PATCH})
    public Map<String, Object> updateBoardReply(@PathVariable("rno") String rno, @RequestBody BoardReplyDTO brDTO){
-      logger.info("updateBoardReply() : 댓글 수정");
       
       Map<String, Object> resMap = new HashMap<String, Object>();
       resMap.put(Constants.RESULT, Constants.RESULT_FAIL);
@@ -167,7 +163,6 @@ public class BoardReplyController {
    /** 댓글 삭제 */
    @RequestMapping(value="/{rno}",method=RequestMethod.DELETE)
    public Map<String, Object> deleteBoardReply(@PathVariable("rno") String rno){
-      logger.info("deleteBoardReply() : 댓글 삭제");
       
       Map<String, Object> resMap = new HashMap<String, Object>();
       resMap.put(Constants.RESULT, Constants.RESULT_FAIL);

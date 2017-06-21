@@ -17,59 +17,59 @@ import com.java.kosta.dto.user.UserVO;
 @Service
 public class MatchingServiceImpl implements MatchingService {
 
-   @Inject
-   matchingDAOImpl dao;
-   
-   // 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 + 넣기
-   @Override
-   public List<matchingDTO> requestList(UserVO vo, String productKeywords) {
-      
-      return dao.keywordList(vo, productKeywords);
-   } // end of requestList()
+	@Inject
+	matchingDAOImpl dao;
 
-   @Override
-   public int testCount() {
-      return dao.testCount();
-   }
+	// 사용자가 설정한 키워드를 포함하는 게시글 목록 가져오기 + 넣기
+	@Override
+	public List<matchingDTO> requestList(UserVO vo, String productKeywords) {
 
-   @Override
-   public void insertMatchingT(UserVO vo, matchingDTO dto) {
-      dao.insertMatchingT(vo, dto);
-   }
+		return dao.keywordList(vo, productKeywords);
+	} // end of requestList()
 
-   @Override
-   public UserVO getAddr(UserVO vo) {
-      return dao.getAddr(vo);
-   }
+	@Override
+	public int testCount() {
+		return dao.testCount();
+	}
 
-   @Override
-   public List<matchingCntDTO> listMyMatch(UserVO vo) {
-      return dao.listMyMatch(vo);
-   }
+	@Override
+	public void insertMatchingT(UserVO vo, matchingDTO dto) {
+		dao.insertMatchingT(vo, dto);
+	}
 
-   @Override
-   public List<matchingDTO> listMatchContent(UserVO vo, String bno, String condi) {
-      return dao.listMatchContent(vo, bno, condi);
-   }
+	@Override
+	public UserVO getAddr(UserVO vo) {
+		return dao.getAddr(vo);
+	}
 
-   @Override
-   public int avgWantedValue(UserVO vo, String bno) {
-      return dao.avgWantedValue(vo, bno);
-   }
+	@Override
+	public List<matchingCntDTO> listMyMatch(UserVO vo) {
+		return dao.listMyMatch(vo);
+	}
 
-   @Override
-   public matchingDTO calcCompare(UserVO vo, String mno) {
-      return dao.calcCompare(vo, mno);
-   }
+	@Override
+	public List<matchingDTO> listMatchContent(UserVO vo, String bno, String condi) {
+		return dao.listMatchContent(vo, bno, condi);
+	}
 
-   @Override
-   public TimelineDTO showMyBoard(UserVO vo, String mno) {
-      return dao.showMyBoard(vo, mno);
-   }
-   
-   @Override
+	@Override
+	public int avgWantedValue(UserVO vo, String bno) {
+		return dao.avgWantedValue(vo, bno);
+	}
+
+	@Override
+	public matchingDTO calcCompare(UserVO vo, String mno) {
+		return dao.calcCompare(vo, mno);
+	}
+
+	@Override
+	public TimelineDTO showMyBoard(UserVO vo, String mno) {
+		return dao.showMyBoard(vo, mno);
+	}
+
+	@Override
 	public void updateAllowVal(String mno, String bno, String sellerId, String swit) {
-		dao.updateAllowVal(mno,bno,sellerId,swit);
+		dao.updateAllowVal(mno, bno, sellerId, swit);
 	}
 
 	@Override

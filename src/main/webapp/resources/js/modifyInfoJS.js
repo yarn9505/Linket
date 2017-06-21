@@ -243,11 +243,8 @@ function jusoCallBack(roadFullAddr, roadAddrPart1, addrDetail,
 			alert('요청하신 작업을 수행하던 중 예상치 않게 중지되었습니다.\n\n다시 시도해 주십시오.');
 		},
 		success : function(data) {
-			console.log(data); //결과값이 JSON으로 파싱되어 넘어옵니다.
 			var lng = data.result.items[0].point.x; //결과의 첫번째 값의 좌표를 가져옵니다. 상세주소 없이 검색된 경우에는 결과가
 			var lat = data.result.items[0].point.y; //여러개로 넘어 올 수 있습니다. 
-			console.log("경도 : " + lng + "type : " + typeof(lng+"")); // 경도
-			console.log("위도 : " + lat + typeof(lat+"")); // 위도
 			document.getElementById("latId").value = (lat+""); // hidden값으로 넣기
 			document.getElementById("lonId").value = (lng+"");
 		}

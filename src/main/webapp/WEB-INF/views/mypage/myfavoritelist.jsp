@@ -737,7 +737,6 @@
 	              url : '/mypage/myExchangeList',
 	              dataType : 'json',
 	              success : function(data) {
-	            	  console.log(data);
 	                 if (data.result == "ok") {
 	                    var str = "";
 	                    

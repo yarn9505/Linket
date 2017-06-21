@@ -6,210 +6,215 @@
 
 	<!-- 주소 얻어오기 -->
 	<select id="getAddr" resultType="String">
-		select addr1 from usertable where userId=#{userId}
+		select addr1 from usertable
+		where userId=#{userId}
 	</select>
 
-    <sql id="boardCol">
-        bno AS bNo,
-        userId,
-        cateId,
-        btitle AS bTitle,
-        bcontent AS bContent,
-   		value,
-   		isSwap,
-        viewcnt AS viewCnt,
-        bregdate AS bRegDate,
-        bmodifydate AS bModifyDate,
-        lat,
-        lon
-    </sql>
-    
-    <!-- 게시글 한 건 조회 -->
-    <select id="selectBoardOne" resultType="BoardDTO">
-        SELECT <include refid="boardCol"/>
-        FROM board
-        WHERE bno = #{bNo}
-    </select>
-    
-    <!-- 전체 레코드 갯수 조회 -->
-    <select id="selectBoardListTotalCount" resultType="int" >
-        SELECT COUNT(*) 
-        FROM 
-        	board
-        WHERE
-	    	cateId = #{cateId}
-	   		<if test="pagingDTO.searchType == 'titleContent'">
-	    	    AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%') OR bcontent like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-	    	<if test="pagingDTO.searchType == 'writer'">
-	    	    AND userId like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-	    	<if test="pagingDTO.searchType == 'title'">
-	    	    AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-    </select>
-    
-    <!-- 게시글 리스트 조회 -->
-    <select id="selectBoardList" resultType="BoardDTO" >
-        SELECT <include refid="boardCol"/>
-        FROM board
-       	WHERE
-        	cateId = #{cateId} 
-	    	<if test="pagingDTO.searchType == 'titleContent'">
-	    	    AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%') OR bcontent like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-	    	<if test="pagingDTO.searchType == 'writer'">
-	    	    AND userId like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-	    	<if test="pagingDTO.searchType == 'title'">
-	    	    AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%')
-	    	</if>
-        ORDER BY bno DESC
-        LIMIT #{pagingDTO.startRow}, #{pagingDTO.endRow}
-    </select>
- 
-    <!-- 게시글 삽입 -->
-	<insert id="insertBoard" >
+	<sql id="boardCol">
+		bno AS bNo,
+		userId,
+		cateId,
+		btitle AS bTitle,
+		bcontent AS bContent,
+		value,
+		isSwap,
+		viewcnt AS viewCnt,
+		bregdate AS bRegDate,
+		bmodifydate AS bModifyDate,
+		lat,
+		lon
+	</sql>
+
+	<!-- 게시글 한 건 조회 -->
+	<select id="selectBoardOne" resultType="BoardDTO">
+		SELECT
+		<include refid="boardCol" />
+		FROM board
+		WHERE bno = #{bNo}
+	</select>
+
+	<!-- 전체 레코드 갯수 조회 -->
+	<select id="selectBoardListTotalCount" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		board
+		WHERE
+		cateId = #{cateId}
+		<if test="pagingDTO.searchType == 'titleContent'">
+			AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%') OR bcontent
+			like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+		<if test="pagingDTO.searchType == 'writer'">
+			AND userId like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+		<if test="pagingDTO.searchType == 'title'">
+			AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+	</select>
+
+	<!-- 게시글 리스트 조회 -->
+	<select id="selectBoardList" resultType="BoardDTO">
+		SELECT
+		<include refid="boardCol" />
+		FROM board
+		WHERE
+		cateId = #{cateId}
+		<if test="pagingDTO.searchType == 'titleContent'">
+			AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%') OR bcontent
+			like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+		<if test="pagingDTO.searchType == 'writer'">
+			AND userId like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+		<if test="pagingDTO.searchType == 'title'">
+			AND btitle like CONCAT('%', #{pagingDTO.searchText}, '%')
+		</if>
+		ORDER BY bno DESC
+		LIMIT #{pagingDTO.startRow}, #{pagingDTO.endRow}
+	</select>
+
+	<!-- 게시글 삽입 -->
+	<insert id="insertBoard">
 		INSERT INTO board (
-			userId,
-			cateId,
-			btitle,
-			bcontent,
-			value,
-			bmodifydate,
-			lat,
-			lon
+		userId,
+		cateId,
+		btitle,
+		bcontent,
+		value,
+		bmodifydate,
+		lat,
+		lon
 		) VALUES (
-			#{userId}, 
-	    	#{cateId}, 
-	    	#{bTitle}, 
-	    	#{bContent},
-	    	#{value},
-	    	now(),
-	    	#{lat},
-	    	#{lon}
+		#{userId},
+		#{cateId},
+		#{bTitle},
+		#{bContent},
+		#{value},
+		now(),
+		#{lat},
+		#{lon}
 		)
 		<selectKey order="AFTER" keyProperty="bNo" resultType="string">	<!-- 게시글 삽입하고 마지막 no의 값을 반환해옴 -->
-	        SELECT LAST_INSERT_ID()
-	    </selectKey>
-    </insert>
-    
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
 	<!-- 게시글 수정 -->
-    <update id="updateBoard">
-        UPDATE
- 	    	board
- 	    SET
- 	    	btitle =  #{bTitle},
- 	    	bcontent = #{bContent},
- 	    	value = #{value},
- 	    	bmodifydate = now()
- 	    WHERE
- 	    	bno = #{bNo}
-    </update>
-    
-    <!-- 게시글 조회수 업데이트 -->
-    <update id="updateViewCnt">
-        UPDATE
-        	board
-        SET
-        	viewcnt = viewCnt+1
-        WHERE
-        	bno = #{bNo}
-    </update>
-	
-    <!-- 게시글 삭제 -->
-	<delete id="deleteBoard" >
-	    DELETE FROM board
- 	    WHERE bno = #{bNo}
+	<update id="updateBoard">
+		UPDATE
+		board
+		SET
+		btitle = #{bTitle},
+		bcontent = #{bContent},
+		value = #{value},
+		bmodifydate = now()
+		WHERE
+		bno = #{bNo}
+	</update>
+
+	<!-- 게시글 조회수 업데이트 -->
+	<update id="updateViewCnt">
+		UPDATE
+		board
+		SET
+		viewcnt = viewCnt+1
+		WHERE
+		bno = #{bNo}
+	</update>
+
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard">
+		DELETE FROM board
+		WHERE bno = #{bNo}
 	</delete>
-	
+
 	<!-- 게시글 삭제시 댓글 전체 삭제 -->
 	<delete id="deleteBoardReplyAll">
-	    DELETE FROM boardreply
-	    WHERE bno = #{bNo}
+		DELETE FROM boardreply
+		WHERE bno = #{bNo}
 	</delete>
-	
+
 	<!-- 카테고리명 조회 -->
 	<select id="selectCategory" resultType="CategoryDTO">
-	    SELECT *
-	    FROM category
-	    WHERE cateId = #{cateId}
+		SELECT *
+		FROM category
+		WHERE cateId = #{cateId}
 	</select>
-	
-	   <!-- 좋아요 조회 -->
-    <select id="searchFavorite" resultType="int">
-       SELECT COUNT(*) 
-        FROM 
-           favorite
-        WHERE
-          bno = #{bNo}
-       AND userId=#{userId}
-    
-    </select>
-    
-       <!-- 좋아요  -->
-   <insert id = "favoriteBoard">
-   INSERT INTO favorite (
-         userId,
-         bno
-      ) VALUES (
-         #{userId},
-         #{bNo} 
-      )
-   
-   </insert>
-   
-   <!-- 좋아요 취소 -->
-	<delete id="unfavoriteBoard" >
+
+	<!-- 좋아요 조회 -->
+	<select id="searchFavorite" resultType="int">
+		SELECT COUNT(*)
+		FROM
+		favorite
+		WHERE
+		bno = #{bNo}
+		AND userId=#{userId}
+
+	</select>
+
+	<!-- 좋아요 -->
+	<insert id="favoriteBoard">
+		INSERT INTO favorite (
+		userId,
+		bno
+		) VALUES (
+		#{userId},
+		#{bNo}
+		)
+
+	</insert>
+
+	<!-- 좋아요 취소 -->
+	<delete id="unfavoriteBoard">
 		DELETE FROM favorite
-		WHERE 
-			bno = #{bNo}
-			AND userId=#{userId}
+		WHERE
+		bno = #{bNo}
+		AND userId=#{userId}
 	</delete>
-	
+
 	<!-- 게시글 삭제시 좋아요 테이블에서 데이터 삭제 -->
 	<delete id="deleteFavorite">
-	    DELETE FROM favorite
-	    WHERE bno = #{bNo}
+		DELETE FROM favorite
+		WHERE bno = #{bNo}
 	</delete>
-	
- 	<!-- 좋아요 조회  -->
+
+	<!-- 좋아요 조회 -->
 	<select id="countFavorite" resultType="int">
- 	    SELECT COUNT(*)
- 	    FROM
- 	    	favorite
- 	    WHERE
- 	    	bno = #{bNo}
- 	</select>
- 	
-	<!-- 파일 삽입  -->
+		SELECT COUNT(*)
+		FROM
+		favorite
+		WHERE
+		bno = #{bNo}
+	</select>
+
+	<!-- 파일 삽입 -->
 	<insert id="addAttach">
-	    INSERT INTO 
-	    	boardfile(bNo, fileName, fileSize, attachType, originName) 
-	    VALUES (#{bNo}, #{fileName}, #{fileSize}, #{attachType}, #{originName}) 
+		INSERT INTO
+		boardfile(bNo, fileName, fileSize, attachType, originName)
+		VALUES (#{bNo}, #{fileName}, #{fileSize}, #{attachType}, #{originName})
 	</insert>
-	
+
 	<!-- 선택 게시판의 업로드 파일 정보 가져오기 -->
 	<select id="selectAttach" resultType="BoardAttachDTO">
-	    SELECT *
-	    FROM boardfile
-	    WHERE bNo = #{bNo}
+		SELECT *
+		FROM boardfile
+		WHERE bNo = #{bNo}
 	</select>
-	
+
 	<!-- 업로드 파일 삭제 -->
 	<delete id="deleteAttach">
-	    DELETE FROM boardfile WHERE bNo = #{bNo} 
+		DELETE FROM boardfile WHERE bNo = #{bNo}
 	</delete>
-	
-	
+
+
 	<!-- 거래 완료된 게시물 update -->
 	<update id="updateIsSwap">
-	    update board 
+		update board
 		SET isSwap = 'Y'
 		WHERE bno = #{bNo}
 	</update>
-	
-	
+
+
 </mapper>
 
 

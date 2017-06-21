@@ -54,7 +54,6 @@ public class GoogleApi {
 	@RequestMapping(value="/callback" ,method = RequestMethod.GET)//승인된 리디렉션 콜백 받는곳 
 	public String oauth(String code,HttpSession session,UserVO UserVo,RedirectAttributes redirectAttr){
 		
-		logger.info("확인 : " + code);
 		OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations(); 
 		AccessGrant accessGrant = oauthOperations.exchangeForAccess(code, googleOAuth2Parameters.getRedirectUri(), null);
 		String accessToken = accessGrant.getAccessToken(); 
@@ -62,7 +61,6 @@ public class GoogleApi {
 		
 		if (expireTime != null && expireTime < System.currentTimeMillis()) { 
 		accessToken = accessGrant.getRefreshToken(); 
-		logger.info("accessToken is expired. refresh token = {}" , accessToken); 
 		}
 		
 		Connection<Google>connection = googleConnectionFactory.createConnection(accessGrant); 
@@ -72,7 +70,6 @@ public class GoogleApi {
 
 		uniqId = service.googlecheckDuplicateId(person.getId());
 		
-		logger.info("아이디:"+uniqId+"");
 		
 		if(uniqId==null){//유니크 아이디가 없다면 db에 값을 넣어주고 회원가입 화면으로감
 /*			UserVo.setUniqid(person.getId());
@@ -98,8 +95,6 @@ public class GoogleApi {
 			
 			
 			Map map = new HashMap();
-//			logger.info("유니크값은:"+uniqId+"");
-//			logger.info("아이디값은:"+person.getId()+"");
 			String uniqid=person.getId()+"";
 			UserVO userVO=new UserVO();
 			userVO.setUniqId(uniqid);
@@ -146,7 +141,6 @@ public class GoogleApi {
 		String lon=uniqId.getLon();
 		
 		
-		logger.info(uniqId.toString());
 		
 		userVO.setUserId(id);
 		userVO.setAddr1(address1);

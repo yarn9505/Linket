@@ -40,7 +40,7 @@ public interface MatchingService {
 
 	// 후기에 정보 넣어주기
 	public void insertTranPost(String mno, UserVO vo);
-	
+
 	public matchingDTO selectEval(String mno);
 
 }

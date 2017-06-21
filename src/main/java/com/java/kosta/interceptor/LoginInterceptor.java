@@ -27,7 +27,6 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		
 		// 로그인 처리 전에 기존 세션에 저장되어 있던 로그인 정보를 제거해줌.
 		if ( session.getAttribute("loginSession") != null ){
-			logger.info("이전 로그인 세션 제거");
 			session.removeAttribute("loginSession");
 		}
 		// 인터셉터를 거쳐 컨트롤러로 보내야함으로 true 리턴

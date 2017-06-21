@@ -60,15 +60,12 @@ $(document).ready(function(){
 
    // 무한스크롤 인식
       $(window).scroll(function() {
-         console.log("이거 찍히나");
          var maxHeight = $(document).height();
          var currentScroll = $(window).scrollTop() + $(window).height();
          
           if (maxHeight <= currentScroll) {
-            console.log("스크롤 인식");
             page++;
             if(statueFilter == false){ // 필터가 안된 상태이면 내 관심사에 따라서 타임라인에 뿌려줌
-               console.log("statueFilter false");
                listAll(page,keywords);
             }
             else if(statueFilter == true){// 필터가 적용되면 필터를 계산한 값을 뿌려줌
@@ -103,7 +100,6 @@ $(document).ready(function(){
         		 count++;
         	 }
          }
-         console.log("체크된 것 개수 : " + count);
          if ( count == 0 ){
         	 listAll(page,keywords);
         	 alert("관심사는 하나 이상을 선택해주세요.");
@@ -112,12 +108,9 @@ $(document).ready(function(){
              /* 가치의 범위값 가지고 오기 */
              var fvalue1 = document.getElementById("fvalue1").value;
              var fvalue2 = document.getElementById("fvalue2").value;
-             console.log("fvalue1 : "+fvalue1);
-             console.log("fvalue2 : "+fvalue2);
 
              /* 필수 필수 */
              allData = {"fcateArr" : fcateArr, "fvalue1" : fvalue1, "fvalue2" : fvalue2};
-             console.log("page : "+page);
 
              listFilter(page,allData); // ajax로 호출
          }
@@ -127,7 +120,6 @@ $(document).ready(function(){
       // 2. 필터된 데이터를 Ajax로 보내고 Controller에서 받아서 내용을 뿌려줌
             function listFilter(pageNum, allData){
                //////////////////////////
-               console.log("listFilter실행되었음");
                
                $.ajax({
                   async : false,   
@@ -137,7 +129,6 @@ $(document).ready(function(){
                   data : allData,
                   success : function(data){
                      //전송 성공 후 실행되는 코드
-                     console.log("필터된 카테고리 전송 완료");
                      
                      var bno = "";
                      var temp = "";
@@ -185,7 +176,6 @@ $(document).ready(function(){
 }); // end of ready()
 
 function check(bno) {
-   console.log("check bno : " + bno)
    var bno = bno;
 
    $ajax({
@@ -197,7 +187,6 @@ function check(bno) {
       url:'/timeline/checkfavorite?bno='+bno,
       dataType:'text',
       sucess:function(data){
-         console.log(data+"check")
          if(data!=null){
             if (data==1) {
                $("#likeImg").attr({"src":"/resources/images/like1.png"});
@@ -210,7 +199,6 @@ function check(bno) {
 }
 
 function like(bno){
-   console.log("bno=?"+bno)
    var bno=bno;
    
    $.ajax({
@@ -222,7 +210,6 @@ function like(bno){
       url : '/timeline/updatefavorite?bno='+bno,
       dataType : 'text',
       success : function(data) {
-         console.log(data)
          if(data!=null){
             if (data==1) {
                $("#likeImg"+bno).attr({"src":"/resources/images/like1.png"});

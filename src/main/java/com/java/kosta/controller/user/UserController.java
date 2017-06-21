@@ -34,10 +34,8 @@ public class UserController {
 	 */
 	@RequestMapping(value="/modifyInfo", method=RequestMethod.POST)
 	public String modifyInfo(RedirectAttributes rttr,HttpSession session,@RequestParam("password") String password){
-		logger.info("수정으로 넘어오는 비밀번호 : " + password);
 		// 세션에서 현재 회원정보 가져오기
 		UserVO vo = (UserVO) session.getAttribute("loginSession");
-		logger.info("세션에 있는 아이디 : " + vo.getUserId());
 		// 로그인되어 있는 회원의 패스워드 가져오기
 		UserVO tempVO = new UserVO();
 		tempVO.setUserId(vo.getUserId());
@@ -45,12 +43,10 @@ public class UserController {
 		UserVO vo2 = service.getPwd(tempVO); // 암호화된 패스워드가 넘어옴
 
 		if ( vo2 != null ){
-			logger.info("입력한 암호가 맞는 경우");
 			// 입력한 암호가 맞는 경우
 			// 수정페이지로 이동
 			return "user/modifyInfoForm";
 		}else{
-			logger.info("입력한 암호가 틀린 경우");
 			// 입력한 암호가 잘못된 경우
 			Map map = new HashMap();
 			map.put("msg", "FAIL");
@@ -66,7 +62,6 @@ public class UserController {
 	 */
 	@RequestMapping(value="/modifyInfoProcess", method=RequestMethod.POST)
 	public @ResponseBody HashMap<String,Object> modifyInfoProcess(UserVO vo){
-		logger.info("넘어온 회원 정보 : " + vo);
 
 		service.updateInfo(vo);
 		HashMap<String,Object> map = new HashMap<String,Object>();
@@ -192,11 +187,9 @@ public class UserController {
 	public Map<String, Object> joinProc(UserVO vo, HttpServletRequest req,RedirectAttributes redirectattri) {
 		Map<String, Object> res = new HashMap<String, Object>();
 
-		logger.info("회원가입시 저장된 위도경도값 : " + vo.getLat() + " : " + vo.getLon());
 
 		int cnt = service.idCheck(vo.getUserId());
 		String str=req.getParameter("idCheckboolean");
-		logger.info("체크:"+str);
 
 		//아이디 중복체크
 		if (cnt > 0) {
@@ -291,16 +284,12 @@ public class UserController {
 
 		HashMap<String,Object> res=new HashMap<String, Object>();
 		try{
-			logger.info("유저이름:"+userVO.getUserName());//이름출력
-			logger.info("유저 번호:"+userVO.getUserHp());//번호 출력
 			UserVO tempvo=new UserVO();
 			tempvo.setUserName(userVO.getUserName());
 			tempvo.setUserHp(userVO.getUserHp());
 			
-			logger.info("vo2의값은:"+tempvo.getUserName());
 			List<UserVO> list = service.selectId(tempvo); // 아이디값들이 넘어옴
 
-			logger.info("vo2의값은:"+list.get(0).getUserId());
 			
 			if(list!=null){//아이디 찾기 성공
 				String result="";
@@ -337,15 +326,12 @@ public class UserController {
 	public HashMap<String,Object> selectPw(UserVO vo,@RequestParam("Id")String id,@RequestParam("Name")String name){
 		HashMap<String,Object> res=new HashMap<String, Object>();
 		
-		logger.info("아이디:"+id);
-		logger.info("이름:"+name);
 		
 		vo.setUserId(id);
 		vo.setUserName(name);
 		
 		try {
 			UserVO uservo=service.selectPw(vo);
-			logger.info("패스워드는:"+uservo);
 			if(uservo!=null){
 				res.put(Constants.RESULT, Constants.RESULT_OK);
 				res.put(Constants.RESULT_MSG,"비밀번호를 수정해주세요.");
@@ -398,8 +384,6 @@ public class UserController {
 	{
 		HashMap<String,Object> res=new HashMap<String, Object>();
 		
-		logger.info("넘어온 아이디값:"+id);
-		logger.info("넘어온 패스워드값:"+pw);
 		vo.setUserId(id);
 		vo.setUserPw(pw);
 		

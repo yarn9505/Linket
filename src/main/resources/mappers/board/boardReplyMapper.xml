@@ -69,7 +69,8 @@
 	<!-- 댓글 수정 -->
 	<update id="updateBoardReply">
 		UPDATE boardreply
-		SET rcontent = #{rContent}, rModifyDate = now()
+		SET rcontent = #{rContent},
+		rModifyDate = now()
 		WHERE rno = #{rNo}
 	</update>
 
@@ -83,7 +84,8 @@
 	<select id="findWriter" resultType="String">
 		SELECT userId
 		FROM board
-		WHERE bno=#{bNo}
+		WHERE
+		bno=#{bNo}
 	</select>
 
 </mapper>

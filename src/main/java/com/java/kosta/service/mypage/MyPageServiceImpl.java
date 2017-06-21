@@ -16,8 +16,8 @@ import com.java.kosta.dto.mypage.Mypagepaging;
 import com.java.kosta.dto.transaction.TransactionDTO;
 
 @Service
-public class MyPageServiceImpl implements MyPageService{
-	
+public class MyPageServiceImpl implements MyPageService {
+
 	@Inject
 	MyPageDAO mDAO;
 
@@ -26,10 +26,10 @@ public class MyPageServiceImpl implements MyPageService{
 		return mDAO.selectMyFavoriteListTotalCount(pagingDTO, userId);
 	}
 
-//	@Override
-//	public List<BoardDTO> selectMyFavoriteList(String bno, String userId) {
-//		return mDAO.selectMyFavoriteList(bno, userId);
-//	}
+	// @Override
+	// public List<BoardDTO> selectMyFavoriteList(String bno, String userId) {
+	// return mDAO.selectMyFavoriteList(bno, userId);
+	// }
 
 	@Override
 	public int searchFavorite(String userId, String bNo) {
@@ -51,11 +51,12 @@ public class MyPageServiceImpl implements MyPageService{
 		return mDAO.searchFavoriteList(userId);
 	}
 
-//	@Override
-//	public List<BoardDTO> selectMyFavoriteList(BoardDTO boardDTO, String userId) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	// @Override
+	// public List<BoardDTO> selectMyFavoriteList(BoardDTO boardDTO, String
+	// userId) {
+	// // TODO Auto-generated method stub
+	// return null;
+	// }
 
 	@Override
 	public List<BoardDTO> selectMyFavoriteList(String bno, String userId) {
@@ -63,10 +64,9 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<BoardDTO> selectWritedList(String userId,Mypagepaging paging) throws Exception {
-		return mDAO.selectWritedList(userId,paging);
+	public List<BoardDTO> selectWritedList(String userId, Mypagepaging paging) throws Exception {
+		return mDAO.selectWritedList(userId, paging);
 	}
-
 
 	@Override
 	public int selectMyBoardListCount(Mypagepaging pagingDTO, String userId) {
@@ -104,20 +104,20 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	public List<BoardDTO> selectFavoriteList(Mypagepaging pagingDTO, String userId) {
-		return mDAO.selectFavoriteList(pagingDTO,userId);
+		return mDAO.selectFavoriteList(pagingDTO, userId);
 	}
 
-	//페이징 처리해서 좋아요 갯수 세기
+	// 페이징 처리해서 좋아요 갯수 세기
 	public int selectFavoritecount(Mypagepaging pagingDTO, String userId) {
-		return mDAO.selectFavoritecount(pagingDTO,userId);
+		return mDAO.selectFavoritecount(pagingDTO, userId);
 	}
 
-	public int selectMyExchangeListCount(BoardPagingDTO pagingDTO, String buyerId){
+	public int selectMyExchangeListCount(BoardPagingDTO pagingDTO, String buyerId) {
 		return mDAO.selectMyExchangeListCount(pagingDTO, buyerId);
 	}
-	
-	public List<BoardDTO> selectExchangeList(BoardPagingDTO pagingDTO, String buyerId){
-		
+
+	public List<BoardDTO> selectExchangeList(BoardPagingDTO pagingDTO, String buyerId) {
+
 		return mDAO.selectExchangeList(pagingDTO, buyerId);
 	}
 
@@ -125,6 +125,5 @@ public class MyPageServiceImpl implements MyPageService{
 	public void updateEval(EvalDTO evalDTO) {
 		mDAO.updateEval(evalDTO);
 	}
-
 
 }

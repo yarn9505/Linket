@@ -92,7 +92,6 @@
 					var result=confirm("삭제하시겠습니까?");
 					if(result=true){
 						var mno = bno;
-						console.log(mno);
 						self.location="/note/delFromReceiver?mno="+mno;
 					}
 				}

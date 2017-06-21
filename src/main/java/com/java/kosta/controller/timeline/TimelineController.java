@@ -232,17 +232,14 @@ public class TimelineController {
 			keywords = URLDecoder.decode(keywords,"UTF-8");
 			page.setPerPageNum(15);
 			int cnt = service.allBoardListCnt(keywords);
-			logger.info("전체 게시글 수 : " + cnt);
 			page.setTotalCount(cnt);
 			List<TimelineDTO> list = service.allBoardList(page, keywords);
 			HashMap<String,Object> map = new HashMap<String,Object>();
-			logger.info("perPageNum 값? : " + page.getPerPageNum());
 			map.put("list", list);
 			map.put("pageMaker", page);
 			map.put("Info", keywords);
 			//keywords = URLEncoder.encode(keywords, "UTF-8");
 			map.put("keywords", keywords);
-			logger.info("stargPage : " + page.getStartPage() + "endPage : " + page.getEndPage() + "keywords : " + keywords);
 			model.addAttribute("map",map);
 			return "timeline/totalSearch";
 		}

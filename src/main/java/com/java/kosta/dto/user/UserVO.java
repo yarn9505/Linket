@@ -15,9 +15,9 @@ public class UserVO {
 	private Date userRegdate; // 회원 등록일
 	private String lat;
 	private String lon;
-	private String uniqId;//유니크 아이디
-	
-	//카테고리 아이디 체크박스 부분
+	private String uniqId;// 유니크 아이디
+
+	// 카테고리 아이디 체크박스 부분
 	private String cateId1;
 	private String cateId2;
 	private String cateId3;
@@ -25,16 +25,15 @@ public class UserVO {
 	private String cateId5;
 	private String cateId6;
 	//
-	
-	//안드로이드 토큰
+
+	// 안드로이드 토큰
 	private String token;
-	
-	//사용자 랭크
+
+	// 사용자 랭크
 	private String rank;
-	
-//	private String idCheckboolean;//아이디가 체크되었는지 확인하는거
-	
-	
+
+	// private String idCheckboolean;//아이디가 체크되었는지 확인하는거
+
 	public String getUniqId() {
 		return uniqId;
 	}
@@ -58,7 +57,6 @@ public class UserVO {
 	public void setUniqId(String uniqId) {
 		this.uniqId = uniqId;
 	}
-
 
 	public String getCateId1() {
 		return cateId1;
@@ -108,7 +106,6 @@ public class UserVO {
 		this.cateId6 = cateId6;
 	}
 
-
 	public String getUserId() {
 		return userId;
 	}
@@ -132,7 +129,6 @@ public class UserVO {
 	public void setUserPw(String userPw) {
 		this.userPw = userPw;
 	}
-
 
 	public String getUserEmail() {
 		return userEmail;
@@ -193,21 +189,17 @@ public class UserVO {
 	@Override
 	public String toString() {
 		return "UserVO [userId=" + userId + ", userName=" + userName + ", userPw=" + userPw + ", userHp=" + userHp
-				+ ", userEmail=" + userEmail + ", addr1=" + addr1 + ", addr2=" + addr2 + ", userRegdate=" + userRegdate 
+				+ ", userEmail=" + userEmail + ", addr1=" + addr1 + ", addr2=" + addr2 + ", userRegdate=" + userRegdate
 				+ ", lat=" + lat + ", lon=" + lon + ", uniqId=" + uniqId + ", cateId1=" + cateId1 + ", cateId2="
 				+ cateId2 + ", cateId3=" + cateId3 + ", cateId4=" + cateId4 + ", cateId5=" + cateId5 + ", cateId6="
 				+ cateId6 + "]";
 	}
-	
-	
-	
 
-/*	public String getIdCheckboolean() {
-		return idCheckboolean;
-	}
-
-	public void setIdCheckboolean(String idCheckboolean) {
-		this.idCheckboolean = idCheckboolean;
-	}*/
+	/*
+	 * public String getIdCheckboolean() { return idCheckboolean; }
+	 * 
+	 * public void setIdCheckboolean(String idCheckboolean) {
+	 * this.idCheckboolean = idCheckboolean; }
+	 */
 
 }

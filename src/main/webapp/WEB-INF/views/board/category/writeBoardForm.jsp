@@ -263,7 +263,6 @@
 		
 					var param = $("#tx_editor_form").serialize();
 		
-					console.log(param);
 		
 					$.ajax({
 						url : "/board/category/writeBoardProc",
@@ -292,7 +291,6 @@
 		
 			/* $("#insertForm").submit(function(event){
 				event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-				console.log("insertForm");
 				var that = $(this);	//insertForm
 				var title = $("#bTitle").val();		// 제목	(빈 값 검사하기 위해)
 				var content = $("#bContent").val();	// 내용
@@ -369,8 +367,6 @@
 			
 			$(".fileDrop").on("click", "small", function(event){
 				var that = $(this);		//this = small태그
-				console.log("small");
-				console.log(that.attr("data-src"));
 				$.ajax({
 					url:"/board/deleteFile",
 					type:"post",
@@ -379,7 +375,6 @@
 					},
 					dataType:"text",
 					success:function(data){
-						console.log(data);
 						if(data == "deleted"){
 							that.parent("span").remove();
 						}

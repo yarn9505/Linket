@@ -2,85 +2,88 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 파워딜러에 대한 mapper   by.이윤지 -->
+<!-- 파워딜러에 대한 mapper by.이윤지 -->
 <mapper namespace="com.java.kosta.dao.user.BestUserDAO">
 
 	<!-- 파워 딜러 10명의 별점 평점 -->
 	<select id="avgScore" resultType="EvalDTO">
-	    select userId, avg(eval.pscore) as avg
-	    from eval 
-	    where pcontent is not null
-	    group by userId
-	    order by avg desc, userId
-	    limit 0, 10
+		select userId, avg(eval.pscore) as avg
+		from eval
+		where pcontent is not null
+		group by userId
+		order by avg desc, userId
+		limit 0, 10
 	</select>
-	
+
 	<!-- 테스트용 전체 평점 리스트 가져오기 -->
-	
+
 	<!-- 상위 10명을 뺀 나머지 판매자들 정보 페이징해서 가져오기 -->
 	<select id="lowerAvgScore" resultType="EvalDTO">
-	    SELECT user.userId,user.avg FROM (select userId, avg(eval.pscore) as avg
-	    	from eval 
-	    	where pcontent is not null 
-	    	group by userId
-	    	order by avg desc, userId) as user
-		LEFT JOIN (select userId, avg(eval.pscore) as avg
-	    	from eval 
-	    	where pcontent is not null 
-	    	group by userId
-	    	order by avg desc, userId 
-        	limit 0, 10) as power 
+		SELECT user.userId,user.avg FROM (select userId, avg(eval.pscore) as
+		avg
+		from eval
+		where pcontent is not null
+		group by userId
+		order by avg desc, userId) as user
+		LEFT JOIN (select userId,
+		avg(eval.pscore) as avg
+		from eval
+		where pcontent is not null
+		group by userId
+		order by avg desc, userId
+		limit 0, 10) as power
 		ON user.userId = power.userId
 		WHERE power.userId IS NULL
 		<if test="searchType == 'userId'">
-		    AND user.userId like CONCAT('%', #{searchText}, '%')
-		</if>   
+			AND user.userId like CONCAT('%', #{searchText}, '%')
+		</if>
 		limit #{startRow}, #{endRow}
 	</select>
-	
+
 	<!-- 하위 판매자들의 총 갯수 -->
 	<select id="lowerUserTotCount" resultType="int">
 		SELECT count(user.userId) FROM (select userId, avg(eval.pscore) as avg
-	    	from eval 
-	    	where pcontent is not null 
-	    	group by userId
-	    	order by avg desc, userId) as user
-		LEFT JOIN (select userId, avg(eval.pscore) as avg
-	    	from eval 
-	    	where pcontent is not null 
-	    	group by userId
-	    	order by avg desc, userId 
-        	limit 0, 10) as power 
+		from eval
+		where pcontent is not null
+		group by userId
+		order by avg desc, userId) as user
+		LEFT JOIN (select userId,
+		avg(eval.pscore) as avg
+		from eval
+		where pcontent is not null
+		group by userId
+		order by avg desc, userId
+		limit 0, 10) as power
 		ON user.userId = power.userId
 		WHERE power.userId IS NULL
 		<if test="searchType == 'userId'">
-		    AND user.userId like CONCAT('%', #{searchText}, '%')
+			AND user.userId like CONCAT('%', #{searchText}, '%')
 		</if>
 	</select>
 
 	<!-- 해당 유저의 리뷰 리스트 -->
 	<select id="selectReview" resultType="EvalDTO">
-	    select * 
-	    from eval 
-	    where userId =#{userId} and pcontent is not null
-	    order by pRegDate desc
-	    limit #{startRow}, 5
+		select *
+		from eval
+		where userId =#{userId} and pcontent is not null
+		order by pRegDate desc
+		limit #{startRow}, 5
 	</select>
-	
+
 	<!-- 해당 유저의 별점의 갯수를 세서 리스트로 가져오기 -->
 	<select id="countScore" resultType="EvalDTO">
-	    select pscore, count(pscore)as count 
-	    from eval 
-	    where userId=#{userId} and pcontent is not null 
-	    group by pscore 
-	    order by pscore desc
+		select pscore, count(pscore)as count
+		from eval
+		where userId=#{userId} and pcontent is not null
+		group by pscore
+		order by pscore desc
 	</select>
-	
+
 	<!-- 유저의 후기 총 갯수 -->
 	<select id="selectReviewTotCount" resultType="int">
-		select count(*) 
-		from eval 
-		where userId =#{userId} and pcontent is not null	    
+		select count(*)
+		from eval
+		where userId =#{userId} and pcontent is not null
 	</select>
-	
+
 </mapper>

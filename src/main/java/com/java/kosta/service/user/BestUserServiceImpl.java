@@ -12,8 +12,8 @@ import com.java.kosta.dto.board.BoardPagingDTO;
 import com.java.kosta.dto.mypage.EvalDTO;
 
 @Service
-public class BestUserServiceImpl implements BestUserService{
-	
+public class BestUserServiceImpl implements BestUserService {
+
 	@Inject
 	BestUserDAO buDAO;
 
@@ -44,6 +44,6 @@ public class BestUserServiceImpl implements BestUserService{
 
 	@Override
 	public int lowerUserTotCount(BoardPagingDTO pagingDTO) {
-		return buDAO.lowerUserTotCount(pagingDTO);		
+		return buDAO.lowerUserTotCount(pagingDTO);
 	}
 }

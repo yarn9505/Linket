@@ -299,7 +299,6 @@ input[type=checkbox]:checked+label:before {
                },
                dataType : "json",
                success : function(data) {
-                  console.log(data);
                   if (data.result == "ok") {
                      // 댓글 리스트 모두 지우고 다시 출력
                      $("#replyTable").find("span").remove();
@@ -337,7 +336,6 @@ input[type=checkbox]:checked+label:before {
       
                },
                error : function(xhr, status, error) {
-                  console.log(xhr);
                   alert("error\nxhr : " + xhr + ", status : " + status + ", error : " + error);
                }
             });
@@ -610,7 +608,6 @@ input[type=checkbox]:checked+label:before {
        dataType:"text",
        success : function(result){
           if ( result != null ){
-             console.log("넘어온 값 : " + result);
            address = result;   
           }
        }

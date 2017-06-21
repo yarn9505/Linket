@@ -37,5 +37,6 @@ public interface TimelineService {
 
 	// 전체 게시글 조회
 	public List<TimelineDTO> allBoardList(PagingDTO page, String keywords);
+
 	public int allBoardListCnt(String keywords);
 }

@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link rel="stylesheet" type="text/css" href="/resources/css/styleMatching.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/matching.css" />
 <style type="text/css">
@@ -21,6 +22,7 @@ width:100%;
 </style>
 
 <script type="text/javascript" src="/resources/js/jquery-1.4.3.min.js"></script>
+
  
 <script type="text/javascript">
    $(document).ready(function(){
@@ -592,7 +594,6 @@ width:100%;
                                     }else{
                                        condi = "price";
                                     }
-                                    console.log("bnoP : "+bnoP);
                                     $("#listMatchContent").empty();
                                     var str3="";
                                     
@@ -638,7 +639,6 @@ width:100%;
                                 $("#indexContent0").find(".imgVictory").attr("style","border:0px;display:inline;float:right;margin-top:-28px;");
                               },
                               error:function(){
-                                 console.log("실패");
                               }
                               
                              });//ajax 
@@ -667,7 +667,6 @@ width:100%;
 	                     else{
 	                    	 $("#compareBtn").attr("data-target","#myFullsizeModal");
 		                     var allData = {"sendData":checkObj};
-		                     console.log("checkObj : "+ checkObj);
 		                     $.ajax({
 		                        type:'POST',
 		                        data:allData,
@@ -789,7 +788,6 @@ width:100%;
 	                                    wantedValue:$("#wantedValue").val()
 	                                 }),
 	                                 success:function(data){
-	                                    console.log("success");
 	                                    $("#wantedValue").val("");
 	                                    $("#requestMsg").val("");
 	                                    // 모달창 닫음
@@ -798,7 +796,6 @@ width:100%;
 	                                    listMyTransactionInfo("sellingBtn");
 	                                 },
 	                                 error:function(data){
-	                                    console.log("error");
 	                                 }
 	                               });
 	                            }//if
@@ -827,7 +824,6 @@ width:100%;
 		                                  url:"/matching/matchingResult?mno=",
 		                                  dataType:"json",
 		                                  success:function(data){
-		                                	  console.log("^0^거래리스트 켜지고 바로 도착!");
 		                                	  // 내 기준 판매자일 때의 정보
 		                                	 	for(var i=0; i<data.IamSeller.length;i++){
 		                                			// IamSeller : 내가 판매자인 경우
@@ -893,7 +889,6 @@ width:100%;
 		                                  url:"/matching/matchingResult?mno=",
 		                                  dataType:"json",
 		                                  success:function(data){
-		                                	  console.log("^0^거래리스트 켜지고 바로 도착!");
 		                                	  // 내 기준 판매자일 때의 정보
 		                                	 	for(var i=0; i<data.IamCustomer.length;i++){
 		                                			// IamCustomer : 내가 거래 요청자인 경우

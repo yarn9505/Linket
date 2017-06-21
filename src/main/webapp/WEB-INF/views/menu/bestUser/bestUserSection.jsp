@@ -61,7 +61,6 @@
 			url : "/bestUser/lowerUserList",
 			dataType : "json",
 			success : function(data) {
-				console.log(data);
 				if (data.result == "ok") {
 
 					var str = "";
@@ -137,7 +136,6 @@
 			url : "/bestUser/lowerUserList?pageNo=" + pageNoVal + "&searchType=" + type + "&searchText=" + text,
 			dataType : "json",
 			success : function(data) {
-				console.log(data);
 				if (data.result == "ok") {
 
 					$("#lowerRow").remove();
@@ -233,7 +231,6 @@
 						var userId = "${evalDTO.userId}";
 						var avgVal = ${evalDTO.avg};
 						avgVal = Math.floor(avgVal);
-						//console.log(avgVal);
 						
 						for(var i=1; i <= avgVal; i++){
 							$("#"+userId+i).addClass("on");

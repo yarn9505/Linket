@@ -121,7 +121,6 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 			UserVO loginSession = (UserVO)req.getSession().getAttribute(Constants.LOGINSESSION);
 			model.addAttribute("loginSession", loginSession);
 			String userId = loginSession.getUserId();
-			logger.info("로그인아이디:"+loginSession.getUserId());
 			
 			// 전체 레코드 갯수 획득
 			int totRecord = service.selectFavoritecount(pagingDTO, userId);
@@ -231,14 +230,12 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	      int totRecord = service.selectMyBoardListCount(pagingDTO, userId);
 	      // 페이징 계산
 	      pagingDTO.setTotalCount(totRecord);
-	      logger.info(pagingDTO.getTotalCount()+"페이지 갯수는");
 	      
 	      try {
 	         List<BoardDTO> list = service.selectWritedList(userId,pagingDTO);//내가 쓴 글 목록 조회
 	         for (BoardDTO boardDTO : list) {
 	            CategoryDTO dto = bservice.selectCategory(boardDTO.getCateId());
 	            boardDTO.setCateName(dto.getCateName());
-	         //   logger.info("거래인:"+boardDTO.getBuyerId());
 	            
 	         }
 	         res.put("success","success"); 
@@ -331,7 +328,6 @@ Logger logger = LoggerFactory.getLogger(MyPageController.class);
 	@RequestMapping(value="/writeReview",method=RequestMethod.POST,produces = "application/text; charset=utf8")
 	@ResponseBody
 	public String writeReview(@RequestBody EvalDTO evalDTO){
-		logger.info("writeReview() " + evalDTO.getBno()+", "+evalDTO.getPcontent()+", "+evalDTO.getPscore());
 		try {
 			// eval 테이블의 내용과 별점을 update 해줌
 			service.updateEval(evalDTO);

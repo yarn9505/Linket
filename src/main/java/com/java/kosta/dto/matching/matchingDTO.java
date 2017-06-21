@@ -25,8 +25,6 @@ public class matchingDTO implements Comparable<matchingDTO> {
 	private String sellerId;
 	private String requester;
 	private String receiver;
-	
-	
 
 	public String getRequester() {
 		return requester;

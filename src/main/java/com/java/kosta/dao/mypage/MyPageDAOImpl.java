@@ -30,13 +30,6 @@ public class MyPageDAOImpl implements MyPageDAO{
 		return sqlSession.selectOne(NameSpace + ".selectMyFavoriteListTotalCount",map);
 	}
 
-//	@Override
-//	public List<BoardDTO> selectMyFavoriteList(BoardPagingDTO pagingDTO, String userId) {
-//		HashMap<String,Object> map = new HashMap<String,Object>();
-//		map.put("pagingDTO", pagingDTO);
-//		map.put("userId", userId);
-//		return sqlSession.selectList(NameSpace+".selectMyFavoriteList", map);
-//	}
 
 	@Override
 	public int searchFavorite(String userId, String bNo) {

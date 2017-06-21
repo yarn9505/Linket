@@ -7,8 +7,8 @@ import com.java.kosta.handler.EchoHandler;
 
 @Controller
 public class SocketController {
-   @RequestMapping("/chat")
-   public String viewChattingPage(){
-      return "chat";
-   }
+	@RequestMapping("/chat")
+	public String viewChattingPage() {
+		return "chat";
+	}
 }

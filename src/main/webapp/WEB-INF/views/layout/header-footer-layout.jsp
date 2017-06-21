@@ -37,18 +37,19 @@
  
     var sock = null;
     $(document).ready(function(){
-        sock = new SockJS("/echo-ws");
-          sock.onopen=function(){
-        	  sock.send("접속${loginSession.userId}");
-        	  
-          }
-          sock.onmessage=function(evt){
-               // alert(evt.data);
-                notifyMe(evt.data);//Notification
-          }
-          sock.onclose = function(){
-          }      
-       
+    	if ( "${loginSession.userId}" != null && "${loginSession.userId}" != 'undefined' && "${loginSession.userId}" != ""){
+    		sock = new SockJS("/echo-ws");
+            sock.onopen=function(){
+          	  sock.send("접속${loginSession.userId}");
+          	  
+            }
+            sock.onmessage=function(evt){
+                 // alert(evt.data);
+                  notifyMe(evt.data);//Notification
+            }
+            sock.onclose = function(){
+            }      
+    	}
     });
 
     function notifyMe(data) {
@@ -76,32 +77,8 @@
     	  }
 
     	}
-   
-	$(function(){
-		if('${loginSession != null}'){
- 		   poll();
- 	   }//if
- 	   
- 	  function poll(){
- 		 $.ajax({
-             url : "/note/alarmNote",
-             type : "POST",
-             dateType : "json",
-             success : function(value){
-                console.log("변화감지");
-                console.log("totalCnt : "+value);
-                $("#noteBadge").html(value);
-                poll();
-             },
-             error : function(){
-                console.log("변화감지실패");
-             },
-          });
- 	   }//poll()
-	});//end of 함수
-	
-    
 </script>
+<script type="text/javascript" src="/resources/js/noteCntCheck.js"></script>
 <style type="text/css">
 
 .msg_a {

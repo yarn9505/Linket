@@ -53,7 +53,6 @@
 		<script type="text/javascript">
 			$("#updateForm").submit(function(event) {
 				event.preventDefault ? event.preventDefault(): (event.returnValue = false);
-				console.log("updateForm");
 				var that = $(this); //updateForm
 				var title = $("#bTitle").val(); // 제목	(빈 값 검사하기 위해)
 				var content = $("#bContent").val(); // 내용

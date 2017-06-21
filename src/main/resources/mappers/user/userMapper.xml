@@ -5,29 +5,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <!-- [ 사용자에 대한 처리를 담당합니다. ] -->
 <mapper namespace="UserMapper">
 
-<!-- 회원정보 수정을 위해 패스워드 확인하는 쿼리 -->
-<select id="getPwd" resultType="UserVO">
-	SELECT * FROM usertable
-		WHERE userId = #{userId} and userPw=PASSWORD(#{userPw})
-</select>
+	<!-- 회원정보 수정을 위해 패스워드 확인하는 쿼리 -->
+	<select id="getPwd" resultType="UserVO">
+		SELECT * FROM usertable
+		WHERE userId = #{userId} and
+		userPw=PASSWORD(#{userPw})
+	</select>
 
-<!-- 비밀번호 암호화시켜 꺼내기 -->
-<!-- 
-<select id="encapsulation" resultType="string">
-	select password(#{userPw}) from usertable
-</select>
+	<!-- 비밀번호 암호화시켜 꺼내기 -->
+	<!-- <select id="encapsulation" resultType="string"> select password(#{userPw}) 
+		from usertable </select> --><!-- 회원정보 수정 업데이트 -->
+	<update id="updateInfo">
+		update usertable
+		set userPw=PASSWORD(#{userPw}),userName=#{userName},userHp=#{userHp},
+		userEmail=#{userEmail},addr1=#{addr1},addr2=#{addr2},lat=#{lat},lon=#{lon},
+		cateId1=#{cateId1},cateId2=#{cateId2},cateId3=#{cateId3},cateId4=#{cateId4},
+		cateId5=#{cateId5},cateId6=#{cateId6} where userId=#{userId}
+	</update>
 
- --><!-- 회원정보 수정 업데이트 -->
-<update id="updateInfo">
-	update usertable
-	set userPw=PASSWORD(#{userPw}),userName=#{userName},userHp=#{userHp},
-	userEmail=#{userEmail},addr1=#{addr1},addr2=#{addr2},lat=#{lat},lon=#{lon},
-	cateId1=#{cateId1},cateId2=#{cateId2},cateId3=#{cateId3},cateId4=#{cateId4},
-	cateId5=#{cateId5},cateId6=#{cateId6} where userId=#{userId}
-</update>
-    
-    
-    <sql id="usercol">
+
+	<sql id="usercol">
 		userId,
 		userPw,
 		userName,
@@ -44,85 +41,90 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		lat,
 		lon,
 		userRegdate
-    </sql>
-    
-    
-	<!-- 로그인 (암호화아직 안댔음)-->
+	</sql>
+
+
+	<!-- 로그인 (암호화아직 안댔음) -->
 	<select id="login" resultType="UserVO">
 		SELECT * FROM usertable
-		WHERE userId = #{userId} AND userPw = PASSWORD(#{userPw})
+		WHERE
+		userId = #{userId} AND userPw = PASSWORD(#{userPw})
 	</select>
-	
-	<!-- 아이디  중복 체크  -->
-	<select id = "idCheck" resultType = "int">
-		SELECT COUNT(*) 
-  		FROM usertable 
- 		WHERE userId = #{userId} 
+
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="int">
+		SELECT COUNT(*)
+		FROM usertable
+		WHERE userId = #{userId}
 	</select>
-	
-	
-<!-- 일반 회원 가입  -->
-	
-<insert id="insertUser">
-insert into usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
-cateId1,cateId2,cateId3,cateId4,cateId5,cateId6)values
-(#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
-#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6})
-</insert>
-	
-	
-	
-<!-- 구글 회원 가입  -->
-
-<insert id="googleinsertUser">
-insert into usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
-cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,uniqId)values
-(#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
-#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6},#{uniqId})
-</insert>
-	
-
-<!-- 구글 연동시 유니크 아이디 검사-->
-<select id="googlecheckDuplicateId" resultType="UserVO">
-	    SELECT <include refid="usercol"/> FROM usertable where uniqId=#{uniqId}
-</select>
 
 
-<!-- 구글  유니크 아이디 검사-->
-<select id="uniqIdselect" resultType="String">
-  	SELECT userId from usertable where uniqId=#{uniqId}
-</select>	
-	
+	<!-- 일반 회원 가입 -->
 
-<!-- 회원정보 수정을 위해 패스워드 확인하는 쿼리 -->
-<select id="selectId" resultType="UserVO">
-SELECT userId FROM usertable
-WHERE userName=#{userName} and userHp=#{userHp}	
-</select>
+	<insert id="insertUser">
+		insert into
+		usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
+		cateId1,cateId2,cateId3,cateId4,cateId5,cateId6)values
+		(#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
+		#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6})
+	</insert>
 
 
-<!-- 유저 name과 userId로  패스워드를 찾음. -->
-<select id="selectPw" resultType="UserVO">
-SELECT userHp,userPw FROM usertable
-WHERE  userId=#{userId} and userName=#{userName}	 
-</select>
+
+	<!-- 구글 회원 가입 -->
+
+	<insert id="googleinsertUser">
+		insert into
+		usertable(lat,lon,userId,userPw,userName,userHp,userEmail,addr1,addr2,
+		cateId1,cateId2,cateId3,cateId4,cateId5,cateId6,uniqId)values
+		(#{lat},#{lon},#{userId},PASSWORD(#{userPw}),#{userName},#{userHp},#{userEmail},#{addr1},#{addr2},
+		#{cateId1},#{cateId2},#{cateId3},#{cateId4},#{cateId5},#{cateId6},#{uniqId})
+	</insert>
 
 
-<update id="pwupdate">
- update usertable set userPw=PASSWORD(#{userPw}) where userId=#{userId}
-</update>
+	<!-- 구글 연동시 유니크 아이디 검사 -->
+	<select id="googlecheckDuplicateId" resultType="UserVO">
+		SELECT
+		<include refid="usercol" />
+		FROM usertable where uniqId=#{uniqId}
+	</select>
 
-<!-- userId에 안드로이드 토큰값 가져오기 (쪽지 보낼 때 상대방 토큰값 가져오기 위해)  -->
-<select id = "checkToken" resultType="String">
-SELECT token
-FROM usertable
-WHERE userId = #{userId} 
-</select>
 
-<!-- userId의 토큰값 업데이트 -->
-<update id="inputToken">
-   update usertable set token=#{token} where userId=#{userId}
-</update>
+	<!-- 구글 유니크 아이디 검사 -->
+	<select id="uniqIdselect" resultType="String">
+		SELECT userId from usertable where uniqId=#{uniqId}
+	</select>
+
+
+	<!-- 회원정보 수정을 위해 패스워드 확인하는 쿼리 -->
+	<select id="selectId" resultType="UserVO">
+		SELECT userId FROM usertable
+		WHERE userName=#{userName} and userHp=#{userHp}
+	</select>
+
+
+	<!-- 유저 name과 userId로 패스워드를 찾음. -->
+	<select id="selectPw" resultType="UserVO">
+		SELECT userHp,userPw FROM usertable
+		WHERE userId=#{userId} and userName=#{userName}
+	</select>
+
+
+	<update id="pwupdate">
+		update usertable set userPw=PASSWORD(#{userPw}) where userId=#{userId}
+	</update>
+
+	<!-- userId에 안드로이드 토큰값 가져오기 (쪽지 보낼 때 상대방 토큰값 가져오기 위해) -->
+	<select id="checkToken" resultType="String">
+		SELECT token
+		FROM usertable
+		WHERE userId = #{userId}
+	</select>
+
+	<!-- userId의 토큰값 업데이트 -->
+	<update id="inputToken">
+		update usertable set token=#{token} where userId=#{userId}
+	</update>
 
 
 </mapper>

@@ -30,7 +30,6 @@ public class matchingDAOImpl implements matchingDAO{
       HashMap<String,Object> map = new HashMap<String,Object>();
       map.put("UserVO", vo);
       map.put("productKeywords", productKeywords);
-      logger.info("매퍼: " + productKeywords);
       return session.selectList(NAMESPACE+".keywordListSel", map);
    } // end of keywordList()
 
