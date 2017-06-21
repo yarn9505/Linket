@@ -187,10 +187,10 @@
       </div>
    </div>
    
-   <div style="margin-top: 5%;">
+   <div style="margin-top: 3%;">
       <decorator:body></decorator:body>
-   </div>
-   
+    </div>
+   	
    	<!-- footer -->
    	<div align="center" class="footer">
    		<img src="/resources/images/logo2.png" class="img-responsive" style="margin-bottom: 10px;">
