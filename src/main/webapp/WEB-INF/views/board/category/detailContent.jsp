@@ -120,6 +120,7 @@ input[type=checkbox]:checked+label:before {
                var bno = "${boardDTO.bNo}";
                var secretReply = "N";
       
+               console.log(replyText);
                if ($("#secretReply").is(":checked")) {
                   secretReply = "Y";
                }
@@ -132,10 +133,11 @@ input[type=checkbox]:checked+label:before {
                $.ajax({
                   type : "post",
                   url : "/replies/insertBoardReply",
-                  headers : {
+                  /* headers : {
                      "Content-Type" : "application/json",
                      "X-HTTP-Method-Override" : "POST"
-                  },
+                  }, */
+                  contentType : "application/json; charset=UTF-8",
                   dataType : "json",
                   data : JSON.stringify({
                      bNo : bno,
@@ -144,6 +146,7 @@ input[type=checkbox]:checked+label:before {
                      isSecret : secretReply
                   }),
                   success : function(data) {
+                	  console.log(data);
                      if (data.result == "ok") {
                         getAllList(); //전체 목록 뿌리기
                      } else {
@@ -173,23 +176,28 @@ input[type=checkbox]:checked+label:before {
       
             // 댓글 삭제버튼 클릭시 
             $("#replyTable").on("click", "#replyDelBtn", function() {
-      
-               var rno = $(this).parent().prev().prev().attr("value"); // rNo의 값
-               $.ajax({
-                  type : 'delete',
-                  url : '/replies/' + rno,
-                  headers : {
-                     "Content-Type" : "application/json",
-                     "X-HTTP-Method-Override" : "DELETE"
-                  },
-                  dataType : "json",
-                  success : function(data) {
-                     if (data.result == "ok") {
-                        alert("삭제되었습니다.");
-                        getAllList(); //전체 목록 뿌리기
-                     }
-                  }
-               }); // end of ajax
+      			
+            	if (confirm("정말 삭제하시겠습니까?")) {
+            		var rno = $(this).parent().prev().prev().attr("value"); // rNo의 값
+                    $.ajax({
+                       type : 'delete',
+                       url : '/replies/' + rno,
+                       headers : {
+                          "Content-Type" : "application/json",
+                          "X-HTTP-Method-Override" : "DELETE"
+                       },
+                       dataType : "json",
+                       success : function(data) {
+                          if (data.result == "ok") {
+                             alert("삭제되었습니다.");
+                             getAllList(); //전체 목록 뿌리기
+                          }
+                       }
+                    }); // end of ajax
+                } else {
+                    return;
+                }
+               
             });
       
             // 댓글 수정버튼 클릭시
@@ -205,8 +213,8 @@ input[type=checkbox]:checked+label:before {
                $.ajax({
                   type : 'put',
                   url : "/replies/" + rno,
+                  contentType : "application/json; charset=UTF-8",
                   headers : {
-                     "Content-Type" : "application/json",
                      "X-HTTP-Method-Override" : "PUT"
                   },
                   dataType : "json",
