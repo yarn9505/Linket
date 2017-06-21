@@ -303,6 +303,7 @@ input[type=checkbox]:checked+label:before {
                      // 댓글 리스트 모두 지우고 다시 출력
                      $("#replyTable").find("span").remove();
                      $("#replyTable").find("br").remove();
+                     $("#replyTable").find("hr").remove();
       
                      // 댓글 리스트 출력
                      $.each(data.replyAllList, function(i, rDTO) {
@@ -585,7 +586,7 @@ input[type=checkbox]:checked+label:before {
 								<br/>
 								<div align="center">
 									<button type="button" class="btn btn-default" data-dismiss="modal">취소</button>&nbsp;
-									<button type="button" id="replyModBtn" class="btn btn-primary" data-toggle='modal'>수정</button>
+									<button type="button" id="replyModBtn" class="btn btn-primary" data-dismiss="modal" >수정</button>
 								</div>
 							</div>
 						</div>
