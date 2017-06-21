@@ -170,7 +170,6 @@ public class MachingController {
 		// 게시글 중에서 내 아이디를 검색한 리스트 가지고옴
 		List<matchingDTO> mylist = new ArrayList<matchingDTO>();
 		mylist = service.selectMyBno(myId);
-		logger.info("mylist size : " + mylist.size());
 		// 판매자용 리스트
 		List<matchingDTO> IamSeller = new ArrayList<matchingDTO>();
 		List<UserVO> MyCustomerList = new ArrayList<UserVO>();
@@ -205,8 +204,6 @@ public class MachingController {
 		/** 뿌려줄때..둘이 거래가 성립된 날짜와 시간 순서대로 sort 해줘야되나... */
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		logger.info("IamSeller size : " + IamSeller.size());
-		logger.info("MyCustomerList size : " + MyCustomerList.size());
 		map.put("myinfo", myinfo); // 내 정보
 		map.put("IamSeller", IamSeller); // 내가 판매자인 경우 내 게시글 정보(requestMsg등의 정보를 담고 있음) ,
 		map.put("MyCustomerList", MyCustomerList); // 내 게시글 구매자 정보를 담고 있음

@@ -528,7 +528,7 @@ width:100%;
                    <div class="BoxContents" style="overflow:scroll;max-height:600px;-ms-overflow-style: none;">
                      <h1 class="BoxTitle" style='background-color: #158cba;'>콘텐츠 박스</h1>
 					 <button  id="sellingBtn" class="btn btn-default">판매중인 정보</button>
-					 <button  id="buyingBtn" class="btn btn-default">구매중인 정보</button>
+					 <button  id="buyingBtn" class="btn btn-default"><img id="statusId" src="" style="display:none;"/>구매중인 정보</button>
                      <div id="matchingDiv" class="BoxBody" style="margin:0 auto;">
 							<!-- 이곳에 내용... -->
                      	
@@ -824,6 +824,10 @@ width:100%;
 		                                  url:"/matching/matchingResult?mno=",
 		                                  dataType:"json",
 		                                  success:function(data){
+		                                	  if ( data.IamCustomer.length > 0 ){
+		                                		  $("#statusId").attr("src","/resources/images/redspot.png");
+		                                		  $("#statusId").css("display:inline");
+		                                	  }
 		                                	  // 내 기준 판매자일 때의 정보
 		                                	 	for(var i=0; i<data.IamSeller.length;i++){
 		                                			// IamSeller : 내가 판매자인 경우
@@ -880,7 +884,7 @@ width:100%;
 		                                	 	$("#matchingDiv").prepend("<div style='font-weight:bold;text-align:center;'><판매 대기중인 내역></div><hr/>");
 		                                  }//end of success
 		                        	});// end of ajax
-	                        	}else if( status == "buyingBtn" ){ // 내가 판매자인 경우 버튼 클릭시...
+	                        	}else if( status == "buyingBtn" ){ 
 	                        		$.ajax({
 		                                  type:"GET",
 		                                  headers:{
@@ -889,6 +893,10 @@ width:100%;
 		                                  url:"/matching/matchingResult?mno=",
 		                                  dataType:"json",
 		                                  success:function(data){
+		                                	  if ( data.IamCustomer.length > 0 ){
+		                                		  $("#statusId").attr("src","/resources/images/redspot.png");
+		                                		  $("#statusId").css("display:inline");
+		                                	  }
 		                                	  // 내 기준 판매자일 때의 정보
 		                                	 	for(var i=0; i<data.IamCustomer.length;i++){
 		                                			// IamCustomer : 내가 거래 요청자인 경우
