@@ -1,6 +1,10 @@
 @CHARSET "UTF-8";
 
 /* 전체 공통 스타일  */
+html{
+	height: 100%;
+}
+
 a {
 	text-decoration: none !important;
 }
@@ -94,9 +98,14 @@ a:hover {
 
 
 .footer{
-	bottom: 0px; 
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	overflow:scroll;
 	background-color: #f8f8f8; 
 	width: 100%;
 	padding-top: 10px;
+	z-index: 99;
 }
 

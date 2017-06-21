@@ -167,7 +167,7 @@
 		from matchingT left outer join board on
 		matchingT.bno = board.bno
 		where
-		(board.allowVal = 'Y' and board.isSwap = 'N' and (board.userId = #{userId} and
+		(board.allowVal = 'Y' and board.isSwap = 'N' and (matchingT.requester = #{userId} and
 		matchingT.sellerId is not NULL ))
 		or
 		(board.allowVal = 'Y' and
