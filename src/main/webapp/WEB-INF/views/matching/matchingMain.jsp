@@ -493,7 +493,7 @@ width:100%;
                      			<option class="_option" data-value="H" seleted="">전화번호</option> 
                      			<option class="_option" data-value="A">계좌번호</option>
                      		 </select> 
-                     		 <legend>검색 영역</legend> 
+                     		 <legend>신고 번호 조회</legend> 
                      		 <input id="inputCriminalId" type="text" maxlength="40" id="srch_txt" title="검색" placeholder="예) 010-0000-0000" name="" class="srch_txt _input">
                      		 <input id="showCriminal" type="image" src="https://ssl.pstatic.net/sstatic/keypage/outside/life/2013122610445393884.png" alt="검색" class="img_btn _search">
                      	 </fieldset>
