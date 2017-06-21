@@ -10,7 +10,7 @@
 			My Page<span class=" glyphicon glyphicon-menu-down"
 				aria-hidden="true" style="float: right;"></span>
 		</h3>
-		<ul class="navibar">
+		<ul class="navibar" style="padding: 0;">
 			<li><a href="javascript:favirtelist();"> 좋아요 목록</a></li>
 			<li><a href="javascript:myWriteList();">내가 올린 글 </a></li>
 			<li><a href="javascript:myExchangeList();">거래중인 게시물 </a></li>
