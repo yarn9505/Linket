@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	alert("인식확인");
 	// 수정버튼 클릭시 welcome 페이지로 분기
 	$('#cancelBtnModi').click(function(){
 		location.replace("/mypage/myList");

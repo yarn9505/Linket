@@ -18,49 +18,49 @@ $(document).ready(function(){
 	
     $("#cateId1").change(function(){
         if($("#cateId1").is(":checked")){
-        	$("#cateId1").val("y");
+        	$("#cateId1").val("Y");
         }else{
-        	$("#cateId1").val("n");
+        	$("#cateId1").val("N");
         }
     });
     
     $("#cateId2").change(function(){
         if($("#cateId2").is(":checked")){
-        	$("#cateId2").val("y");
+        	$("#cateId2").val("Y");
         }else{
-        	$("#cateId2").val("n");
+        	$("#cateId2").val("N");
         }
     });
     
     $("#cateId3").change(function(){
         if($("#cateId3").is(":checked")){
-        	$("#cateId3").val("y");
+        	$("#cateId3").val("Y");
         }else{
-        	$("#cateId3").val("n");
+        	$("#cateId3").val("N");
         }
     });
     
     $("#cateId4").change(function(){
         if($("#cateId4").is(":checked")){
-        	$("#cateId4").val("y");
+        	$("#cateId4").val("Y");
         }else{
-        	$("#cateId4").val("n");
+        	$("#cateId4").val("N");
         }
     });
     
     $("#cateId5").change(function(){
         if($("#cateId5").is(":checked")){
-        	$("#cateId5").val("y");
+        	$("#cateId5").val("Y");
         }else{
-        	$("#cateId5").val("n");
+        	$("#cateId5").val("N");
         }
     });
     
     $("#cateId6").change(function(){
         if($("#cateId6").is(":checked")){
-        	$("#cateId6").val("y");
+        	$("#cateId6").val("Y");
         }else{
-        	$("#cateId6").val("n");
+        	$("#cateId6").val("N");
         }
     });
     
@@ -129,7 +129,7 @@ $(function(){
 		 var cateId3=$("#cateId3").val();
 		 var cateId4=$("#cateId4").val();
 		 var cateId5=$("#cateId5").val();
-		 var cateId6=$("#cateId5").val();
+		 var cateId6=$("#cateId6").val();
 		 var idCheckboolean=$('#idCheckboolean').val()
 		 var pw=$('#pw').val() ;
 		 var pw2=$('#pw2').val();

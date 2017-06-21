@@ -34,8 +34,9 @@
 										class="form-control col-md-3" value="${pagingDTO.searchText }" />
 									<input type="hidden" name="cateId" value="${cateDTO.cateId }" />
 									<span class="input-group-btn">
-										<button type="submit" class="btn btn-default btn-lg" style="padding-bottom: 11px;padding-top: 11px;">
-											<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
+										<button type="submit" class="btn btn-default btn-lg"
+											style="padding-bottom: 11px; padding-top: 11px;">
+											<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 										</button>
 									</span>
 								</div>
@@ -43,9 +44,10 @@
 					</table>
 				</form>
 
-				<br /><br />
+				<br />
+				<br />
 
-				<table class="table table table-hover" style="table-layout:fixed;">
+				<table class="table table table-hover" style="table-layout: fixed;">
 					<tr style="background-color: #D1E0EF;">
 						<th style="width: 10%; text-align: center;">No</th>
 						<th style="width: 45%; text-align: center;">제목</th>
@@ -61,7 +63,9 @@
 					<c:forEach items="${boardList}" var="boardDTO" varStatus="status">
 						<tr style="text-align: center">
 							<td>${status.count }</td>
-							<td><a href="/board/category/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }" style="display:block;margin:0 auto; width:auto;overflow: hidden;text-overflow: ellipsis;white-space:nowrap;">${boardDTO.bTitle }</a></td>
+							<td><a
+								href="/board/category/detailContent?bno=${boardDTO.bNo}&pageNo=${param.pageNo }"
+								style="display: block; margin: 0 auto; width: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">${boardDTO.bTitle }</a></td>
 							<td>${boardDTO.userId }</td>
 							<td>${boardDTO.bRegDate }</td>
 							<td><span class="badge" style="background-color: #BFC2C3;">${boardDTO.viewCnt}</span></td>
@@ -73,7 +77,8 @@
 				<table align="right">
 					<tr>
 						<td>
-							<button type="button" class="btn btn-default" onclick="location.href='/board/category/writeBoardForm?cateId=${cateDTO.cateId}'">
+							<button type="button" class="btn btn-default"
+								onclick="location.href='/board/category/writeBoardForm?cateId=${cateDTO.cateId}'">
 								<img src="/resources/images/writeBtn.png" style="width: 60px;">
 							</button>
 						</td>
@@ -95,13 +100,15 @@
 							end="${pagingDTO.pageEndNo}">
 							<c:choose>
 								<c:when test="${pagingDTO.pageNo != i}">
-									<li><a href="/board/category/boardList?cateId=${cateDTO.cateId }&pageNo=${i}&searchType=${param.searchType}&searchText=${param.searchText}">${i}</a></li>
+									<li><a
+										href="/board/category/boardList?cateId=${cateDTO.cateId }&pageNo=${i}&searchType=${param.searchType}&searchText=${param.searchText}">${i}</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="#" style="background-color: #158cba; color: white;">&nbsp;${i}&nbsp;</a></li>
+									<li><a href="#"
+										style="background-color: #158cba; color: white;">&nbsp;${i}&nbsp;</a></li>
 								</c:otherwise>
 							</c:choose>
-							
+
 						</c:forEach>
 						<c:if test="${pagingDTO.groupNo < pagingDTO.totalGroupCount}">
 							<li><a
