@@ -96,15 +96,3 @@ a:hover {
   vertical-align: middle;
 }
 
-
-.footer{
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	background-color: #f8f8f8; 
-	width: 100%;
-	padding-top: 10px;
-	z-index: 99;
-}
-
