@@ -187,7 +187,7 @@
       </div>
    </div>
    
-   <div style="margin-top: 3%;height: 100%;" >
+   <div style="margin-top: 3%;" >
       <decorator:body></decorator:body>
     </div>
    	
