@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	// 보낸 쪽지 정보를 저장
 	Map<String, Object> map = new HashMap<String, Object>();
 	// 로그인된 세션 아이디와 로그인 아이디 매칭해서 저장시켜 놓음.
-	HashMap<String, Object> infoMap = new HashMap<String, Object>();
+	ConcurrentHashMap<String, Object> infoMap = new ConcurrentHashMap<String, Object>();
 	/**
 	 * 접속 관련 Event Method
 	 * 
