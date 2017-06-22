@@ -79,23 +79,25 @@
     
     
     	if( "${loginSession.userId}" != null && "${loginSession.userId}" != 'undefined' && "${loginSession.userId}" != "" ){
+    		console.log("알람시작");
     		poll();
-    	}// if
+    	}// if 
+
     	
-    	
-    	 function poll(){
-     		 $.ajax({
-                 url : "/note/alarmNote",
-                 type : "POST",
-                 dateType : "text",
-                 success : function(value){
-                    $("#noteBadge").html(value);
-                    poll();
-                 },
-                 error : function(){
-                 },
-              });
-     	   };// poll()
+     	  function poll(){
+	             $.ajax({
+	                url : "/note/alarmNote",
+	                type : "POST",
+	                dateType : "text",
+	                success : function(value){
+	                   $("#noteBadge").html(value);
+	                   poll();
+	                },
+	                error : function(){
+	                },
+	             });
+	             
+	       }
 
 
 </script>
@@ -189,7 +191,7 @@
                   	<li class="bedgeSt" style="width: 10%;">
                   		<a class="msg_a" href="/note/listReceive">
                      	<!-- 읽지 않은 쪽지 -->
-                     	<span id="noteBadge" class="Badge">${sessionScope.notOpen}</span>
+                     	<span id="noteBadge" class="Badge" >${sessionScope.notOpen}</span>
                   		</a>
                   	</li>
                   	<li id="sectionBar">
