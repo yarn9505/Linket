@@ -16,7 +16,7 @@
 				<div class="panel panel-primary">
 					<div class="panel-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;전체 검색</div>
 					<div class="panel-body" style="text-align: center;">
-						<p id="keywordPId" style="display: inline;">"${map.keywords}"</p>
+						<p id="keywordPId" style="display: inline;">${map.keywords}</p>
 						(으)로 검색한 결과입니다.
 					</div>
 
@@ -48,9 +48,9 @@
 			<ul class="pagination">
 				<li><a class="aT" href="${map.pageMaker.startPage-1}" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 				</a></li>
-				<c:forEach var="pageNum" begin="${map.pageMaker.startPage}" end="${map.pageMaker.endPage}">
-					<li class="active"><a class="aT" href="${pageNum}">${pageNum}</a></li>
-				</c:forEach>
+				   <c:forEach var="pageNum" begin="${map.pageMaker.startPage}" end="${map.pageMaker.endPage}">
+               <li ${map.pageMaker.page == pageNum ? 'class=active' : '' }><a class="aT" href="${pageNum}">${pageNum}</a></li>
+           			 </c:forEach>
 				<li><a class="aT" href="${map.pageMaker.endPage+1}" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 				</a></li>
 			</ul>

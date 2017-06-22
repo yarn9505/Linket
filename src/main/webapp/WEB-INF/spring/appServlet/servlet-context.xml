@@ -48,7 +48,6 @@
 			<exclude-mapping path="/address/*" /> <!-- 네이버 주소->위도경도 변환용 예외처리 -->
 			<exclude-mapping path="/mypage/countClient/*" />
 			<exclude-mapping path="/note/alarmNote/*" />
-			<exclude-mapping path="/matching/matchingMain" />
 			<exclude-mapping path="/echo-ws" />
 			<exclude-mapping path="/note/alarmNote/*" />
 			<beans:ref bean="authInterceptor" />

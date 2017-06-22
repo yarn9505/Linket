@@ -14,18 +14,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<article class="container">
-				<div class="page-header">
-					<h1>비밀번호 찾기</h1>
-				</div>
-				<div class="col-md-6 col-md-offset-3" style="position: static;">
-					<form role="form" id="form1">
-						<div class="form-group">
+				<h3 align="center">
+					<span class="glyphicon glyphicon-paperclip" style="color: #0E3E59;">&nbsp;비밀번호
+						변경</span>
+				</h3>
+				<br /> <br />
 
+				<div
+					style="float: center; background-color: #E9EFF5; padding: 5% 7% 3% 7%;; border-radius: 13px;">
+					<form role="form" id="form1">
+
+						<div class="form-group">
 							<label class="control-label">아이디</label> <input type="text"
 								class="form-control" id="userId" name="userId"
 								placeholder="아이디를 입력해주세요" value="${id}" readonly="readonly" />
 						</div>
+
 
 						<div class="form-group">
 							<label class="control-label">변경할 비밀번호 </label> <input
@@ -34,7 +38,6 @@
 							<div id="pw-error"></div>
 						</div>
 
-
 						<div class="form-group">
 							<label class="control-label">변경할 비밀번호 확인 </label> <input
 								type="password" class="form-control" id="pw2" name="pw2"
@@ -42,20 +45,16 @@
 							<div id="pw2-error"></div>
 						</div>
 
-
 						<br />
-						<br />
-						<div class="form-group text-center">
+						<div align="center">
 							<button id="cancelBtn" type="button" class="btn btn-default">취소</button>
 							&nbsp;&nbsp;
-							<button id="select" type="button" class="btn btn-success">수정하기</button>
+							<button id="select" type="button" class="btn btn-primary">수정하기</button>
 
 						</div>
 
 					</form>
-
 				</div>
-				</article>
 			</div>
 		</div>
 	</div>

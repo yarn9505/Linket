@@ -837,7 +837,7 @@ width:100%;
 		                                  success:function(data){
 		                                	  if ( data.IamCustomer.length > 0 ){
 		                                		  $("#statusId").attr("src","/resources/images/redspot.png");
-		                                		  $("#statusId").attr("style","display:inline;width:20px;");
+		                                		  $("#statusId").attr("style","display:inline; width:15px; height:15px;");
 		                                	  }
 		                                	  // 내 기준 판매자일 때의 정보
 		                                	 	for(var i=0; i<data.IamSeller.length;i++){
