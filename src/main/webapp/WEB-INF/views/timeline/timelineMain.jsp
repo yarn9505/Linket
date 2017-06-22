@@ -139,7 +139,7 @@
                <script id="entry-template2" type="text/x-handlebars-template"> 
                      <div id="timeline">    
                          <!-- item -->
-                         <div class="item " style="padding-left:15px;"> 
+                         <div class="item " > 
                              <div class="cont_pic" >
                               <img class="cont_img" src="{{imgPath}}" width="100%" height="300px"/> 
                              </div> <!-- #cont_pic -->

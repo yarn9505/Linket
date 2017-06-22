@@ -16,6 +16,16 @@
 	height: 350px;
 	background-color: grey;
 }
+/** 거래완료 스타일 */      
+.exghanged{
+	font-size:70%;
+	font-style:bold;
+	float:right;
+	border:1px solid;
+	border-radius:10px;
+	border-color:red;
+	padding:10px;
+}
 
 p >span{
 	/* word-wrap: break-word; */
@@ -423,6 +433,9 @@ input[type=checkbox]:checked+label:before {
 				<h3>
 					<span class="glyphicon glyphicon-list-alt" style="color: #0E3E59;">&nbsp;${cateDTO.cateName}
 						게시글 상세보기</span>
+					<c:if test="${boardDTO.isSwap == 'Y' }">
+						<span class="exghanged">거래 완료</span>
+					</c:if>
 				</h3>
 				<br> <br>
 				<table class="table table-bordered">
