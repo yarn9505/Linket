@@ -606,11 +606,11 @@ width:100%;
                                 	 str3 += "<div id='indexContent"+index+"' class='panel-group' id='accordion' role='tablist' aria-multiselectable='true' style='margin-bottom: 40px;'>"
                                      +"<div class='panel panel-default'>"
                                      +"<div class='panel-heading' role='tab' id='headingOne'>"
-                                     +"<h4 class='panel-title'>"
+                                     +"<h4 class='panel-title' style='font-size:11px;'>"
                                            +"<input id='"+index+"' type='checkbox' name='checkCompareName' class='checkCompare' value='"+this.mno+"'/>"
                                         +"<span style='width:100px;float:right;margin-left:5px;'>"+this.wantedValue+"원</span>"
                                         +"<a data-toggle='collapse' data-parent='#accordion' href='#collapseOne"+index+"' aria-expanded='true' aria-controls='collapseOne' style='text-decoration:none;color:black;'>"
-                                        +"<p style='width:200px;padding-left: 20px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requestMsg+"</p>"
+                                        +"<p style='width:200px;padding-left: 20px;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;margin-top:-20px;'>"+this.requester+"</p>"
                                         +"<div style='width:100%;overflow:hidden;text-overflow:ellipsis;white-space: nowrap;'>"+this.addr1+"</div>"
                                         /* +"<img class='imgVictory' src='' width='20px' height='20px' style='border:0px;display:inline;float:right;margin-top:-28px;display:none;'/>" */
                                         +"<span class='badge badge-danger imgVictory' style='float:right; background:#ED0000 !important;'></span>"
@@ -619,7 +619,7 @@ width:100%;
                                      +"</div>"
                                               +"<div id='collapseOne"+index+"' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='headingOne'>"
                                               +"<div class='panel-body'>"+this.requestMsg+"</div>"
-                                                +"<button class='decideBtn btn btn-default' style='display:inline;float:right;'>요청 승인</button>"
+                                                +"<button class='decideBtn btn btn-sm btn-default' style='display:inline;float:right;font-size:11px;'>요청 승인</button>"
                                                 +"</div>"
                                                 +"</div>"
                                                 +"</div>";

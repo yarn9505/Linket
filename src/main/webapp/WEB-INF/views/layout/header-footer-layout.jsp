@@ -75,8 +75,30 @@
     	  }
 
     	}
+    
+    
+    
+    	if( "${loginSession.userId}" != null && "${loginSession.userId}" != 'undefined' && "${loginSession.userId}" != "" ){
+    		poll();
+    	}// if
+    	
+    	
+    	 function poll(){
+     		 $.ajax({
+                 url : "/note/alarmNote",
+                 type : "POST",
+                 dateType : "text",
+                 success : function(value){
+                    $("#noteBadge").html(value);
+                    poll();
+                 },
+                 error : function(){
+                 },
+              });
+     	   };// poll()
+
+
 </script>
-<script type="text/javascript" src="/resources/js/noteCntCheck.js"></script>
 <style type="text/css">
 
 .msg_a {

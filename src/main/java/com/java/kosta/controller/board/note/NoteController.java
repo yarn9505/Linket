@@ -101,7 +101,7 @@ public class NoteController {
          }
          
          //안드 노티용!
-         
+        /* 
 			HttpURLConnection conn = null;
 			boolean resBol = false;
 
@@ -175,7 +175,7 @@ public class NoteController {
 				e.printStackTrace();
 			}
          
-         
+         */
          
          destination = "redirect:/board/category/detailContent?bno="+bno;            
          
@@ -199,11 +199,12 @@ public class NoteController {
    
    // 알림에 쪽지 띄우기
    @RequestMapping(value="alarmNote")
-   public @ResponseBody String alarmNote(HttpServletRequest req , NoteVO vo) throws Exception{
+   public @ResponseBody String alarmNote(HttpServletRequest req) throws Exception{
 	   HttpSession session = req.getSession();
 	      //현재 로그인세션정보를 가지고와서 UserVO로 형변환을 해준다.
 	      UserVO uvo = (UserVO) session.getAttribute("loginSession");
 	      //로그인 정보가 있는 경우 내가 받은 쪽지임으로 setRecvId에 내 아이디를 넣어줌
+	      NoteVO vo = new NoteVO();
 	      vo.setRecvId(uvo.getUserId());
 	      
 	      //리턴값을 담아서  보낼 부분
@@ -211,7 +212,7 @@ public class NoteController {
 	    	  //DB에 있는 beforeAlarmCount에 저장된 정보를 가지고 온다.
 	    	  int beforeAlarmCount = service.selectBeforeAlarmCount(uvo);
 	    	  //totalCnt는 계속적으로 변화를 비교해줘야 하기 때문에 호출해줌
-	    	  int totalCnt = service.totalCntNotOpen(vo);
+	    	  int totalCnt = service.totalCntNotOpen(vo); // 안읽은 총 개수
 	    	  if(beforeAlarmCount!=totalCnt){
 		    	  //변화가 발생한 경우 : DB에 있는 beforeAlarmCount값을 새로 업데이트
 		    	  service.updateBeforeAlarmCount(uvo, totalCnt);
