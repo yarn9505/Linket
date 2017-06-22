@@ -12,7 +12,6 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<div id="form-contact">
 					<h3 align="center">
 						<span class="glyphicon glyphicon-paperclip" style="color: #0E3E59;">&nbsp;아이디 찾기</span>
 					</h3>
@@ -22,7 +21,7 @@
 						<form role="form" id="form1">
 							<div class="form-group">
 								<label class="control-label">이름</label> 
-								<input name="userName" type="text" class="form-control" id="userName" placeholder="이름을 입력해 주세요" value="">
+								<input name="userName" type="text" class="form-control" id="userName" placeholder="이름을 입력해 주세요" >
 								<div id="name-error"></div>
 							</div>
 
@@ -42,6 +41,5 @@
 				</div>
 			</div>
 		</div>
-	</div>
 </body>
 </html>
