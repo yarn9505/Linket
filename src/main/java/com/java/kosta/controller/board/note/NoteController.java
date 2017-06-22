@@ -101,7 +101,7 @@ public class NoteController {
          }
          
          //안드 노티용!
-        /* 
+    /*     
 			HttpURLConnection conn = null;
 			boolean resBol = false;
 
@@ -174,8 +174,8 @@ public class NoteController {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-         
          */
+         
          
          destination = "redirect:/board/category/detailContent?bno="+bno;            
          

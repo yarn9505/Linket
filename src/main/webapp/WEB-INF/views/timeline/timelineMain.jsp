@@ -10,59 +10,6 @@
 <script type="text/javascript" src="/resources/js/handlebars-v4.0.10.js"></script>
 <link rel="stylesheet" href="/resources/css/timeline.css">
 
-<script>
- 
-    var sock = null;
-    $(document).ready(function(){
-        sock = new SockJS("/echo-ws");
-          sock.onopen=function(){
-             sock.send("접속${loginSession.userId}");
-             
-          }
-          sock.onmessage=function(evt){
-               // alert(evt.data);
-                notifyMe(evt.data);//Notification
-          }
-          sock.onclose = function(){
-          }      
-       
-    });
-
-    function notifyMe(data) {
-         // Let's check if the browser supports notifications
-
-         var options = {
-                body: data,
-                icon: "/resources/images/notiImg.jpg"
-        }
-         
-         if (!("Notification" in window)) {
-           alert("This browser does not support desktop notification");
-         }
-
-         
-         // Let's check whether notification permissions have already been granted
-         else if (Notification.permission === "granted") {
-           // If it's okay let's create a notification
-           var notification = new Notification("쪽지가 도착했습니다.",options);
-         }
-
-         // Otherwise, we need to ask the user for permission
-         else if (Notification.permission !== 'denied') {
-           Notification.requestPermission(function (permission) {
-             // If the user accepts, let's create a notification
-             if (permission === "granted") {
-               var notification = new Notification(data);
-             }
-           });
-         }
-
-         // At last, if the user has denied notifications, and you 
-         // want to be respectful there is no need to bother them any more.
-       }
- 
-   
-</script>
 </head>
 <body>
    <div class="container">

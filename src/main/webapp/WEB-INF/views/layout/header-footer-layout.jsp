@@ -86,7 +86,7 @@
     	 function poll(){
      		 $.ajax({
                  url : "/note/alarmNote",
-                 type : "POST",
+                 type : "GET",
                  dateType : "text",
                  success : function(value){
                     $("#noteBadge").html(value);
