@@ -39,7 +39,7 @@
     		sock = new SockJS("/echo-ws");
             sock.onopen=function(){
           	  sock.send("접속${loginSession.userId}");
-          	  
+          	  //.
             }
             sock.onmessage=function(evt){
                  // alert(evt.data);
