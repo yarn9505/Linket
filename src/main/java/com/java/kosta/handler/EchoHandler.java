@@ -54,7 +54,7 @@ public class EchoHandler extends TextWebSocketHandler {
 	 * 클라이언트들에게 메시지 보냄 (message)
 	 */
 	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+	protected synchronized void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		String access = message.getPayload();
 		if (access.contains("접속")) {
 			// 접속을 띄어내고 로그인 아이디만 가져옴
@@ -87,17 +87,20 @@ public class EchoHandler extends TextWebSocketHandler {
 	 */
 
 	@Override
-	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		connectedUsers.remove(session);
-		Set keys = infoMap.keySet();
-		Iterator it = keys.iterator();
-		while (it.hasNext()) {
-			String key = (String) it.next();
-			if (infoMap.get(key) == session) {
-				infoMap.remove(key);
+	public  synchronized void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+		try {
+			Set keys = infoMap.keySet();
+			Iterator it = (Iterator)keys.iterator();
+			while (it.hasNext()) {
+				String key = (String) it.next();
+				if (infoMap.get(key) == session) {
+					infoMap.remove(key);
+				}
 			}
-			;
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+		connectedUsers.remove(session);
 	}
 
 	/**
